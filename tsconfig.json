@@ -47,5 +47,10 @@
     "bundles",
     "coverage",
     "test/*"
-  ]
+  ],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
 }

@@ -1,11 +1,11 @@
 import next from 'next';
-import { __PROD__ } from '@utils/constants';
 import { createServer } from 'http';
+import { __PROD__ } from '../src/utils/constants';
 
-async () => {
+(async () => {
   const PORT = parseInt(process.env.PORT) || 3000;
   const app = next({
-    dev: __PROD__,
+    dev: !__PROD__,
   });
 
   await app.prepare().then(() => {
@@ -30,4 +30,9 @@ async () => {
       })
       .listen(PORT);
   });
-};
+  try {
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
+})();
