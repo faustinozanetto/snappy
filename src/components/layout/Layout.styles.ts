@@ -8,5 +8,6 @@ export const LayoutWrapper = styled.div`
 export const LayoutContent = styled.main`
   flex-grow: 1;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  overflow: hidden;
 `;

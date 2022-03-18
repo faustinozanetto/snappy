@@ -6,9 +6,6 @@ export const NavbarWrapper = styled.nav`
   justify-content: flex-start;
   align-items: center;
 
-  left: 0;
-  left: 0;
-  position: fixed;
   width: 100%;
   z-index: 100;
 
