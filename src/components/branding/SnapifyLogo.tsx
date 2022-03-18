@@ -22,7 +22,7 @@ const SnapifyLogo: React.FC<SnapifyLogoProps> = (props) => {
         return [baseWidth, baseHeight];
       }
       case 'large': {
-        return [baseWidth * 1.5, baseHeight * 1.5];
+        return [baseWidth * 1.75, baseHeight * 1.75];
       }
     }
   }, [size]);

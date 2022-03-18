@@ -1,6 +1,5 @@
-import { Navbar } from '@components/navbar/Navbar';
 import React from 'react';
-import { LayoutContent, LayoutWrapper } from './Layout.styles';
+import { Navbar } from '@components/navbar/Navbar';
 
 interface LayoutProps {
   children?: React.ReactNode;
@@ -8,11 +7,11 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <LayoutWrapper>
+    <div className='flex flex-col min-h-screen bg-gray-900'>
       {/* Navbar */}
       <Navbar />
       {/* Content */}
-      <LayoutContent>{children}</LayoutContent>
-    </LayoutWrapper>
+      <main className='flex flex-col flex-1 overflow-hidden'>{children}</main>
+    </div>
   );
 };

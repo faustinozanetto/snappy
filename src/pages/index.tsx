@@ -2,8 +2,6 @@ import { Layout } from '@components/layout/Layout';
 import prisma from '@lib/prisma';
 import { GetStaticProps } from 'next';
 import React from 'react';
-import styled from 'styled-components';
-
 type HomePageProps = {};
 const HomePage: React.FC<HomePageProps> = () => {
   return (
