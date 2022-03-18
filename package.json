@@ -1,0 +1,23 @@
+{
+  "name": "snapify",
+  "version": "0.0.1",
+  "description": "Create and share your code snippets.",
+  "main": "index.js",
+  "author": "Faustino Zanetto <faustizanetto@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start:dev": "ts-node --project tsconfig.server.json -r tsconfig-paths/register server/index.ts"
+  },
+  "dependencies": {
+    "next": "^12.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "@types/react": "^17.0.40",
+    "@types/react-dom": "^17.0.13",
+    "typescript": "^4.6.2"
+  }
+}
