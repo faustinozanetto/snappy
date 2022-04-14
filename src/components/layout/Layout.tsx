@@ -1,17 +1,18 @@
-import React from 'react';
-import { Navbar } from '@components/navbar/Navbar';
+import React from 'react'
+import { Box } from '@chakra-ui/react';
+import { LayoutHeadProps } from './LayoutHead';
 
 interface LayoutProps {
-  children?: React.ReactNode;
+  /** Children */
+  children: React.ReactNode;
+  layoutHead?: React.FC<LayoutHeadProps>;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children }) => {
+export const Layout: React.FC<LayoutProps> = (props) => {
+  const { children } = props;
   return (
-    <div className='flex flex-col min-h-screen bg-gray-900'>
-      {/* Navbar */}
-      <Navbar />
-      {/* Content */}
-      <main className='flex flex-col flex-1 overflow-hidden'>{children}</main>
-    </div>
-  );
-};
+    <Box role="main" minHeight="100vh">
+      {/* Head */}
+      <Head
+    );
+}
