@@ -12,7 +12,7 @@ export const EditorBackgroundConfiguration: React.FC<
 > = (props) => {
   const { backgroundType } = props;
   return (
-    <VStack height='220px'>
+    <VStack>
       {/* Color */}
       {backgroundType === BackgroundType.COLOR && <EditorBackgroundColor />}
       {/* Image */}

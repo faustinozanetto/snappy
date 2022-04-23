@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flex } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SketchPicker } from 'react-color';
+import { ChromePicker, SketchPicker } from 'react-color';
 import {
   selectBackgroundCustomization,
   setBackgroundCustomization,
@@ -15,13 +15,11 @@ export const EditorBackgroundColor: React.FC<
   const dispatch = useDispatch();
   const backgroundCustomization = useSelector(selectBackgroundCustomization);
   return (
-    <Flex width='full'>
-      <SketchPicker
-        color={backgroundCustomization.backgroundColor}
-        onChange={(color) =>
-          dispatch(setBackgroundCustomization({ backgroundColor: color.hex }))
-        }
-      />
-    </Flex>
+    <ChromePicker
+      color={backgroundCustomization.backgroundColor}
+      onChange={(color) =>
+        dispatch(setBackgroundCustomization({ backgroundColor: color.hex }))
+      }
+    />
   );
 };

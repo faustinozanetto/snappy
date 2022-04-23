@@ -10,6 +10,15 @@ import {
   Button,
   HStack,
   MenuDivider,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  Text,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { BiWindow } from 'react-icons/bi';
 import { EditorWindowPadding } from './padding/EditorWindowPadding';
@@ -31,25 +40,24 @@ export const EditorWindow: React.FC<EditorWindowProps> = ({}) => {
     WindowConfigType.PADDING
   );
   return (
-    <Menu placement='left-start'>
+    <Popover placement='left-start'>
       <Tooltip label='Window' aria-label='Window Customization'>
-        <MenuButton
-          as={IconButton}
-          icon={
-            <span>
-              <BiWindow />
-            </span>
-          }
-          aria-label='Window Customization'
-          border='2px solid'
-        />
+        <PopoverTrigger>
+          <IconButton
+            icon={
+              <span>
+                <BiWindow />
+              </span>
+            }
+            aria-label='Window Customization'
+            border='2px solid'
+          />
+        </PopoverTrigger>
       </Tooltip>
-      <MenuList>
-        {/* Selection */}
-        <MenuGroup>
-          <HStack justify='center' px={4}>
+      <PopoverContent>
+        <PopoverHeader fontWeight='semibold'>
+          <HStack>
             <Button
-              width='50%'
               variant='ghost'
               colorScheme='telegram'
               onClick={() => setWindowConfigType(WindowConfigType.PADDING)}
@@ -57,7 +65,6 @@ export const EditorWindow: React.FC<EditorWindowProps> = ({}) => {
               Padding
             </Button>
             <Button
-              width='50%'
               variant='ghost'
               colorScheme='telegram'
               onClick={() => setWindowConfigType(WindowConfigType.SHADOW)}
@@ -65,10 +72,13 @@ export const EditorWindow: React.FC<EditorWindowProps> = ({}) => {
               Shadow
             </Button>
           </HStack>
-        </MenuGroup>
-        <MenuDivider />
-        {/* Configuration */}
-        <MenuGroup>
+        </PopoverHeader>
+        <PopoverArrow />
+        <PopoverCloseButton />
+        <PopoverBody
+          px={0}
+          backgroundColor={useColorModeValue('gray.100', 'gray.800')}
+        >
           {/* Window Padding */}
           {windowConfigType === WindowConfigType.PADDING && (
             <EditorWindowPadding />
@@ -77,8 +87,8 @@ export const EditorWindow: React.FC<EditorWindowProps> = ({}) => {
           {windowConfigType === WindowConfigType.SHADOW && (
             <EditorWindowShadow />
           )}
-        </MenuGroup>
-      </MenuList>
-    </Menu>
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
   );
 };

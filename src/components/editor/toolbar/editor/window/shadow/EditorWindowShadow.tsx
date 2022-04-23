@@ -14,24 +14,22 @@ export const EditorWindowShadow: React.FC<EditorWindowShadowProps> = ({}) => {
   const windowCustomization = useSelector(selectWindowCustomization);
 
   return (
-    <VStack px={2}>
+    <VStack spacing={4} px={4}>
       {/* Shadow Size */}
-      <MenuItem>
-        <CustomizationSlider
-          label='Shadow Size'
-          range={[0, 5]}
-          stepSize={0.1}
-          defaultValue={windowCustomization.boxShadowSize}
-          onUpdated={(value) =>
-            dispatch(
-              setWindowCustomization({
-                boxShadow: value !== 0,
-                boxShadowSize: value,
-              })
-            )
-          }
-        />
-      </MenuItem>
+      <CustomizationSlider
+        label='Shadow Size'
+        range={[0, 5]}
+        stepSize={0.1}
+        defaultValue={windowCustomization.boxShadowSize}
+        onUpdated={(value) =>
+          dispatch(
+            setWindowCustomization({
+              boxShadow: value !== 0,
+              boxShadowSize: value,
+            })
+          )
+        }
+      />
     </VStack>
   );
 };
