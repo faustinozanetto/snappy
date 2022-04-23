@@ -8,8 +8,8 @@ import {
   HStack,
 } from '@chakra-ui/react';
 import {
-  selectFontSize,
-  setFontSize,
+  selectFontCustomization,
+  setFontCustomization,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,10 +18,10 @@ interface EditorFontSizeProps {}
 
 export const EditorFontSize: React.FC<EditorFontSizeProps> = ({}) => {
   const dispatch = useDispatch();
-  const fontSize = useSelector(selectFontSize);
+  const fontCustomization = useSelector(selectFontCustomization);
 
   const handleFontSizeChange = (newSize: number) => {
-    dispatch(setFontSize(newSize));
+    dispatch(setFontCustomization({ fontSize: newSize }));
   };
   return (
     <Box pb={2} width='full'>
@@ -33,12 +33,12 @@ export const EditorFontSize: React.FC<EditorFontSizeProps> = ({}) => {
           </Text>
         </Text>
         <Text as='span' fontWeight={600} fontSize='md'>
-          {fontSize}px
+          {fontCustomization.fontSize}px
         </Text>
       </HStack>
       <Slider
         aria-label='Font Size'
-        defaultValue={fontSize}
+        defaultValue={fontCustomization.fontSize}
         onChangeEnd={handleFontSizeChange}
         min={1}
         max={40}

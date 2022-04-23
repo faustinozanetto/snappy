@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Text, Select } from '@chakra-ui/react';
 import {
   CodeTheme,
-  setCodeTheme,
+  setCodeCustomization,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { useDispatch } from 'react-redux';
 
@@ -19,7 +19,7 @@ export const EditorCodeThemeList: React.FC<EditorCodeThemeListProps> = ({}) => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const theme: CodeTheme = CodeTheme[event.target.value.toUpperCase()];
-    dispatch(setCodeTheme(theme));
+    dispatch(setCodeCustomization({ codeTheme: theme }));
   };
 
   /**

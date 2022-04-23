@@ -5,18 +5,15 @@ import {
   MenuButton,
   MenuDivider,
   MenuGroup,
-  MenuItem,
   MenuList,
   Tooltip,
-  VStack,
 } from '@chakra-ui/react';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   BackgroundType,
-  selectBackgroundColor,
-  selectBackgroundType,
-  setBackgroundType,
+  selectBackgroundCustomization,
+  setBackgroundCustomization,
 } from 'state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { EditorBackgroundConfiguration } from './EditorBackgroundConfiguration';
 
@@ -24,8 +21,7 @@ interface EditorBackgroundProps {}
 
 export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
   const dispatch = useDispatch();
-  const backgroundType = useSelector(selectBackgroundType);
-  const backgroundColor = useSelector(selectBackgroundColor);
+  const backgroundCustomization = useSelector(selectBackgroundCustomization);
 
   return (
     <Menu placement='left-start'>
@@ -33,10 +29,10 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
         <MenuButton
           as={Button}
           aria-label='Background Customization'
-          background={backgroundColor}
-          _hover={{ bg: backgroundColor }}
-          _focus={{ bg: backgroundColor }}
-          _active={{ bg: backgroundColor }}
+          background={backgroundCustomization.backgroundColor}
+          _hover={{ bg: backgroundCustomization.backgroundColor }}
+          _focus={{ bg: backgroundCustomization.backgroundColor }}
+          _active={{ bg: backgroundCustomization.backgroundColor }}
           border='2px solid'
         />
       </Tooltip>
@@ -46,13 +42,25 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
           <HStack justify='center' px={4}>
             <Button
               width='50%'
-              onClick={() => dispatch(setBackgroundType(BackgroundType.COLOR))}
+              onClick={() =>
+                dispatch(
+                  setBackgroundCustomization({
+                    backgroundType: BackgroundType.COLOR,
+                  })
+                )
+              }
             >
               Color
             </Button>
             <Button
               width='50%'
-              onClick={() => dispatch(setBackgroundType(BackgroundType.IMAGE))}
+              onClick={() =>
+                dispatch(
+                  setBackgroundCustomization({
+                    backgroundType: BackgroundType.IMAGE,
+                  })
+                )
+              }
             >
               Image
             </Button>
@@ -61,7 +69,9 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
         <MenuDivider />
         {/* Actual Configuration */}
         <MenuGroup>
-          <EditorBackgroundConfiguration backgroundType={backgroundType} />
+          <EditorBackgroundConfiguration
+            backgroundType={backgroundCustomization.backgroundType}
+          />
         </MenuGroup>
       </MenuList>
     </Menu>

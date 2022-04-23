@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Text, Select } from '@chakra-ui/react';
 import {
   CodeLanguage,
-  setCodeLanguage,
+  setCodeCustomization,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { useDispatch } from 'react-redux';
 
@@ -22,7 +22,7 @@ export const EditorCodeLanguageList: React.FC<
   ) => {
     const language: CodeLanguage =
       CodeLanguage[event.target.value.toUpperCase()];
-    dispatch(setCodeLanguage(language));
+    dispatch(setCodeCustomization({ codeLanguage: language }));
   };
 
   /**

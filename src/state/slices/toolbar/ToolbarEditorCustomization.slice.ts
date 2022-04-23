@@ -20,100 +20,99 @@ export enum CodeLanguage {
   HASKELL = 'haskell',
   JAVA = 'java',
   JAVASCRIPT = 'javascript',
+  JSX = 'jsx',
   TYPESCRIPT = 'typescript',
 }
 
+export type BackgroundCustomization = {
+  backgroundType?: BackgroundType;
+  backgroundColor?: string;
+};
+
+export type FontCustomization = {
+  fontFamily?: string;
+  fontSize?: number;
+};
+
+export type CodeCustomization = {
+  codeTheme?: CodeTheme;
+  codeLanguage?: CodeLanguage;
+};
+
+export type WindowCustomization = {
+  paddingX?: number;
+  paddingY?: number;
+  borderRadius?: number;
+  boxShadow?: boolean;
+  lineNumbers?: boolean;
+};
+
 export type ToolBoxEditorCustomizationState = {
-  backgroundType: BackgroundType;
-  backgroundColor: string;
-  fontFamily: string;
-  fontSize: number;
-  codeTheme: CodeTheme;
-  codeLanguage: CodeLanguage;
-  paddingX: number;
-  paddingY: number;
-  borderRadius: number;
+  backgroundCustomization: BackgroundCustomization;
+  fontCustomization: FontCustomization;
+  codeCustomization: CodeCustomization;
+  windowCustomization: WindowCustomization;
 };
 
 const initialState: ToolBoxEditorCustomizationState = {
-  backgroundType: BackgroundType.COLOR,
-  backgroundColor: '#fff',
-  fontFamily: 'Roboto',
-  fontSize: 14,
-  codeTheme: CodeTheme.DARK,
-  codeLanguage: CodeLanguage.TYPESCRIPT,
-  paddingX: 10,
-  paddingY: 10,
-  borderRadius: 5,
+  backgroundCustomization: {
+    backgroundType: BackgroundType.COLOR,
+    backgroundColor: '#fff',
+  },
+  fontCustomization: {
+    fontFamily: 'Roboto',
+    fontSize: 14,
+  },
+  codeCustomization: {
+    codeTheme: CodeTheme.DARK,
+    codeLanguage: CodeLanguage.JSX,
+  },
+  windowCustomization: {
+    paddingX: 10,
+    paddingY: 10,
+    borderRadius: 5,
+    boxShadow: true,
+    lineNumbers: true,
+  },
 };
 
 export const ToolBoxEditorCustomizationSlice = createSlice({
   name: 'toolboxEditorCustomization',
   initialState,
   reducers: {
-    rehydrate(state, action: PayloadAction<ToolBoxEditorCustomizationState>) {
-      state.backgroundType = action.payload.backgroundType;
+    setBackgroundCustomization: (
+      state,
+      action: PayloadAction<BackgroundCustomization>
+    ) => {
+      Object.assign(state.backgroundCustomization, action.payload);
     },
-    setBackgroundType: (state, action: PayloadAction<BackgroundType>) => {
-      state.backgroundType = action.payload;
+    setFontCustomization: (state, action: PayloadAction<FontCustomization>) => {
+      Object.assign(state.fontCustomization, action.payload);
     },
-    setBackgroundColor: (state, action: PayloadAction<string>) => {
-      state.backgroundColor = action.payload;
+    setCodeCustomization: (state, action: PayloadAction<CodeCustomization>) => {
+      Object.assign(state.codeCustomization, action.payload);
     },
-    setFontFamily: (state, action: PayloadAction<string>) => {
-      state.fontFamily = action.payload;
-    },
-    setFontSize: (state, action: PayloadAction<number>) => {
-      if (action.payload > 0 && action.payload <= 40) {
-        state.fontSize = action.payload;
-      }
-    },
-    setCodeTheme: (state, action: PayloadAction<CodeTheme>) => {
-      state.codeTheme = action.payload;
-    },
-    setCodeLanguage: (state, action: PayloadAction<CodeLanguage>) => {
-      state.codeLanguage = action.payload;
-    },
-    setPaddingX: (state, action: PayloadAction<number>) => {
-      state.paddingX = action.payload;
-    },
-    setPaddingY: (state, action: PayloadAction<number>) => {
-      state.paddingY = action.payload;
-    },
-    setBorderRadius: (state, action: PayloadAction<number>) => {
-      state.borderRadius = action.payload;
+    setWindowCustomization: (
+      state,
+      action: PayloadAction<WindowCustomization>
+    ) => {
+      Object.assign(state.windowCustomization, action.payload);
     },
   },
 });
 
 export const {
-  rehydrate,
-  setBackgroundType,
-  setBackgroundColor,
-  setFontFamily,
-  setFontSize,
-  setCodeLanguage,
-  setCodeTheme,
-  setPaddingX,
-  setPaddingY,
-  setBorderRadius,
+  setBackgroundCustomization,
+  setCodeCustomization,
+  setFontCustomization,
+  setWindowCustomization,
 } = ToolBoxEditorCustomizationSlice.actions;
 
-export const selectBackgroundType = (state: RootState) =>
-  state.toolboxEditor.backgroundType;
-export const selectBackgroundColor = (state: RootState) =>
-  state.toolboxEditor.backgroundColor;
-export const selectFontFamily = (state: RootState) =>
-  state.toolboxEditor.fontFamily;
-export const selectFontSize = (state: RootState) =>
-  state.toolboxEditor.fontSize;
-export const selectCodeLanguage = (state: RootState) =>
-  state.toolboxEditor.codeLanguage;
-export const selectCodeTheme = (state: RootState) =>
-  state.toolboxEditor.codeTheme;
-export const selectPaddingX = (state: RootState) =>
-  state.toolboxEditor.paddingX;
-export const selectPaddingY = (state: RootState) =>
-  state.toolboxEditor.paddingY;
-export const selectBorderRadius = (state: RootState) =>
-  state.toolboxEditor.borderRadius;
+export const selectBackgroundCustomization = (state: RootState) =>
+  state.toolboxEditor.backgroundCustomization;
+export const selectCodeCustomization = (state: RootState) =>
+  state.toolboxEditor.codeCustomization;
+export const selectFontCustomization = (state: RootState) =>
+  state.toolboxEditor.fontCustomization;
+export const selectWindowCustomization = (state: RootState) =>
+  state.toolboxEditor.windowCustomization;

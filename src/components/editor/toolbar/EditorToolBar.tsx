@@ -17,12 +17,13 @@ export const EditorToolBar: React.FC<EditorToolBarProps> = ({}) => {
       height='60px'
       padding={2}
       position='relative'
-      border={`2px solid`}
+      // border={`2px solid`}
       justifyContent='space-between'
       alignContent='center'
       align='center'
-      borderColor={useColorModeValue('gray.600', 'gray.200')}
-      borderRadius='2.5px'
+      backgroundColor={useColorModeValue('gray.100', 'gray.800')}
+      // borderColor={useColorModeValue('g', 'gray.200')}
+      borderRadius='md'
       mb={4}
     >
       {/* Title */}

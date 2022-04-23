@@ -1,23 +1,26 @@
 import React, { Fragment, useState } from 'react';
 import Editor from 'react-simple-code-editor';
-import Highlight, { defaultProps } from 'prism-react-renderer';
+import Highlight, {
+  defaultProps,
+  Language as PrismLanguage,
+} from 'prism-react-renderer';
 import theme from 'prism-react-renderer/themes/nightOwl';
 import { useSelector } from 'react-redux';
 import {
-  selectFontFamily,
-  selectFontSize,
+  CodeLanguage,
+  selectFontCustomization,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 
 interface EditorCodeContentProps {
   code?: string;
+  language?: CodeLanguage;
   styles?: React.CSSProperties;
 }
 
 export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
-  const { code: propsCode, styles } = props;
+  const { code: propsCode, styles, language } = props;
   const [code, setCode] = useState(propsCode || '');
-  const fontFamily = useSelector(selectFontFamily);
-  const fontSize = useSelector(selectFontSize);
+  const fontCustomization = useSelector(selectFontCustomization);
 
   /**
    *
@@ -28,11 +31,29 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
       ...styles,
       ...theme.plain,
       // Font Familty from state
-      fontFamily,
+      fontFamily: `${fontCustomization.fontFamily}, monospace`,
+      fontVariantLigatures: 'contextual',
+      fontFeatureSettings: 'calt 1',
       // Font Size from state
-      fontSize: `${fontSize}px`,
+      fontSize: `${fontCustomization.fontSize}px`,
     };
     return newStyles;
+  };
+
+  const parsePrismLanguageType = (lang: CodeLanguage): PrismLanguage => {
+    // Convert CodeLanguage to PrismLanguage
+    switch (lang) {
+      case CodeLanguage.JAVASCRIPT:
+        return 'javascript';
+      case CodeLanguage.TYPESCRIPT:
+        return 'typescript';
+      case CodeLanguage.JSX:
+        return 'jsx';
+      case CodeLanguage.C:
+        return 'c';
+      case CodeLanguage.CPP:
+        return 'cpp';
+    }
   };
 
   /**
@@ -46,7 +67,7 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
         {...defaultProps}
         theme={theme}
         code={codeToHighlight}
-        language='jsx'
+        language={parsePrismLanguageType(language)}
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <Fragment>

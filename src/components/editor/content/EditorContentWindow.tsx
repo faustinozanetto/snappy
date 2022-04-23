@@ -1,30 +1,44 @@
+import React from 'react';
 import { Box, Flex } from '@chakra-ui/react';
 import {
-  selectBackgroundColor,
-  selectBorderRadius,
-  selectPaddingX,
-  selectPaddingY,
+  selectBackgroundCustomization,
+  selectCodeCustomization,
+  selectWindowCustomization,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { EditorCodeContent } from './EditorCodeContent';
 
 interface EditorContentWindowProps {}
 
 const exampleCode = `
-(function someDemo() {
-  var test = "Hello World!";
-  console.log(test);
-})();
-
-return () => <App />;
+ const highLightCode = (codeToHighlight: string): string | React.ReactNode => {
+    return (
+      <Highlight
+        {...defaultProps}
+        theme={theme}
+        code={codeToHighlight}
+        language={parsePrismLanguageType(language)}
+      >
+        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+          <Fragment>
+            {tokens.map((line, i) => (
+              <div {...getLineProps({ line, key: i })}>
+                {line.map((token, key) => (
+                  <span {...getTokenProps({ token, key })} />
+                ))}
+              </div>
+            ))}
+          </Fragment>
+        )}
+      </Highlight>
+    );
+  };
 `;
 
 export const EditorContentWindow: React.FC<EditorContentWindowProps> = ({}) => {
-  const backgroundColor = useSelector(selectBackgroundColor);
-  const paddingX = useSelector(selectPaddingX);
-  const paddingY = useSelector(selectPaddingY);
-  const borderRadius = useSelector(selectBorderRadius);
+  const backgroundCustomization = useSelector(selectBackgroundCustomization);
+  const codeCustomization = useSelector(selectCodeCustomization);
+  const windowCustomization = useSelector(selectWindowCustomization);
   return (
     <Flex
       height='100%'
@@ -36,7 +50,7 @@ export const EditorContentWindow: React.FC<EditorContentWindowProps> = ({}) => {
     >
       {/* Wrapper */}
       <Box
-        backgroundColor={backgroundColor}
+        backgroundColor={backgroundCustomization.backgroundColor}
         height='100%'
         flexDir='column'
         justifyContent='center'
@@ -50,13 +64,18 @@ export const EditorContentWindow: React.FC<EditorContentWindowProps> = ({}) => {
           minWidth='auto'
           maxWidth='auto'
           width='850px'
-          px={paddingX}
-          py={paddingY}
+          px={windowCustomization.paddingX}
+          py={windowCustomization.paddingY}
         >
           {/* Editor Code Window */}
           <EditorCodeContent
             code={exampleCode}
-            styles={{ borderRadius: `${borderRadius}px` }}
+            language={codeCustomization.codeLanguage}
+            styles={{
+              borderRadius: `${windowCustomization.borderRadius}px`,
+              boxShadow:
+                'rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;',
+            }}
           />
         </Box>
       </Box>

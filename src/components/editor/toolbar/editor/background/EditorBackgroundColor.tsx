@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Flex, Input, useColorModeValue } from '@chakra-ui/react';
+import React from 'react';
+import { Flex } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SketchPicker } from 'react-color';
 import {
-  selectBackgroundColor,
-  setBackgroundColor,
+  selectBackgroundCustomization,
+  setBackgroundCustomization,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 
 interface EditorBackgroundColorProps {}
@@ -13,12 +13,14 @@ export const EditorBackgroundColor: React.FC<
   EditorBackgroundColorProps
 > = ({}) => {
   const dispatch = useDispatch();
-  const backgroundColor = useSelector(selectBackgroundColor);
+  const backgroundCustomization = useSelector(selectBackgroundCustomization);
   return (
     <Flex width='full'>
       <SketchPicker
-        color={backgroundColor}
-        onChange={(color) => dispatch(setBackgroundColor(color.hex))}
+        color={backgroundCustomization.backgroundColor}
+        onChange={(color) =>
+          dispatch(setBackgroundCustomization({ backgroundColor: color.hex }))
+        }
       />
     </Flex>
   );
