@@ -3,7 +3,8 @@ import { selectBackgroundType } from '@state/slices/toolbar/ToolbarEditorCustomi
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { EditorBackground } from './background/EditorBackground';
-import { EditorCode } from './code/EditorCode';
+import { EditorCodeLanguage } from './code/language/EditorCodeLanguage';
+import { EditorCodeTheme } from './code/theme/EditorCodeTheme';
 import { EditorFont } from './font/EditorFont';
 
 interface ToolBoxEditorConfigurationProps {}
@@ -18,8 +19,10 @@ export const ToolBoxEditorConfiguration: React.FC<
       <EditorBackground />
       {/* Font */}
       <EditorFont />
-      {/* Code */}
-      <EditorCode />
+      {/* Theme */}
+      <EditorCodeTheme />
+      {/* Language */}
+      <EditorCodeLanguage />
     </HStack>
   );
 };

@@ -6,11 +6,30 @@ export enum BackgroundType {
   IMAGE = 'image',
 }
 
+export enum CodeTheme {
+  DARK = 'dark',
+  LIGHT = 'light',
+  MONOKAI = 'monokai',
+}
+
+export enum CodeLanguage {
+  C = 'c',
+  CPP = 'cpp',
+  CSHARP = 'csharp',
+  GO = 'go',
+  HASKELL = 'haskell',
+  JAVA = 'java',
+  JAVASCRIPT = 'javascript',
+  TYPESCRIPT = 'typescript',
+}
+
 export type ToolBoxEditorCustomizationState = {
   backgroundType: BackgroundType;
   backgroundColor: string;
   fontFamily: string;
   fontSize: number;
+  codeTheme: CodeTheme;
+  codeLanguage: CodeLanguage;
 };
 
 const initialState: ToolBoxEditorCustomizationState = {
@@ -18,6 +37,8 @@ const initialState: ToolBoxEditorCustomizationState = {
   backgroundColor: '#fff',
   fontFamily: 'Roboto',
   fontSize: 14,
+  codeTheme: CodeTheme.DARK,
+  codeLanguage: CodeLanguage.TYPESCRIPT,
 };
 
 export const ToolBoxEditorCustomizationSlice = createSlice({
@@ -41,6 +62,12 @@ export const ToolBoxEditorCustomizationSlice = createSlice({
         state.fontSize = action.payload;
       }
     },
+    setCodeTheme: (state, action: PayloadAction<CodeTheme>) => {
+      state.codeTheme = action.payload;
+    },
+    setCodeLanguage: (state, action: PayloadAction<CodeLanguage>) => {
+      state.codeLanguage = action.payload;
+    },
   },
 });
 
@@ -50,6 +77,8 @@ export const {
   setBackgroundColor,
   setFontFamily,
   setFontSize,
+  setCodeLanguage,
+  setCodeTheme,
 } = ToolBoxEditorCustomizationSlice.actions;
 
 export const selectBackgroundType = (state: RootState) =>
@@ -60,3 +89,7 @@ export const selectFontFamilty = (state: RootState) =>
   state.toolboxEditor.fontFamily;
 export const selectFontSize = (state: RootState) =>
   state.toolboxEditor.fontSize;
+export const selectCodeLanguage = (state: RootState) =>
+  state.toolboxEditor.codeLanguage;
+export const selectCodeTheme = (state: RootState) =>
+  state.toolboxEditor.codeTheme;

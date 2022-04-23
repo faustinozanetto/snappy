@@ -9,15 +9,14 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { FaCode } from 'react-icons/fa';
-import { EditorFontList } from '../font/EditorFontList';
-import { EditorFontSize } from '../font/EditorFontSize';
+import { EditorCodeLanguageList } from './EditorCodeLanguageList';
 
-interface EditorCodeProps {}
+interface EditorCodeLanguageProps {}
 
-export const EditorCode: React.FC<EditorCodeProps> = ({}) => {
+export const EditorCodeLanguage: React.FC<EditorCodeLanguageProps> = ({}) => {
   return (
     <Menu placement='left-start'>
-      <Tooltip label='Code' aria-label='Code Customization'>
+      <Tooltip label='Code Language' aria-label='Code Language'>
         <MenuButton
           as={IconButton}
           icon={
@@ -25,13 +24,16 @@ export const EditorCode: React.FC<EditorCodeProps> = ({}) => {
               <FaCode />
             </span>
           }
-          aria-label='Code Customization'
+          aria-label='Code Language'
           border='2px solid'
         />
       </Tooltip>
       <MenuList>
         <MenuGroup>
-          <VStack px={4}></VStack>
+          <VStack px={4}>
+            {/* Languages */}
+            <EditorCodeLanguageList />
+          </VStack>
         </MenuGroup>
       </MenuList>
     </Menu>
