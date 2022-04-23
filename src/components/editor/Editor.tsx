@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Container, Heading, useColorModeValue } from '@chakra-ui/react';
-import { EditorToolBar } from './EditorToolBar';
+import { EditorToolBar } from './toolbar/EditorToolBar';
 
 interface EditorProps {}
 

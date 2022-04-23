@@ -5,6 +5,7 @@ import {
   PayloadAction,
   ThunkAction,
 } from '@reduxjs/toolkit';
+import { ToolBoxEditorCustomizationSlice } from './slices/toolbar/ToolbarEditorCustomization.slice';
 
 export type SnapifyState = {
   hello: string;
@@ -30,6 +31,7 @@ export const SnapifySlice = createSlice({
 export const store = configureStore({
   reducer: {
     snapify: SnapifySlice.reducer,
+    toolboxEditor: ToolBoxEditorCustomizationSlice.reducer,
   },
 });
 

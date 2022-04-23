@@ -29,6 +29,7 @@
       "@pages/*": ["pages/*"],
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"],
+      "@state/*": ["state/*"],
       "@wrappers/*": ["wrappers/*"],
       "@public/*": ["..public/*"],
       "@typings/*": ["typings/*"],
