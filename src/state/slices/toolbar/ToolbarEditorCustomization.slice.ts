@@ -9,11 +9,15 @@ export enum BackgroundType {
 export type ToolBoxEditorCustomizationState = {
   backgroundType: BackgroundType;
   backgroundColor: string;
+  fontFamily: string;
+  fontSize: number;
 };
 
 const initialState: ToolBoxEditorCustomizationState = {
   backgroundType: BackgroundType.COLOR,
   backgroundColor: '#fff',
+  fontFamily: 'Roboto',
+  fontSize: 14,
 };
 
 export const ToolBoxEditorCustomizationSlice = createSlice({
@@ -29,13 +33,30 @@ export const ToolBoxEditorCustomizationSlice = createSlice({
     setBackgroundColor: (state, action: PayloadAction<string>) => {
       state.backgroundColor = action.payload;
     },
+    setFontFamily: (state, action: PayloadAction<string>) => {
+      state.fontFamily = action.payload;
+    },
+    setFontSize: (state, action: PayloadAction<number>) => {
+      if (action.payload > 0 && action.payload <= 40) {
+        state.fontSize = action.payload;
+      }
+    },
   },
 });
 
-export const { rehydrate, setBackgroundType, setBackgroundColor } =
-  ToolBoxEditorCustomizationSlice.actions;
+export const {
+  rehydrate,
+  setBackgroundType,
+  setBackgroundColor,
+  setFontFamily,
+  setFontSize,
+} = ToolBoxEditorCustomizationSlice.actions;
 
 export const selectBackgroundType = (state: RootState) =>
   state.toolboxEditor.backgroundType;
 export const selectBackgroundColor = (state: RootState) =>
   state.toolboxEditor.backgroundColor;
+export const selectFontFamilty = (state: RootState) =>
+  state.toolboxEditor.fontFamily;
+export const selectFontSize = (state: RootState) =>
+  state.toolboxEditor.fontSize;

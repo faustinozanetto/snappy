@@ -13,6 +13,8 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { FaFont } from 'react-icons/fa';
+import { EditorFontList } from './EditorFontList';
+import { EditorFontSize } from './EditorFontSize';
 
 interface EditorFontProps {}
 
@@ -34,11 +36,10 @@ export const EditorFont: React.FC<EditorFontProps> = ({}) => {
       <MenuList>
         <MenuGroup>
           <VStack px={4}>
-            {/* Sub heading */}
-            <Text as='h2' fontWeight={600} fontSize='lg'>
-              Font List
-            </Text>
             {/* Font list. */}
+            <EditorFontList />
+            {/* Font Size */}
+            <EditorFontSize />
           </VStack>
         </MenuGroup>
       </MenuList>

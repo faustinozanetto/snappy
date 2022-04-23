@@ -1,7 +1,12 @@
 import React from 'react';
-import { Flex, HStack, useColorModeValue } from '@chakra-ui/react';
-import { ToolBoxThemeSelector } from '@components/editor/toolbar/general/ToolBoxThemeSelector';
-import { ToolBoxLanguageSelector } from '@components/editor/toolbar/general/ToolBoxLanguageSelector';
+import {
+  Box,
+  Flex,
+  Heading,
+  HStack,
+  Spacer,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { ToolBoxEditorConfiguration } from './editor/ToolBoxEditorConfiguration';
 
 interface EditorToolBarProps {}
@@ -14,16 +19,17 @@ export const EditorToolBar: React.FC<EditorToolBarProps> = ({}) => {
       position='relative'
       border={`2px solid`}
       justifyContent='space-between'
+      alignContent='center'
+      align='center'
       borderColor={useColorModeValue('gray.600', 'gray.200')}
       borderRadius='2.5px'
     >
-      {/* General Customization options */}
-      <HStack spacing={4}>
-        {/* Theme Selection */}
-        <ToolBoxThemeSelector />
-        {/* Language Selection */}
-        <ToolBoxLanguageSelector />
-      </HStack>
+      {/* Title */}
+      <Box>
+        <Heading as='h2' fontWeight={700} fontSize='3xl'>
+          Toolbar
+        </Heading>
+      </Box>
       {/* Editor Configuration */}
       <HStack spacing={4}>
         {/* Editor Configuration */}
