@@ -1,5 +1,10 @@
 import { Box, Flex } from '@chakra-ui/react';
-import { selectBackgroundColor } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+import {
+  selectBackgroundColor,
+  selectBorderRadius,
+  selectPaddingX,
+  selectPaddingY,
+} from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { EditorCodeContent } from './EditorCodeContent';
@@ -17,6 +22,9 @@ return () => <App />;
 
 export const EditorContentWindow: React.FC<EditorContentWindowProps> = ({}) => {
   const backgroundColor = useSelector(selectBackgroundColor);
+  const paddingX = useSelector(selectPaddingX);
+  const paddingY = useSelector(selectPaddingY);
+  const borderRadius = useSelector(selectBorderRadius);
   return (
     <Flex
       height='100%'
@@ -42,11 +50,13 @@ export const EditorContentWindow: React.FC<EditorContentWindowProps> = ({}) => {
           minWidth='auto'
           maxWidth='auto'
           width='850px'
-          padding={4}
+          px={paddingX}
+          py={paddingY}
         >
+          {/* Editor Code Window */}
           <EditorCodeContent
             code={exampleCode}
-            styles={{ borderRadius: '10px' }}
+            styles={{ borderRadius: `${borderRadius}px` }}
           />
         </Box>
       </Box>

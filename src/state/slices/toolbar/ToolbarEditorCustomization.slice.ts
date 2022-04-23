@@ -30,6 +30,9 @@ export type ToolBoxEditorCustomizationState = {
   fontSize: number;
   codeTheme: CodeTheme;
   codeLanguage: CodeLanguage;
+  paddingX: number;
+  paddingY: number;
+  borderRadius: number;
 };
 
 const initialState: ToolBoxEditorCustomizationState = {
@@ -39,6 +42,9 @@ const initialState: ToolBoxEditorCustomizationState = {
   fontSize: 14,
   codeTheme: CodeTheme.DARK,
   codeLanguage: CodeLanguage.TYPESCRIPT,
+  paddingX: 10,
+  paddingY: 10,
+  borderRadius: 5,
 };
 
 export const ToolBoxEditorCustomizationSlice = createSlice({
@@ -68,6 +74,15 @@ export const ToolBoxEditorCustomizationSlice = createSlice({
     setCodeLanguage: (state, action: PayloadAction<CodeLanguage>) => {
       state.codeLanguage = action.payload;
     },
+    setPaddingX: (state, action: PayloadAction<number>) => {
+      state.paddingX = action.payload;
+    },
+    setPaddingY: (state, action: PayloadAction<number>) => {
+      state.paddingY = action.payload;
+    },
+    setBorderRadius: (state, action: PayloadAction<number>) => {
+      state.borderRadius = action.payload;
+    },
   },
 });
 
@@ -79,13 +94,16 @@ export const {
   setFontSize,
   setCodeLanguage,
   setCodeTheme,
+  setPaddingX,
+  setPaddingY,
+  setBorderRadius,
 } = ToolBoxEditorCustomizationSlice.actions;
 
 export const selectBackgroundType = (state: RootState) =>
   state.toolboxEditor.backgroundType;
 export const selectBackgroundColor = (state: RootState) =>
   state.toolboxEditor.backgroundColor;
-export const selectFontFamilty = (state: RootState) =>
+export const selectFontFamily = (state: RootState) =>
   state.toolboxEditor.fontFamily;
 export const selectFontSize = (state: RootState) =>
   state.toolboxEditor.fontSize;
@@ -93,3 +111,9 @@ export const selectCodeLanguage = (state: RootState) =>
   state.toolboxEditor.codeLanguage;
 export const selectCodeTheme = (state: RootState) =>
   state.toolboxEditor.codeTheme;
+export const selectPaddingX = (state: RootState) =>
+  state.toolboxEditor.paddingX;
+export const selectPaddingY = (state: RootState) =>
+  state.toolboxEditor.paddingY;
+export const selectBorderRadius = (state: RootState) =>
+  state.toolboxEditor.borderRadius;

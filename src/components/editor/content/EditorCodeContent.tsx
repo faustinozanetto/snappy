@@ -2,6 +2,11 @@ import React, { Fragment, useState } from 'react';
 import Editor from 'react-simple-code-editor';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import theme from 'prism-react-renderer/themes/nightOwl';
+import { useSelector } from 'react-redux';
+import {
+  selectFontFamily,
+  selectFontSize,
+} from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 
 interface EditorCodeContentProps {
   code?: string;
@@ -10,7 +15,31 @@ interface EditorCodeContentProps {
 
 export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
   const { code: propsCode, styles } = props;
-  const [code, setCode] = useState(props.code || '');
+  const [code, setCode] = useState(propsCode || '');
+  const fontFamily = useSelector(selectFontFamily);
+  const fontSize = useSelector(selectFontSize);
+
+  /**
+   *
+   * @returns the css styles combining the ones from the customization, theme and the styles prop.
+   */
+  const generateCustomStyles = (): React.CSSProperties => {
+    const newStyles: React.CSSProperties = {
+      ...styles,
+      ...theme.plain,
+      // Font Familty from state
+      fontFamily,
+      // Font Size from state
+      fontSize: `${fontSize}px`,
+    };
+    return newStyles;
+  };
+
+  /**
+   *
+   * @param codeToHighlight code to use in the highlight process.
+   * @returns the highlighed code.
+   */
   const highLightCode = (codeToHighlight: string): string | React.ReactNode => {
     return (
       <Highlight
@@ -39,11 +68,7 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
       highlight={highLightCode}
       padding={10}
       onValueChange={(newValue) => setCode(newValue)}
-      // @ts-ignore
-      style={{
-        ...styles,
-        ...theme.plain,
-      }}
+      style={generateCustomStyles()}
     />
   );
 };
