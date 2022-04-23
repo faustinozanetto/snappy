@@ -23,6 +23,7 @@ export const EditorToolBar: React.FC<EditorToolBarProps> = ({}) => {
       align='center'
       borderColor={useColorModeValue('gray.600', 'gray.200')}
       borderRadius='2.5px'
+      mb={4}
     >
       {/* Title */}
       <Box>
