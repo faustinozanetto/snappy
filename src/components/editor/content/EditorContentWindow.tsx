@@ -4,6 +4,7 @@ import {
   selectBackgroundCustomization,
   selectCodeCustomization,
   selectWindowCustomization,
+  WindowShadowColor,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { useSelector } from 'react-redux';
 import { EditorCodeContent } from './EditorCodeContent';
@@ -46,25 +47,28 @@ export const EditorContentWindow: React.FC<EditorContentWindowProps> = ({}) => {
   const windowCustomization = useSelector(selectWindowCustomization);
 
   const generateWindowShadow = (size: number): string => {
+    const BASE_COLOR: WindowShadowColor =
+      windowCustomization.shadow.boxShadowColor;
+    const PARSED_COLOR: string = `rgba(${BASE_COLOR.r}, ${BASE_COLOR.g}, ${BASE_COLOR.b}, ${BASE_COLOR.a})`;
     const BASE: ShadowEntry[] = [
       {
-        color: 'rgba(0, 0, 0, 0.25)',
+        color: PARSED_COLOR,
         size: [0, 54, 55],
       },
       {
-        color: 'rgba(0, 0, 0, 0.12)',
+        color: PARSED_COLOR,
         size: [0, -12, 30],
       },
       {
-        color: 'rgba(0, 0, 0, 0.12)',
+        color: PARSED_COLOR,
         size: [0, 4, 6],
       },
       {
-        color: 'rgba(0, 0, 0, 0.17)',
+        color: PARSED_COLOR,
         size: [0, 12, 12],
       },
       {
-        color: 'rgba(0, 0, 0, 0.09)',
+        color: PARSED_COLOR,
         size: [0, -3, 5],
       },
     ];

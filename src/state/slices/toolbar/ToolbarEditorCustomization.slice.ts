@@ -47,12 +47,24 @@ export type CodeCustomization = {
   codeLanguage?: CodeLanguage;
 };
 
+export type WindowShadowColor = {
+  r: number;
+  g: number;
+  b: number;
+  a: number;
+};
+
+export type WindowShadow = {
+  boxShadow?: boolean;
+  boxShadowSize?: number;
+  boxShadowColor?: WindowShadowColor;
+};
+
 export type WindowCustomization = {
   paddingX?: number;
   paddingY?: number;
   borderRadius?: number;
-  boxShadow?: boolean;
-  boxShadowSize?: number;
+  shadow?: WindowShadow;
   lineNumbers?: boolean;
 };
 
@@ -80,8 +92,16 @@ const initialState: ToolBoxEditorCustomizationState = {
     paddingX: 20,
     paddingY: 20,
     borderRadius: 10,
-    boxShadow: true,
-    boxShadowSize: 1,
+    shadow: {
+      boxShadow: true,
+      boxShadowSize: 1,
+      boxShadowColor: {
+        r: 0,
+        g: 0,
+        b: 0,
+        a: 0.5,
+      },
+    },
     lineNumbers: true,
   },
 };
