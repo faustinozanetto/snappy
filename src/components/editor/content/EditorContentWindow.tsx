@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
 import {
   Color,
   selectBackgroundCustomization,
   selectCodeCustomization,
   selectWindowCustomization,
-  WindowShadowColor,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { EditorCodeContent } from './EditorCodeContent';
 import { parseBackgroundColor } from '@lib/HelperFunctions';
+import { setCaptureRef } from '@state/SnapifyStore';
+import { ExportContext } from '@state/ExportContext';
 
 interface EditorContentWindowProps {}
 
@@ -46,10 +47,11 @@ export const EditorContentWindow: React.FC<EditorContentWindowProps> = ({}) => {
   const backgroundCustomization = useSelector(selectBackgroundCustomization);
   const codeCustomization = useSelector(selectCodeCustomization);
   const windowCustomization = useSelector(selectWindowCustomization);
+  const dispatch = useDispatch();
+  const { updateExportRef } = useContext(ExportContext);
 
   const generateWindowShadow = (size: number): string => {
-    const BASE_COLOR: WindowShadowColor =
-      windowCustomization.shadow.boxShadowColor;
+    const BASE_COLOR: Color = windowCustomization.shadow.boxShadowColor;
     const PARSED_COLOR: string = `rgba(${BASE_COLOR.r}, ${BASE_COLOR.g}, ${BASE_COLOR.b}, ${BASE_COLOR.a})`;
     const BASE: ShadowEntry[] = [
       {
@@ -89,6 +91,9 @@ export const EditorContentWindow: React.FC<EditorContentWindowProps> = ({}) => {
     <Flex height='100%' flexDir='column' overflow='hidden'>
       {/* Wrapper */}
       <Box
+        ref={(ref) => {
+          updateExportRef(ref);
+        }}
         backgroundColor={parseBackgroundColor(
           backgroundCustomization.backgroundColor
         )}
@@ -121,8 +126,10 @@ export const EditorContentWindow: React.FC<EditorContentWindowProps> = ({}) => {
               styles={{
                 borderRadius: `${windowCustomization.borderRadius}px`,
                 boxShadow:
-                  windowCustomization.boxShadow &&
-                  generateWindowShadow(windowCustomization.boxShadowSize),
+                  windowCustomization.shadow.boxShadow &&
+                  generateWindowShadow(
+                    windowCustomization.shadow.boxShadowSize
+                  ),
               }}
             />
           </Box>

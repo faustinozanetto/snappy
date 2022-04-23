@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Box, Container, useColorModeValue } from '@chakra-ui/react';
 import { EditorToolBar } from './toolbar/EditorToolBar';
 import { EditorContentWindow } from './content/EditorContentWindow';
@@ -6,6 +6,7 @@ import { EditorContentWindow } from './content/EditorContentWindow';
 interface EditorProps {}
 
 export const Editor: React.FC<EditorProps> = ({}) => {
+  const captureRef = useRef();
   return (
     <Box my={12}>
       <Container

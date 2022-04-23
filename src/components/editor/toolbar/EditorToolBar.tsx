@@ -11,6 +11,7 @@ import { EditorCode } from './editor/code/EditorCode';
 import { EditorCodeTheme } from './editor/theme/EditorCodeTheme';
 import { EditorFont } from './editor/font/EditorFont';
 import { EditorWindow } from './editor/window/EditorWindow';
+import { EditorExportImage } from './editor/export/EditorExportImage';
 
 interface EditorToolBarProps {}
 
@@ -47,6 +48,8 @@ export const EditorToolBar: React.FC<EditorToolBarProps> = ({}) => {
         <EditorCode />
         {/* Window */}
         <EditorWindow />
+        {/* Export */}
+        <EditorExportImage />
       </HStack>
     </Flex>
   );

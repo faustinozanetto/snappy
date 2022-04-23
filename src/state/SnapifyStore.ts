@@ -8,22 +8,19 @@ import {
 import { ToolBoxEditorCustomizationSlice } from './slices/toolbar/ToolbarEditorCustomization.slice';
 
 export type SnapifyState = {
-  hello: string;
+  captureRef: React.RefObject<HTMLDivElement>;
 };
 
 const initialState: SnapifyState = {
-  hello: 'world',
+  captureRef: null,
 };
 
 export const SnapifySlice = createSlice({
   name: 'snapify',
   initialState,
   reducers: {
-    rehydrate(state, action: PayloadAction<SnapifyState>) {
-      state.hello = action.payload.hello;
-    },
-    setHello: (state, action: PayloadAction<string>) => {
-      state.hello = action.payload;
+    setCaptureRef: (state, action: PayloadAction<any>) => {
+      state.captureRef = action.payload;
     },
   },
 });
@@ -44,6 +41,6 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   Action<string>
 >;
 
-export const { rehydrate, setHello } = SnapifySlice.actions;
+export const { setCaptureRef } = SnapifySlice.actions;
 
-export const selectHello = (state: RootState) => state.snapify.hello;
+export const selectCaptureRef = (state: RootState) => state.snapify.captureRef;
