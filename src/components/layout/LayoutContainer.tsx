@@ -8,5 +8,5 @@ export interface LayoutContainerProps {
 
 export const LayoutContainer: React.FC<LayoutContainerProps> = (props) => {
   const { children } = props;
-  return <Box minHeight={'100vh'}>{children}</Box>;
+  return <Box minHeight='100vh'>{children}</Box>;
 };

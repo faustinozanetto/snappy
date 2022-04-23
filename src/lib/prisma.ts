@@ -1,9 +1,12 @@
 import { PrismaClient } from '@prisma/client';
-import { __PROD__ } from '@utils/constants';
+
+// PrismaClient is attached to the `global` object in development to prevent
+// exhausting your database connection limit.
+// Learn more: https://pris.ly/d/help/next-js-best-practices
 
 let prisma: PrismaClient;
 
-if (__PROD__) {
+if (process.env.NODE_ENV === 'production') {
   prisma = new PrismaClient();
 } else {
   if (!global.prisma) {
@@ -11,5 +14,4 @@ if (__PROD__) {
   }
   prisma = global.prisma;
 }
-
 export default prisma;

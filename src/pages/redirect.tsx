@@ -14,7 +14,10 @@ const HomePage: React.FC<HomePageProps> = () => {
       <Editor />
       <button
         onClick={() =>
-          signIn('discord', { callbackUrl: 'http://localhost:3000/redirect' })
+          signIn('discord', {
+            callbackUrl: '/',
+            redirect: true,
+          })
         }
       >
         Sign in
