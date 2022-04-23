@@ -9,6 +9,7 @@ import {
   MenuGroup,
 } from '@chakra-ui/react';
 import { BiWindow } from 'react-icons/bi';
+import { EditorWindowPadding } from './padding/EditorWindowPadding';
 
 interface EditorWindowProps {}
 
@@ -29,7 +30,10 @@ export const EditorWindow: React.FC<EditorWindowProps> = ({}) => {
       </Tooltip>
       <MenuList>
         <MenuGroup>
-          <VStack px={4}></VStack>
+          <VStack px={4}>
+            {/* Window Padding */}
+            <EditorWindowPadding />
+          </VStack>
         </MenuGroup>
       </MenuList>
     </Menu>

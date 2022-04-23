@@ -64,8 +64,12 @@ export const EditorContentWindow: React.FC<EditorContentWindowProps> = ({}) => {
           minWidth='auto'
           maxWidth='auto'
           width='850px'
-          px={windowCustomization.paddingX}
-          py={windowCustomization.paddingY}
+          __css={{
+            paddingLeft: `${windowCustomization.paddingX * 3}px !important`,
+            paddingRight: `${windowCustomization.paddingX * 3}px !important`,
+            paddingTop: `${windowCustomization.paddingY * 3}px !important`,
+            paddingBottom: `${windowCustomization.paddingY * 3}px !important`,
+          }}
         >
           {/* Editor Code Window */}
           <EditorCodeContent
