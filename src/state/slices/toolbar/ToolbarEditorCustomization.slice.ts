@@ -31,10 +31,16 @@ export enum CodeLanguage {
   JSX = 'jsx',
   TYPESCRIPT = 'typescript',
 }
+export type Color = {
+  r: number;
+  g: number;
+  b: number;
+  a: number;
+};
 
 export type BackgroundCustomization = {
   backgroundType?: BackgroundType;
-  backgroundColor?: string;
+  backgroundColor?: Color;
 };
 
 export type FontCustomization = {
@@ -45,19 +51,13 @@ export type FontCustomization = {
 export type CodeCustomization = {
   codeTheme?: CodeTheme;
   codeLanguage?: CodeLanguage;
-};
-
-export type WindowShadowColor = {
-  r: number;
-  g: number;
-  b: number;
-  a: number;
+  lineNumbers?: boolean;
 };
 
 export type WindowShadow = {
   boxShadow?: boolean;
   boxShadowSize?: number;
-  boxShadowColor?: WindowShadowColor;
+  boxShadowColor?: Color;
 };
 
 export type WindowCustomization = {
@@ -65,7 +65,6 @@ export type WindowCustomization = {
   paddingY?: number;
   borderRadius?: number;
   shadow?: WindowShadow;
-  lineNumbers?: boolean;
 };
 
 export type ToolBoxEditorCustomizationState = {
@@ -78,7 +77,12 @@ export type ToolBoxEditorCustomizationState = {
 const initialState: ToolBoxEditorCustomizationState = {
   backgroundCustomization: {
     backgroundType: BackgroundType.COLOR,
-    backgroundColor: '#B3B0B0',
+    backgroundColor: {
+      r: 179,
+      g: 179,
+      b: 179,
+      a: 1.0,
+    },
   },
   fontCustomization: {
     fontFamily: 'JetBrains Mono',
@@ -87,6 +91,7 @@ const initialState: ToolBoxEditorCustomizationState = {
   codeCustomization: {
     codeTheme: CodeTheme.NIGHTOWL,
     codeLanguage: CodeLanguage.JSX,
+    lineNumbers: true,
   },
   windowCustomization: {
     paddingX: 20,
@@ -102,7 +107,6 @@ const initialState: ToolBoxEditorCustomizationState = {
         a: 0.5,
       },
     },
-    lineNumbers: true,
   },
 };
 

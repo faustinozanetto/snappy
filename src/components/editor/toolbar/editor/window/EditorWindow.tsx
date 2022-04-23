@@ -21,7 +21,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { BiWindow } from 'react-icons/bi';
-import { EditorWindowPadding } from './padding/EditorWindowPadding';
+import { EditorWindowDisplay } from './display/EditorWindowDisplay';
 import {
   setBackgroundCustomization,
   BackgroundType,
@@ -41,19 +41,20 @@ export const EditorWindow: React.FC<EditorWindowProps> = ({}) => {
   );
   return (
     <Popover placement='left-start'>
-      <Tooltip label='Window' aria-label='Window Customization'>
-        <PopoverTrigger>
-          <IconButton
-            icon={
-              <span>
-                <BiWindow />
-              </span>
-            }
-            aria-label='Window Customization'
-            border='2px solid'
-          />
-        </PopoverTrigger>
-      </Tooltip>
+      <PopoverTrigger>
+        <Button
+          leftIcon={
+            <span>
+              <BiWindow />
+            </span>
+          }
+          aria-label='Window Customization'
+          border='2px solid'
+        >
+          Window
+        </Button>
+      </PopoverTrigger>
+
       <PopoverContent>
         <PopoverHeader fontWeight='semibold'>
           <HStack>
@@ -79,9 +80,9 @@ export const EditorWindow: React.FC<EditorWindowProps> = ({}) => {
           px={0}
           backgroundColor={useColorModeValue('gray.100', 'gray.800')}
         >
-          {/* Window Padding */}
+          {/* Window Display */}
           {windowConfigType === WindowConfigType.PADDING && (
-            <EditorWindowPadding />
+            <EditorWindowDisplay />
           )}
           {/* Shadow */}
           {windowConfigType === WindowConfigType.SHADOW && (

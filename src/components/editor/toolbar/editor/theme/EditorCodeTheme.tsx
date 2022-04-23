@@ -1,6 +1,6 @@
 import {
   Tooltip,
-  IconButton,
+  Button,
   VStack,
   Popover,
   PopoverArrow,
@@ -20,19 +20,19 @@ interface EditorCodeThemeProps {}
 export const EditorCodeTheme: React.FC<EditorCodeThemeProps> = ({}) => {
   return (
     <Popover placement='left-start'>
-      <Tooltip label='Code Theme' aria-label='Code Theme'>
-        <PopoverTrigger>
-          <IconButton
-            icon={
-              <span>
-                <IoMdColorPalette />
-              </span>
-            }
-            aria-label='Theme Customization'
-            border='2px solid'
-          />
-        </PopoverTrigger>
-      </Tooltip>
+      <PopoverTrigger>
+        <Button
+          leftIcon={
+            <span>
+              <IoMdColorPalette />
+            </span>
+          }
+          aria-label='Theme Customization'
+          border='2px solid'
+        >
+          Themes
+        </Button>
+      </PopoverTrigger>
       <PopoverContent>
         <PopoverHeader fontWeight='semibold'>Theme</PopoverHeader>
         <PopoverArrow />

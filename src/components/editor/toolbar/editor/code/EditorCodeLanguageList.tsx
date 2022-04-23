@@ -37,7 +37,7 @@ export const EditorCodeLanguageList: React.FC<
   return (
     <Box pb={2} width='full'>
       <Text as='h2' fontWeight={600} fontSize='lg' mb={2}>
-        Languages
+        Language
       </Text>
       <Select
         placeholder='Choose a Language'

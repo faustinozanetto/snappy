@@ -7,8 +7,8 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { EditorBackground } from './editor/background/EditorBackground';
-import { EditorCodeLanguage } from './editor/code/language/EditorCodeLanguage';
-import { EditorCodeTheme } from './editor/code/theme/EditorCodeTheme';
+import { EditorCode } from './editor/code/EditorCode';
+import { EditorCodeTheme } from './editor/theme/EditorCodeTheme';
 import { EditorFont } from './editor/font/EditorFont';
 import { EditorWindow } from './editor/window/EditorWindow';
 
@@ -44,7 +44,7 @@ export const EditorToolBar: React.FC<EditorToolBarProps> = ({}) => {
         {/* Theme */}
         <EditorCodeTheme />
         {/* Language */}
-        <EditorCodeLanguage />
+        <EditorCode />
         {/* Window */}
         <EditorWindow />
       </HStack>

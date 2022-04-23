@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Flex } from '@chakra-ui/react';
 import {
+  Color,
   selectBackgroundCustomization,
   selectCodeCustomization,
   selectWindowCustomization,
@@ -8,6 +9,7 @@ import {
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { useSelector } from 'react-redux';
 import { EditorCodeContent } from './EditorCodeContent';
+import { parseBackgroundColor } from '@lib/HelperFunctions';
 
 interface EditorContentWindowProps {}
 
@@ -80,14 +82,18 @@ export const EditorContentWindow: React.FC<EditorContentWindowProps> = ({}) => {
         z * multiplier
       }px`;
     });
-    console.log(shadow);
+
     return shadow.join(', ');
   };
 
   return (
     <Flex height='100%' flexDir='column' overflow='hidden'>
       {/* Wrapper */}
-      <Box backgroundColor={backgroundCustomization.backgroundColor}>
+      <Box
+        backgroundColor={parseBackgroundColor(
+          backgroundCustomization.backgroundColor
+        )}
+      >
         {/* Main Container */}
         <Box
           width='100%'

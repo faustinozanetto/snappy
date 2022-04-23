@@ -1,6 +1,6 @@
 import {
   Tooltip,
-  IconButton,
+  Button,
   VStack,
   Popover,
   PopoverArrow,
@@ -14,27 +14,28 @@ import {
 import React from 'react';
 import { FaCode } from 'react-icons/fa';
 import { EditorCodeLanguageList } from './EditorCodeLanguageList';
+import { EditorCodeLineNumbers } from './EditorCodeLineNumbers';
 
-interface EditorCodeLanguageProps {}
+interface EditorCodeProps {}
 
-export const EditorCodeLanguage: React.FC<EditorCodeLanguageProps> = ({}) => {
+export const EditorCode: React.FC<EditorCodeProps> = ({}) => {
   return (
     <Popover placement='left-start'>
-      <Tooltip label='Code Language' aria-label='Code Language'>
-        <PopoverTrigger>
-          <IconButton
-            icon={
-              <span>
-                <FaCode />
-              </span>
-            }
-            aria-label='Language Customization'
-            border='2px solid'
-          />
-        </PopoverTrigger>
-      </Tooltip>
+      <PopoverTrigger>
+        <Button
+          leftIcon={
+            <span>
+              <FaCode />
+            </span>
+          }
+          aria-label='Language Customization'
+          border='2px solid'
+        >
+          Code
+        </Button>
+      </PopoverTrigger>
       <PopoverContent>
-        <PopoverHeader fontWeight='semibold'>Language</PopoverHeader>
+        <PopoverHeader fontWeight='semibold'>Code</PopoverHeader>
         <PopoverArrow />
         <PopoverCloseButton />
         <PopoverBody
@@ -44,6 +45,8 @@ export const EditorCodeLanguage: React.FC<EditorCodeLanguageProps> = ({}) => {
           <VStack spacing={4} px={4}>
             {/* Languages */}
             <EditorCodeLanguageList />
+            {/* Line Numbers */}
+            <EditorCodeLineNumbers />
           </VStack>
         </PopoverBody>
       </PopoverContent>

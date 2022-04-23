@@ -20,6 +20,7 @@ import {
   setBackgroundCustomization,
 } from 'state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { EditorBackgroundConfiguration } from './EditorBackgroundConfiguration';
+import { parseBackgroundColor } from '@lib/HelperFunctions';
 
 interface EditorBackgroundProps {}
 
@@ -28,12 +29,14 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
   const backgroundCustomization = useSelector(selectBackgroundCustomization);
 
   return (
-    <Popover placement='left-start' >
+    <Popover placement='left-start'>
       <Tooltip label='Background' aria-label='Background Customization'>
         <PopoverTrigger>
           <Button
             aria-label='Background Customization'
-            background={backgroundCustomization.backgroundColor}
+            background={parseBackgroundColor(
+              backgroundCustomization.backgroundColor
+            )}
             _hover={{ bg: backgroundCustomization.backgroundColor }}
             _focus={{ bg: backgroundCustomization.backgroundColor }}
             _active={{ bg: backgroundCustomization.backgroundColor }}

@@ -38,19 +38,19 @@ export const EditorFont: React.FC<EditorFontProps> = ({}) => {
   const fontCustomization = useSelector(selectFontCustomization);
   return (
     <Popover placement='left-start'>
-      <Tooltip label='Fonts' aria-label='Background Customization'>
-        <PopoverTrigger>
-          <IconButton
-            icon={
-              <span>
-                <FaFont />
-              </span>
-            }
-            aria-label='Font Customization'
-            border='2px solid'
-          />
-        </PopoverTrigger>
-      </Tooltip>
+      <PopoverTrigger>
+        <Button
+          leftIcon={
+            <span>
+              <FaFont />
+            </span>
+          }
+          aria-label='Font Customization'
+          border='2px solid'
+        >
+          Fonts
+        </Button>
+      </PopoverTrigger>
       <PopoverContent>
         <PopoverHeader fontWeight='semibold'>Font</PopoverHeader>
         <PopoverArrow />

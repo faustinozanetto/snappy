@@ -131,7 +131,9 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
           >
             {tokens.map((line, i) => (
               <CodeLine key={i} {...getLineProps({ line, key: i })}>
-                <CodeLineNumber lineNumber={i + 1} />
+                {codeCustomization.lineNumbers && (
+                  <CodeLineNumber lineNumber={i + 1} />
+                )}
                 {line.map((token, key) => (
                   <span {...style} {...getTokenProps({ token, key })} />
                 ))}
