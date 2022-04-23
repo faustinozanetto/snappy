@@ -12,13 +12,6 @@ const HomePage: React.FC<HomePageProps> = () => {
   return (
     <Layout>
       <Editor />
-      <button
-        onClick={() =>
-          signIn('discord', { callbackUrl: 'http://localhost:3000/redirect' })
-        }
-      >
-        Sign in
-      </button>
     </Layout>
   );
 };
