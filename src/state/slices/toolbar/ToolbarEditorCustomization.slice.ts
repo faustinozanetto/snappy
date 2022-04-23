@@ -44,6 +44,7 @@ export type WindowCustomization = {
   paddingY?: number;
   borderRadius?: number;
   boxShadow?: boolean;
+  boxShadowSize?: number;
   lineNumbers?: boolean;
 };
 
@@ -72,6 +73,7 @@ const initialState: ToolBoxEditorCustomizationState = {
     paddingY: 10,
     borderRadius: 5,
     boxShadow: true,
+    boxShadowSize: 1,
     lineNumbers: true,
   },
 };

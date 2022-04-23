@@ -35,10 +35,51 @@ const exampleCode = `
   };
 `;
 
+type ShadowEntry = {
+  color: string;
+  size: [number, number, number];
+};
+
 export const EditorContentWindow: React.FC<EditorContentWindowProps> = ({}) => {
   const backgroundCustomization = useSelector(selectBackgroundCustomization);
   const codeCustomization = useSelector(selectCodeCustomization);
   const windowCustomization = useSelector(selectWindowCustomization);
+
+  const generateWindowShadow = (size: number): string => {
+    const BASE: ShadowEntry[] = [
+      {
+        color: 'rgba(0, 0, 0, 0.25)',
+        size: [0, 54, 55],
+      },
+      {
+        color: 'rgba(0, 0, 0, 0.12)',
+        size: [0, -12, 30],
+      },
+      {
+        color: 'rgba(0, 0, 0, 0.12)',
+        size: [0, 4, 6],
+      },
+      {
+        color: 'rgba(0, 0, 0, 0.17)',
+        size: [0, 12, 12],
+      },
+      {
+        color: 'rgba(0, 0, 0, 0.09)',
+        size: [0, -3, 5],
+      },
+    ];
+
+    const shadow = BASE.map((entry) => {
+      const [x, y, z] = entry.size;
+      const multiplier = size / 1.5;
+      return `${entry.color} ${x * multiplier}px ${y * multiplier}px ${
+        z * multiplier
+      }px`;
+    });
+    console.log(shadow);
+    return shadow.join(', ');
+  };
+
   return (
     <Flex height='100%' flexDir='column' overflow='hidden'>
       {/* Wrapper */}
@@ -60,7 +101,8 @@ export const EditorContentWindow: React.FC<EditorContentWindowProps> = ({}) => {
             styles={{
               borderRadius: `${windowCustomization.borderRadius}px`,
               boxShadow:
-                'rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;',
+                windowCustomization.boxShadow &&
+                generateWindowShadow(windowCustomization.boxShadowSize),
             }}
           />
         </Box>

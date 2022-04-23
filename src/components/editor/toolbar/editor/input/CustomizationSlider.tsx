@@ -14,6 +14,7 @@ import {
 interface CustomizationSliderProps {
   label?: string;
   defaultValue?: number;
+  stepSize?: number;
   range?: [number, number];
   valueType?: 'px' | 'em' | 'rem' | 'none';
   onUpdated?: (value: number) => void;
@@ -25,6 +26,7 @@ export const CustomizationSlider: React.FC<CustomizationSliderProps> = (
   const {
     defaultValue = 10,
     range = [0, 10],
+    stepSize = 1,
     label = 'Slider',
     valueType = 'none',
     onUpdated,
@@ -50,6 +52,7 @@ export const CustomizationSlider: React.FC<CustomizationSliderProps> = (
         min={range[0]}
         max={range[1]}
         size='lg'
+        step={stepSize}
         onChangeEnd={(event) => setSliderValue(event)}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
