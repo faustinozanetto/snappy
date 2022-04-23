@@ -13,8 +13,7 @@ import { parseBackgroundColor } from '@lib/HelperFunctions';
 
 interface EditorContentWindowProps {}
 
-const exampleCode = `
- const highLightCode = (codeToHighlight: string): string | React.ReactNode => {
+const exampleCode = `const highLightCode = (codeToHighlight: string): string | React.ReactNode => {
     return (
       <Highlight
         {...defaultProps}
@@ -95,30 +94,38 @@ export const EditorContentWindow: React.FC<EditorContentWindowProps> = ({}) => {
         )}
         backgroundImage={backgroundCustomization.backgroundImage}
         backgroundRepeat='no-repeat'
-        backgroundPosition='center'
         backgroundSize='cover'
       >
-        {/* Main Container */}
+        {/* Blur Effect */}
         <Box
-          width='100%'
-          __css={{
-            paddingLeft: `${windowCustomization.paddingX * 3}px !important`,
-            paddingRight: `${windowCustomization.paddingX * 3}px !important`,
-            paddingTop: `${windowCustomization.paddingY * 3}px !important`,
-            paddingBottom: `${windowCustomization.paddingY * 3}px !important`,
-          }}
+          backdropFilter={`${
+            backgroundCustomization.backgroudBlur > 0
+              ? `blur(${backgroundCustomization.backgroudBlur}px)`
+              : 'none'
+          }`}
         >
-          {/* Editor Code Window */}
-          <EditorCodeContent
-            code={exampleCode}
-            language={codeCustomization.codeLanguage}
-            styles={{
-              borderRadius: `${windowCustomization.borderRadius}px`,
-              boxShadow:
-                windowCustomization.boxShadow &&
-                generateWindowShadow(windowCustomization.boxShadowSize),
+          {/* Main Container */}
+          <Box
+            width='100%'
+            __css={{
+              paddingLeft: `${windowCustomization.paddingX * 3}px !important`,
+              paddingRight: `${windowCustomization.paddingX * 3}px !important`,
+              paddingTop: `${windowCustomization.paddingY * 3}px !important`,
+              paddingBottom: `${windowCustomization.paddingY * 3}px !important`,
             }}
-          />
+          >
+            {/* Editor Code Window */}
+            <EditorCodeContent
+              code={exampleCode}
+              language={codeCustomization.codeLanguage}
+              styles={{
+                borderRadius: `${windowCustomization.borderRadius}px`,
+                boxShadow:
+                  windowCustomization.boxShadow &&
+                  generateWindowShadow(windowCustomization.boxShadowSize),
+              }}
+            />
+          </Box>
         </Box>
       </Box>
     </Flex>

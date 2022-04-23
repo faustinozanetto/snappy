@@ -26,7 +26,7 @@ export const CustomizationSlider: React.FC<CustomizationSliderProps> = (
   const {
     defaultValue = 10,
     range = [0, 10],
-    stepSize = 1,
+    stepSize = 0.05,
     label = 'Slider',
     valueType = 'none',
     onUpdated,

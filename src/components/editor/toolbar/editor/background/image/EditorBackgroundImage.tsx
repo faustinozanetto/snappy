@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Text, Flex, Button } from '@chakra-ui/react';
-import { setBackgroundCustomization } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+import {
+  selectBackgroundCustomization,
+  setBackgroundCustomization,
+} from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { useDropzone } from 'react-dropzone';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { CustomizationSlider } from '../../input/CustomizationSlider';
 
 interface EditorBackgroundImageProps {}
 
@@ -11,6 +15,7 @@ export const EditorBackgroundImage: React.FC<
 > = ({}) => {
   const [imageFiles, setImageFiles] = useState<any[]>([]);
   const dispatch = useDispatch();
+  const backgroundCustomization = useSelector(selectBackgroundCustomization);
   const { acceptedFiles, getRootProps, open, getInputProps } = useDropzone({
     accept: 'image/*',
     noClick: true,
@@ -45,15 +50,27 @@ export const EditorBackgroundImage: React.FC<
       justifyContent='center'
       alignContent='center'
     >
+      {/* Header */}
       <Text as='h2' fontWeight={600} fontSize='lg' mb={4}>
         Upload an Image.
       </Text>
+      {/* Image pick */}
       <Box {...getRootProps({ className: 'dropzone' })}>
         <input {...getInputProps()} />
         <Button colorScheme='blue' onClick={open}>
           Open File Dialog
         </Button>
       </Box>
+      {/* Background blur */}
+      <CustomizationSlider
+        label='Background Blur'
+        range={[0, 20]}
+        valueType='px'
+        defaultValue={backgroundCustomization.backgroudBlur}
+        onUpdated={(value) =>
+          dispatch(setBackgroundCustomization({ backgroudBlur: value }))
+        }
+      />
     </Flex>
   );
 };
