@@ -1,43 +1,52 @@
 import {
-  Menu,
   Tooltip,
-  MenuButton,
   IconButton,
-  MenuList,
-  MenuGroup,
   VStack,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
 import { IoMdColorPalette } from 'react-icons/io';
-import { EditorFontList } from '../../font/EditorFontList';
-import { EditorFontSize } from '../../font/EditorFontSize';
 import { EditorCodeThemeList } from './EditorCodeThemeList';
 
 interface EditorCodeThemeProps {}
 
 export const EditorCodeTheme: React.FC<EditorCodeThemeProps> = ({}) => {
   return (
-    <Menu placement='left-start'>
+    <Popover placement='left-start'>
       <Tooltip label='Code Theme' aria-label='Code Theme'>
-        <MenuButton
-          as={IconButton}
-          icon={
-            <span>
-              <IoMdColorPalette />
-            </span>
-          }
-          aria-label='Code Theme'
-          border='2px solid'
-        />
+        <PopoverTrigger>
+          <IconButton
+            icon={
+              <span>
+                <IoMdColorPalette />
+              </span>
+            }
+            aria-label='Theme Customization'
+            border='2px solid'
+          />
+        </PopoverTrigger>
       </Tooltip>
-      <MenuList>
-        <MenuGroup>
-          <VStack px={4}>
+      <PopoverContent>
+        <PopoverHeader fontWeight='semibold'>Theme</PopoverHeader>
+        <PopoverArrow />
+        <PopoverCloseButton />
+        <PopoverBody
+          px={0}
+          backgroundColor={useColorModeValue('gray.100', 'gray.800')}
+        >
+          <VStack spacing={4} px={4}>
             {/* Themes */}
             <EditorCodeThemeList />
           </VStack>
-        </MenuGroup>
-      </MenuList>
-    </Menu>
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
   );
 };

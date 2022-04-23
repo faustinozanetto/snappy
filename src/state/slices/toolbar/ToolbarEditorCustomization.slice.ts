@@ -7,9 +7,17 @@ export enum BackgroundType {
 }
 
 export enum CodeTheme {
-  DARK = 'dark',
-  LIGHT = 'light',
-  MONOKAI = 'monokai',
+  DRACULA = 'dracula',
+  DUOTONEDARK = 'duotoneDark',
+  DUOTONELIGHT = 'duotoneLight',
+  GITHUB = 'github',
+  NIGHTOWL = 'nightOwl',
+  NIGTHOWLLIGHT = 'nightOwlLight',
+  OCEANICNEXT = 'oceanicNext',
+  OKAIDIA = 'okaidia',
+  PALENIGHT = 'palenight',
+  SHADESOFPURPLE = 'shadesOfPurple',
+  SYNTHWAVE84 = 'synthwave84',
 }
 
 export enum CodeLanguage {
@@ -58,20 +66,20 @@ export type ToolBoxEditorCustomizationState = {
 const initialState: ToolBoxEditorCustomizationState = {
   backgroundCustomization: {
     backgroundType: BackgroundType.COLOR,
-    backgroundColor: '#fff',
+    backgroundColor: '#B3B0B0',
   },
   fontCustomization: {
-    fontFamily: 'Roboto',
-    fontSize: 14,
+    fontFamily: 'JetBrains Mono',
+    fontSize: 16,
   },
   codeCustomization: {
-    codeTheme: CodeTheme.DARK,
+    codeTheme: CodeTheme.NIGHTOWL,
     codeLanguage: CodeLanguage.JSX,
   },
   windowCustomization: {
-    paddingX: 10,
-    paddingY: 10,
-    borderRadius: 5,
+    paddingX: 20,
+    paddingY: 20,
+    borderRadius: 10,
     boxShadow: true,
     boxShadowSize: 1,
     lineNumbers: true,

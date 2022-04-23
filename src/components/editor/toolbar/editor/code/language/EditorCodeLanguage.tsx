@@ -1,11 +1,15 @@
 import {
-  Menu,
   Tooltip,
-  MenuButton,
   IconButton,
-  MenuList,
-  MenuGroup,
   VStack,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
 import { FaCode } from 'react-icons/fa';
@@ -15,27 +19,34 @@ interface EditorCodeLanguageProps {}
 
 export const EditorCodeLanguage: React.FC<EditorCodeLanguageProps> = ({}) => {
   return (
-    <Menu placement='left-start'>
+    <Popover placement='left-start'>
       <Tooltip label='Code Language' aria-label='Code Language'>
-        <MenuButton
-          as={IconButton}
-          icon={
-            <span>
-              <FaCode />
-            </span>
-          }
-          aria-label='Code Language'
-          border='2px solid'
-        />
+        <PopoverTrigger>
+          <IconButton
+            icon={
+              <span>
+                <FaCode />
+              </span>
+            }
+            aria-label='Language Customization'
+            border='2px solid'
+          />
+        </PopoverTrigger>
       </Tooltip>
-      <MenuList>
-        <MenuGroup>
-          <VStack px={4}>
+      <PopoverContent>
+        <PopoverHeader fontWeight='semibold'>Language</PopoverHeader>
+        <PopoverArrow />
+        <PopoverCloseButton />
+        <PopoverBody
+          px={0}
+          backgroundColor={useColorModeValue('gray.100', 'gray.800')}
+        >
+          <VStack spacing={4} px={4}>
             {/* Languages */}
             <EditorCodeLanguageList />
           </VStack>
-        </MenuGroup>
-      </MenuList>
-    </Menu>
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
   );
 };

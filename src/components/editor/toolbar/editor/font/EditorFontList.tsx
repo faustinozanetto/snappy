@@ -27,25 +27,9 @@ export const EditorFontList: React.FC<EditorFontListProps> = ({}) => {
         defaultValue={fontCustomization.fontFamily}
       >
         <option value='Roboto'>Roboto</option>
+        <option value='JetBrains Mono'>JetBrains Mono</option>
         <option value='Arial'>Arial</option>
-        <option value='Times New Roman'>Times New Roman</option>
-        <option value='Verdana'>Verdana</option>
-        {/* Add all web safe fonts as separate options */}
-        <option value='Arial Black'>Arial Black</option>
-        <option value='Arial Narrow'>Arial Narrow</option>
-        <option value='Arial Rounded MT Bold'>Arial Rounded MT Bold</option>
-        <option value='Avant Garde'>Avant Garde</option>
-        <option value='Calibri'>Calibri</option>
-        <option value='Cambria'>Cambria</option>
-        <option value='Candara'>Candara</option>
-        <option value='Century Gothic'>Century Gothic</option>
-        <option value='Franklin Gothic Medium'>Franklin Gothic Medium</option>
-        <option value='Futura'>Futura</option>
-        <option value='Geneva'>Geneva</option>
-        <option value='Gill Sans'>Gill Sans</option>
-        <option value='Helvetica'>Helvetica</option>
-        <option value='Impact'>Impact</option>
-        <option value='Lucida Grande'>Lucida Grande</option>
+        <option value='Poppins'>Poppins</option>
       </Select>
     </Box>
   );

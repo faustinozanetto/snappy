@@ -11,6 +11,14 @@ import {
   MenuDivider,
   Divider,
   MenuItem,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import {
   selectFontCustomization,
@@ -29,42 +37,44 @@ export const EditorFont: React.FC<EditorFontProps> = ({}) => {
   const dispatch = useDispatch();
   const fontCustomization = useSelector(selectFontCustomization);
   return (
-    <Menu placement='left-start'>
+    <Popover placement='left-start'>
       <Tooltip label='Fonts' aria-label='Background Customization'>
-        <MenuButton
-          as={IconButton}
-          icon={
-            <span>
-              <FaFont />
-            </span>
-          }
-          aria-label='Background Customization'
-          border='2px solid'
-        />
+        <PopoverTrigger>
+          <IconButton
+            icon={
+              <span>
+                <FaFont />
+              </span>
+            }
+            aria-label='Font Customization'
+            border='2px solid'
+          />
+        </PopoverTrigger>
       </Tooltip>
-      <MenuList>
-        <MenuGroup>
-          <VStack px={2}>
+      <PopoverContent>
+        <PopoverHeader fontWeight='semibold'>Font</PopoverHeader>
+        <PopoverArrow />
+        <PopoverCloseButton />
+        <PopoverBody
+          px={0}
+          backgroundColor={useColorModeValue('gray.100', 'gray.800')}
+        >
+          <VStack spacing={4} px={4}>
             {/* Font list. */}
-            <MenuItem>
-              <EditorFontList />
-            </MenuItem>
-            <MenuDivider />
+            <EditorFontList />
             {/* Font Size */}
-            <MenuItem>
-              <CustomizationSlider
-                label='Font Size'
-                range={[8, 32]}
-                defaultValue={fontCustomization.fontSize}
-                valueType='px'
-                onUpdated={(value) =>
-                  dispatch(setFontCustomization({ fontSize: value }))
-                }
-              />
-            </MenuItem>
+            <CustomizationSlider
+              label='Font Size'
+              range={[8, 30]}
+              defaultValue={fontCustomization.fontSize}
+              valueType='px'
+              onUpdated={(value) =>
+                dispatch(setFontCustomization({ fontSize: value }))
+              }
+            />
           </VStack>
-        </MenuGroup>
-      </MenuList>
-    </Menu>
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
   );
 };

@@ -41,7 +41,7 @@ export const CustomizationSlider: React.FC<CustomizationSliderProps> = (
   return (
     <Box pb={2} width='full'>
       <HStack justifyContent='space-between' width='full'>
-        <Text as='h2' fontWeight={600} fontSize='lg' mb={2}>
+        <Text as='h2' fontWeight={600} mb={2}>
           {label}
         </Text>
       </HStack>
@@ -51,7 +51,6 @@ export const CustomizationSlider: React.FC<CustomizationSliderProps> = (
         defaultValue={defaultValue}
         min={range[0]}
         max={range[1]}
-        size='lg'
         step={stepSize}
         onChangeEnd={(event) => setSliderValue(event)}
         onMouseEnter={() => setShowTooltip(true)}
@@ -62,8 +61,8 @@ export const CustomizationSlider: React.FC<CustomizationSliderProps> = (
           value={range[0]}
           mt='1'
           ml='-2.5'
-          fontSize='md'
-          fontWeight={600}
+          fontSize='sm'
+          fontWeight={500}
         >
           {range[0]} {valueType !== 'none' && valueType}
         </SliderMark>
@@ -72,8 +71,8 @@ export const CustomizationSlider: React.FC<CustomizationSliderProps> = (
           value={Math.round((range[0] + range[1]) / 2)}
           mt='1'
           ml='-2.5'
-          fontSize='md'
-          fontWeight={600}
+          fontSize='sm'
+          fontWeight={500}
         >
           {Math.round((range[0] + range[1]) / 2)}
           {valueType !== 'none' && valueType}
@@ -83,8 +82,8 @@ export const CustomizationSlider: React.FC<CustomizationSliderProps> = (
           value={range[1]}
           mt='1'
           ml='-2.5'
-          fontSize='md'
-          fontWeight={600}
+          fontSize='sm'
+          fontWeight={500}
         >
           {range[1]} {valueType !== 'none' && valueType}
         </SliderMark>

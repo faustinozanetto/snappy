@@ -1,4 +1,6 @@
 import '@styles/globals.css';
+import '@fontsource/jetbrains-mono';
+import '@fontsource/poppins';
 import { SessionProvider } from 'next-auth/react';
 import { ChakraProvider, theme } from '@chakra-ui/react';
 import { AppProps } from 'next/app';

@@ -18,7 +18,7 @@ export const EditorWindowPadding: React.FC<EditorWindowPaddingProps> = ({}) => {
       {/* Horizontal */}
       <CustomizationSlider
         label='Horizontal Padding'
-        range={[0, 25]}
+        range={[0, 50]}
         defaultValue={windowCustomization.paddingX}
         onUpdated={(value) =>
           dispatch(setWindowCustomization({ paddingX: value }))
@@ -27,7 +27,7 @@ export const EditorWindowPadding: React.FC<EditorWindowPaddingProps> = ({}) => {
       {/* Vertical */}
       <CustomizationSlider
         label='Vertical Padding'
-        range={[0, 25]}
+        range={[0, 50]}
         defaultValue={windowCustomization.paddingY}
         onUpdated={(value) =>
           dispatch(setWindowCustomization({ paddingY: value }))
