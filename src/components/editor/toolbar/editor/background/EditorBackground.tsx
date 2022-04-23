@@ -28,8 +28,8 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
   const backgroundColor = useSelector(selectBackgroundColor);
 
   return (
-    <Tooltip>
-      <Menu isLazy placement='left-start'>
+    <Menu placement='left-start'>
+      <Tooltip label='Background' aria-label='Background Customization'>
         <MenuButton
           as={Button}
           aria-label='Background Customization'
@@ -39,35 +39,31 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
           _active={{ bg: backgroundColor }}
           border='2px solid'
         />
-        <MenuList>
-          {/* Color && Image Buttons */}
-          <MenuGroup>
-            <HStack justify='center' px={4}>
-              <Button
-                width='50%'
-                onClick={() =>
-                  dispatch(setBackgroundType(BackgroundType.COLOR))
-                }
-              >
-                Color
-              </Button>
-              <Button
-                width='50%'
-                onClick={() =>
-                  dispatch(setBackgroundType(BackgroundType.IMAGE))
-                }
-              >
-                Image
-              </Button>
-            </HStack>
-          </MenuGroup>
-          <MenuDivider />
-          {/* Actual Configuration */}
-          <MenuGroup>
-            <EditorBackgroundConfiguration backgroundType={backgroundType} />
-          </MenuGroup>
-        </MenuList>
-      </Menu>
-    </Tooltip>
+      </Tooltip>
+      <MenuList>
+        {/* Color && Image Buttons */}
+        <MenuGroup>
+          <HStack justify='center' px={4}>
+            <Button
+              width='50%'
+              onClick={() => dispatch(setBackgroundType(BackgroundType.COLOR))}
+            >
+              Color
+            </Button>
+            <Button
+              width='50%'
+              onClick={() => dispatch(setBackgroundType(BackgroundType.IMAGE))}
+            >
+              Image
+            </Button>
+          </HStack>
+        </MenuGroup>
+        <MenuDivider />
+        {/* Actual Configuration */}
+        <MenuGroup>
+          <EditorBackgroundConfiguration backgroundType={backgroundType} />
+        </MenuGroup>
+      </MenuList>
+    </Menu>
   );
 };
