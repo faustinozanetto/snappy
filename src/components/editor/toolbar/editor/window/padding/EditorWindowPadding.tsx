@@ -1,11 +1,10 @@
 import React from 'react';
-import { VStack } from '@chakra-ui/react';
+import { MenuDivider, MenuItem, VStack } from '@chakra-ui/react';
 import {
   selectWindowCustomization,
   setWindowCustomization,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { useDispatch, useSelector } from 'react-redux';
-import { EditorWindowPaddingSlider } from './EditorWindowPaddingSlider';
 import { CustomizationSlider } from '../../input/CustomizationSlider';
 
 interface EditorWindowPaddingProps {}
@@ -15,25 +14,30 @@ export const EditorWindowPadding: React.FC<EditorWindowPaddingProps> = ({}) => {
   const windowCustomization = useSelector(selectWindowCustomization);
 
   return (
-    <VStack spacing={4}>
+    <VStack px={2}>
       {/* Horizontal */}
-      <CustomizationSlider
-        label='Horizontal Padding'
-        range={[0, 25]}
-        defaultValue={windowCustomization.paddingX}
-        onUpdated={(value) =>
-          dispatch(setWindowCustomization({ paddingX: value }))
-        }
-      />
+      <MenuItem>
+        <CustomizationSlider
+          label='Horizontal Padding'
+          range={[0, 25]}
+          defaultValue={windowCustomization.paddingX}
+          onUpdated={(value) =>
+            dispatch(setWindowCustomization({ paddingX: value }))
+          }
+        />
+      </MenuItem>
+      <MenuDivider />
       {/* Vertical */}
-      <CustomizationSlider
-        label='Vertical Padding'
-        range={[0, 25]}
-        defaultValue={windowCustomization.paddingY}
-        onUpdated={(value) =>
-          dispatch(setWindowCustomization({ paddingY: value }))
-        }
-      />
+      <MenuItem>
+        <CustomizationSlider
+          label='Vertical Padding'
+          range={[0, 25]}
+          defaultValue={windowCustomization.paddingY}
+          onUpdated={(value) =>
+            dispatch(setWindowCustomization({ paddingY: value }))
+          }
+        />
+      </MenuItem>
     </VStack>
   );
 };

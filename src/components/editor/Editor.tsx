@@ -9,7 +9,7 @@ export const Editor: React.FC<EditorProps> = ({}) => {
   return (
     <Box my={12}>
       <Container
-        maxW='4xl'
+        maxW={['0em', '30em', '48em', '62em', '80em', '90em']}
         padding={4}
         backgroundColor={useColorModeValue('gray.200', 'gray.700')}
         borderRadius='md'

@@ -30,10 +30,8 @@ export const EditorWindow: React.FC<EditorWindowProps> = ({}) => {
       </Tooltip>
       <MenuList>
         <MenuGroup>
-          <VStack px={4}>
-            {/* Window Padding */}
-            <EditorWindowPadding />
-          </VStack>
+          {/* Window Padding */}
+          <EditorWindowPadding />
         </MenuGroup>
       </MenuList>
     </Menu>

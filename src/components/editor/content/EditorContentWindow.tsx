@@ -40,30 +40,12 @@ export const EditorContentWindow: React.FC<EditorContentWindowProps> = ({}) => {
   const codeCustomization = useSelector(selectCodeCustomization);
   const windowCustomization = useSelector(selectWindowCustomization);
   return (
-    <Flex
-      height='100%'
-      flexDir='column'
-      justifyContent='center'
-      alignItems='center'
-      overflow='hidden'
-      maxWidth='100%'
-    >
+    <Flex height='100%' flexDir='column' overflow='hidden'>
       {/* Wrapper */}
-      <Box
-        backgroundColor={backgroundCustomization.backgroundColor}
-        height='100%'
-        flexDir='column'
-        justifyContent='center'
-        alignItems='center'
-        overflow='hidden'
-        maxWidth='100%'
-      >
+      <Box backgroundColor={backgroundCustomization.backgroundColor}>
         {/* Main Container */}
         <Box
-          position='relative'
-          minWidth='auto'
-          maxWidth='auto'
-          width='850px'
+          width='100%'
           __css={{
             paddingLeft: `${windowCustomization.paddingX * 3}px !important`,
             paddingRight: `${windowCustomization.paddingX * 3}px !important`,
