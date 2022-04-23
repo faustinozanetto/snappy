@@ -93,6 +93,10 @@ export const EditorContentWindow: React.FC<EditorContentWindowProps> = ({}) => {
         backgroundColor={parseBackgroundColor(
           backgroundCustomization.backgroundColor
         )}
+        backgroundImage={backgroundCustomization.backgroundImage}
+        backgroundRepeat='no-repeat'
+        backgroundPosition='center'
+        backgroundSize='cover'
       >
         {/* Main Container */}
         <Box

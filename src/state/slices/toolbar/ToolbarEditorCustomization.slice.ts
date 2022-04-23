@@ -41,6 +41,7 @@ export type Color = {
 export type BackgroundCustomization = {
   backgroundType?: BackgroundType;
   backgroundColor?: Color;
+  backgroundImage?: string;
 };
 
 export type FontCustomization = {
@@ -77,6 +78,7 @@ export type ToolBoxEditorCustomizationState = {
 const initialState: ToolBoxEditorCustomizationState = {
   backgroundCustomization: {
     backgroundType: BackgroundType.COLOR,
+    backgroundImage: '',
     backgroundColor: {
       r: 179,
       g: 179,
