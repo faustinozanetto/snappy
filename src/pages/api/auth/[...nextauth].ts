@@ -6,7 +6,11 @@ import { NextApiHandler } from 'next';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 
 // Request Handler
-const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
+// const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
+
+const authHandler: NextApiHandler = (req, res) => {
+  res.send({ message: 'Hello World' });
+};
 
 // Next auth options.
 const options: NextAuthOptions = {
