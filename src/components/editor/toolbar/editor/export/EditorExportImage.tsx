@@ -110,7 +110,6 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
 
     // Twitter and Imgur needs regular dataURLs
     const data = await domtoimage.toPng(REF, config);
-    console.log(data);
     return data;
   };
 

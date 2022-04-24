@@ -78,7 +78,7 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
         return okaidia;
       case CodeTheme.SYNTHWAVE84:
         return synthwave84;
-
+        
       default:
         return duotoneDark;
     }

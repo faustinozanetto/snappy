@@ -11,32 +11,9 @@ import { EditorCodeContent } from './EditorCodeContent';
 import { parseBackgroundColor } from '@lib/HelperFunctions';
 import { setCaptureRef } from '@state/SnapifyStore';
 import { ExportContext } from '@state/ExportContext';
+import { EXAMPLE_CODE } from '@lib/Constants';
 
 interface EditorContentWindowProps {}
-
-const exampleCode = `const highLightCode = (codeToHighlight: string): string | React.ReactNode => {
-    return (
-      <Highlight
-        {...defaultProps}
-        theme={theme}
-        code={codeToHighlight}
-        language={parsePrismLanguageType(language)}
-      >
-        {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <Fragment>
-            {tokens.map((line, i) => (
-              <div {...getLineProps({ line, key: i })}>
-                {line.map((token, key) => (
-                  <span {...getTokenProps({ token, key })} />
-                ))}
-              </div>
-            ))}
-          </Fragment>
-        )}
-      </Highlight>
-    );
-  };
-`;
 
 type ShadowEntry = {
   color: string;
@@ -115,7 +92,7 @@ export const EditorContentWindow: React.FC<EditorContentWindowProps> = ({}) => {
         >
           {/* Editor Code Window */}
           <EditorCodeContent
-            code={exampleCode}
+            code={EXAMPLE_CODE}
             language={codeCustomization.codeLanguage}
             styles={{
               borderRadius: `${windowCustomization.borderRadius}px`,
