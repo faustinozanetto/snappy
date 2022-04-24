@@ -10,7 +10,7 @@ import Document, {
 class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html lang='en'>
         <Head />
         <body>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />

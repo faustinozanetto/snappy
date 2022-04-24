@@ -21,7 +21,14 @@ const HomePage: React.FC<HomePageProps> = () => {
   }, [codeCustomization.codeTheme]);
 
   return (
-    <Layout>
+    <Layout
+      layoutHeadProps={{
+        title: 'Home | Snappy',
+        description:
+          'Snappy is a simple, fast and powerful code snippet creator.',
+        url: 'https://snapify.vercel.app/',
+      }}
+    >
       {highlightTheme && GenerateHighlight(highlightTheme)}
       <Editor />
     </Layout>
