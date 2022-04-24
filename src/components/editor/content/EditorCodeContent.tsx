@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { Fragment, useEffect, useState } from 'react';
 import Editor from 'react-simple-code-editor';
 import Highlight, {
@@ -129,7 +130,7 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
    * @param codeToHighlight code to use in the highlight process.
    * @returns the highlighed code.
    */
-  const highLightCode = (codeToHighlight: string): string | React.ReactNode => (
+  const highLightCode = (codeToHighlight: string) => (
     <Highlight
       {...defaultProps}
       theme={theme}

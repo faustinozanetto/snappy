@@ -68,16 +68,7 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
     const config: NodeToImageOptions = {
       width,
       height,
-      filter: (n) => {
-        if (n.className) {
-          const className = String(n.className);
-          if (className.includes('eliminateOnRender')) {
-            return false;
-          }
-          if (className.includes('CodeMirror-cursors')) {
-            return false;
-          }
-        }
+      filter: () => {
         return true;
       },
       style: {
