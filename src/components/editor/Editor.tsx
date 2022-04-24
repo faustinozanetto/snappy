@@ -110,12 +110,11 @@ export const Editor: React.FC<EditorProps> = ({}) => {
             backgroundSize='cover'
             backgroundPosition='center'
             backgroundImage={`url(${backgroundCustomization.backgroundImage})`}
-            // backdropFilter={`${
-            //   backgroundCustomization.backgroudBlur > 0
-            //     ? `blur(${backgroundCustomization.backgroudBlur}px)`
-            //     : 'none'
-            // }`}
-            backdropFilter='hue-rotate(180deg)'
+            backdropFilter={`${
+              backgroundCustomization.backgroudBlur > 0
+                ? `blur(${backgroundCustomization.backgroudBlur}px)`
+                : 'none'
+            }`}
           >
             <EditorCodeContent
               code={EXAMPLE_CODE}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, useColorModeValue, VStack } from '@chakra-ui/react';
+import { VStack } from '@chakra-ui/react';
 import {
   selectWindowCustomization,
   setWindowCustomization,

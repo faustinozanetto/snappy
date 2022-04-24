@@ -45,6 +45,8 @@ export const EditorWindowShadow: React.FC<EditorWindowShadowProps> = ({}) => {
         label='Shadow Size'
         range={[0, 5]}
         stepSize={0.1}
+        allSteps={true}
+        allStepsSize={1}
         defaultValue={windowCustomization.shadow.boxShadowSize}
         onUpdated={(value) =>
           dispatch(

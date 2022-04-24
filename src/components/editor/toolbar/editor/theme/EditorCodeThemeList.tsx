@@ -37,10 +37,10 @@ export const EditorCodeThemeList: React.FC<EditorCodeThemeListProps> = ({}) => {
         Themes
       </Text>
       <Select placeholder='Choose a Theme' onChange={handleCodeThemeChange}>
-        {Object.values(CodeTheme).map((key) => {
+        {Object.keys(CodeTheme).map((key) => {
           return (
             <option key={key} value={key}>
-              {capitalizeThemeName(key)}
+              {capitalizeThemeName(CodeTheme[key])}
             </option>
           );
         })}

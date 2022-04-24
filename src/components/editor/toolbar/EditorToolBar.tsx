@@ -1,5 +1,12 @@
 import React from 'react';
-import { Flex, HStack, useColorModeValue } from '@chakra-ui/react';
+import {
+  Box,
+  Divider,
+  Flex,
+  HStack,
+  useColorModeValue,
+  VStack,
+} from '@chakra-ui/react';
 import { EditorBackground } from './editor/background/EditorBackground';
 import { EditorCode } from './editor/code/EditorCode';
 import { EditorCodeTheme } from './editor/theme/EditorCodeTheme';
@@ -13,19 +20,9 @@ interface EditorToolBarProps {
 
 export const EditorToolBar: React.FC<EditorToolBarProps> = ({ exportRef }) => {
   return (
-    <Flex
-      height='60px'
-      padding={2}
-      position='relative'
-      justifyContent='center'
-      alignContent='center'
-      align='center'
-      backgroundColor={useColorModeValue('gray.300', 'gray.900')}
-      borderRadius='md'
-      mb={4}
-    >
+    <VStack my={4}>
       {/* Editor Configuration */}
-      <HStack spacing={4}>
+      <HStack spacing={4} mb={4}>
         {/* Background */}
         <EditorBackground />
         {/* Font */}
@@ -33,12 +30,12 @@ export const EditorToolBar: React.FC<EditorToolBarProps> = ({ exportRef }) => {
         {/* Theme */}
         <EditorCodeTheme />
         {/* Language */}
-        <EditorCode />
+        {/* <EditorCode /> */}
         {/* Window */}
         <EditorWindow />
         {/* Export */}
         <EditorExportImage exportRef={exportRef} />
       </HStack>
-    </Flex>
+    </VStack>
   );
 };

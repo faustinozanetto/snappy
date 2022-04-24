@@ -7,17 +7,23 @@ export enum BackgroundType {
 }
 
 export enum CodeTheme {
-  DRACULA = 'dracula',
-  DUOTONEDARK = 'duotoneDark',
-  DUOTONELIGHT = 'duotoneLight',
-  GITHUB = 'github',
-  NIGHTOWL = 'nightOwl',
-  NIGTHOWLLIGHT = 'nightOwlLight',
-  OCEANICNEXT = 'oceanicNext',
-  OKAIDIA = 'okaidia',
-  PALENIGHT = 'palenight',
-  SHADESOFPURPLE = 'shadesOfPurple',
-  SYNTHWAVE84 = 'synthwave84',
+  ONE_DARK = 'One Dark',
+  ONE_LIGHT = 'One Light',
+  DRACULA = 'Dracula',
+  NIGHT_OWL = 'Night Owl',
+  NIGHT_OWL_LIGHT = 'Night Owl Light',
+  VS_LIGHT = 'Vs Light',
+  VS_DARK = 'Vs Dark',
+  SYNTHWAVE84 = 'Synthwave84',
+  OKAIDIA = 'Okaidia',
+  SHADES_OF_PURPLE = 'Shades of Purple',
+  CELESTIAL = 'Celestial',
+  AURORA = 'Aurora',
+  WINTER_IS_COMING = 'Winter is coming',
+  OUTRUN_NIGHT = 'Outrun Night',
+  MONOKAI = 'Monokai',
+  ROSE_PINE = 'Rose Pine',
+  EVA_LIGHT = 'Eva Light',
 }
 
 export enum CodeLanguage {
@@ -105,7 +111,7 @@ const initialState: ToolBoxEditorCustomizationState = {
     fontSize: 16,
   },
   codeCustomization: {
-    codeTheme: CodeTheme.NIGHTOWL,
+    codeTheme: CodeTheme.NIGHT_OWL,
     codeLanguage: CodeLanguage.JSX,
     lineNumbers: true,
   },

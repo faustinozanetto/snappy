@@ -1,6 +1,6 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Editor from 'react-simple-code-editor';
-import Prism from 'prismjs';
+import Prism, { highlight } from 'prismjs';
 import Highlight, {
   defaultProps,
   Language as PrismLanguage,
@@ -12,33 +12,22 @@ import {
   selectCodeCustomization,
   selectFontCustomization,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
-import {
-  nightOwl,
-  atomOneDark,
-} from 'react-syntax-highlighter/dist/cjs/styles/hljs';
-import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { NIGHT_OWL } from '@lib/themes/NightOwl.theme';
 
 // THEMES
-import dracula from 'prism-react-renderer/themes/dracula';
-import duotoneDark from 'prism-react-renderer/themes/duotoneDark';
-import duotoneLight from 'prism-react-renderer/themes/duotoneLight';
-import github from 'prism-react-renderer/themes/github';
-// import nightOwl from 'prism-react-renderer/themes/nightOwl';
-import nightOwlLight from 'prism-react-renderer/themes/nightOwlLight';
-import oceanicNext from 'prism-react-renderer/themes/oceanicNext';
-import shadesOfPurple from 'prism-react-renderer/themes/shadesOfPurple';
-import okaidia from 'prism-react-renderer/themes/okaidia';
-import synthwave84 from 'prism-react-renderer/themes/synthwave84';
-import ultramin from 'prism-react-renderer/themes/ultramin';
-import { CodeLineNumber } from './window/CodeLineNumber';
-import { CodePre } from './window/CodePre';
-import { CodeLine } from './window/CodeLine';
-import { Box } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { EXAMPLE_CODE } from '@lib/Constants';
-// import theme from 'prism-react-renderer/themes/nightOwl';
-import { GenerateHighlight } from '@lib/themes/HighlightTheme';
+import { NIGHT_OWL } from '@lib/themes/NightOwl.theme';
+import { ONE_DARK } from '@lib/themes/OneDark.theme';
+import { SYNTHWAVE84 } from '@lib/themes/Synthwave84';
+import { VS_LIGHT } from '@lib/themes/VsLight.theme';
+import { VS_DARK } from '@lib/themes/VsDark.theme';
+import { DRACULA } from '@lib/themes/Dracula.theme';
+import { NIGHT_OWL_LIGHT } from '@lib/themes/NightOwlLight.theme';
+import {
+  GenerateHighlight,
+  HighlightThemeType,
+} from '@lib/themes/HighlightTheme';
+import { Box } from '@chakra-ui/react';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 
 interface EditorCodeContentProps {
   code?: string;
@@ -49,34 +38,35 @@ interface EditorCodeContentProps {
 export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
   const { code: propsCode, styles, language } = props;
   const [code, setCode] = useState(propsCode || '');
+  const [highlightTheme, setHighlightTheme] =
+    useState<HighlightThemeType>(NIGHT_OWL);
+  const [highlightCSS, setHighlightCSS] = useState(
+    GenerateHighlight(highlightTheme)
+  );
   const fontCustomization = useSelector(selectFontCustomization);
   const codeCustomization = useSelector(selectCodeCustomization);
 
-  const selectTheme = (theme: CodeTheme): any => {
+  const selectTheme = (theme: CodeTheme): HighlightThemeType => {
     switch (theme) {
-      case CodeTheme.DUOTONEDARK:
-        return duotoneDark;
-      case CodeTheme.DUOTONELIGHT:
-        return duotoneLight;
+      case CodeTheme.VS_LIGHT:
+        return VS_LIGHT;
+      case CodeTheme.VS_DARK:
+        return VS_DARK;
       case CodeTheme.DRACULA:
-        return dracula;
-      case CodeTheme.GITHUB:
-        return github;
-      case CodeTheme.NIGHTOWL:
-        return nightOwl;
-      case CodeTheme.NIGTHOWLLIGHT:
-        return nightOwlLight;
-      case CodeTheme.OCEANICNEXT:
-        return oceanicNext;
-      case CodeTheme.SHADESOFPURPLE:
-        return shadesOfPurple;
-      case CodeTheme.OKAIDIA:
-        return okaidia;
+        return DRACULA;
+      case CodeTheme.NIGHT_OWL:
+        return NIGHT_OWL;
+      case CodeTheme.NIGHT_OWL_LIGHT:
+        return NIGHT_OWL_LIGHT;
       case CodeTheme.SYNTHWAVE84:
-        return synthwave84;
+        return SYNTHWAVE84;
+      case CodeTheme.ONE_DARK:
+        return ONE_DARK;
+      case CodeTheme.ONE_LIGTH:
+        return ONE_DARK;
 
       default:
-        return duotoneDark;
+        return NIGHT_OWL;
     }
   };
 
@@ -85,7 +75,8 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
    */
   useEffect(() => {
     const parsedTheme = selectTheme(codeCustomization.codeTheme);
-    // setTheme(parsedTheme);
+    setHighlightTheme(parsedTheme);
+    setHighlightCSS(GenerateHighlight(parsedTheme));
   }, [codeCustomization]);
 
   /**
@@ -169,18 +160,17 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
   );
 
   return (
-    <React.Fragment>
-      <Editor
-        className='code-wrapper'
-        value={code}
-        highlight={(cod) =>
-          Prism.highlight(cod, Prism.languages.js, 'javascript')
-        }
-        padding={20}
-        onValueChange={(newValue) => setCode(newValue)}
-        style={generateCustomStyles()}
-      />
-      {GenerateHighlight(NIGHT_OWL)}
-    </React.Fragment>
+    <Editor
+      className='code-wrapper'
+      value={code}
+      highlight={(cod) => highlight(cod, Prism.languages.js, 'javascript')}
+      padding={20}
+      onValueChange={(newValue) => setCode(newValue)}
+      style={{
+        ...generateCustomStyles(),
+        backgroundColor: highlightTheme.plain.backgroundColor,
+        color: highlightTheme.plain.color,
+      }}
+    />
   );
 };

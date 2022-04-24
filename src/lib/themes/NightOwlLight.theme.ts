@@ -1,12 +1,12 @@
 import { CodeTheme } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { HighlightThemeType } from './HighlightTheme';
 
-export const NIGHT_OWL: HighlightThemeType = {
-  name: 'Night Owl',
-  type: CodeTheme.NIGHT_OWL,
+export const NIGHT_OWL_LIGHT: HighlightThemeType = {
+  name: 'Night Owl Light',
+  type: CodeTheme.NIGHT_OWL_LIGHT,
   plain: {
-    color: '#d6deeb',
-    backgroundColor: '#011627',
+    color: '#403f53',
+    backgroundColor: '#fbfbfb',
   },
   styles: [
     {
@@ -26,39 +26,39 @@ export const NIGHT_OWL: HighlightThemeType = {
     {
       types: ['inserted', 'attr-name'],
       style: {
-        color: '#C5E478',
+        color: '#4876D6',
         fontStyle: 'italic',
       },
     },
     {
       types: ['comment'],
       style: {
-        color: '#637777',
+        color: '#989FB1',
         fontStyle: 'italic',
       },
     },
     {
-      types: ['string', 'variable'],
+      types: ['string', 'builtin', 'char', 'constant', 'url'],
       style: {
-        color: '#ECC48D',
+        color: '#4876D6',
       },
     },
     {
-      types: ['builtin', 'char', 'constant'],
+      types: ['variable'],
       style: {
-        color: '#82AAFF',
+        color: '#C96765',
       },
     },
     {
-      types: ['number'],
+      types: ['number', 'hexcode'],
       style: {
-        color: '#F78C6C',
+        color: '#AA0982',
       },
     },
     {
       types: ['punctuation', 'function', 'selector', 'doctype'],
       style: {
-        color: '#C792EA',
+        color: '#994CC3',
         fontStyle: 'italic',
       },
     },
@@ -71,55 +71,31 @@ export const NIGHT_OWL: HighlightThemeType = {
     {
       types: ['class-name'],
       style: {
-        color: '#FFCB8B',
+        color: '#111111',
       },
     },
     {
       types: ['tag'],
       style: {
-        color: '#CAECE6',
+        color: '#994CC3',
       },
     },
     {
-      types: ['operator', 'keyword'],
+      types: ['operator', 'property', 'keyword', 'namespace'],
       style: {
-        color: '#7FDBCA',
+        color: '#0C969B',
       },
     },
     {
       types: ['boolean'],
       style: {
-        color: '#FF5874',
-      },
-    },
-    {
-      types: ['property'],
-      style: {
-        color: '#80CBC4',
-      },
-    },
-    {
-      types: ['hexcode'],
-      style: {
-        color: '#FFEB95',
-      },
-    },
-    {
-      types: ['namespace'],
-      style: {
-        color: '#B2CCD6',
+        color: '#BC5454',
       },
     },
     {
       types: ['imports', 'exports'],
       style: {
-        color: '#D6DEEB',
-      },
-    },
-    {
-      types: ['url'],
-      style: {
-        color: '#C5E478',
+        color: '#403F53',
       },
     },
   ],
