@@ -7,7 +7,6 @@ import {
   PopoverCloseButton,
   PopoverContent,
   PopoverHeader,
-
   useColorModeValue,
 } from '@chakra-ui/react';
 import {
@@ -20,6 +19,7 @@ import { FaFont } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { CustomizationSlider } from '../input/CustomizationSlider';
 import { EditorFontList } from './EditorFontList';
+import { EditorFontSize } from './EditorFontSize';
 
 interface EditorFontProps {}
 
@@ -53,15 +53,7 @@ export const EditorFont: React.FC<EditorFontProps> = ({}) => {
             {/* Font list. */}
             <EditorFontList />
             {/* Font Size */}
-            <CustomizationSlider
-              label='Font Size'
-              range={[8, 30]}
-              defaultValue={fontCustomization.fontSize}
-              valueType='px'
-              onUpdated={(value) =>
-                dispatch(setFontCustomization({ fontSize: value }))
-              }
-            />
+            <EditorFontSize />
           </VStack>
         </PopoverBody>
       </PopoverContent>

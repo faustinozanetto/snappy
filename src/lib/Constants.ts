@@ -12,26 +12,29 @@ export const DEFAULT_EXPORT_SIZE = EXPORT_SIZES_HASH['2x'];
 /**
  * @description Basic code snippet that shows up when page loads by default.
  */
-export const EXAMPLE_CODE = `const highLightCode = (codeToHighlight: string): string | React.ReactNode => {
-    return (
-      <Highlight
-        {...defaultProps}
-        theme={theme}
-        code={codeToHighlight}
-        language={parsePrismLanguageType(language)}
-      >
-        {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <Fragment>
-            {tokens.map((line, i) => (
-              <div {...getLineProps({ line, key: i })}>
-                {line.map((token, key) => (
-                  <span {...getTokenProps({ token, key })} />
-                ))}
-              </div>
-            ))}
-          </Fragment>
-        )}
-      </Highlight>
+export const EXAMPLE_CODE = `function createStyleObject(classNames, style) {
+  return classNames.reduce((styleObject, className) => {
+    return {...styleObject, ...style[className]};
+  }, {});
+}
+
+function createClassNameString(classNames) {
+  return classNames.join(' ');
+}
+
+function createElement({ node, style, useInlineStyles, key }) {
+  const { properties, type, tagName, value } = node;
+  if (type === "text") {
+    return value;
+  } else if (tagName) {
+    const TagName = tagName;
+    const childrenCreator = createChildren(style, useInlineStyles);
+    const props = (
+      useInlineStyles
+      ? { style: createStyleObject(properties.className, style) }
+      : { className: createClassNameString(properties.className) }
     );
-  };
-`;
+    const children = childrenCreator(node.children);
+    return <TagName key={key} {...props}>{children}</TagName>;
+  }
+}`;

@@ -19,6 +19,8 @@ export const EditorWindowDisplay: React.FC<EditorWindowDisplayProps> = ({}) => {
       <CustomizationSlider
         label='Horizontal Padding'
         range={[0, 50]}
+        allSteps={true}
+        allStepsSize={10}
         defaultValue={windowCustomization.paddingX}
         onUpdated={(value) =>
           dispatch(setWindowCustomization({ paddingX: value }))
@@ -28,6 +30,8 @@ export const EditorWindowDisplay: React.FC<EditorWindowDisplayProps> = ({}) => {
       <CustomizationSlider
         label='Vertical Padding'
         range={[0, 50]}
+        allSteps={true}
+        allStepsSize={10}
         defaultValue={windowCustomization.paddingY}
         onUpdated={(value) =>
           dispatch(setWindowCustomization({ paddingY: value }))
@@ -37,6 +41,8 @@ export const EditorWindowDisplay: React.FC<EditorWindowDisplayProps> = ({}) => {
       <CustomizationSlider
         label='Border Radius'
         range={[0, 50]}
+        allSteps={true}
+        allStepsSize={10}
         valueType='px'
         defaultValue={windowCustomization.borderRadius}
         onUpdated={(value) =>

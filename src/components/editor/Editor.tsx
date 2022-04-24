@@ -1,7 +1,12 @@
 import React, { createRef, useRef } from 'react';
-import { Box, Container, HStack, useColorModeValue } from '@chakra-ui/react';
+import {
+  Box,
+  Container,
+  Flex,
+  HStack,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { EditorToolBar } from './toolbar/EditorToolBar';
-import { EditorContentWindow } from './content/EditorContentWindow';
 import { parseBackgroundColor } from '@lib/HelperFunctions';
 import {
   Color,
@@ -14,32 +19,9 @@ import { EditorCodeContent } from './content/EditorCodeContent';
 import Image from 'next/image';
 import SnapifyLogo from '@components/branding/SnapifyLogo';
 import { NavbarThemeToggler } from '@components/navbar/NavbarThemeToggler';
+import { EXAMPLE_CODE } from '@lib/Constants';
 
 interface EditorProps {}
-
-const exampleCode = `const highLightCode = (codeToHighlight: string): string | React.ReactNode => {
-    return (
-      <Highlight
-        {...defaultProps}
-        theme={theme}
-        code={codeToHighlight}
-        language={parsePrismLanguageType(language)}
-      >
-        {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <Fragment>
-            {tokens.map((line, i) => (
-              <div {...getLineProps({ line, key: i })}>
-                {line.map((token, key) => (
-                  <span {...getTokenProps({ token, key })} />
-                ))}
-              </div>
-            ))}
-          </Fragment>
-        )}
-      </Highlight>
-    );
-  };
-`;
 
 type ShadowEntry = {
   color: string;
@@ -107,52 +89,46 @@ export const Editor: React.FC<EditorProps> = ({}) => {
         </HStack>
         {/* Editor Tool Bar */}
         <EditorToolBar exportRef={savedRef} />
-        {/* Editor Content Window */}
-
         <Box
-          ref={savedRef}
-          backgroundColor={parseBackgroundColor(
-            backgroundCustomization.backgroundColor
-          )}
-          backgroundImage={backgroundCustomization.backgroundImage}
-          backgroundRepeat='no-repeat'
-          backgroundSize='cover'
+          backdropFilter={`${
+            backgroundCustomization.backgroudBlur > 0
+              ? `blur(${backgroundCustomization.backgroudBlur}px)`
+              : 'none'
+          }`}
         >
-          {/* Blur Effect */}
+          {/* Editor Code Window */}
           <Box
-            backdropFilter={`${
-              backgroundCustomization.backgroudBlur > 0
-                ? `blur(${backgroundCustomization.backgroudBlur}px)`
-                : 'none'
-            }`}
+            ref={savedRef}
+            backgroundColor={parseBackgroundColor(
+              backgroundCustomization.backgroundColor
+            )}
+            paddingLeft={`${windowCustomization.paddingX * 3}px`}
+            paddingRight={`${windowCustomization.paddingX * 3}px`}
+            paddingTop={`${windowCustomization.paddingY * 3}px`}
+            paddingBottom={`${windowCustomization.paddingY * 3}px`}
+            backgroundRepeat='no-repeat'
+            backgroundSize='cover'
+            backgroundPosition='center'
+            backgroundImage={`url(${backgroundCustomization.backgroundImage})`}
+            // backdropFilter={`${
+            //   backgroundCustomization.backgroudBlur > 0
+            //     ? `blur(${backgroundCustomization.backgroudBlur}px)`
+            //     : 'none'
+            // }`}
+            backdropFilter='hue-rotate(180deg)'
           >
-            {/* Main Container */}
-            <Box
-              __css={{
-                paddingLeft: `${windowCustomization.paddingX * 3}px !important`,
-                paddingRight: `${
-                  windowCustomization.paddingX * 3
-                }px !important`,
-                paddingTop: `${windowCustomization.paddingY * 3}px !important`,
-                paddingBottom: `${
-                  windowCustomization.paddingY * 3
-                }px !important`,
+            <EditorCodeContent
+              code={EXAMPLE_CODE}
+              language={codeCustomization.codeLanguage}
+              styles={{
+                borderRadius: `${windowCustomization.borderRadius}px`,
+                boxShadow:
+                  windowCustomization.shadow.boxShadow &&
+                  generateWindowShadow(
+                    windowCustomization.shadow.boxShadowSize
+                  ),
               }}
-            >
-              {/* Editor Code Window */}
-              <EditorCodeContent
-                code={exampleCode}
-                language={codeCustomization.codeLanguage}
-                styles={{
-                  borderRadius: `${windowCustomization.borderRadius}px`,
-                  boxShadow:
-                    windowCustomization.shadow.boxShadow &&
-                    generateWindowShadow(
-                      windowCustomization.shadow.boxShadowSize
-                    ),
-                }}
-              />
-            </Box>
+            />
           </Box>
         </Box>
       </Container>

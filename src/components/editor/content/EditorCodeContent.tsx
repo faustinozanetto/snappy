@@ -1,11 +1,10 @@
-// @ts-nocheck
 import React, { Fragment, useEffect, useState } from 'react';
 import Editor from 'react-simple-code-editor';
+import Prism from 'prismjs';
 import Highlight, {
   defaultProps,
   Language as PrismLanguage,
 } from 'prism-react-renderer';
-
 import { useSelector } from 'react-redux';
 import {
   CodeLanguage,
@@ -13,13 +12,19 @@ import {
   selectCodeCustomization,
   selectFontCustomization,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+import {
+  nightOwl,
+  atomOneDark,
+} from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { NIGHT_OWL } from '@lib/themes/NightOwl.theme';
 
 // THEMES
 import dracula from 'prism-react-renderer/themes/dracula';
 import duotoneDark from 'prism-react-renderer/themes/duotoneDark';
 import duotoneLight from 'prism-react-renderer/themes/duotoneLight';
 import github from 'prism-react-renderer/themes/github';
-import nightOwl from 'prism-react-renderer/themes/nightOwl';
+// import nightOwl from 'prism-react-renderer/themes/nightOwl';
 import nightOwlLight from 'prism-react-renderer/themes/nightOwlLight';
 import oceanicNext from 'prism-react-renderer/themes/oceanicNext';
 import shadesOfPurple from 'prism-react-renderer/themes/shadesOfPurple';
@@ -31,24 +36,15 @@ import { CodePre } from './window/CodePre';
 import { CodeLine } from './window/CodeLine';
 import { Box } from '@chakra-ui/react';
 import styled from '@emotion/styled';
+import { EXAMPLE_CODE } from '@lib/Constants';
+// import theme from 'prism-react-renderer/themes/nightOwl';
+import { GenerateHighlight } from '@lib/themes/HighlightTheme';
 
 interface EditorCodeContentProps {
   code?: string;
   language?: CodeLanguage;
   styles?: React.CSSProperties;
 }
-
-const Pre = styled.pre`
-  text-align: left;
-  margin: 1em 0;
-  padding: 0.5em;
-  overflow: hidden;
-
-  & .token-line {
-    line-height: 1.3em;
-    height: 1.3em;
-  }
-`;
 
 export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
   const { code: propsCode, styles, language } = props;
@@ -78,22 +74,18 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
         return okaidia;
       case CodeTheme.SYNTHWAVE84:
         return synthwave84;
-        
+
       default:
         return duotoneDark;
     }
   };
-
-  const [theme, setTheme] = useState<any>(
-    selectTheme(codeCustomization.codeTheme)
-  );
 
   /**
    * Update the theme object with the new one from redux state.
    */
   useEffect(() => {
     const parsedTheme = selectTheme(codeCustomization.codeTheme);
-    setTheme(parsedTheme);
+    // setTheme(parsedTheme);
   }, [codeCustomization]);
 
   /**
@@ -103,8 +95,12 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
   const generateCustomStyles = (): React.CSSProperties => {
     const newStyles: React.CSSProperties = {
       ...styles,
-      ...theme.plain,
       boxSizing: 'border-box',
+      fontFamily: `${fontCustomization.fontFamily}, monospace`,
+      fontVariantLigatures: 'contextual',
+      fontFeatureSettings: 'calt 1',
+      fontSmooth: 'always',
+      fontSize: `${fontCustomization.fontSize}px`,
     };
     return newStyles;
   };
@@ -125,39 +121,47 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
     }
   };
 
+  const Pre = styled.pre`
+    text-align: left;
+    margin: 1em 0;
+    padding: 0.5em;
+    overflow: scroll;
+  `;
+
+  const Line = styled.div`
+    display: table-row;
+  `;
+
+  const LineNo = styled.span`
+    display: table-cell;
+    text-align: right;
+    padding-right: 1em;
+    user-select: none;
+    opacity: 0.5;
+  `;
+
+  const LineContent = styled.span`
+    display: table-cell;
+  `;
+
   /**
    *
    * @param codeToHighlight code to use in the highlight process.
    * @returns the highlighed code.
    */
   const highLightCode = (codeToHighlight: string) => (
-    <Highlight
-      {...defaultProps}
-      theme={theme}
-      code={codeToHighlight}
-      language={parsePrismLanguageType(language)}
-    >
+    <Highlight {...defaultProps} code={codeToHighlight} language='jsx'>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <Pre
-          className={className}
-          style={{
-            ...style,
-            fontFamily: `${fontCustomization.fontFamily}, monospace`,
-            fontVariantLigatures: 'contextual',
-            fontFeatureSettings: 'calt 1',
-            fontSmooth: 'always',
-            fontSize: `${fontCustomization.fontSize}px`,
-          }}
-        >
+        <Pre className={className} style={style}>
           {tokens.map((line, i) => (
-            <CodeLine key={i} {...getLineProps({ line, key: i })}>
-              {codeCustomization.lineNumbers && (
-                <CodeLineNumber key={'line ' + i}>{i + 1}</CodeLineNumber>
-              )}
-              {line.map((token, key) => (
-                <span key={key} {...getTokenProps({ token, key })} />
-              ))}
-            </CodeLine>
+            <Line key={i} {...getLineProps({ line, key: i })}>
+              <LineNo>{i + 1}</LineNo>
+              <LineContent>
+                {line.map((token, key) => (
+                  <span key={key} {...getTokenProps({ token, key })} />
+                ))}
+              </LineContent>
+            </Line>
           ))}
         </Pre>
       )}
@@ -165,19 +169,18 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
   );
 
   return (
-    <Box
-      style={{
-        ...theme.plain,
-        ...generateCustomStyles(),
-      }}
-    >
+    <React.Fragment>
       <Editor
+        className='code-wrapper'
         value={code}
-        highlight={highLightCode}
-        padding={10}
+        highlight={(cod) =>
+          Prism.highlight(cod, Prism.languages.js, 'javascript')
+        }
+        padding={20}
         onValueChange={(newValue) => setCode(newValue)}
         style={generateCustomStyles()}
       />
-    </Box>
+      {GenerateHighlight(NIGHT_OWL)}
+    </React.Fragment>
   );
 };

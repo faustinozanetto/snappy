@@ -15,6 +15,8 @@ interface CustomizationSliderProps {
   label?: string;
   defaultValue?: number;
   stepSize?: number;
+  allSteps?: boolean;
+  allStepsSize?: number;
   range?: [number, number];
   valueType?: 'px' | 'em' | 'rem' | 'none';
   onUpdated?: (value: number) => void;
@@ -29,6 +31,8 @@ export const CustomizationSlider: React.FC<CustomizationSliderProps> = (
     stepSize = 0.05,
     label = 'Slider',
     valueType = 'none',
+    allSteps = false,
+    allStepsSize = 1,
     onUpdated,
   } = props;
   const [showTooltip, setShowTooltip] = useState(false);
@@ -66,17 +70,28 @@ export const CustomizationSlider: React.FC<CustomizationSliderProps> = (
         >
           {range[0]} {valueType !== 'none' && valueType}
         </SliderMark>
-        {/* Mid mark */}
-        <SliderMark
-          value={Math.round((range[0] + range[1]) / 2)}
-          mt='1'
-          ml='-2.5'
-          fontSize='sm'
-          fontWeight={500}
-        >
-          {Math.round((range[0] + range[1]) / 2)}
-          {valueType !== 'none' && valueType}
-        </SliderMark>
+
+        {/* Generate marks between range[0] and range[1] increasing by allStepsSize */}
+        {allSteps &&
+          Array.from(
+            { length: Math.floor((range[1] - range[0]) / allStepsSize) },
+            (_, i) => {
+              const value = range[0] + i * allStepsSize;
+              return (
+                <SliderMark
+                  key={value}
+                  value={value}
+                  mt='1'
+                  ml='-2.5'
+                  fontSize='sm'
+                  fontWeight={500}
+                >
+                  {value} {valueType !== 'none' && valueType}
+                </SliderMark>
+              );
+            }
+          )}
+
         {/* End Mark */}
         <SliderMark
           value={range[1]}

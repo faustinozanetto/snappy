@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Text, Flex, Button } from '@chakra-ui/react';
+import { Box, Text, Flex, Button, HStack, IconButton } from '@chakra-ui/react';
 import {
   selectBackgroundCustomization,
   setBackgroundCustomization,
@@ -7,6 +7,7 @@ import {
 import { useDropzone } from 'react-dropzone';
 import { useDispatch, useSelector } from 'react-redux';
 import { CustomizationSlider } from '../../input/CustomizationSlider';
+import { MdDeleteOutline } from 'react-icons/md';
 
 interface EditorBackgroundImageProps {}
 
@@ -57,9 +58,26 @@ export const EditorBackgroundImage: React.FC<
       {/* Image pick */}
       <Box {...getRootProps({ className: 'dropzone' })}>
         <input {...getInputProps()} />
-        <Button colorScheme='blue' onClick={open}>
-          Open File Dialog
-        </Button>
+        <HStack width='100%' justifyContent='space-between'>
+          <Button colorScheme='blue' onClick={open}>
+            Open File Dialog
+          </Button>
+          {imageFiles && imageFiles.length > 0 && (
+            <IconButton
+              icon={<MdDeleteOutline />}
+              colorScheme='red'
+              aria-label={''}
+              onClick={() => {
+                setImageFiles([]);
+                dispatch(
+                  setBackgroundCustomization({
+                    backgroundImage: null,
+                  })
+                );
+              }}
+            />
+          )}
+        </HStack>
       </Box>
       {/* Background blur */}
       <CustomizationSlider

@@ -18,6 +18,8 @@ export const EditorExportImageSize: React.FC<
       label='Size Multiplier'
       range={[1, 4]}
       stepSize={1}
+      allSteps={true}
+      allStepsSize={1}
       defaultValue={1}
       onUpdated={(value) =>
         dispatch(
