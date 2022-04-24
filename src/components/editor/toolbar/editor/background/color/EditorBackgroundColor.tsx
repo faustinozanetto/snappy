@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Text, HStack } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ChromePicker, RGBColor, SketchPicker } from 'react-color';
+import { ChromePicker, RGBColor } from 'react-color';
 import {
   selectBackgroundCustomization,
   setBackgroundCustomization,

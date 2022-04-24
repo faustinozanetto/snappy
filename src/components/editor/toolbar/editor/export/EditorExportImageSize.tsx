@@ -1,8 +1,8 @@
+import React from 'react';
 import {
   selectExportCustomization,
   setExportCustomization,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CustomizationSlider } from '../input/CustomizationSlider';
 
@@ -20,11 +20,11 @@ export const EditorExportImageSize: React.FC<
       stepSize={1}
       allSteps={true}
       allStepsSize={1}
-      defaultValue={1}
+      defaultValue={exportCustomization.sizeMultiplier}
       onUpdated={(value) =>
         dispatch(
           setExportCustomization({
-            sizeMultiplier: `${value}x`,
+            sizeMultiplier: value,
           })
         )
       }

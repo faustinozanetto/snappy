@@ -1,6 +1,6 @@
 {
-  "name": "snapify",
-  "version": "0.0.1",
+  "name": "snappy",
+  "version": "0.0.2",
   "description": "Create and share your code snippets.",
   "main": "index.js",
   "author": "Faustino Zanetto <faustizanetto@gmail.com>",
@@ -10,6 +10,7 @@
     "start:dev": "ts-node --project tsconfig.server.json -r tsconfig-paths/register server/index.ts",
     "build": "next build",
     "start:prod": "next start",
+    "lint": "next lint",
     "migrate:reset": "prisma migrate reset",
     "migrate:create": "prisma migrate dev --create-only",
     "migrate:dev": "prisma migrate dev",
@@ -51,6 +52,8 @@
   "devDependencies": {
     "@types/node": "^17.0.25",
     "@types/react": "^18.0.6",
+    "eslint": "8.14.0",
+    "eslint-config-next": "12.1.5",
     "prettier": "^2.6.2",
     "prisma": "^3.12.0",
     "tsconfig-paths": "^3.14.1",

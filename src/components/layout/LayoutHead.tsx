@@ -10,7 +10,13 @@ export interface LayoutHeadProps {
 }
 
 export const LayoutHead: React.FC<LayoutHeadProps> = (props) => {
-  const { title, description, url, canonicalUrl, favIcon } = props;
+  const {
+    title,
+    description,
+    url,
+    canonicalUrl,
+    favIcon = 'favicon.png',
+  } = props;
   return (
     <Head>
       <title>{title}</title>

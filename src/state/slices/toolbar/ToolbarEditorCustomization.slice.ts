@@ -83,7 +83,7 @@ export enum FileExtension {
 
 export type ExportCustomization = {
   fileExtension?: FileExtension;
-  sizeMultiplier?: '1x' | '2x' | '3x' | '4x' | '5x';
+  sizeMultiplier?: 1 | 2 | 3 | 4;
 };
 
 export type ToolBoxEditorCustomizationState = {
@@ -111,17 +111,17 @@ const initialState: ToolBoxEditorCustomizationState = {
     fontSize: 16,
   },
   codeCustomization: {
-    codeTheme: CodeTheme.NIGHT_OWL,
+    codeTheme: CodeTheme.EVA_LIGHT,
     codeLanguage: CodeLanguage.JSX,
     lineNumbers: true,
   },
   windowCustomization: {
-    paddingX: 15,
-    paddingY: 25,
-    borderRadius: 15,
+    paddingX: 20,
+    paddingY: 25.5,
+    borderRadius: 20,
     shadow: {
       boxShadow: true,
-      boxShadowSize: 2,
+      boxShadowSize: 3,
       boxShadowColor: {
         r: 43,
         g: 70,
@@ -132,7 +132,7 @@ const initialState: ToolBoxEditorCustomizationState = {
   },
   exportCustomization: {
     fileExtension: FileExtension.PNG,
-    sizeMultiplier: '1x',
+    sizeMultiplier: 1,
   },
 };
 

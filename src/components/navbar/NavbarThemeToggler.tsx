@@ -1,5 +1,5 @@
-import { IconButton, useColorMode } from '@chakra-ui/react';
 import React from 'react';
+import { Button, useColorMode } from '@chakra-ui/react';
 import { FiMoon } from 'react-icons/fi';
 import { FiSun } from 'react-icons/fi';
 
@@ -8,11 +8,13 @@ interface NavbarThemeTogglerProps {}
 export const NavbarThemeToggler: React.FC<NavbarThemeTogglerProps> = ({}) => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <IconButton
+    <Button
       aria-label='Toggle Theme'
-      backgroundColor='transparent'
-      icon={colorMode === 'dark' ? <FiSun /> : <FiMoon />}
+      leftIcon={colorMode === 'dark' ? <FiSun /> : <FiMoon />}
+      border='2px solid'
       onClick={toggleColorMode}
-    />
+    >
+      Change Theme
+    </Button>
   );
 };

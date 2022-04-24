@@ -1,18 +1,11 @@
 import React from 'react';
-import {
-  Box,
-  Divider,
-  Flex,
-  HStack,
-  useColorModeValue,
-  VStack,
-} from '@chakra-ui/react';
+import { Wrap } from '@chakra-ui/react';
 import { EditorBackground } from './editor/background/EditorBackground';
-import { EditorCode } from './editor/code/EditorCode';
 import { EditorCodeTheme } from './editor/theme/EditorCodeTheme';
 import { EditorFont } from './editor/font/EditorFont';
 import { EditorWindow } from './editor/window/EditorWindow';
 import { EditorExportImage } from './editor/export/EditorExportImage';
+import { NavbarThemeToggler } from '@components/navbar/NavbarThemeToggler';
 
 interface EditorToolBarProps {
   exportRef: React.RefObject<HTMLDivElement>;
@@ -20,7 +13,7 @@ interface EditorToolBarProps {
 
 export const EditorToolBar: React.FC<EditorToolBarProps> = ({ exportRef }) => {
   return (
-    <HStack spacing={4}>
+    <Wrap spacing={4} justify='center'>
       {/* Background */}
       <EditorBackground />
       {/* Font */}
@@ -33,6 +26,8 @@ export const EditorToolBar: React.FC<EditorToolBarProps> = ({ exportRef }) => {
       <EditorWindow />
       {/* Export */}
       <EditorExportImage exportRef={exportRef} />
-    </HStack>
+      {/* Theme toggler */}
+      <NavbarThemeToggler />
+    </Wrap>
   );
 };

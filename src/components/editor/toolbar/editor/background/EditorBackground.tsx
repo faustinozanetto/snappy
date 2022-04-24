@@ -2,14 +2,12 @@ import React from 'react';
 import {
   Button,
   HStack,
-  Text,
   Popover,
   PopoverArrow,
   PopoverBody,
   PopoverCloseButton,
   PopoverContent,
   PopoverHeader,
-  Tooltip,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { PopoverTrigger } from '../popover/PopoverTrigger';

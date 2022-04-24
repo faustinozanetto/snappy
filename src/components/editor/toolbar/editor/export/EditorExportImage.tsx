@@ -15,11 +15,13 @@ import { PopoverTrigger } from '../popover/PopoverTrigger';
 import {
   selectExportCustomization,
   FileExtension,
+  selectBackgroundCustomization,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { useSelector } from 'react-redux';
 import { EditorExportImaageExtension } from './EditorExportImageExtension';
 import { toJpeg, toPng, toSvg } from 'html-to-image';
 import { EditorExportImageSize } from './EditorExportImageSize';
+import { Options } from 'html-to-image/lib/options';
 
 interface EditorExportImageProps {
   exportRef: React.RefObject<HTMLDivElement>;
@@ -29,6 +31,7 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
   exportRef,
 }) => {
   const exportCustomization = useSelector(selectExportCustomization);
+  const backgroundCustomization = useSelector(selectBackgroundCustomization);
 
   const onButtonClick = useCallback(
     async (
@@ -39,9 +42,34 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
         return;
       }
 
+      const width = exportRef.current.offsetWidth * quality;
+      const height = exportRef.current.offsetHeight * quality;
+
+      const OPTIONS: Options = {
+        style: {
+          transform: `scale(${quality})`,
+
+          transformOrigin: 'top left',
+        },
+        filter: (n) => {
+          if (n.className) {
+            const className = String(n.className);
+            if (className.includes('eliminateOnRender')) {
+              return false;
+            }
+            if (className.includes('CodeMirror-cursors')) {
+              return false;
+            }
+          }
+          return true;
+        },
+        width,
+        height,
+      };
+
       // PNG
       if (extension === FileExtension.PNG) {
-        await toPng(exportRef.current, { quality })
+        await toPng(exportRef.current, OPTIONS)
           .then((dataUrl) => {
             const link = document.createElement('a');
             const NAME = 'snappy';
@@ -57,9 +85,7 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
 
       // SVG
       if (extension === FileExtension.SVG) {
-        await toSvg(exportRef.current, {
-          quality,
-        }).then((dataUrl) => {
+        await toSvg(exportRef.current, OPTIONS).then((dataUrl) => {
           const link = document.createElement('a');
           const NAME = 'snappy';
           const EXTENSION = 'svg';
@@ -70,9 +96,7 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
       }
       // JPEG
       if (extension === FileExtension.JPEG) {
-        await toJpeg(exportRef.current, {
-          quality,
-        }).then((dataUrl) => {
+        await toJpeg(exportRef.current, OPTIONS).then((dataUrl) => {
           const link = document.createElement('a');
           const NAME = 'snappy';
           const EXTENSION = 'jpeg';
@@ -115,7 +139,10 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
             <EditorExportImageSize />
             <Button
               onClick={() =>
-                onButtonClick(exportCustomization.fileExtension, 4)
+                onButtonClick(
+                  exportCustomization.fileExtension,
+                  exportCustomization.sizeMultiplier
+                )
               }
               colorScheme='blue'
               width='100%'

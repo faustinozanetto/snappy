@@ -17,7 +17,6 @@ import {
 import { useSelector } from 'react-redux';
 import { EditorCodeContent } from './content/EditorCodeContent';
 import SnapifyLogo from '@components/branding/SnapifyLogo';
-import { NavbarThemeToggler } from '@components/navbar/NavbarThemeToggler';
 import { EXAMPLE_CODE } from '@lib/Constants';
 
 interface EditorProps {}
@@ -71,9 +70,9 @@ export const Editor: React.FC<EditorProps> = ({}) => {
   };
 
   return (
-    <VStack my={12}>
+    <VStack>
       {/* Logo */}
-      <Box margin={8}>
+      <Box mt={24} mb={12}>
         <SnapifyLogo
           size='3xl'
           logoColor={useColorModeValue('black', 'white')}
@@ -86,16 +85,9 @@ export const Editor: React.FC<EditorProps> = ({}) => {
         backgroundColor={useColorModeValue('gray.200', 'gray.900')}
         borderRadius='md'
       >
-        {/* Header */}
-        <HStack
-          display='flex'
-          alignItems='center'
-          justifyContent='space-between'
-          pb={4}
-        >
-          {/* Editor Tool Bar */}
+        {/* Editor Tool Bar */}
+        <HStack width='100%' my={6} justifyContent='center'>
           <EditorToolBar exportRef={savedRef} />
-          <NavbarThemeToggler />
         </HStack>
         <Box
           backdropFilter={`${
