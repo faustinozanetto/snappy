@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 
 interface SnapifyLogoProps {
   logoColor?: string;
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
 }
 
 const SnapifyLogo: React.FC<SnapifyLogoProps> = (props) => {
@@ -26,6 +26,12 @@ const SnapifyLogo: React.FC<SnapifyLogoProps> = (props) => {
       }
       case 'xl': {
         return [baseWidth * 2.25, baseHeight * 2.25];
+      }
+      case '2xl': {
+        return [baseWidth * 3, baseHeight * 3];
+      }
+      case '3xl': {
+        return [baseWidth * 4, baseHeight * 4];
       }
     }
   }, [size]);

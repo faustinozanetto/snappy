@@ -20,22 +20,19 @@ interface EditorToolBarProps {
 
 export const EditorToolBar: React.FC<EditorToolBarProps> = ({ exportRef }) => {
   return (
-    <VStack my={4}>
-      {/* Editor Configuration */}
-      <HStack spacing={4} mb={4}>
-        {/* Background */}
-        <EditorBackground />
-        {/* Font */}
-        <EditorFont />
-        {/* Theme */}
-        <EditorCodeTheme />
-        {/* Language */}
-        {/* <EditorCode /> */}
-        {/* Window */}
-        <EditorWindow />
-        {/* Export */}
-        <EditorExportImage exportRef={exportRef} />
-      </HStack>
-    </VStack>
+    <HStack spacing={4}>
+      {/* Background */}
+      <EditorBackground />
+      {/* Font */}
+      <EditorFont />
+      {/* Theme */}
+      <EditorCodeTheme />
+      {/* Language */}
+      {/* <EditorCode /> */}
+      {/* Window */}
+      <EditorWindow />
+      {/* Export */}
+      <EditorExportImage exportRef={exportRef} />
+    </HStack>
   );
 };

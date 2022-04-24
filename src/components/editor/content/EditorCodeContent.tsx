@@ -8,7 +8,6 @@ import Highlight, {
 import { useSelector } from 'react-redux';
 import {
   CodeLanguage,
-  CodeTheme,
   selectCodeCustomization,
   selectFontCustomization,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
@@ -16,18 +15,10 @@ import {
 // THEMES
 import styled from '@emotion/styled';
 import { NIGHT_OWL } from '@lib/themes/NightOwl.theme';
-import { ONE_DARK } from '@lib/themes/OneDark.theme';
-import { SYNTHWAVE84 } from '@lib/themes/Synthwave84';
-import { VS_LIGHT } from '@lib/themes/VsLight.theme';
-import { VS_DARK } from '@lib/themes/VsDark.theme';
-import { DRACULA } from '@lib/themes/Dracula.theme';
-import { NIGHT_OWL_LIGHT } from '@lib/themes/NightOwlLight.theme';
 import {
-  GenerateHighlight,
   HighlightThemeType,
+  selectThemeFile,
 } from '@lib/themes/HighlightTheme';
-import { Box } from '@chakra-ui/react';
-import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 
 interface EditorCodeContentProps {
   code?: string;
@@ -40,43 +31,15 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
   const [code, setCode] = useState(propsCode || '');
   const [highlightTheme, setHighlightTheme] =
     useState<HighlightThemeType>(NIGHT_OWL);
-  const [highlightCSS, setHighlightCSS] = useState(
-    GenerateHighlight(highlightTheme)
-  );
   const fontCustomization = useSelector(selectFontCustomization);
   const codeCustomization = useSelector(selectCodeCustomization);
-
-  const selectTheme = (theme: CodeTheme): HighlightThemeType => {
-    switch (theme) {
-      case CodeTheme.VS_LIGHT:
-        return VS_LIGHT;
-      case CodeTheme.VS_DARK:
-        return VS_DARK;
-      case CodeTheme.DRACULA:
-        return DRACULA;
-      case CodeTheme.NIGHT_OWL:
-        return NIGHT_OWL;
-      case CodeTheme.NIGHT_OWL_LIGHT:
-        return NIGHT_OWL_LIGHT;
-      case CodeTheme.SYNTHWAVE84:
-        return SYNTHWAVE84;
-      case CodeTheme.ONE_DARK:
-        return ONE_DARK;
-      case CodeTheme.ONE_LIGTH:
-        return ONE_DARK;
-
-      default:
-        return NIGHT_OWL;
-    }
-  };
 
   /**
    * Update the theme object with the new one from redux state.
    */
   useEffect(() => {
-    const parsedTheme = selectTheme(codeCustomization.codeTheme);
+    const parsedTheme = selectThemeFile(codeCustomization.codeTheme);
     setHighlightTheme(parsedTheme);
-    setHighlightCSS(GenerateHighlight(parsedTheme));
   }, [codeCustomization]);
 
   /**

@@ -14,8 +14,8 @@ import { WINTER_IS_COMING } from './WinterIsComing.theme';
 import { OUTRUN_NIGHT } from './OutrunNight.theme';
 import { MONOKAI } from './Monokai.theme';
 import { ROSE_PINE } from './RosePine.theme';
-import { VS_LIGHT } from './VsLight.theme';
 import { EVA_LIGHT } from './EvaLight.theme';
+import { VS_LIGHT } from './VsLiight.theme';
 
 export type ThemeData = {
   types: string[];

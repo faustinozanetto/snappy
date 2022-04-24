@@ -28,6 +28,13 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
   const dispatch = useDispatch();
   const backgroundCustomization = useSelector(selectBackgroundCustomization);
 
+  const buttonShadow = (): string => {
+    const BASE_COLOR = backgroundCustomization.backgroundColor;
+    const SHADOW_COLOR = `rgba(${BASE_COLOR?.r}, ${BASE_COLOR?.g}, ${BASE_COLOR?.b}, 0.5)`;
+
+    return `3px 5px 34px -4px ${SHADOW_COLOR}`;
+  };
+
   return (
     <Popover placement='left-start'>
       <PopoverTrigger>
@@ -35,6 +42,7 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
           background={parseBackgroundColor(
             backgroundCustomization.backgroundColor
           )}
+          shadow={buttonShadow()}
           _hover={{ bg: backgroundCustomization.backgroundColor }}
           _focus={{ bg: backgroundCustomization.backgroundColor }}
           _active={{ bg: backgroundCustomization.backgroundColor }}

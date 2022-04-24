@@ -1,10 +1,10 @@
-import React, { createRef, useRef } from 'react';
+import React, { createRef } from 'react';
 import {
   Box,
   Container,
-  Flex,
   HStack,
   useColorModeValue,
+  VStack,
 } from '@chakra-ui/react';
 import { EditorToolBar } from './toolbar/EditorToolBar';
 import { parseBackgroundColor } from '@lib/HelperFunctions';
@@ -16,7 +16,6 @@ import {
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { useSelector } from 'react-redux';
 import { EditorCodeContent } from './content/EditorCodeContent';
-import Image from 'next/image';
 import SnapifyLogo from '@components/branding/SnapifyLogo';
 import { NavbarThemeToggler } from '@components/navbar/NavbarThemeToggler';
 import { EXAMPLE_CODE } from '@lib/Constants';
@@ -72,23 +71,32 @@ export const Editor: React.FC<EditorProps> = ({}) => {
   };
 
   return (
-    <Box my={12}>
+    <VStack my={12}>
+      {/* Logo */}
+      <Box margin={8}>
+        <SnapifyLogo
+          size='3xl'
+          logoColor={useColorModeValue('black', 'white')}
+        />
+      </Box>
+      {/* Main Content */}
       <Container
         maxW={['0em', '30em', '48em', '62em', '80em', '90em']}
-        padding={4}
+        padding={6}
         backgroundColor={useColorModeValue('gray.200', 'gray.900')}
         borderRadius='md'
       >
         {/* Header */}
-        <HStack width='full' justifyContent='space-between' pb={4}>
-          <SnapifyLogo
-            size='xl'
-            logoColor={useColorModeValue('black', 'white')}
-          />
+        <HStack
+          display='flex'
+          alignItems='center'
+          justifyContent='space-between'
+          pb={4}
+        >
+          {/* Editor Tool Bar */}
+          <EditorToolBar exportRef={savedRef} />
           <NavbarThemeToggler />
         </HStack>
-        {/* Editor Tool Bar */}
-        <EditorToolBar exportRef={savedRef} />
         <Box
           backdropFilter={`${
             backgroundCustomization.backgroudBlur > 0
@@ -131,6 +139,6 @@ export const Editor: React.FC<EditorProps> = ({}) => {
           </Box>
         </Box>
       </Container>
-    </Box>
+    </VStack>
   );
 };
