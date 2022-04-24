@@ -16,6 +16,7 @@ import {
   selectExportCustomization,
   FileExtension,
   selectBackgroundCustomization,
+  BackgroundType,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { useSelector } from 'react-redux';
 import { EditorExportImaageExtension } from './EditorExportImageExtension';
@@ -45,11 +46,19 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
       const width = exportRef.current.offsetWidth * quality;
       const height = exportRef.current.offsetHeight * quality;
 
+      const backgroundColor: string = `rgb(${backgroundCustomization.backgroundColor.r}, ${backgroundCustomization.backgroundColor.g}, ${backgroundCustomization.backgroundColor.b})`;
+
       const OPTIONS: Options = {
         style: {
           transform: `scale(${quality})`,
-
           transformOrigin: 'top left',
+          backgroundOrigin: 'border-box',
+          backgroundSize: 'cover',
+          backgroundPosition: '0% 0%',
+          background:
+            backgroundCustomization.backgroundType === BackgroundType.COLOR
+              ? backgroundColor
+              : backgroundCustomization.backgroundImage,
         },
         filter: (n) => {
           if (n.className) {

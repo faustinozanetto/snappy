@@ -99,6 +99,10 @@ export const Editor: React.FC<EditorProps> = ({}) => {
           {/* Editor Code Window */}
           <Box
             ref={savedRef}
+            position='relative'
+            top={0}
+            left={0}
+            right={0}
             backgroundColor={parseBackgroundColor(
               backgroundCustomization.backgroundColor
             )}
