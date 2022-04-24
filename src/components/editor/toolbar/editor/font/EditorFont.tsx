@@ -1,23 +1,13 @@
 import {
-  Menu,
-  MenuButton,
   Button,
-  Text,
-  MenuList,
-  IconButton,
-  Tooltip,
   VStack,
-  MenuGroup,
-  MenuDivider,
-  Divider,
-  MenuItem,
   Popover,
   PopoverArrow,
   PopoverBody,
   PopoverCloseButton,
   PopoverContent,
   PopoverHeader,
-  PopoverTrigger,
+
   useColorModeValue,
 } from '@chakra-ui/react';
 import {
@@ -25,11 +15,11 @@ import {
   setFontCustomization,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import React from 'react';
+import { PopoverTrigger } from '../popover/PopoverTrigger';
 import { FaFont } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { CustomizationSlider } from '../input/CustomizationSlider';
 import { EditorFontList } from './EditorFontList';
-import { EditorFontSize } from './EditorFontSize';
 
 interface EditorFontProps {}
 

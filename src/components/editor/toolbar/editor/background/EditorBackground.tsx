@@ -9,10 +9,10 @@ import {
   PopoverCloseButton,
   PopoverContent,
   PopoverHeader,
-  PopoverTrigger,
   Tooltip,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { PopoverTrigger } from '../popover/PopoverTrigger';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   BackgroundType,
@@ -33,7 +33,6 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
       <Tooltip label='Background' aria-label='Background Customization'>
         <PopoverTrigger>
           <Button
-            aria-label='Background Customization'
             background={parseBackgroundColor(
               backgroundCustomization.backgroundColor
             )}
@@ -41,7 +40,9 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
             _focus={{ bg: backgroundCustomization.backgroundColor }}
             _active={{ bg: backgroundCustomization.backgroundColor }}
             border='2px solid'
-          />
+          >
+            Background
+          </Button>
         </PopoverTrigger>
       </Tooltip>
       <PopoverContent>

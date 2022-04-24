@@ -26,6 +26,7 @@ export const EditorWindowShadow: React.FC<EditorWindowShadowProps> = ({}) => {
     dispatch(
       setWindowCustomization({
         shadow: {
+          ...windowCustomization.shadow,
           boxShadowColor: {
             r: shadowColor.r,
             g: shadowColor.g,
@@ -49,6 +50,7 @@ export const EditorWindowShadow: React.FC<EditorWindowShadowProps> = ({}) => {
           dispatch(
             setWindowCustomization({
               shadow: {
+                ...windowCustomization.shadow,
                 boxShadow: value !== 0,
                 boxShadowSize: value,
               },

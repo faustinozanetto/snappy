@@ -8,11 +8,11 @@ import {
   PopoverCloseButton,
   PopoverContent,
   PopoverHeader,
-  PopoverTrigger,
   useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
 import { IoMdColorPalette } from 'react-icons/io';
+import { PopoverTrigger } from '../popover/PopoverTrigger';
 import { EditorCodeThemeList } from './EditorCodeThemeList';
 
 interface EditorCodeThemeProps {}

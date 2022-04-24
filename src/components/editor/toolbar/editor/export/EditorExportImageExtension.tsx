@@ -14,6 +14,7 @@ import {
   setExportCustomization,
   setFontCustomization,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+import { FileExtension } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -42,8 +43,10 @@ export const EditorExportImaageExtension: React.FC<
         onChange={handleFilexExtensionChange}
         defaultValue={exportCustomization.fileExtension}
       >
-        <option value='png'>PNG</option>
-        <option value='svg'>SVG</option>
+        {/* Map FileExtension values */}
+        {Object.values(FileExtension).map((extension: string) => (
+          <option value={extension}>{extension}</option>
+        ))}
       </Select>
     </Box>
   );

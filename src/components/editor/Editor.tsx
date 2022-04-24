@@ -51,7 +51,7 @@ export const Editor: React.FC<EditorProps> = ({}) => {
 
   const generateWindowShadow = (size: number): string => {
     const BASE_COLOR: Color = windowCustomization.shadow.boxShadowColor;
-    const PARSED_COLOR: string = `rgba(${BASE_COLOR.r}, ${BASE_COLOR.g}, ${BASE_COLOR.b}, ${BASE_COLOR.a})`;
+    const PARSED_COLOR: string = `rgba(${BASE_COLOR?.r}, ${BASE_COLOR?.g}, ${BASE_COLOR?.b}, ${BASE_COLOR?.a})`;
     const BASE: ShadowEntry[] = [
       {
         color: PARSED_COLOR,

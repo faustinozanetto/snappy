@@ -8,10 +8,10 @@ import {
   PopoverCloseButton,
   PopoverContent,
   PopoverHeader,
-  PopoverTrigger,
   useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
+import { PopoverTrigger } from '../popover/PopoverTrigger';
 import { FaCode } from 'react-icons/fa';
 import { EditorCodeLanguageList } from './EditorCodeLanguageList';
 import { EditorCodeLineNumbers } from './EditorCodeLineNumbers';

@@ -1,31 +1,18 @@
 import React, { useState } from 'react';
 import {
-  Menu,
-  MenuButton,
-  MenuList,
-  IconButton,
-  Tooltip,
-  VStack,
-  MenuGroup,
   Button,
   HStack,
-  MenuDivider,
   Popover,
-  PopoverTrigger,
   PopoverContent,
   PopoverHeader,
   PopoverArrow,
   PopoverBody,
   PopoverCloseButton,
-  Text,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { PopoverTrigger } from '../popover/PopoverTrigger';
 import { BiWindow } from 'react-icons/bi';
 import { EditorWindowDisplay } from './display/EditorWindowDisplay';
-import {
-  setBackgroundCustomization,
-  BackgroundType,
-} from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { EditorWindowShadow } from './shadow/EditorWindowShadow';
 
 interface EditorWindowProps {}

@@ -69,8 +69,14 @@ export type WindowCustomization = {
   shadow?: WindowShadow;
 };
 
+export enum FileExtension {
+  PNG = 'png',
+  SVG = 'svg',
+  JPEG = 'jpeg',
+}
+
 export type ExportCustomization = {
-  fileExtension?: 'png' | 'svg';
+  fileExtension?: FileExtension;
   sizeMultiplier?: '1x' | '2x' | '3x' | '4x' | '5x';
 };
 
@@ -119,7 +125,7 @@ const initialState: ToolBoxEditorCustomizationState = {
     },
   },
   exportCustomization: {
-    fileExtension: 'png',
+    fileExtension: FileExtension.PNG,
     sizeMultiplier: '1x',
   },
 };
