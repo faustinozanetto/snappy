@@ -1,5 +1,5 @@
 import React, { createRef, useRef } from 'react';
-import { Box, Container, useColorModeValue } from '@chakra-ui/react';
+import { Box, Container, HStack, useColorModeValue } from '@chakra-ui/react';
 import { EditorToolBar } from './toolbar/EditorToolBar';
 import { EditorContentWindow } from './content/EditorContentWindow';
 import { parseBackgroundColor } from '@lib/HelperFunctions';
@@ -11,6 +11,9 @@ import {
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { useSelector } from 'react-redux';
 import { EditorCodeContent } from './content/EditorCodeContent';
+import Image from 'next/image';
+import SnapifyLogo from '@components/branding/SnapifyLogo';
+import { NavbarThemeToggler } from '@components/navbar/NavbarThemeToggler';
 
 interface EditorProps {}
 
@@ -91,12 +94,21 @@ export const Editor: React.FC<EditorProps> = ({}) => {
       <Container
         maxW={['0em', '30em', '48em', '62em', '80em', '90em']}
         padding={4}
-        backgroundColor={useColorModeValue('gray.200', 'gray.700')}
+        backgroundColor={useColorModeValue('gray.200', 'gray.900')}
         borderRadius='md'
       >
+        {/* Header */}
+        <HStack width='full' justifyContent='space-between' pb={4}>
+          <SnapifyLogo
+            size='xl'
+            logoColor={useColorModeValue('black', 'white')}
+          />
+          <NavbarThemeToggler />
+        </HStack>
         {/* Editor Tool Bar */}
-        {savedRef && <EditorToolBar exportRef={savedRef} />}
+        <EditorToolBar exportRef={savedRef} />
         {/* Editor Content Window */}
+
         <Box
           ref={savedRef}
           backgroundColor={parseBackgroundColor(

@@ -14,7 +14,7 @@ export const CodePre: React.FC<CodePreProps> = (props) => {
         textAlign: 'left',
         margin: '1em 0',
         padding: '0.5em',
-        overflow: 'scrool',
+        overflow: 'scroll',
       }}
       {...rest}
     >

@@ -2,11 +2,11 @@ import React from 'react';
 import { Text, TextProps } from '@chakra-ui/react';
 
 type CodeLineNumberProps = TextProps & {
-  lineNumber?: number;
+  children?: React.ReactNode;
 };
 
 export const CodeLineNumber: React.FC<CodeLineNumberProps> = (props) => {
-  const { lineNumber, ...rest } = props;
+  const { children, ...rest } = props;
   return (
     <Text
       as='span'
@@ -17,7 +17,7 @@ export const CodeLineNumber: React.FC<CodeLineNumberProps> = (props) => {
       opacity={0.5}
       {...rest}
     >
-      {lineNumber}
+      {children}
     </Text>
   );
 };

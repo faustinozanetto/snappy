@@ -30,21 +30,20 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
 
   return (
     <Popover placement='left-start'>
-      <Tooltip label='Background' aria-label='Background Customization'>
-        <PopoverTrigger>
-          <Button
-            background={parseBackgroundColor(
-              backgroundCustomization.backgroundColor
-            )}
-            _hover={{ bg: backgroundCustomization.backgroundColor }}
-            _focus={{ bg: backgroundCustomization.backgroundColor }}
-            _active={{ bg: backgroundCustomization.backgroundColor }}
-            border='2px solid'
-          >
-            Background
-          </Button>
-        </PopoverTrigger>
-      </Tooltip>
+      <PopoverTrigger>
+        <Button
+          background={parseBackgroundColor(
+            backgroundCustomization.backgroundColor
+          )}
+          _hover={{ bg: backgroundCustomization.backgroundColor }}
+          _focus={{ bg: backgroundCustomization.backgroundColor }}
+          _active={{ bg: backgroundCustomization.backgroundColor }}
+          border='2px solid'
+        >
+          Background
+        </Button>
+      </PopoverTrigger>
+
       <PopoverContent>
         <PopoverHeader fontWeight='semibold'>
           <HStack>

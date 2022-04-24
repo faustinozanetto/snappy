@@ -27,7 +27,10 @@ export const Footer: React.FC<FooterProps> = ({}) => {
       <Container as={Stack} maxWidth='5xl' paddingY={10}>
         <SimpleGrid templateColumns={'1fr 1fr'} spacing={8}>
           <Stack spacing={6}>
-            <SnapifyLogo size='lg' />
+            <SnapifyLogo
+              size='lg'
+              logoColor={useColorModeValue('black', 'white')}
+            />
             <Text fontSize='md'>
               © Conkis Studios 2022. All rights reserved
             </Text>

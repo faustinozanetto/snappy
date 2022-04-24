@@ -41,7 +41,7 @@ const Pre = styled.pre`
   text-align: left;
   margin: 1em 0;
   padding: 0.5em;
-  overflow: scroll;
+  overflow: hidden;
 
   & .token-line {
     line-height: 1.3em;
@@ -137,22 +137,28 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
       language={parsePrismLanguageType(language)}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <CodePre
-          fontFamily={fontCustomization.fontFamily}
-          {...className}
-          {...style}
+        <Pre
+          className={className}
+          style={{
+            ...style,
+            fontFamily: `${fontCustomization.fontFamily}, monospace`,
+            fontVariantLigatures: 'contextual',
+            fontFeatureSettings: 'calt 1',
+            fontSmooth: 'always',
+            fontSize: `${fontCustomization.fontSize}px`,
+          }}
         >
           {tokens.map((line, i) => (
             <CodeLine key={i} {...getLineProps({ line, key: i })}>
               {codeCustomization.lineNumbers && (
-                <CodeLineNumber lineNumber={i + 1} />
+                <CodeLineNumber key={'line ' + i}>{i + 1}</CodeLineNumber>
               )}
               {line.map((token, key) => (
-                <span {...style} {...getTokenProps({ token, key })} />
+                <span key={key} {...getTokenProps({ token, key })} />
               ))}
             </CodeLine>
           ))}
-        </CodePre>
+        </Pre>
       )}
     </Highlight>
   );
@@ -160,15 +166,9 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
   return (
     <Box
       style={{
-        fontFamily: 'JetBrains Mono, monospace',
-
-        fontVariantLigatures: 'contextual',
-        fontFeatureSettings: 'calt 1',
-        fontSmooth: 'always',
-        fontSize: fontCustomization.fontSize,
+        ...theme.plain,
         ...generateCustomStyles(),
       }}
-      fontSize={`${fontCustomization.fontSize}px`}
     >
       <Editor
         value={code}
