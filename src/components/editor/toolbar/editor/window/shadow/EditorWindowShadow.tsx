@@ -48,8 +48,10 @@ export const EditorWindowShadow: React.FC<EditorWindowShadowProps> = ({}) => {
         onUpdated={(value) =>
           dispatch(
             setWindowCustomization({
-              boxShadow: value !== 0,
-              boxShadowSize: value,
+              shadow: {
+                boxShadow: value !== 0,
+                boxShadowSize: value,
+              },
             })
           )
         }

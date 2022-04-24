@@ -69,11 +69,17 @@ export type WindowCustomization = {
   shadow?: WindowShadow;
 };
 
+export type ExportCustomization = {
+  fileExtension?: 'png' | 'svg';
+  sizeMultiplier?: '1x' | '2x' | '3x' | '4x' | '5x';
+};
+
 export type ToolBoxEditorCustomizationState = {
   backgroundCustomization: BackgroundCustomization;
   fontCustomization: FontCustomization;
   codeCustomization: CodeCustomization;
   windowCustomization: WindowCustomization;
+  exportCustomization: ExportCustomization;
 };
 
 const initialState: ToolBoxEditorCustomizationState = {
@@ -112,6 +118,10 @@ const initialState: ToolBoxEditorCustomizationState = {
       },
     },
   },
+  exportCustomization: {
+    fileExtension: 'png',
+    sizeMultiplier: '1x',
+  },
 };
 
 export const ToolBoxEditorCustomizationSlice = createSlice({
@@ -136,6 +146,12 @@ export const ToolBoxEditorCustomizationSlice = createSlice({
     ) => {
       Object.assign(state.windowCustomization, action.payload);
     },
+    setExportCustomization: (
+      state,
+      action: PayloadAction<ExportCustomization>
+    ) => {
+      Object.assign(state.exportCustomization, action.payload);
+    },
   },
 });
 
@@ -144,6 +160,7 @@ export const {
   setCodeCustomization,
   setFontCustomization,
   setWindowCustomization,
+  setExportCustomization,
 } = ToolBoxEditorCustomizationSlice.actions;
 
 export const selectBackgroundCustomization = (state: RootState) =>
@@ -154,3 +171,5 @@ export const selectFontCustomization = (state: RootState) =>
   state.toolboxEditor.fontCustomization;
 export const selectWindowCustomization = (state: RootState) =>
   state.toolboxEditor.windowCustomization;
+export const selectExportCustomization = (state: RootState) =>
+  state.toolboxEditor.exportCustomization;

@@ -29,12 +29,25 @@ import { CodeLineNumber } from './window/CodeLineNumber';
 import { CodePre } from './window/CodePre';
 import { CodeLine } from './window/CodeLine';
 import { Box } from '@chakra-ui/react';
+import styled from '@emotion/styled';
 
 interface EditorCodeContentProps {
   code?: string;
   language?: CodeLanguage;
   styles?: React.CSSProperties;
 }
+
+const Pre = styled.pre`
+  text-align: left;
+  margin: 1em 0;
+  padding: 0.5em;
+  overflow: scroll;
+
+  & .token-line {
+    line-height: 1.3em;
+    height: 1.3em;
+  }
+`;
 
 export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
   const { code: propsCode, styles, language } = props;
@@ -90,6 +103,7 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
     const newStyles: React.CSSProperties = {
       ...styles,
       ...theme.plain,
+      boxSizing: 'border-box',
     };
     return newStyles;
   };
@@ -115,35 +129,33 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
    * @param codeToHighlight code to use in the highlight process.
    * @returns the highlighed code.
    */
-  const highLightCode = (codeToHighlight: string): string | React.ReactNode => {
-    return (
-      <Highlight
-        {...defaultProps}
-        theme={theme}
-        code={codeToHighlight}
-        language={parsePrismLanguageType(language)}
-      >
-        {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <CodePre
-            fontFamily={fontCustomization.fontFamily}
-            {...className}
-            {...style}
-          >
-            {tokens.map((line, i) => (
-              <CodeLine key={i} {...getLineProps({ line, key: i })}>
-                {codeCustomization.lineNumbers && (
-                  <CodeLineNumber lineNumber={i + 1} />
-                )}
-                {line.map((token, key) => (
-                  <span {...style} {...getTokenProps({ token, key })} />
-                ))}
-              </CodeLine>
-            ))}
-          </CodePre>
-        )}
-      </Highlight>
-    );
-  };
+  const highLightCode = (codeToHighlight: string): string | React.ReactNode => (
+    <Highlight
+      {...defaultProps}
+      theme={theme}
+      code={codeToHighlight}
+      language={parsePrismLanguageType(language)}
+    >
+      {({ className, style, tokens, getLineProps, getTokenProps }) => (
+        <CodePre
+          fontFamily={fontCustomization.fontFamily}
+          {...className}
+          {...style}
+        >
+          {tokens.map((line, i) => (
+            <CodeLine key={i} {...getLineProps({ line, key: i })}>
+              {codeCustomization.lineNumbers && (
+                <CodeLineNumber lineNumber={i + 1} />
+              )}
+              {line.map((token, key) => (
+                <span {...style} {...getTokenProps({ token, key })} />
+              ))}
+            </CodeLine>
+          ))}
+        </CodePre>
+      )}
+    </Highlight>
+  );
 
   return (
     <Box
@@ -154,6 +166,7 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
         fontFeatureSettings: 'calt 1',
         fontSmooth: 'always',
         fontSize: fontCustomization.fontSize,
+        ...generateCustomStyles(),
       }}
       fontSize={`${fontCustomization.fontSize}px`}
     >

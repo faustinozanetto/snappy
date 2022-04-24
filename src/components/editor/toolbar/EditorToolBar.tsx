@@ -13,9 +13,11 @@ import { EditorFont } from './editor/font/EditorFont';
 import { EditorWindow } from './editor/window/EditorWindow';
 import { EditorExportImage } from './editor/export/EditorExportImage';
 
-interface EditorToolBarProps {}
+interface EditorToolBarProps {
+  exportRef: React.RefObject<HTMLDivElement>;
+}
 
-export const EditorToolBar: React.FC<EditorToolBarProps> = ({}) => {
+export const EditorToolBar: React.FC<EditorToolBarProps> = ({ exportRef }) => {
   return (
     <Flex
       height='60px'
@@ -49,7 +51,7 @@ export const EditorToolBar: React.FC<EditorToolBarProps> = ({}) => {
         {/* Window */}
         <EditorWindow />
         {/* Export */}
-        <EditorExportImage />
+        <EditorExportImage exportRef={exportRef} />
       </HStack>
     </Flex>
   );

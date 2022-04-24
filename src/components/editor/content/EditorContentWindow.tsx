@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { createRef, useContext, useEffect } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
 import {
   Color,
@@ -44,11 +44,10 @@ type ShadowEntry = {
 };
 
 export const EditorContentWindow: React.FC<EditorContentWindowProps> = ({}) => {
+  const savedRef = createRef<HTMLDivElement>();
   const backgroundCustomization = useSelector(selectBackgroundCustomization);
   const codeCustomization = useSelector(selectCodeCustomization);
   const windowCustomization = useSelector(selectWindowCustomization);
-  const dispatch = useDispatch();
-  const { updateExportRef } = useContext(ExportContext);
 
   const generateWindowShadow = (size: number): string => {
     const BASE_COLOR: Color = windowCustomization.shadow.boxShadowColor;
@@ -88,53 +87,45 @@ export const EditorContentWindow: React.FC<EditorContentWindowProps> = ({}) => {
   };
 
   return (
-    <Flex height='100%' flexDir='column' overflow='hidden'>
-      {/* Wrapper */}
+    <Box
+      backgroundColor={parseBackgroundColor(
+        backgroundCustomization.backgroundColor
+      )}
+      backgroundImage={backgroundCustomization.backgroundImage}
+      backgroundRepeat='no-repeat'
+      backgroundSize='cover'
+      ref={savedRef}
+    >
+      {/* Blur Effect */}
       <Box
-        ref={(ref) => {
-          updateExportRef(ref);
-        }}
-        backgroundColor={parseBackgroundColor(
-          backgroundCustomization.backgroundColor
-        )}
-        backgroundImage={backgroundCustomization.backgroundImage}
-        backgroundRepeat='no-repeat'
-        backgroundSize='cover'
+        backdropFilter={`${
+          backgroundCustomization.backgroudBlur > 0
+            ? `blur(${backgroundCustomization.backgroudBlur}px)`
+            : 'none'
+        }`}
       >
-        {/* Blur Effect */}
+        {/* Main Container */}
         <Box
-          backdropFilter={`${
-            backgroundCustomization.backgroudBlur > 0
-              ? `blur(${backgroundCustomization.backgroudBlur}px)`
-              : 'none'
-          }`}
+          __css={{
+            paddingLeft: `${windowCustomization.paddingX * 3}px !important`,
+            paddingRight: `${windowCustomization.paddingX * 3}px !important`,
+            paddingTop: `${windowCustomization.paddingY * 3}px !important`,
+            paddingBottom: `${windowCustomization.paddingY * 3}px !important`,
+          }}
         >
-          {/* Main Container */}
-          <Box
-            width='100%'
-            __css={{
-              paddingLeft: `${windowCustomization.paddingX * 3}px !important`,
-              paddingRight: `${windowCustomization.paddingX * 3}px !important`,
-              paddingTop: `${windowCustomization.paddingY * 3}px !important`,
-              paddingBottom: `${windowCustomization.paddingY * 3}px !important`,
+          {/* Editor Code Window */}
+          <EditorCodeContent
+            code={exampleCode}
+            language={codeCustomization.codeLanguage}
+            styles={{
+              borderRadius: `${windowCustomization.borderRadius}px`,
+              boxShadow:
+                windowCustomization.shadow.boxShadow &&
+                generateWindowShadow(windowCustomization.shadow.boxShadowSize),
             }}
-          >
-            {/* Editor Code Window */}
-            <EditorCodeContent
-              code={exampleCode}
-              language={codeCustomization.codeLanguage}
-              styles={{
-                borderRadius: `${windowCustomization.borderRadius}px`,
-                boxShadow:
-                  windowCustomization.shadow.boxShadow &&
-                  generateWindowShadow(
-                    windowCustomization.shadow.boxShadowSize
-                  ),
-              }}
-            />
-          </Box>
+          />
         </Box>
       </Box>
-    </Flex>
+    </Box>
   );
 };
