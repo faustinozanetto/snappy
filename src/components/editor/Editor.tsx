@@ -2,6 +2,7 @@ import React, { createRef } from 'react';
 import {
   Box,
   Container,
+  Flex,
   HStack,
   useColorModeValue,
   VStack,
@@ -70,7 +71,7 @@ export const Editor: React.FC<EditorProps> = ({}) => {
   };
 
   return (
-    <VStack>
+    <VStack position='relative'>
       {/* Logo */}
       <Box mt={24} mb={12}>
         <SnapifyLogo
@@ -89,20 +90,16 @@ export const Editor: React.FC<EditorProps> = ({}) => {
         <HStack width='100%' my={6} justifyContent='center'>
           <EditorToolBar exportRef={savedRef} />
         </HStack>
-        <Box
-          backdropFilter={`${
-            backgroundCustomization.backgroudBlur > 0
-              ? `blur(${backgroundCustomization.backgroudBlur}px)`
-              : 'none'
-          }`}
+        {/* Export Container */}
+        <Flex
+          ref={savedRef}
+          alignItems='center'
+          justifyContent='center'
+          overflow='hidden'
         >
-          {/* Editor Code Window */}
+          {/* Container */}
           <Box
-            ref={savedRef}
-            position='relative'
-            top={0}
-            left={0}
-            right={0}
+            width='100%'
             backgroundColor={parseBackgroundColor(
               backgroundCustomization.backgroundColor
             )}
@@ -120,6 +117,7 @@ export const Editor: React.FC<EditorProps> = ({}) => {
                 : 'none'
             }`}
           >
+            {/* Editor Code Window */}
             <EditorCodeContent
               code={EXAMPLE_CODE}
               language={codeCustomization.codeLanguage}
@@ -133,7 +131,7 @@ export const Editor: React.FC<EditorProps> = ({}) => {
               }}
             />
           </Box>
-        </Box>
+        </Flex>
       </Container>
     </VStack>
   );

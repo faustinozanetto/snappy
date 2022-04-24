@@ -15,11 +15,11 @@ export const EditorExportImageSize: React.FC<
   const exportCustomization = useSelector(selectExportCustomization);
   return (
     <CustomizationSlider
-      label='Size Multiplier'
-      range={[1, 4]}
-      stepSize={1}
+      label='Quality Multiplier'
+      range={[0.1, 1]}
+      stepSize={0.001}
       allSteps={true}
-      allStepsSize={1}
+      allStepsSize={0.22}
       defaultValue={exportCustomization.sizeMultiplier}
       onUpdated={(value) =>
         dispatch(

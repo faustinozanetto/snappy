@@ -43,14 +43,14 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
         return;
       }
 
-      const width = exportRef.current.offsetWidth * quality;
-      const height = exportRef.current.offsetHeight * quality;
+      const width = exportRef.current.offsetWidth;
+      const height = exportRef.current.offsetHeight;
 
       const backgroundColor: string = `rgb(${backgroundCustomization.backgroundColor.r}, ${backgroundCustomization.backgroundColor.g}, ${backgroundCustomization.backgroundColor.b})`;
 
       const OPTIONS: Options = {
         style: {
-          transform: `scale(${quality})`,
+          // transform: `scale(${quality})`,
           transformOrigin: 'top left',
           backgroundOrigin: 'border-box',
           backgroundSize: 'cover',
@@ -72,6 +72,7 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
           }
           return true;
         },
+        quality,
         width,
         height,
       };
