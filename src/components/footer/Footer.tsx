@@ -1,38 +1,58 @@
-import SnapifyLogo from '@components/branding/SnapifyLogo';
 import React from 'react';
-
+import SnapifyLogo from '@components/branding/SnapifyLogo';
+import Link from 'next/link';
 import {
   Box,
   Container,
-  SimpleGrid,
   Stack,
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { FaDiscord, FaTwitter } from 'react-icons/fa';
-import { FooterButton } from './FooterButton';
-import Link from 'next/link';
 
 interface FooterProps {}
 
 export const Footer: React.FC<FooterProps> = ({}) => {
   return (
-    <Box as='footer' width='full' py={4}>
-      <Container as={Stack} maxWidth='5xl' paddingY={10}>
-        <SimpleGrid templateColumns={'1fr 1fr'} spacing={8}>
-          <Text fontSize='md'>© Conkis Studios 2022. All rights reserved</Text>
-
-          {/* Legal Links */}
-          <Stack align='flex-start'>
-            <Text fontWeight={'500'} fontSize={'xl'} mb={2}>
-              Company
-            </Text>
-            <Link href={'#'}>About us</Link>
-            <Link href={'#'}>Blog</Link>
-            <Link href={'#'}>Contact us</Link>
-          </Stack>
-        </SimpleGrid>
+    <Box
+      bg={useColorModeValue('gray.50', 'gray.900')}
+      color={useColorModeValue('gray.700', 'gray.200')}
+      marginTop={'auto'}
+    >
+      <Container
+        as={Stack}
+        maxW='6xl'
+        py={4}
+        spacing={4}
+        justify='center'
+        align='center'
+      >
+        <SnapifyLogo
+          size='xl'
+          logoColor={useColorModeValue('black', 'white')}
+        />
+        <Stack direction={'row'} spacing={6}>
+          <Link href={'#'}>Home</Link>
+          <Link href={'#'}>Terms</Link>
+          <Link href={'#'}>Privacy</Link>
+          <Link href={'#'}>Contact</Link>
+        </Stack>
       </Container>
+
+      <Box
+        borderTopWidth={1}
+        borderStyle={'solid'}
+        borderColor={useColorModeValue('gray.200', 'gray.700')}
+      >
+        <Container
+          as={Stack}
+          maxW={'6xl'}
+          py={4}
+          spacing={4}
+          textAlign='center'
+        >
+          <Text>© 2022 Conkis Studios. All rights reserved</Text>
+        </Container>
+      </Box>
     </Box>
   );
 };

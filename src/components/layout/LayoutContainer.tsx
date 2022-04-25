@@ -8,5 +8,5 @@ export interface LayoutContainerProps {
 
 export const LayoutContainer: React.FC<LayoutContainerProps> = (props) => {
   const { children } = props;
-  return <VStack>{children}</VStack>;
+  return <VStack my={12}>{children}</VStack>;
 };

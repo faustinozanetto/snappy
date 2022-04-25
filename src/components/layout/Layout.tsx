@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, useColorModeValue } from '@chakra-ui/react';
+import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
 import { LayoutHead, LayoutHeadProps } from './LayoutHead';
 import { LayoutContainer } from './LayoutContainer';
 import { Footer } from '@components/footer/Footer';
@@ -15,14 +15,14 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = (props) => {
   const { children, layoutHead: Head = LayoutHead, layoutHeadProps } = props;
   return (
-    <Box minHeight='100vh'>
+    <Flex minHeight='100vh' flexDir={'column'}>
       {/* Head */}
       <Head {...layoutHeadProps} />
 
       {/* Container */}
       <LayoutContainer>
         {/* Logo */}
-        <Box mt={24} mb={12}>
+        <Box my={4}>
           <SnapifyLogo
             size='3xl'
             logoColor={useColorModeValue('black', 'white')}
@@ -32,6 +32,6 @@ export const Layout: React.FC<LayoutProps> = (props) => {
       </LayoutContainer>
       {/* Footer */}
       <Footer />
-    </Box>
+    </Flex>
   );
 };
