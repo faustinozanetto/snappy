@@ -56,7 +56,7 @@ export const CustomizationSlider: React.FC<CustomizationSliderProps> = (
         min={range[0]}
         max={range[1]}
         step={stepSize}
-        onChangeEnd={(event) => setSliderValue(event)}
+        onChange={(event) => setSliderValue(event)}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
       >
