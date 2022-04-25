@@ -102,8 +102,10 @@ export const GenerateHighlight = (theme: HighlightThemeType) => {
 
       .prism-code {
         margin: 0 !important;
+        padding: 0 !important;
         overflow: hidden !important;
       }
+   
       `)}
     `}</style>
   );

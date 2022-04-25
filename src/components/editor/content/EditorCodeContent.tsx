@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Editor from 'react-simple-code-editor';
 import Prism, { highlight } from 'prismjs';
-import Highlight, {
-  defaultProps,
-  Language as PrismLanguage,
-} from 'prism-react-renderer';
 import { useSelector } from 'react-redux';
 import {
   CodeLanguage,
@@ -19,6 +15,7 @@ import {
   HighlightThemeType,
   selectThemeFile,
 } from '@lib/themes/HighlightTheme';
+import { CodeHighlighting, defaultProps } from '../highlight/CodeHighlighting';
 
 interface EditorCodeContentProps {
   code?: string;
@@ -48,7 +45,6 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
    */
   const generateCustomStyles = (): React.CSSProperties => {
     const newStyles: React.CSSProperties = {
-      ...styles,
       boxSizing: 'border-box',
       fontFamily: `${fontCustomization.fontFamily}, monospace`,
       fontVariantLigatures: 'contextual',
@@ -89,32 +85,37 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
    * @returns the highlighed code.
    */
   const highLightCode = (codeToHighlight: string) => (
-    <Highlight {...defaultProps} code={codeToHighlight} language='jsx'>
+    <CodeHighlighting {...defaultProps} code={codeToHighlight} language='jsx'>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <Pre className={className} style={style}>
-          {tokens.map((line, i) => (
-            <Line key={i} {...getLineProps({ line, key: i })}>
-              <LineNo>{i + 1}</LineNo>
-              <LineContent>
-                {line.map((token, key) => (
-                  <span key={key} {...getTokenProps({ token, key })} />
-                ))}
-              </LineContent>
-            </Line>
-          ))}
+        <Pre className={className} style={{ ...generateCustomStyles() }}>
+          {tokens.map((line, lineIndex) => {
+            return (
+              <Line key={lineIndex} {...getLineProps({ line, key: lineIndex })}>
+                <LineContent>
+                  {line.map((token, tokenIndex) => (
+                    <span
+                      key={tokenIndex}
+                      {...getTokenProps({ token, key: tokenIndex })}
+                    />
+                  ))}
+                </LineContent>
+              </Line>
+            );
+          })}
         </Pre>
       )}
-    </Highlight>
+    </CodeHighlighting>
   );
 
   return (
     <Editor
       className='code-wrapper'
       value={code}
-      highlight={(cod) => highlight(cod, Prism.languages.js, 'javascript')}
+      highlight={highLightCode}
       padding={20}
       onValueChange={(newValue) => setCode(newValue)}
       style={{
+        ...styles,
         ...generateCustomStyles(),
         backgroundColor: highlightTheme.plain.backgroundColor,
         color: highlightTheme.plain.color,

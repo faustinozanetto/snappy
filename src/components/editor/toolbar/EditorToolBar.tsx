@@ -6,6 +6,7 @@ import { EditorFont } from './editor/font/EditorFont';
 import { EditorWindow } from './editor/window/EditorWindow';
 import { EditorExportImage } from './editor/export/EditorExportImage';
 import { NavbarThemeToggler } from '@components/navbar/NavbarThemeToggler';
+import { EditorCode } from './editor/code/EditorCode';
 
 interface EditorToolBarProps {
   exportRef: React.RefObject<HTMLDivElement>;
@@ -21,7 +22,7 @@ export const EditorToolBar: React.FC<EditorToolBarProps> = ({ exportRef }) => {
       {/* Theme */}
       <EditorCodeTheme />
       {/* Language */}
-      {/* <EditorCode /> */}
+      <EditorCode />
       {/* Window */}
       <EditorWindow />
       {/* Export */}
