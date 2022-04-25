@@ -17,6 +17,7 @@ import {
   Tabs,
   Box,
   HStack,
+  useToast,
 } from '@chakra-ui/react';
 import { FaSave } from 'react-icons/fa';
 import { PopoverTrigger } from '../popover/PopoverTrigger';
@@ -39,9 +40,13 @@ interface EditorExportImageProps {
 export const EditorExportImage: React.FC<EditorExportImageProps> = ({
   exportRef,
 }) => {
+  const toast = useToast();
   const exportCustomization = useSelector(selectExportCustomization);
   const backgroundCustomization = useSelector(selectBackgroundCustomization);
 
+  /**
+   * Generates the actual image using the correct quality and styling.
+   */
   const handleImageGeneration = useCallback(
     async (
       extension: FileExtension = FileExtension.PNG,
@@ -106,18 +111,26 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
     [exportRef]
   );
 
+  /**
+   * Tries to create an a element for the image and click it to trigger the download.
+   * @param extension extension of the file.
+   * @param dataUrl url from the generated image.
+   */
   const saveImageToFile = (
     extension: FileExtension,
     dataUrl: string | Blob
   ) => {
     const link = document.createElement('a');
     const NAME = 'snappy';
-
     link.download = `${NAME}.${extension}`;
     link.href = dataUrl as string;
     link.click();
   };
 
+  /**
+   * Asks for permission and creates the clipboard object with the image data and then tries to copy it to the clipboard.
+   * @param dataUrl url from the generated image.
+   */
   const copyImageToClipboard = (dataUrl: string | Blob) => {
     const IS_FIREFOX: boolean = !(navigator.userAgent.indexOf('Firefox') < 0);
     if (!IS_FIREFOX) {
@@ -128,11 +141,26 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
           if (result.state === 'granted') {
             const type = 'image/png';
             let data = [new ClipboardItem({ [type]: dataUrl })];
-            console.log({ data });
             await navigator.clipboard
               .write(data)
-              .then(() => console.log('Copied to clipboard'))
-              .catch((err) => console.log(err));
+              .then(() =>
+                toast({
+                  title: 'Success',
+                  description: 'Snippet coppied to clipboard.',
+                  status: 'success',
+                  duration: 3000,
+                  isClosable: true,
+                })
+              )
+              .catch(() => {
+                toast({
+                  title: 'Error',
+                  description: 'An error occurrred :/.',
+                  status: 'error',
+                  duration: 3000,
+                  isClosable: true,
+                });
+              });
           }
         });
     }

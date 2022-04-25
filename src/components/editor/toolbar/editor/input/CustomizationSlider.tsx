@@ -86,7 +86,7 @@ export const CustomizationSlider: React.FC<CustomizationSliderProps> = (
                   fontSize='sm'
                   fontWeight={500}
                 >
-                  {value} {valueType !== 'none' && valueType}
+                  {value.toFixed(1)} {valueType !== 'none' && valueType}
                 </SliderMark>
               );
             }

@@ -19,7 +19,7 @@ export const EditorExportImageSize: React.FC<
       range={[0.1, 1]}
       stepSize={0.001}
       allSteps={true}
-      allStepsSize={0.25}
+      allStepsSize={0.12}
       defaultValue={exportCustomization.sizeMultiplier}
       onUpdated={(value) =>
         dispatch(
