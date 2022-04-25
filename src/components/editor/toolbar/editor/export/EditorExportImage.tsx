@@ -50,6 +50,7 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
       if (exportRef.current === null) {
         return;
       }
+      const scale = window.devicePixelRatio * quality;
 
       const width = exportRef.current.offsetWidth;
       const height = exportRef.current.offsetHeight;
@@ -58,6 +59,7 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
 
       const OPTIONS: Options = {
         style: {
+          // transform: `scale(${quality})`,
           transformOrigin: 'top left',
           backgroundOrigin: 'border-box',
           backgroundSize: 'cover',
@@ -88,7 +90,6 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
       if (extension === FileExtension.PNG) {
         return await toPng(exportRef.current, OPTIONS);
       }
-
       // SVG
       if (extension === FileExtension.SVG) {
         return await toSvg(exportRef.current, OPTIONS);
@@ -109,14 +110,12 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
     extension: FileExtension,
     dataUrl: string | Blob
   ) => {
-    if (dataUrl === typeof 'string') {
-      const link = document.createElement('a');
-      const NAME = 'snappy';
+    const link = document.createElement('a');
+    const NAME = 'snappy';
 
-      link.download = `${NAME}.${extension}`;
-      link.href = dataUrl;
-      link.click();
-    }
+    link.download = `${NAME}.${extension}`;
+    link.href = dataUrl as string;
+    link.click();
   };
 
   const copyImageToClipboard = (dataUrl: string | Blob) => {
