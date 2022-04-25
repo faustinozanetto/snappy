@@ -33,11 +33,13 @@ export const EditorExportImaageExtension: React.FC<
         defaultValue={exportCustomization.fileExtension}
       >
         {/* Map FileExtension values */}
-        {Object.values(FileExtension).map((extension: string, i) => (
-          <option key={i} value={extension}>
-            {extension}
-          </option>
-        ))}
+        {Object.values(FileExtension).map((extension: string, i) =>
+          extension !== 'blob' ? (
+            <option key={i} value={extension}>
+              {extension}
+            </option>
+          ) : null
+        )}
       </Select>
     </Box>
   );

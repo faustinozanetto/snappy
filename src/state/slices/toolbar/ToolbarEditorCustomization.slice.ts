@@ -88,6 +88,7 @@ export type WindowCustomization = {
 };
 
 export enum FileExtension {
+  BLOB = 'blob',
   PNG = 'png',
   SVG = 'svg',
   JPEG = 'jpeg',

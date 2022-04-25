@@ -16,6 +16,7 @@ import {
   TabPanels,
   Tabs,
   Box,
+  HStack,
 } from '@chakra-ui/react';
 import { FaSave } from 'react-icons/fa';
 import { PopoverTrigger } from '../popover/PopoverTrigger';
@@ -27,7 +28,7 @@ import {
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { useSelector } from 'react-redux';
 import { EditorExportImaageExtension } from './EditorExportImageExtension';
-import { toJpeg, toPng, toSvg } from 'html-to-image';
+import { toBlob, toJpeg, toPng, toSvg } from 'html-to-image';
 import { EditorExportImageSize } from './EditorExportImageSize';
 import { Options } from 'html-to-image/lib/options';
 
@@ -41,7 +42,7 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
   const exportCustomization = useSelector(selectExportCustomization);
   const backgroundCustomization = useSelector(selectBackgroundCustomization);
 
-  const onButtonClick = useCallback(
+  const handleImageGeneration = useCallback(
     async (
       extension: FileExtension = FileExtension.PNG,
       quality: number = 1
@@ -57,7 +58,6 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
 
       const OPTIONS: Options = {
         style: {
-          // transform: `scale(${quality})`,
           transformOrigin: 'top left',
           backgroundOrigin: 'border-box',
           backgroundSize: 'cover',
@@ -86,45 +86,58 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
 
       // PNG
       if (extension === FileExtension.PNG) {
-        await toPng(exportRef.current, OPTIONS)
-          .then((dataUrl) => {
-            const link = document.createElement('a');
-            const NAME = 'snappy';
-            const EXTENSION = 'png';
-            link.download = `${NAME}.${EXTENSION}`;
-            link.href = dataUrl;
-            link.click();
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        return await toPng(exportRef.current, OPTIONS);
       }
 
       // SVG
       if (extension === FileExtension.SVG) {
-        await toSvg(exportRef.current, OPTIONS).then((dataUrl) => {
-          const link = document.createElement('a');
-          const NAME = 'snappy';
-          const EXTENSION = 'svg';
-          link.download = `${NAME}.${EXTENSION}`;
-          link.href = dataUrl;
-          link.click();
-        });
+        return await toSvg(exportRef.current, OPTIONS);
       }
       // JPEG
       if (extension === FileExtension.JPEG) {
-        await toJpeg(exportRef.current, OPTIONS).then((dataUrl) => {
-          const link = document.createElement('a');
-          const NAME = 'snappy';
-          const EXTENSION = 'jpeg';
-          link.download = `${NAME}.${EXTENSION}`;
-          link.href = dataUrl;
-          link.click();
-        });
+        return await toJpeg(exportRef.current, OPTIONS);
+      }
+      // BLOB
+      if (extension === FileExtension.BLOB) {
+        return await toBlob(exportRef.current, OPTIONS);
       }
     },
     [exportRef]
   );
+
+  const saveImageToFile = (
+    extension: FileExtension,
+    dataUrl: string | Blob
+  ) => {
+    if (dataUrl === typeof 'string') {
+      const link = document.createElement('a');
+      const NAME = 'snappy';
+
+      link.download = `${NAME}.${extension}`;
+      link.href = dataUrl;
+      link.click();
+    }
+  };
+
+  const copyImageToClipboard = (dataUrl: string | Blob) => {
+    const IS_FIREFOX: boolean = !(navigator.userAgent.indexOf('Firefox') < 0);
+    if (!IS_FIREFOX) {
+      navigator.permissions
+        // @ts-ignore
+        .query({ name: 'clipboard-write' })
+        .then(async (result) => {
+          if (result.state === 'granted') {
+            const type = 'image/png';
+            let data = [new ClipboardItem({ [type]: dataUrl })];
+            console.log({ data });
+            await navigator.clipboard
+              .write(data)
+              .then(() => console.log('Copied to clipboard'))
+              .catch((err) => console.log(err));
+          }
+        });
+    }
+  };
 
   return (
     <Flex justifyContent='center' mt={4}>
@@ -167,12 +180,17 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
                   <EditorExportImaageExtension />
                   {/* Size Multiplier */}
                   <EditorExportImageSize />
-                  <Box pt={6} width='full'>
+                  <HStack pt={6} width='full'>
                     <Button
-                      onClick={() =>
-                        onButtonClick(
+                      onClick={async () =>
+                        await handleImageGeneration(
                           exportCustomization.fileExtension,
                           exportCustomization.sizeMultiplier
+                        ).then((dataUrl) =>
+                          saveImageToFile(
+                            exportCustomization.fileExtension,
+                            dataUrl
+                          )
                         )
                       }
                       colorScheme='blue'
@@ -180,7 +198,20 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
                     >
                       Export
                     </Button>
-                  </Box>
+
+                    <Button
+                      onClick={async () =>
+                        await handleImageGeneration(
+                          FileExtension.BLOB,
+                          exportCustomization.sizeMultiplier
+                        ).then((dataUrl) => copyImageToClipboard(dataUrl))
+                      }
+                      colorScheme='green'
+                      width='100%'
+                    >
+                      Copy
+                    </Button>
+                  </HStack>
                 </TabPanel>
               </TabPanels>
             </Tabs>
