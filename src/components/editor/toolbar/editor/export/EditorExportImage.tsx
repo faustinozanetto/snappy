@@ -9,6 +9,13 @@ import {
   PopoverContent,
   PopoverHeader,
   useColorModeValue,
+  Flex,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Box,
 } from '@chakra-ui/react';
 import { FaSave } from 'react-icons/fa';
 import { PopoverTrigger } from '../popover/PopoverTrigger';
@@ -120,48 +127,66 @@ export const EditorExportImage: React.FC<EditorExportImageProps> = ({
   );
 
   return (
-    <Popover placement='left-start'>
-      <PopoverTrigger>
-        <Button
-          leftIcon={
-            <span>
-              <FaSave />
-            </span>
-          }
-          aria-label='Export Customization'
-          border='2px solid'
-        >
-          Export
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent>
-        <PopoverHeader fontWeight='semibold'>Export</PopoverHeader>
-        <PopoverArrow />
-        <PopoverCloseButton />
-        <PopoverBody
-          px={0}
-          backgroundColor={useColorModeValue('gray.100', 'gray.800')}
-        >
-          <VStack spacing={4} px={4}>
-            {/* File Extension */}
-            <EditorExportImaageExtension />
-            {/* Size Multiplier */}
-            <EditorExportImageSize />
-            <Button
-              onClick={() =>
-                onButtonClick(
-                  exportCustomization.fileExtension,
-                  exportCustomization.sizeMultiplier
-                )
-              }
-              colorScheme='blue'
-              width='100%'
-            >
-              Export
-            </Button>
-          </VStack>
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
+    <Flex justifyContent='center' mt={4}>
+      <Popover isLazy placement='bottom'>
+        <PopoverTrigger>
+          <Button
+            leftIcon={
+              <span>
+                <FaSave />
+              </span>
+            }
+            w='fit-content'
+            aria-label='Export Customization'
+            border='2px solid'
+          >
+            Export
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent _focus={{ boxShadown: 'none' }}>
+          <PopoverArrow />
+          <PopoverBody
+            w='full'
+            backgroundColor={useColorModeValue('gray.100', 'gray.800')}
+          >
+            <Tabs isLazy isFitted colorScheme='blue'>
+              <TabList>
+                <Tab
+                  _focus={{ boxShadow: 'none' }}
+                  fontSize='xs'
+                  fontWeight='bold'
+                  w='50%'
+                >
+                  Export
+                </Tab>
+              </TabList>
+
+              <TabPanels>
+                <TabPanel>
+                  {/* File Extension */}
+                  <EditorExportImaageExtension />
+                  {/* Size Multiplier */}
+                  <EditorExportImageSize />
+                  <Box pt={6} width='full'>
+                    <Button
+                      onClick={() =>
+                        onButtonClick(
+                          exportCustomization.fileExtension,
+                          exportCustomization.sizeMultiplier
+                        )
+                      }
+                      colorScheme='blue'
+                      width='100%'
+                    >
+                      Export
+                    </Button>
+                  </Box>
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
+          </PopoverBody>
+        </PopoverContent>
+      </Popover>
+    </Flex>
   );
 };

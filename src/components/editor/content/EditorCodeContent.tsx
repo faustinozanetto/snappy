@@ -60,22 +60,6 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
     return newStyles;
   };
 
-  const parsePrismLanguageType = (lang: CodeLanguage): PrismLanguage => {
-    // Convert CodeLanguage to PrismLanguage
-    switch (lang) {
-      case CodeLanguage.JAVASCRIPT:
-        return 'javascript';
-      case CodeLanguage.TYPESCRIPT:
-        return 'typescript';
-      case CodeLanguage.JSX:
-        return 'jsx';
-      case CodeLanguage.C:
-        return 'c';
-      case CodeLanguage.CPP:
-        return 'cpp';
-    }
-  };
-
   const Pre = styled.pre`
     text-align: left;
     margin: 1em 0;

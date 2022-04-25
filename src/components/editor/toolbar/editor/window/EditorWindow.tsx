@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Button,
   Popover,
@@ -26,9 +26,6 @@ export enum WindowConfigType {
 }
 
 export const EditorWindow: React.FC<EditorWindowProps> = ({}) => {
-  const [windowConfigType, setWindowConfigType] = useState<WindowConfigType>(
-    WindowConfigType.PADDING
-  );
   return (
     <Flex justifyContent='center' mt={4}>
       <Popover isLazy placement='bottom'>

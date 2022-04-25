@@ -8,4 +8,7 @@ const config: ThemeConfig = {
 
 export const theme = extendTheme({
   config,
+  fonts: {
+    body: 'JetBrains Mono, monospace',
+  },
 });
