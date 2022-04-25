@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import {
   Button,
-  HStack,
   Popover,
   PopoverContent,
-  PopoverHeader,
   PopoverArrow,
   PopoverBody,
-  PopoverCloseButton,
   useColorModeValue,
+  Flex,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
 } from '@chakra-ui/react';
 import { PopoverTrigger } from '../popover/PopoverTrigger';
 import { BiWindow } from 'react-icons/bi';
@@ -27,56 +30,59 @@ export const EditorWindow: React.FC<EditorWindowProps> = ({}) => {
     WindowConfigType.PADDING
   );
   return (
-    <Popover placement='left-start'>
-      <PopoverTrigger>
-        <Button
-          leftIcon={
-            <span>
-              <BiWindow />
-            </span>
-          }
-          aria-label='Window Customization'
-          border='2px solid'
-        >
-          Window
-        </Button>
-      </PopoverTrigger>
-
-      <PopoverContent>
-        <PopoverHeader fontWeight='semibold'>
-          <HStack>
-            <Button
-              variant='ghost'
-              colorScheme='telegram'
-              onClick={() => setWindowConfigType(WindowConfigType.PADDING)}
-            >
-              Window
-            </Button>
-            <Button
-              variant='ghost'
-              colorScheme='telegram'
-              onClick={() => setWindowConfigType(WindowConfigType.SHADOW)}
-            >
-              Shadow
-            </Button>
-          </HStack>
-        </PopoverHeader>
-        <PopoverArrow />
-        <PopoverCloseButton />
-        <PopoverBody
-          px={0}
-          backgroundColor={useColorModeValue('gray.100', 'gray.800')}
-        >
-          {/* Window Display */}
-          {windowConfigType === WindowConfigType.PADDING && (
-            <EditorWindowDisplay />
-          )}
-          {/* Shadow */}
-          {windowConfigType === WindowConfigType.SHADOW && (
-            <EditorWindowShadow />
-          )}
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
+    <Flex justifyContent='center' mt={4}>
+      <Popover isLazy placement='bottom'>
+        <PopoverTrigger>
+          <Button
+            leftIcon={
+              <span>
+                <BiWindow />
+              </span>
+            }
+            w='fit-content'
+            aria-label='Window Customization'
+            border='2px solid'
+          >
+            Window
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent _focus={{ boxShadown: 'none' }}>
+          <PopoverArrow />
+          <PopoverBody
+            w='full'
+            backgroundColor={useColorModeValue('gray.100', 'gray.800')}
+          >
+            <Tabs isLazy isFitted colorScheme='blue'>
+              <TabList>
+                <Tab
+                  _focus={{ boxShadow: 'none' }}
+                  fontSize='xs'
+                  fontWeight='bold'
+                  w='50%'
+                >
+                  Fittment
+                </Tab>
+                <Tab
+                  _focus={{ boxShadow: 'none' }}
+                  fontSize='xs'
+                  fontWeight='bold'
+                  w='50%'
+                >
+                  Visuals
+                </Tab>
+              </TabList>
+              <TabPanels>
+                <TabPanel>
+                  <EditorWindowDisplay />
+                </TabPanel>
+                <TabPanel>
+                  <EditorWindowShadow />
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
+          </PopoverBody>
+        </PopoverContent>
+      </Popover>
+    </Flex>
   );
 };

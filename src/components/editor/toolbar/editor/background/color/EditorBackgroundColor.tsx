@@ -37,7 +37,7 @@ export const EditorBackgroundColor: React.FC<
   }, [backgroundColor]);
 
   return (
-    <Box pb={2} width='full'>
+    <Box py={2} width='full'>
       <HStack justifyContent='space-between' width='full'>
         <Text as='h2' fontWeight={600} mb={2}>
           Background Color

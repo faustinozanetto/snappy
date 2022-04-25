@@ -1,24 +1,24 @@
 import React from 'react';
 import {
   Button,
-  HStack,
+  Flex,
   Popover,
   PopoverArrow,
   PopoverBody,
-  PopoverCloseButton,
   PopoverContent,
-  PopoverHeader,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { PopoverTrigger } from '../popover/PopoverTrigger';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  BackgroundType,
-  selectBackgroundCustomization,
-  setBackgroundCustomization,
-} from 'state/slices/toolbar/ToolbarEditorCustomization.slice';
-import { EditorBackgroundConfiguration } from './EditorBackgroundConfiguration';
+import { selectBackgroundCustomization } from 'state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { parseBackgroundColor } from '@lib/HelperFunctions';
+import { EditorBackgroundColor } from './color/EditorBackgroundColor';
+import { EditorBackgroundImage } from './image/EditorBackgroundImage';
 
 interface EditorBackgroundProps {}
 
@@ -34,66 +34,61 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
   };
 
   return (
-    <Popover placement='left-start'>
-      <PopoverTrigger>
-        <Button
-          background={parseBackgroundColor(
-            backgroundCustomization.backgroundColor
-          )}
-          shadow={buttonShadow()}
-          _hover={{ bg: backgroundCustomization.backgroundColor }}
-          _focus={{ bg: backgroundCustomization.backgroundColor }}
-          _active={{ bg: backgroundCustomization.backgroundColor }}
-          border='2px solid'
-        >
-          Background
-        </Button>
-      </PopoverTrigger>
-
-      <PopoverContent>
-        <PopoverHeader fontWeight='semibold'>
-          <HStack>
-            {/* Color && Image Buttons */}
-            <Button
-              variant='ghost'
-              colorScheme='telegram'
-              onClick={() =>
-                dispatch(
-                  setBackgroundCustomization({
-                    backgroundType: BackgroundType.COLOR,
-                  })
-                )
-              }
-            >
-              Color
-            </Button>
-            <Button
-              variant='ghost'
-              colorScheme='telegram'
-              onClick={() =>
-                dispatch(
-                  setBackgroundCustomization({
-                    backgroundType: BackgroundType.IMAGE,
-                  })
-                )
-              }
-            >
-              Image
-            </Button>
-          </HStack>
-        </PopoverHeader>
-        <PopoverArrow />
-        <PopoverCloseButton />
-        <PopoverBody
-          px={0}
-          backgroundColor={useColorModeValue('gray.100', 'gray.800')}
-        >
-          {/* Background customization */}
-          <EditorBackgroundConfiguration
-            backgroundType={backgroundCustomization.backgroundType}
-          />
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
+    <Flex justifyContent='center' mt={4}>
+      <Popover isLazy placement='bottom'>
+        <PopoverTrigger>
+          <Button
+            background={parseBackgroundColor(
+              backgroundCustomization.backgroundColor
+            )}
+            w='fit-content'
+            shadow={buttonShadow()}
+            _hover={{ bg: backgroundCustomization.backgroundColor }}
+            _focus={{ bg: backgroundCustomization.backgroundColor }}
+            _active={{ bg: backgroundCustomization.backgroundColor }}
+            border='2px solid'
+          >
+            Background
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent _focus={{ boxShadown: 'none' }}>
+          <PopoverArrow />
+          <PopoverBody
+            w='full'
+            backgroundColor={useColorModeValue('gray.100', 'gray.800')}
+          >
+            <Tabs isLazy isFitted colorScheme='blue'>
+              {/* Options */}
+              <TabList>
+                <Tab
+                  _focus={{ boxShadow: 'none' }}
+                  fontSize='xs'
+                  fontWeight='bold'
+                  w='50%'
+                >
+                  Color
+                </Tab>
+                <Tab
+                  _focus={{ boxShadow: 'none' }}
+                  fontSize='xs'
+                  fontWeight='bold'
+                  w='50%'
+                >
+                  Image
+                </Tab>
+              </TabList>
+              <TabPanels>
+                <TabPanel>
+                  <EditorBackgroundColor />
+                </TabPanel>
+                <TabPanel>
+                  <EditorBackgroundImage />
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
+          </PopoverBody>
+        </PopoverContent>
+      </Popover>
+    </Flex>
   );
 };

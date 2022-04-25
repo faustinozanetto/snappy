@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@chakra-ui/react';
+import { VStack } from '@chakra-ui/react';
 
 export interface LayoutContainerProps {
   /** Children */
@@ -8,5 +8,5 @@ export interface LayoutContainerProps {
 
 export const LayoutContainer: React.FC<LayoutContainerProps> = (props) => {
   const { children } = props;
-  return <Box>{children}</Box>;
+  return <VStack>{children}</VStack>;
 };

@@ -46,7 +46,7 @@ export const EditorBackgroundImage: React.FC<
   return (
     <Flex
       flexDir='column'
-      pb={2}
+      py={2}
       width='full'
       justifyContent='center'
       alignContent='center'

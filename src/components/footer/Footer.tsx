@@ -17,33 +17,11 @@ interface FooterProps {}
 
 export const Footer: React.FC<FooterProps> = ({}) => {
   return (
-    <Box
-      as='footer'
-      bg={useColorModeValue('gray.50', 'gray.900')}
-      color={useColorModeValue('gray.700', 'gray.200')}
-      width='full'
-      py={4}
-    >
+    <Box as='footer' width='full' py={4}>
       <Container as={Stack} maxWidth='5xl' paddingY={10}>
         <SimpleGrid templateColumns={'1fr 1fr'} spacing={8}>
-          <Stack spacing={6}>
-            <SnapifyLogo
-              size='lg'
-              logoColor={useColorModeValue('black', 'white')}
-            />
-            <Text fontSize='md'>
-              © Conkis Studios 2022. All rights reserved
-            </Text>
-            {/* Social Links */}
-            <Stack direction='row' spacing={6}>
-              <FooterButton label='Twitter' href='/'>
-                <FaTwitter />
-              </FooterButton>
-              <FooterButton label='Discord' href='/'>
-                <FaDiscord />
-              </FooterButton>
-            </Stack>
-          </Stack>
+          <Text fontSize='md'>© Conkis Studios 2022. All rights reserved</Text>
+
           {/* Legal Links */}
           <Stack align='flex-start'>
             <Text fontWeight={'500'} fontSize={'xl'} mb={2}>

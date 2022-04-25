@@ -14,7 +14,7 @@ export const EditorWindowDisplay: React.FC<EditorWindowDisplayProps> = ({}) => {
   const windowCustomization = useSelector(selectWindowCustomization);
 
   return (
-    <VStack spacing={4} px={4}>
+    <VStack spacing={2}>
       {/* Padding Horizontal */}
       <CustomizationSlider
         label='Horizontal Padding'

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, Select } from '@chakra-ui/react';
+import { Box, Text, Select, HStack } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   FontFamily,
@@ -18,10 +18,12 @@ export const EditorFontList: React.FC<EditorFontListProps> = ({}) => {
   };
 
   return (
-    <Box pb={2} width='full'>
-      <Text as='h2' fontWeight={600} fontSize='lg' mb={2}>
-        Font List
-      </Text>
+    <Box py={2} width='full'>
+      <HStack justifyContent='space-between' width='full'>
+        <Text as='h2' fontWeight={600} mb={2}>
+          Font List
+        </Text>
+      </HStack>
       <Select
         placeholder='Choose a Font'
         onChange={handleFontChange}

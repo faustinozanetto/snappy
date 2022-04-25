@@ -71,68 +71,56 @@ export const Editor: React.FC<EditorProps> = ({}) => {
   };
 
   return (
-    <VStack position='relative'>
-      {/* Logo */}
-      <Box mt={24} mb={12}>
-        <SnapifyLogo
-          size='3xl'
-          logoColor={useColorModeValue('black', 'white')}
-        />
-      </Box>
-      {/* Main Content */}
-      <Container
-        maxW={['0em', '30em', '48em', '62em', '80em', '90em']}
-        padding={6}
-        backgroundColor={useColorModeValue('gray.200', 'gray.900')}
-        borderRadius='md'
+    <Container
+      maxW={['0em', '30em', '48em', '62em', '80em', '90em']}
+      padding={6}
+      backgroundColor={useColorModeValue('gray.200', 'gray.900')}
+      borderRadius='md'
+    >
+      {/* Editor Tool Bar */}
+      <HStack width='100%' my={6} justifyContent='center'>
+        <EditorToolBar exportRef={savedRef} />
+      </HStack>
+      {/* Export Container */}
+      <Flex
+        ref={savedRef}
+        alignItems='center'
+        justifyContent='center'
+        overflow='hidden'
       >
-        {/* Editor Tool Bar */}
-        <HStack width='100%' my={6} justifyContent='center'>
-          <EditorToolBar exportRef={savedRef} />
-        </HStack>
-        {/* Export Container */}
-        <Flex
-          ref={savedRef}
-          alignItems='center'
-          justifyContent='center'
-          overflow='hidden'
+        {/* Container */}
+        <Box
+          width='100%'
+          backgroundColor={parseBackgroundColor(
+            backgroundCustomization.backgroundColor
+          )}
+          paddingLeft={`${windowCustomization.paddingX * 3}px`}
+          paddingRight={`${windowCustomization.paddingX * 3}px`}
+          paddingTop={`${windowCustomization.paddingY * 3}px`}
+          paddingBottom={`${windowCustomization.paddingY * 3}px`}
+          backgroundRepeat='no-repeat'
+          backgroundSize='cover'
+          backgroundPosition='center'
+          backgroundImage={`url(${backgroundCustomization.backgroundImage})`}
+          backdropFilter={`${
+            backgroundCustomization.backgroudBlur > 0
+              ? `blur(${backgroundCustomization.backgroudBlur}px)`
+              : 'none'
+          }`}
         >
-          {/* Container */}
-          <Box
-            width='100%'
-            backgroundColor={parseBackgroundColor(
-              backgroundCustomization.backgroundColor
-            )}
-            paddingLeft={`${windowCustomization.paddingX * 3}px`}
-            paddingRight={`${windowCustomization.paddingX * 3}px`}
-            paddingTop={`${windowCustomization.paddingY * 3}px`}
-            paddingBottom={`${windowCustomization.paddingY * 3}px`}
-            backgroundRepeat='no-repeat'
-            backgroundSize='cover'
-            backgroundPosition='center'
-            backgroundImage={`url(${backgroundCustomization.backgroundImage})`}
-            backdropFilter={`${
-              backgroundCustomization.backgroudBlur > 0
-                ? `blur(${backgroundCustomization.backgroudBlur}px)`
-                : 'none'
-            }`}
-          >
-            {/* Editor Code Window */}
-            <EditorCodeContent
-              code={EXAMPLE_CODE}
-              language={codeCustomization.codeLanguage}
-              styles={{
-                borderRadius: `${windowCustomization.borderRadius}px`,
-                boxShadow:
-                  windowCustomization.shadow.boxShadow &&
-                  generateWindowShadow(
-                    windowCustomization.shadow.boxShadowSize
-                  ),
-              }}
-            />
-          </Box>
-        </Flex>
-      </Container>
-    </VStack>
+          {/* Editor Code Window */}
+          <EditorCodeContent
+            code={EXAMPLE_CODE}
+            language={codeCustomization.codeLanguage}
+            styles={{
+              borderRadius: `${windowCustomization.borderRadius}px`,
+              boxShadow:
+                windowCustomization.shadow.boxShadow &&
+                generateWindowShadow(windowCustomization.shadow.boxShadowSize),
+            }}
+          />
+        </Box>
+      </Flex>
+    </Container>
   );
 };

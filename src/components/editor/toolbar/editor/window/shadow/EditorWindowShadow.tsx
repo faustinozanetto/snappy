@@ -39,7 +39,7 @@ export const EditorWindowShadow: React.FC<EditorWindowShadowProps> = ({}) => {
   }, [shadowColor]);
 
   return (
-    <VStack spacing={4} px={4}>
+    <VStack spacing={2}>
       {/* Shadow Size */}
       <CustomizationSlider
         label='Shadow Size'
