@@ -1,4 +1,7 @@
-import React from 'react';
+import { themeToDict } from '@lib/HelperFunctions';
+import { HighlightThemeType } from '@lib/themes/HighlightTheme';
+import Prism from 'prismjs';
+import React, { Key, useEffect, useState } from 'react';
 
 type PrismGrammar = {
   [key: string]: any;
@@ -20,6 +23,40 @@ type Token = {
   empty?: boolean;
 };
 
+type PrismThemeEntry = {
+  color?: string;
+  backgroundColor?: string;
+  fontStyle?: 'normal' | 'italic';
+  fontWeight?:
+    | 'normal'
+    | 'bold'
+    | '100'
+    | '200'
+    | '300'
+    | '400'
+    | '500'
+    | '600'
+    | '700'
+    | '800'
+    | '900';
+  textDecorationLine?:
+    | 'none'
+    | 'underline'
+    | 'line-through'
+    | 'underline line-through';
+  opacity?: number;
+  [styleKey: string]: string | number | void;
+};
+
+type PrismTheme = {
+  plain: PrismThemeEntry;
+  styles: Array<{
+    types: string[];
+    style: PrismThemeEntry;
+    languages?: string[];
+  }>;
+};
+
 type PrismLib = {
   languages: LanguagesDict;
   tokenize: (
@@ -35,38 +72,80 @@ type PrismLib = {
     ) => void;
   };
 };
+export type StyleObj = {
+  [key: string]: string | number | null;
+};
+
+type LineInputProps = {
+  key?: Key;
+  style?: StyleObj;
+  className?: string;
+  line: Token[];
+  [key: string]: any;
+};
+
+type LineOutputProps = {
+  key?: Key;
+  style?: StyleObj;
+  className: string;
+  [key: string]: any;
+};
+
+type TokenInputProps = {
+  key?: Key;
+  style?: StyleObj;
+  className?: string;
+  token: Token;
+  [key: string]: any;
+};
+
+type TokenOutputProps = {
+  key?: Key;
+  style?: StyleObj;
+  className: string;
+  children: string;
+  [key: string]: any;
+};
+
+type RenderProps = {
+  tokens: Token[][];
+  className: string;
+  getLineProps: (input: LineInputProps) => LineOutputProps;
+  getTokenProps: (input: TokenInputProps) => TokenOutputProps;
+};
 
 interface CodeHighlightingProps {
   theme?: any;
   prism: PrismLib;
   code: string;
-  children?: React.ReactNode;
+  language: string;
+  children?: (props: RenderProps) => React.ReactNode;
 }
 
-class Highlight extends Component<Props, *> {
-  prevTheme: PrismTheme | void;
-  prevLanguage: Language | void;
-  themeDict: ThemeDict | void;
+export const CodeHighlighting: React.FC<CodeHighlightingProps> = (props) => {
+  const { prism, code, language, theme, children } = props;
+  const [themeDict, setThemeDict] = useState<HighlightThemeType>();
+  const [prevTheme, setPrevTheme] = useState<PrismTheme>();
+  const [prevLanguage, setPrevLanguage] = useState('');
 
-  getThemeDict = (props: Props): ThemeDict | void => {
+  const getThemeDict = (): HighlightThemeType => {
     if (
-      this.themeDict !== undefined &&
-      props.theme === this.prevTheme &&
-      props.language === this.prevLanguage
+      themeDict !== null &&
+      theme === prevTheme &&
+      language === prevLanguage
     ) {
-      return this.themeDict;
+      return themeDict;
     }
 
-    this.prevTheme = props.theme;
-    this.prevLanguage = props.language;
+    setPrevTheme(theme);
+    setPrevLanguage(language);
 
-    const themeDict = props.theme
-      ? themeToDict(props.theme, props.language)
-      : undefined;
-    return (this.themeDict = themeDict);
+    const newThemeDict = theme ? themeToDict(theme, language) : null;
+    setThemeDict(newThemeDict);
+    return newThemeDict;
   };
 
-  getLineProps = ({
+  const getLineProps = ({
     key,
     className,
     style,
@@ -76,45 +155,44 @@ class Highlight extends Component<Props, *> {
     const output: LineOutputProps = {
       ...rest,
       className: 'token-line',
-      style: undefined,
-      key: undefined,
+      style: null,
+      key: null,
     };
 
-    const themeDict = this.getThemeDict(this.props);
-    if (themeDict !== undefined) {
-      output.style = themeDict.plain;
+    const locThemeDict = getThemeDict();
+    if (locThemeDict !== null) {
+      output.style = locThemeDict.plain;
     }
 
-    if (style !== undefined) {
+    if (style !== null) {
       output.style =
-        output.style !== undefined ? { ...output.style, ...style } : style;
+        output.style !== null ? { ...output.style, ...style } : style;
     }
 
-    if (key !== undefined) output.key = key;
-    if (className) output.className += ` ${className}`;
-
+    if (key !== null) {
+      output.key = key;
+    }
+    if (className) {
+      output.className += ` ${className}`;
+    }
     return output;
   };
 
-  getStyleForToken = ({ types, empty }: Token) => {
+  const getStyleForToken = ({ types, empty }: Token) => {
     const typesSize = types.length;
-    const themeDict = this.getThemeDict(this.props);
+    const locThemeDict = getThemeDict();
 
-    if (themeDict === undefined) {
-      return undefined;
-    } else if (typesSize === 1 && types[0] === 'plain') {
-      return empty ? { display: 'inline-block' } : undefined;
-    } else if (typesSize === 1 && !empty) {
-      return themeDict[types[0]];
-    }
+    if (locThemeDict === null) return null;
+    else if (typesSize === 1 && types[0] === 'plain')
+      return empty ? { display: 'inline-block' } : null;
+    else if (typesSize === 1 && !empty) return themeDict[types[0]];
 
     const baseStyle = empty ? { display: 'inline-block' } : {};
-    // $FlowFixMe
-    const typeStyles = types.map((type) => themeDict[type]);
-    return Object.assign(baseStyle, ...typeStyles);
+    const typesStyles = types.map((type) => themeDict[type]);
+    return Object.assign(baseStyle, ...typesStyles);
   };
 
-  getTokenProps = ({
+  const getTokenProps = ({
     key,
     className,
     style,
@@ -125,26 +203,24 @@ class Highlight extends Component<Props, *> {
       ...rest,
       className: `token ${token.types.join(' ')}`,
       children: token.content,
-      style: this.getStyleForToken(token),
-      key: undefined,
+      style: getStyleForToken(token),
+      key: null,
     };
-
-    if (style !== undefined) {
+    if (style !== null) {
       output.style =
-        output.style !== undefined ? { ...output.style, ...style } : style;
+        output.style !== null ? { ...output.style, ...style } : style;
     }
 
-    if (key !== undefined) output.key = key;
+    if (key !== null) output.key = key;
     if (className) output.className += ` ${className}`;
-
     return output;
   };
 
-  tokenize = (
-    Prism: PrismLib,
+  const tokenize = (
+    prism: PrismLib,
     code: string,
     grammar: PrismGrammar,
-    language: Language
+    language: string
   ): Array<PrismToken | string> => {
     const env = {
       code,
@@ -154,36 +230,14 @@ class Highlight extends Component<Props, *> {
     };
 
     Prism.hooks.run('before-tokenize', env);
-    const tokens = (env.tokens = Prism.tokenize(
-      env.code,
-      env.grammar,
-      env.language
-    ));
+    const tokens = (env.tokens = Prism.tokenize(env.code, env.grammar));
     Prism.hooks.run('after-tokenize', env);
-
     return tokens;
   };
 
-  render(): Node {
-    const { Prism, language, code, children } = this.props;
+  useEffect(() => {
+    setThemeDict(getThemeDict());
+  }, []);
 
-    const themeDict = this.getThemeDict(this.props);
-
-    const grammar = Prism.languages[language];
-    const mixedTokens =
-      grammar !== undefined
-        ? this.tokenize(Prism, code, grammar, language)
-        : [code];
-    const tokens = normalizeTokens(mixedTokens);
-
-    return children({
-      tokens,
-      className: `prism-code language-${language}`,
-      style: themeDict !== undefined ? themeDict.root : {},
-      getLineProps: this.getLineProps,
-      getTokenProps: this.getTokenProps,
-    });
-  }
-}
-
-export default Highlight;
+  return <>{children}</>;
+};

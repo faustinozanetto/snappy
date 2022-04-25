@@ -1,3 +1,4 @@
+import { StyleObj } from '@components/editor/highlight/CodeHighlighting';
 import { Color } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { HighlightThemeType } from './themes/HighlightTheme';
 
@@ -9,10 +10,6 @@ import { HighlightThemeType } from './themes/HighlightTheme';
 export const parseBackgroundColor = (color: Color): string => {
   const { r, g, b, a } = color;
   return `rgba(${r}, ${g}, ${b}, ${a})`;
-};
-
-type StyleObj = {
-  [key: string]: string | number | null;
 };
 
 export const themeToDict = (theme: any, language: any): HighlightThemeType => {
