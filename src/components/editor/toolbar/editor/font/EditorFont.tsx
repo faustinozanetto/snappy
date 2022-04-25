@@ -16,6 +16,7 @@ import { FaFont } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { EditorFontList } from './EditorFontList';
 import { EditorFontSize } from './EditorFontSize';
+import { EditorLineHeigth } from './EditorLineHeigth';
 
 interface EditorFontProps {}
 
@@ -50,6 +51,8 @@ export const EditorFont: React.FC<EditorFontProps> = ({}) => {
             <EditorFontList />
             {/* Font Size */}
             <EditorFontSize />
+            {/* Line height */}
+            <EditorLineHeigth />
           </VStack>
         </PopoverBody>
       </PopoverContent>

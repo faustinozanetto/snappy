@@ -55,6 +55,7 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
       fontFeatureSettings: 'calt 1',
       fontSmooth: 'always',
       fontSize: `${fontCustomization.fontSize}px`,
+      lineHeight: `${fontCustomization.lineHeight}em`,
     };
     return newStyles;
   };

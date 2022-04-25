@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Text, Select } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  FontFamily,
   selectFontCustomization,
   setFontCustomization,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
@@ -26,10 +27,13 @@ export const EditorFontList: React.FC<EditorFontListProps> = ({}) => {
         onChange={handleFontChange}
         defaultValue={fontCustomization.fontFamily}
       >
-        <option value='Roboto'>Roboto</option>
-        <option value='JetBrains Mono'>JetBrains Mono</option>
-        <option value='Arial'>Arial</option>
-        <option value='Poppins'>Poppins</option>
+        {Object.keys(FontFamily).map((key) => {
+          return (
+            <option key={key} value={FontFamily[key]}>
+              {FontFamily[key]}
+            </option>
+          );
+        })}
       </Select>
     </Box>
   );

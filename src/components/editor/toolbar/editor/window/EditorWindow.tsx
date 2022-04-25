@@ -50,7 +50,7 @@ export const EditorWindow: React.FC<EditorWindowProps> = ({}) => {
               colorScheme='telegram'
               onClick={() => setWindowConfigType(WindowConfigType.PADDING)}
             >
-              Padding
+              Window
             </Button>
             <Button
               variant='ghost'

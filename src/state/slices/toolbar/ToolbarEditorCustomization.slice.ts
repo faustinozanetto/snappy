@@ -37,6 +37,17 @@ export enum CodeLanguage {
   JSX = 'jsx',
   TYPESCRIPT = 'typescript',
 }
+
+export enum FontFamily {
+  POPPINS = 'Poppins',
+  MONONOKI = 'Mononokai',
+  FIRACODE = 'Fira Code',
+  COURIERPRIME = 'Courier Prime',
+  JETBRAINSMONO = 'JetBrains Mono',
+  SPACEMONO = 'Space Mono',
+  SOURCECODEPRO = 'Source Code Pro',
+}
+
 export type Color = {
   r: number;
   g: number;
@@ -52,8 +63,9 @@ export type BackgroundCustomization = {
 };
 
 export type FontCustomization = {
-  fontFamily?: string;
+  fontFamily?: FontFamily;
   fontSize?: number;
+  lineHeight?: number;
 };
 
 export type CodeCustomization = {
@@ -107,8 +119,9 @@ const initialState: ToolBoxEditorCustomizationState = {
     },
   },
   fontCustomization: {
-    fontFamily: 'JetBrains Mono',
+    fontFamily: FontFamily.JETBRAINSMONO,
     fontSize: 16,
+    lineHeight: 1,
   },
   codeCustomization: {
     codeTheme: CodeTheme.EVA_LIGHT,
