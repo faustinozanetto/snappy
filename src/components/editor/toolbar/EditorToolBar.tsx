@@ -22,7 +22,7 @@ export const EditorToolBar: React.FC<EditorToolBarProps> = ({ exportRef }) => {
       {/* Theme */}
       <EditorCodeTheme />
       {/* Language */}
-      <EditorCode />
+      {/* <EditorCode /> */}
       {/* Window */}
       <EditorWindow />
       {/* Export */}

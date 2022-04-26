@@ -43,4 +43,6 @@ Snappy is being developed with a broad variety of technologies such as:
 git clone https://github.com/faustinozanetto/snappy # Clone the repo in the folder of choice.
 cd snappy # Cd into the cloned repo.
 yarn install # Install the deps with yarn or npm.
+cp .env.example .env # Copy the example env to the .env
+yarn start:dev # Start Snappy!.
 ```
