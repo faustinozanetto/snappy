@@ -10,7 +10,6 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { NavbarThemeToggler } from './NavbarThemeToggler';
-import { UserSignInButton } from './user/UserSignInButton';
 
 interface NavbarProps {}
 
@@ -28,9 +27,7 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={4}>
               {/* User */}
-              <HStack>
-                <UserSignInButton />
-              </HStack>
+              <HStack></HStack>
               <NavbarThemeToggler />
             </Stack>
           </Flex>
