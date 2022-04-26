@@ -92,7 +92,7 @@ export const Editor: React.FC<EditorProps> = ({}) => {
         <Box
           width='100%'
           style={{
-            background:
+            backgroundColor:
               backgroundCustomization.backgroundType === 'color'
                 ? parseBackgroundColor(backgroundCustomization.backgroundColor)
                 : backgroundCustomization.backgroundGradient,

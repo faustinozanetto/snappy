@@ -13,7 +13,6 @@ Snappy is an easy to use, powerful and customizable code snippet generator.
 - [TechStack](#👨🏻‍💻-tech-stack)
 - [Features](#🌌-features)
 - [Installation](#installation)
-- [Usage](#usage)
 
 ---
 

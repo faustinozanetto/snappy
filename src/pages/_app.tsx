@@ -6,11 +6,8 @@ import '@fontsource/mononoki';
 import '@fontsource/poppins';
 import '@fontsource/space-mono';
 import '@fontsource/source-code-pro';
-import '@components/editor/toolbar/editor/background/fade/_colorpicker.scss';
-
 import * as gtag from '@lib/GoogleTag';
 import ExportProvider from '@state/ExportContext';
-import { SessionProvider } from 'next-auth/react';
 import { ChakraProvider } from '@chakra-ui/react';
 import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
@@ -37,12 +34,10 @@ const SnapifyApp = (props: AppProps) => {
   return (
     <Provider store={store}>
       <ExportProvider>
-        <SessionProvider session={pageProps.session}>
-          <ChakraProvider theme={theme}>
-            <GoogleAnalytics />
-            <Component {...pageProps} />
-          </ChakraProvider>
-        </SessionProvider>
+        <ChakraProvider theme={theme}>
+          <GoogleAnalytics />
+          <Component {...pageProps} />
+        </ChakraProvider>
       </ExportProvider>
     </Provider>
   );

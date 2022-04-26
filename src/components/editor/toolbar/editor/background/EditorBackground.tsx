@@ -23,7 +23,6 @@ import {
 import { parseBackgroundColor } from '@lib/HelperFunctions';
 import { EditorBackgroundColor } from './color/EditorBackgroundColor';
 import { EditorBackgroundImage } from './image/EditorBackgroundImage';
-import { EditorBackgroundFade } from './fade/EditorBackgroundFade';
 
 interface EditorBackgroundProps {}
 
@@ -80,21 +79,7 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
                 >
                   Color
                 </Tab>
-                {/* <Tab
-                  _focus={{ boxShadow: 'none' }}
-                  fontSize='xs'
-                  fontWeight='bold'
-                  w='50%'
-                  onClick={() => {
-                    dispatch(
-                      setBackgroundCustomization({
-                        backgroundType: BackgroundType.GRADIENT,
-                      })
-                    );
-                  }}
-                >
-                  Fade
-                </Tab> */}
+
                 <Tab
                   _focus={{ boxShadow: 'none' }}
                   fontSize='xs'
@@ -115,9 +100,7 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
                 <TabPanel>
                   <EditorBackgroundColor />
                 </TabPanel>
-                {/* <TabPanel>
-                  <EditorBackgroundFade />
-                </TabPanel> */}
+
                 <TabPanel>
                   <EditorBackgroundImage />
                 </TabPanel>

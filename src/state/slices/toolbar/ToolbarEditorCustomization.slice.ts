@@ -126,7 +126,7 @@ const initialState: ToolBoxEditorCustomizationState = {
   fontCustomization: {
     fontFamily: FontFamily.JETBRAINSMONO,
     fontSize: 16,
-    lineHeight: 1,
+    lineHeight: 1.25,
   },
   codeCustomization: {
     codeTheme: CodeTheme.EVA_LIGHT,
