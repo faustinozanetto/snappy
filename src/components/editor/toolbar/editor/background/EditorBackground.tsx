@@ -15,10 +15,15 @@ import {
 } from '@chakra-ui/react';
 import { PopoverTrigger } from '../popover/PopoverTrigger';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectBackgroundCustomization } from 'state/slices/toolbar/ToolbarEditorCustomization.slice';
+import {
+  BackgroundType,
+  selectBackgroundCustomization,
+  setBackgroundCustomization,
+} from 'state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { parseBackgroundColor } from '@lib/HelperFunctions';
 import { EditorBackgroundColor } from './color/EditorBackgroundColor';
 import { EditorBackgroundImage } from './image/EditorBackgroundImage';
+import { EditorBackgroundFade } from './fade/EditorBackgroundFade';
 
 interface EditorBackgroundProps {}
 
@@ -65,6 +70,13 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
                   fontSize='xs'
                   fontWeight='bold'
                   w='50%'
+                  onClick={() => {
+                    dispatch(
+                      setBackgroundCustomization({
+                        backgroundType: BackgroundType.COLOR,
+                      })
+                    );
+                  }}
                 >
                   Color
                 </Tab>
@@ -73,6 +85,28 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
                   fontSize='xs'
                   fontWeight='bold'
                   w='50%'
+                  onClick={() => {
+                    dispatch(
+                      setBackgroundCustomization({
+                        backgroundType: BackgroundType.GRADIENT,
+                      })
+                    );
+                  }}
+                >
+                  Fade
+                </Tab>
+                <Tab
+                  _focus={{ boxShadow: 'none' }}
+                  fontSize='xs'
+                  fontWeight='bold'
+                  w='50%'
+                  onClick={() => {
+                    dispatch(
+                      setBackgroundCustomization({
+                        backgroundType: BackgroundType.IMAGE,
+                      })
+                    );
+                  }}
                 >
                   Image
                 </Tab>
@@ -80,6 +114,9 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
               <TabPanels>
                 <TabPanel>
                   <EditorBackgroundColor />
+                </TabPanel>
+                <TabPanel>
+                  <EditorBackgroundFade />
                 </TabPanel>
                 <TabPanel>
                   <EditorBackgroundImage />

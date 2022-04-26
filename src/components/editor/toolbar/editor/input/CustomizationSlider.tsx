@@ -65,7 +65,7 @@ export const CustomizationSlider: React.FC<CustomizationSliderProps> = (
           value={range[0]}
           mt='1'
           ml='-2.5'
-          fontSize='sm'
+          fontSize='xs'
           fontWeight={500}
         >
           {range[0]} {valueType !== 'none' && valueType}
@@ -83,7 +83,7 @@ export const CustomizationSlider: React.FC<CustomizationSliderProps> = (
                   value={value}
                   mt='1'
                   ml='-2.5'
-                  fontSize='sm'
+                  fontSize='xs'
                   fontWeight={500}
                 >
                   {value.toFixed(1)} {valueType !== 'none' && valueType}
@@ -97,7 +97,7 @@ export const CustomizationSlider: React.FC<CustomizationSliderProps> = (
           value={range[1]}
           mt='1'
           ml='-2.5'
-          fontSize='sm'
+          fontSize='xs'
           fontWeight={500}
         >
           {range[1]} {valueType !== 'none' && valueType}

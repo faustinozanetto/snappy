@@ -4,6 +4,7 @@ import { RootState } from 'state/SnapifyStore';
 export enum BackgroundType {
   COLOR = 'color',
   IMAGE = 'image',
+  GRADIENT = 'gradient',
 }
 
 export enum CodeTheme {
@@ -58,6 +59,7 @@ export type Color = {
 export type BackgroundCustomization = {
   backgroundType?: BackgroundType;
   backgroundColor?: Color;
+  backgroundGradient?: string;
   backgroundImage?: string;
   backgroudBlur?: number;
 };
@@ -112,6 +114,8 @@ const initialState: ToolBoxEditorCustomizationState = {
     backgroundType: BackgroundType.COLOR,
     backgroundImage: '',
     backgroudBlur: 0,
+    backgroundGradient:
+      'linear-gradient(270deg, rgb(255, 126, 179) 0%, rgb(255, 117, 140) 100%)',
     backgroundColor: {
       r: 0,
       g: 195,

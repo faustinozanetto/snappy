@@ -128,9 +128,10 @@ export type DefaultProps = {
   theme: PrismTheme;
 };
 export const defaultProps: DefaultProps = {
+  // @ts-ignore
   theme: NIGHT_OWL,
 };
-
+// @ts-ignore
 export const CodeHighlighting: React.FC<CodeHighlightingProps> = (props) => {
   const { code, language, theme, children } = props;
   const [themeDict, setThemeDict] = useState<HighlightThemeType>();

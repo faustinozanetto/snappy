@@ -80,7 +80,7 @@ export const EditorBackgroundImage: React.FC<
         </HStack>
       </Box>
       {/* Background blur */}
-      <CustomizationSlider
+      {/* <CustomizationSlider
         label='Background Blur'
         range={[0, 20]}
         valueType='px'
@@ -88,7 +88,7 @@ export const EditorBackgroundImage: React.FC<
         onUpdated={(value) =>
           dispatch(setBackgroundCustomization({ backgroudBlur: value }))
         }
-      />
+      /> */}
     </Flex>
   );
 };

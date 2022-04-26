@@ -43,7 +43,6 @@ export const EditorWindowDisplay: React.FC<EditorWindowDisplayProps> = ({}) => {
         range={[0, 50]}
         allSteps={true}
         allStepsSize={10}
-        valueType='px'
         defaultValue={windowCustomization.borderRadius}
         onUpdated={(value) =>
           dispatch(setWindowCustomization({ borderRadius: value }))

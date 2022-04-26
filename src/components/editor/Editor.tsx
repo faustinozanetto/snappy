@@ -91,9 +91,12 @@ export const Editor: React.FC<EditorProps> = ({}) => {
         {/* Container */}
         <Box
           width='100%'
-          backgroundColor={parseBackgroundColor(
-            backgroundCustomization.backgroundColor
-          )}
+          style={{
+            background:
+              backgroundCustomization.backgroundType === 'color'
+                ? parseBackgroundColor(backgroundCustomization.backgroundColor)
+                : backgroundCustomization.backgroundGradient,
+          }}
           paddingLeft={`${windowCustomization.paddingX * 3}px`}
           paddingRight={`${windowCustomization.paddingX * 3}px`}
           paddingTop={`${windowCustomization.paddingY * 3}px`}

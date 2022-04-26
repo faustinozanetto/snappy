@@ -6,6 +6,8 @@ import '@fontsource/mononoki';
 import '@fontsource/poppins';
 import '@fontsource/space-mono';
 import '@fontsource/source-code-pro';
+import '@components/editor/toolbar/editor/background/fade/_colorpicker.scss';
+
 import * as gtag from '@lib/GoogleTag';
 import ExportProvider from '@state/ExportContext';
 import { SessionProvider } from 'next-auth/react';
