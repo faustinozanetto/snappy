@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import {
-  Button,
   VStack,
   Popover,
   PopoverArrow,
@@ -21,6 +20,7 @@ import {
 } from '@chakra-ui/react';
 import { FaSave } from 'react-icons/fa';
 import { PopoverTrigger } from '../popover/PopoverTrigger';
+import { Button } from '@components/ui/Button';
 import {
   selectExportCustomization,
   FileExtension,

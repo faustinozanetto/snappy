@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Button,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -13,6 +12,7 @@ import {
   TabPanels,
   Tabs,
 } from '@chakra-ui/react';
+import { Button } from '@components/ui/Button';
 import { PopoverTrigger } from '../popover/PopoverTrigger';
 import { FaFont } from 'react-icons/fa';
 import { EditorFontList } from './EditorFontList';

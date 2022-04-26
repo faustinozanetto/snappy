@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Button,
   Flex,
   Popover,
   PopoverArrow,
@@ -23,6 +22,7 @@ import {
 import { parseBackgroundColor } from '@lib/HelperFunctions';
 import { EditorBackgroundColor } from './color/EditorBackgroundColor';
 import { EditorBackgroundImage } from './image/EditorBackgroundImage';
+import { Button } from '@components/ui/Button';
 
 interface EditorBackgroundProps {}
 

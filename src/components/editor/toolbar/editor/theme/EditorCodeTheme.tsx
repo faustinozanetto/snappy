@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Button,
   VStack,
   Popover,
   PopoverArrow,
@@ -16,6 +15,7 @@ import {
   TabPanel,
   TabPanels,
 } from '@chakra-ui/react';
+import { Button } from '@components/ui/Button';
 import { IoMdColorPalette } from 'react-icons/io';
 import { PopoverTrigger } from '../popover/PopoverTrigger';
 import { EditorCodeThemeList } from './EditorCodeThemeList';

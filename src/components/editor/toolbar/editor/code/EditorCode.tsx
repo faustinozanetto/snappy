@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Tooltip,
-  Button,
   VStack,
   Popover,
   PopoverArrow,
@@ -17,6 +16,7 @@ import {
   TabPanels,
   Tabs,
 } from '@chakra-ui/react';
+import { Button } from '@components/ui/Button';
 import { PopoverTrigger } from '../popover/PopoverTrigger';
 import { FaCode } from 'react-icons/fa';
 import { EditorCodeLanguageList } from './EditorCodeLanguageList';

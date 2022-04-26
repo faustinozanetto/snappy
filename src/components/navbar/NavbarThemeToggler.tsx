@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button, useColorMode } from '@chakra-ui/react';
+import { useColorMode } from '@chakra-ui/react';
 import { FiMoon } from 'react-icons/fi';
 import { FiSun } from 'react-icons/fi';
+import { Button } from '@components/ui/Button';
 
 interface NavbarThemeTogglerProps {}
 

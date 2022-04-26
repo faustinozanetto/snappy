@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Button,
   Popover,
   PopoverContent,
   PopoverArrow,
@@ -17,6 +16,7 @@ import { PopoverTrigger } from '../popover/PopoverTrigger';
 import { BiWindow } from 'react-icons/bi';
 import { EditorWindowDisplay } from './display/EditorWindowDisplay';
 import { EditorWindowShadow } from './shadow/EditorWindowShadow';
+import { Button } from '@components/ui/Button';
 
 interface EditorWindowProps {}
 
