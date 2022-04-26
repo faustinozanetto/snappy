@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import Editor from 'react-simple-code-editor';
 import { useSelector } from 'react-redux';
