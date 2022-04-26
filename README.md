@@ -1,6 +1,6 @@
 # Snappy
 
-![Alt text](public\images\snappy-showcase.png?raw=true 'Showcase')
+![Alt text](public/images/snappy-showcase.png?raw=true 'Showcase')
 
 ## 👀 What is Snappy
 
