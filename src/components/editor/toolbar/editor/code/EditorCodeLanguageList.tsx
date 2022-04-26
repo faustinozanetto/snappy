@@ -20,9 +20,7 @@ export const EditorCodeLanguageList: React.FC<
   const handleCodeLanguageChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const language: CodeLanguage =
-      CodeLanguage[event.target.value.toUpperCase()];
-    dispatch(setCodeCustomization({ codeLanguage: language }));
+    dispatch(setCodeCustomization({ codeLanguage: event.target.value }));
   };
 
   /**
@@ -43,13 +41,12 @@ export const EditorCodeLanguageList: React.FC<
         placeholder='Choose a Language'
         onChange={handleCodeLanguageChange}
       >
-        {Object.values(CodeLanguage).map((key) => {
-          return (
-            <option key={key} value={key}>
-              {capitalizeLanguageName(key)}
-            </option>
-          );
-        })}
+        {/* Map all options from CodeLanguage */}
+        {Object.keys(CodeLanguage).map((language) => (
+          <option key={language} value={language}>
+            {capitalizeLanguageName(language.toLowerCase())}
+          </option>
+        ))}
       </Select>
     </Box>
   );

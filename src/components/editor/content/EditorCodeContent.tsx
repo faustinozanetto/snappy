@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Editor from 'react-simple-code-editor';
-import Prism, { highlight } from 'prismjs';
 import { useSelector } from 'react-redux';
 import {
   CodeLanguage,
   selectCodeCustomization,
   selectFontCustomization,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
-
+import Highlight, { defaultProps } from 'prism-react-renderer';
 // THEMES
 import styled from '@emotion/styled';
 import { NIGHT_OWL } from '@lib/themes/NightOwl.theme';
@@ -15,7 +14,6 @@ import {
   HighlightThemeType,
   selectThemeFile,
 } from '@lib/themes/HighlightTheme';
-import { CodeHighlighting, defaultProps } from '../highlight/CodeHighlighting';
 
 interface EditorCodeContentProps {
   code?: string;
@@ -85,7 +83,12 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
    * @returns the highlighed code.
    */
   const highLightCode = (codeToHighlight: string) => (
-    <CodeHighlighting {...defaultProps} code={codeToHighlight} language='jsx'>
+    <Highlight
+      {...defaultProps}
+      code={codeToHighlight}
+      // @ts-ignore
+      language={codeCustomization.codeLanguage.toLowerCase()}
+    >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <Pre className={className} style={{ ...generateCustomStyles() }}>
           {tokens.map((line, lineIndex) => {
@@ -104,7 +107,7 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
           })}
         </Pre>
       )}
-    </CodeHighlighting>
+    </Highlight>
   );
 
   return (
