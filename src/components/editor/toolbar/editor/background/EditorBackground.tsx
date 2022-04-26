@@ -80,7 +80,7 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
                 >
                   Color
                 </Tab>
-                <Tab
+                {/* <Tab
                   _focus={{ boxShadow: 'none' }}
                   fontSize='xs'
                   fontWeight='bold'
@@ -94,7 +94,7 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
                   }}
                 >
                   Fade
-                </Tab>
+                </Tab> */}
                 <Tab
                   _focus={{ boxShadow: 'none' }}
                   fontSize='xs'
@@ -115,9 +115,9 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
                 <TabPanel>
                   <EditorBackgroundColor />
                 </TabPanel>
-                <TabPanel>
+                {/* <TabPanel>
                   <EditorBackgroundFade />
-                </TabPanel>
+                </TabPanel> */}
                 <TabPanel>
                   <EditorBackgroundImage />
                 </TabPanel>
