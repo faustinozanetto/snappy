@@ -11,11 +11,12 @@ import ExportProvider from '@state/ExportContext';
 import { ChakraProvider } from '@chakra-ui/react';
 import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
-import { store } from 'state/SnapifyStore';
+import { persistor, store } from 'state/SnapifyStore';
 import { theme } from '@styles/themes';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { GoogleAnalytics } from '@components/google/GoogleAnalytics';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const SnapifyApp = (props: AppProps) => {
   const { Component, pageProps } = props;
@@ -33,12 +34,14 @@ const SnapifyApp = (props: AppProps) => {
 
   return (
     <Provider store={store}>
-      <ExportProvider>
-        <ChakraProvider theme={theme}>
-          <GoogleAnalytics />
-          <Component {...pageProps} />
-        </ChakraProvider>
-      </ExportProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <ExportProvider>
+          <ChakraProvider theme={theme}>
+            <GoogleAnalytics />
+            <Component {...pageProps} />
+          </ChakraProvider>
+        </ExportProvider>
+      </PersistGate>
     </Provider>
   );
 };

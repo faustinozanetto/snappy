@@ -2,9 +2,10 @@ import React from 'react';
 import { Box, Text, Select } from '@chakra-ui/react';
 import {
   CodeLanguage,
+  selectCodeCustomization,
   setCodeCustomization,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface EditorCodeLanguageListProps {}
 
@@ -12,6 +13,7 @@ export const EditorCodeLanguageList: React.FC<
   EditorCodeLanguageListProps
 > = ({}) => {
   const dispatch = useDispatch();
+  const codeCustomization = useSelector(selectCodeCustomization);
 
   /**
    * It calls the setCodeLanguage action
@@ -40,6 +42,7 @@ export const EditorCodeLanguageList: React.FC<
       <Select
         placeholder='Choose a Language'
         onChange={handleCodeLanguageChange}
+        defaultValue={codeCustomization.codeLanguage}
       >
         {/* Map all options from CodeLanguage */}
         {Object.keys(CodeLanguage).map((language) => (
