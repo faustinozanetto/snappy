@@ -1,6 +1,6 @@
 {
   "name": "snappy",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Create and share your code snippets.",
   "main": "index.js",
   "author": "Faustino Zanetto <faustizanetto@gmail.com>",
