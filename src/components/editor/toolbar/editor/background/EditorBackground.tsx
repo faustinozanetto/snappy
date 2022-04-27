@@ -23,6 +23,7 @@ import { parseBackgroundColor } from '@lib/HelperFunctions';
 import { EditorBackgroundColor } from './color/EditorBackgroundColor';
 import { EditorBackgroundImage } from './image/EditorBackgroundImage';
 import { Button } from '@components/ui/Button';
+import { EditorBackgroundGradient } from './gradient/EditorBackgroundGradient';
 
 interface EditorBackgroundProps {}
 
@@ -79,7 +80,21 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
                 >
                   Color
                 </Tab>
-
+                <Tab
+                  _focus={{ boxShadow: 'none' }}
+                  fontSize='xs'
+                  fontWeight='bold'
+                  w='50%'
+                  onClick={() => {
+                    dispatch(
+                      setBackgroundCustomization({
+                        backgroundType: BackgroundType.GRADIENT,
+                      })
+                    );
+                  }}
+                >
+                  Gradient
+                </Tab>
                 <Tab
                   _focus={{ boxShadow: 'none' }}
                   fontSize='xs'
@@ -100,7 +115,16 @@ export const EditorBackground: React.FC<EditorBackgroundProps> = ({}) => {
                 <TabPanel>
                   <EditorBackgroundColor />
                 </TabPanel>
-
+                <TabPanel>
+                  <EditorBackgroundGradient
+                    defaultColors={
+                      backgroundCustomization.backgroundGradient.data.colors
+                    }
+                    defaultType={
+                      backgroundCustomization.backgroundGradient.data.type
+                    }
+                  />
+                </TabPanel>
                 <TabPanel>
                   <EditorBackgroundImage />
                 </TabPanel>

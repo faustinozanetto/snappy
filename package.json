@@ -34,6 +34,7 @@
     "prismjs": "^1.28.0",
     "react": "^18.0.0",
     "react-color": "^2.19.3",
+    "react-colorful": "^5.5.1",
     "react-dom": "^18.0.0",
     "react-dropzone": "^12.0.5",
     "react-icons": "^4.3.1",

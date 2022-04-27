@@ -79,10 +79,22 @@ export type Color = {
   a: number;
 };
 
+export type GradientColor = Color & {
+  position: number;
+};
+
+export type BackgroundGradient = {
+  colors: GradientColor[];
+  type: 'linear' | 'radial';
+};
+
 export type BackgroundCustomization = {
   backgroundType?: BackgroundType;
   backgroundColor?: Color;
-  backgroundGradient?: string;
+  backgroundGradient?: {
+    data: BackgroundGradient;
+    generated: string;
+  };
   backgroundImage?: string;
   backgroudBlur?: number;
 };
@@ -137,8 +149,29 @@ const initialState: ToolBoxEditorCustomizationState = {
     backgroundType: BackgroundType.COLOR,
     backgroundImage: '',
     backgroudBlur: 0,
-    backgroundGradient:
-      'linear-gradient(270deg, rgb(255, 126, 179) 0%, rgb(255, 117, 140) 100%)',
+    backgroundGradient: {
+      data: {
+        colors: [
+          {
+            r: 44,
+            g: 0,
+            b: 177,
+            a: 1,
+            position: 0,
+          },
+          {
+            r: 245,
+            g: 0,
+            b: 210,
+            a: 1,
+            position: 1,
+          },
+        ],
+        type: 'linear',
+      },
+      generated:
+        'linear-gradient(to right, rgba(44,0,177,1) 0%, rgba(245,0,210,1) 100%)',
+    },
     backgroundColor: {
       r: 0,
       g: 195,

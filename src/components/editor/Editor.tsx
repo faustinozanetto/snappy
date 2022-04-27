@@ -91,12 +91,13 @@ export const Editor: React.FC<EditorProps> = ({}) => {
         {/* Container */}
         <Box
           width='100%'
-          style={{
-            backgroundColor:
-              backgroundCustomization.backgroundType === 'color'
-                ? parseBackgroundColor(backgroundCustomization.backgroundColor)
-                : backgroundCustomization.backgroundGradient,
-          }}
+          background={
+            backgroundCustomization.backgroundType === 'color'
+              ? parseBackgroundColor(backgroundCustomization.backgroundColor)
+              : backgroundCustomization.backgroundType === 'gradient'
+              ? backgroundCustomization.backgroundGradient.generated
+              : `url(${backgroundCustomization.backgroundImage})`
+          }
           paddingLeft={`${windowCustomization.paddingX * 3}px`}
           paddingRight={`${windowCustomization.paddingX * 3}px`}
           paddingTop={`${windowCustomization.paddingY * 3}px`}
@@ -104,7 +105,6 @@ export const Editor: React.FC<EditorProps> = ({}) => {
           backgroundRepeat='no-repeat'
           backgroundSize='cover'
           backgroundPosition='center'
-          backgroundImage={`url(${backgroundCustomization.backgroundImage})`}
           backdropFilter={`${
             backgroundCustomization.backgroudBlur > 0
               ? `blur(${backgroundCustomization.backgroudBlur}px)`

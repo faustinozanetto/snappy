@@ -2,14 +2,16 @@ import React from 'react';
 import { Box, Text, Select } from '@chakra-ui/react';
 import {
   CodeTheme,
+  selectCodeCustomization,
   setCodeCustomization,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface EditorCodeThemeListProps {}
 
 export const EditorCodeThemeList: React.FC<EditorCodeThemeListProps> = ({}) => {
   const dispatch = useDispatch();
+  const codeCustomization = useSelector(selectCodeCustomization);
 
   /**
    * It calls the setCodeTheme action
@@ -36,7 +38,11 @@ export const EditorCodeThemeList: React.FC<EditorCodeThemeListProps> = ({}) => {
       <Text as='h2' fontWeight={600} fontSize='lg' mb={2}>
         Themes
       </Text>
-      <Select placeholder='Choose a Theme' onChange={handleCodeThemeChange}>
+      <Select
+        placeholder='Choose a Theme'
+        onChange={handleCodeThemeChange}
+        defaultValue={CodeTheme[codeCustomization.codeTheme]}
+      >
         {Object.keys(CodeTheme).map((key) => {
           return (
             <option key={key} value={key}>
