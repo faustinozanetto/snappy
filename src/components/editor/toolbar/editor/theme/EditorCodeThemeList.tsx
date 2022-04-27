@@ -20,7 +20,7 @@ export const EditorCodeThemeList: React.FC<EditorCodeThemeListProps> = ({}) => {
   const handleCodeThemeChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const theme: CodeTheme = CodeTheme[event.target.value.toUpperCase()];
+    const theme: CodeTheme = event.target.value as CodeTheme;
     dispatch(setCodeCustomization({ codeTheme: theme }));
   };
 
@@ -39,13 +39,12 @@ export const EditorCodeThemeList: React.FC<EditorCodeThemeListProps> = ({}) => {
         Themes
       </Text>
       <Select
-        placeholder='Choose a Theme'
         onChange={handleCodeThemeChange}
-        defaultValue={CodeTheme[codeCustomization.codeTheme]}
+        defaultValue={codeCustomization.codeTheme}
       >
         {Object.keys(CodeTheme).map((key) => {
           return (
-            <option key={key} value={key}>
+            <option key={key} value={CodeTheme[key]}>
               {capitalizeThemeName(CodeTheme[key])}
             </option>
           );

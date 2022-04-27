@@ -1,4 +1,4 @@
-import React, { createRef } from 'react';
+import React, { createRef, useEffect, useState } from 'react';
 import {
   Box,
   Container,
@@ -10,6 +10,7 @@ import {
 import { EditorToolBar } from './toolbar/EditorToolBar';
 import { parseBackgroundColor } from '@lib/HelperFunctions';
 import {
+  CodeTheme,
   Color,
   selectBackgroundCustomization,
   selectCodeCustomization,
@@ -19,6 +20,12 @@ import { useSelector } from 'react-redux';
 import { EditorCodeContent } from './content/EditorCodeContent';
 import SnapifyLogo from '@components/branding/SnapifyLogo';
 import { EXAMPLE_CODE } from '@lib/Constants';
+import {
+  GenerateHighlight,
+  HighlightThemeType,
+  selectThemeFile,
+} from '@lib/themes/HighlightTheme';
+import { NIGHT_OWL } from '@lib/themes/NightOwl.theme';
 
 interface EditorProps {}
 
@@ -30,6 +37,8 @@ type ShadowEntry = {
 export const Editor: React.FC<EditorProps> = ({}) => {
   const savedRef = createRef<HTMLDivElement>();
   const backgroundCustomization = useSelector(selectBackgroundCustomization);
+  const [highlightTheme, setHighlightTheme] =
+    useState<HighlightThemeType>(NIGHT_OWL);
   const codeCustomization = useSelector(selectCodeCustomization);
   const windowCustomization = useSelector(selectWindowCustomization);
 
@@ -69,6 +78,14 @@ export const Editor: React.FC<EditorProps> = ({}) => {
 
     return shadow.join(', ');
   };
+
+  /**
+   * Update the theme object with the new one from redux state.
+   */
+  useEffect(() => {
+    const parsedTheme = selectThemeFile(codeCustomization.codeTheme);
+    setHighlightTheme(parsedTheme);
+  }, [codeCustomization.codeTheme]);
 
   return (
     <Container
@@ -120,8 +137,12 @@ export const Editor: React.FC<EditorProps> = ({}) => {
               boxShadow:
                 windowCustomization.shadow.boxShadow &&
                 generateWindowShadow(windowCustomization.shadow.boxShadowSize),
+              backgroundColor: highlightTheme.plain.backgroundColor,
+              color: highlightTheme.plain.color,
             }}
+            theme={highlightTheme}
           />
+          {codeCustomization.codeTheme && GenerateHighlight(highlightTheme)}
         </Box>
       </Flex>
     </Container>

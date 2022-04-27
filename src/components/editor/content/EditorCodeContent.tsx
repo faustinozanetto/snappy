@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Editor from 'react-simple-code-editor';
 import { useSelector } from 'react-redux';
 import {
@@ -6,36 +6,23 @@ import {
   selectCodeCustomization,
   selectFontCustomization,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
-import Highlight, { defaultProps } from 'prism-react-renderer';
+import Highlight, { defaultProps, PrismTheme } from 'prism-react-renderer';
 // THEMES
 import styled from '@emotion/styled';
-import { NIGHT_OWL } from '@lib/themes/NightOwl.theme';
-import {
-  HighlightThemeType,
-  selectThemeFile,
-} from '@lib/themes/HighlightTheme';
+import { HighlightThemeType } from '@lib/themes/HighlightTheme';
 
 interface EditorCodeContentProps {
   code?: string;
   language?: CodeLanguage;
   styles?: React.CSSProperties;
+  theme?: HighlightThemeType;
 }
 
 export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
-  const { code: propsCode, styles, language } = props;
+  const { code: propsCode, styles, theme, language } = props;
   const [code, setCode] = useState(propsCode || '');
-  const [highlightTheme, setHighlightTheme] =
-    useState<HighlightThemeType>(NIGHT_OWL);
   const fontCustomization = useSelector(selectFontCustomization);
   const codeCustomization = useSelector(selectCodeCustomization);
-
-  /**
-   * Update the theme object with the new one from redux state.
-   */
-  useEffect(() => {
-    const parsedTheme = selectThemeFile(codeCustomization.codeTheme);
-    setHighlightTheme(parsedTheme);
-  }, [codeCustomization]);
 
   /**
    *
@@ -87,6 +74,8 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
       {...defaultProps}
       code={codeToHighlight}
       // @ts-ignore
+      theme={theme as PrismTheme}
+      // @ts-ignore
       language={codeCustomization.codeLanguage.toLowerCase()}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
@@ -120,8 +109,6 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
       style={{
         ...styles,
         ...generateCustomStyles(),
-        backgroundColor: highlightTheme.plain.backgroundColor,
-        color: highlightTheme.plain.color,
       }}
     />
   );

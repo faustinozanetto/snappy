@@ -16,6 +16,10 @@ import { MONOKAI } from './Monokai.theme';
 import { ROSE_PINE } from './RosePine.theme';
 import { EVA_LIGHT } from './EvaLight.theme';
 import { VS_LIGHT } from './VsLiight.theme';
+import { GITHUB } from './Github.theme';
+import { OCEANICNEXT } from './OceanicNext.theme';
+import { DUOTONEDARK } from './DuotoneDark.theme';
+import { PALENIGHT } from './Palenight.theme';
 
 export type ThemeData = {
   types: string[];
@@ -34,6 +38,7 @@ export type HighlightThemeType = {
 };
 
 export const selectThemeFile = (theme: CodeTheme): HighlightThemeType => {
+  console.log({ theme });
   switch (theme) {
     case CodeTheme.VS_LIGHT:
       return VS_LIGHT;
@@ -48,8 +53,6 @@ export const selectThemeFile = (theme: CodeTheme): HighlightThemeType => {
     case CodeTheme.SYNTHWAVE84:
       return SYNTHWAVE84;
     case CodeTheme.ONE_DARK:
-      return ONE_DARK;
-    case CodeTheme.ONE_LIGHT:
       return ONE_DARK;
     case CodeTheme.OKAIDIA:
       return OKAIDIA;
@@ -69,6 +72,14 @@ export const selectThemeFile = (theme: CodeTheme): HighlightThemeType => {
       return ROSE_PINE;
     case CodeTheme.EVA_LIGHT:
       return EVA_LIGHT;
+    case CodeTheme.GITHUB:
+      return GITHUB;
+    case CodeTheme.OCEANICNEXT:
+      return OCEANICNEXT;
+    case CodeTheme.DUOTONEDARK:
+      return DUOTONEDARK;
+    case CodeTheme.PALENIGHT:
+      return PALENIGHT;
     default:
       return NIGHT_OWL;
   }
@@ -105,7 +116,6 @@ export const GenerateHighlight = (theme: HighlightThemeType) => {
         padding: 0 !important;
         overflow: hidden !important;
       }
-   
       `)}
     `}</style>
   );

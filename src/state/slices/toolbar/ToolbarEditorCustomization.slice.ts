@@ -9,7 +9,6 @@ export enum BackgroundType {
 
 export enum CodeTheme {
   ONE_DARK = 'One Dark',
-  ONE_LIGHT = 'One Light',
   DRACULA = 'Dracula',
   NIGHT_OWL = 'Night Owl',
   NIGHT_OWL_LIGHT = 'Night Owl Light',
@@ -25,6 +24,10 @@ export enum CodeTheme {
   MONOKAI = 'Monokai',
   ROSE_PINE = 'Rose Pine',
   EVA_LIGHT = 'Eva Light',
+  GITHUB = 'Github',
+  OCEANICNEXT = 'Oceanicnext',
+  DUOTONEDARK = 'Duotone Dark',
+  PALENIGHT = 'Palenight',
 }
 
 export enum CodeLanguage {
