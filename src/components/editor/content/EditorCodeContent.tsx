@@ -22,13 +22,7 @@ interface EditorCodeContentProps {
 }
 
 export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
-  const {
-    code: propsCode,
-    showWindowControls,
-    styles,
-    theme,
-    language,
-  } = props;
+  const { code: propsCode, showWindowControls, styles, theme, language } = props;
   const [code, setCode] = useState(propsCode || '');
   const fontCustomization = useSelector(selectFontCustomization);
   const codeCustomization = useSelector(selectCodeCustomization);
@@ -69,7 +63,7 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
     >
       {({ className, tokens, getLineProps, getTokenProps }) => (
         <Text
-          as='pre'
+          as="pre"
           textAlign={'left'}
           margin={'1em 0'}
           padding={'0.5em'}
@@ -79,18 +73,10 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
         >
           {tokens.map((line, lineIndex) => {
             return (
-              <Box
-                display={'table-row'}
-                key={lineIndex}
-                {...getLineProps({ line, key: lineIndex })}
-              >
-                <Text as='span' display={'table-cell'}>
+              <Box display={'table-row'} key={lineIndex} {...getLineProps({ line, key: lineIndex })}>
+                <Text as="span" display={'table-cell'}>
                   {line.map((token, tokenIndex) => (
-                    <Text
-                      as='span'
-                      key={tokenIndex}
-                      {...getTokenProps({ token, key: tokenIndex })}
-                    />
+                    <Text as="span" key={tokenIndex} {...getTokenProps({ token, key: tokenIndex })} />
                   ))}
                 </Text>
               </Box>
@@ -103,11 +89,9 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
 
   return (
     <>
-      {showWindowControls && (
-        <EditorWindowControls titleColor={theme.plain.color} />
-      )}
+      {showWindowControls && <EditorWindowControls titleColor={theme.plain.color} />}
       <Editor
-        className='code-wrapper'
+        className="code-wrapper"
         value={code}
         highlight={highLightCode}
         padding={20}

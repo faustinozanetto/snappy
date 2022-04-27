@@ -1,12 +1,5 @@
 import React, { createRef, useEffect, useState } from 'react';
-import {
-  Box,
-  Container,
-  Flex,
-  HStack,
-  useColorModeValue,
-  VStack,
-} from '@chakra-ui/react';
+import { Box, Container, Flex, HStack, useColorModeValue, VStack } from '@chakra-ui/react';
 import { EditorToolBar } from './toolbar/EditorToolBar';
 import { parseBackgroundColor } from '@lib/HelperFunctions';
 import {
@@ -19,11 +12,7 @@ import {
 import { useSelector } from 'react-redux';
 import { EditorCodeContent } from './content/EditorCodeContent';
 import { EXAMPLE_CODE } from '@lib/Constants';
-import {
-  GenerateHighlight,
-  HighlightThemeType,
-  selectThemeFile,
-} from '@lib/themes/HighlightTheme';
+import { GenerateHighlight, HighlightThemeType, selectThemeFile } from '@lib/themes/HighlightTheme';
 import { NIGHT_OWL } from '@lib/themes/NightOwl.theme';
 
 interface EditorProps {}
@@ -36,8 +25,7 @@ type ShadowEntry = {
 export const Editor: React.FC<EditorProps> = ({}) => {
   const savedRef = createRef<HTMLDivElement>();
   const backgroundCustomization = useSelector(selectBackgroundCustomization);
-  const [highlightTheme, setHighlightTheme] =
-    useState<HighlightThemeType>(NIGHT_OWL);
+  const [highlightTheme, setHighlightTheme] = useState<HighlightThemeType>(NIGHT_OWL);
   const codeCustomization = useSelector(selectCodeCustomization);
   const windowCustomization = useSelector(selectWindowCustomization);
 
@@ -70,9 +58,7 @@ export const Editor: React.FC<EditorProps> = ({}) => {
     const shadow = BASE.map((entry) => {
       const [x, y, z] = entry.size;
       const multiplier = size / 1.5;
-      return `${entry.color} ${x * multiplier}px ${y * multiplier}px ${
-        z * multiplier
-      }px`;
+      return `${entry.color} ${x * multiplier}px ${y * multiplier}px ${z * multiplier}px`;
     });
 
     return shadow.join(', ');
@@ -91,25 +77,18 @@ export const Editor: React.FC<EditorProps> = ({}) => {
       maxW={['35em', '45em', '60em', '70em']}
       padding={6}
       backgroundColor={useColorModeValue('gray.200', 'gray.900')}
-      borderRadius='md'
+      borderRadius="md"
     >
       {/* Editor Tool Bar */}
-      <HStack width='100%' my={6} justifyContent='center'>
+      <HStack width="100%" my={6} justifyContent="center">
         <EditorToolBar exportRef={savedRef} />
       </HStack>
       {/* Export Container */}
-      <Flex
-        ref={savedRef}
-        position='relative'
-        alignItems='center'
-        justifyContent='center'
-        overflow='hidden'
-      >
+      <Flex ref={savedRef} position="relative" alignItems="center" justifyContent="center" overflow="hidden">
         {/* Container */}
         <Box
-          width='100%'
-          position={'relative'}
-          height='100%'
+          width="100%"
+          height="100%"
           background={
             backgroundCustomization.backgroundType === 'color'
               ? parseBackgroundColor(backgroundCustomization.backgroundColor)
@@ -119,15 +98,17 @@ export const Editor: React.FC<EditorProps> = ({}) => {
           }
           paddingLeft={`${windowCustomization.paddingX * 3}px`}
           paddingRight={`${windowCustomization.paddingX * 3}px`}
-          paddingTop={`${windowCustomization.paddingY * 3}px`}
+          paddingTop={
+            windowCustomization.controls
+              ? `calc(${windowCustomization.paddingY * 3}px - 2.5em)`
+              : `${windowCustomization.paddingY * 3}px`
+          }
           paddingBottom={`${windowCustomization.paddingY * 3}px`}
-          backgroundRepeat='no-repeat'
-          backgroundSize='cover'
-          backgroundPosition='center'
+          backgroundRepeat="no-repeat"
+          backgroundSize="cover"
+          backgroundPosition="center"
           backdropFilter={`${
-            backgroundCustomization.backgroudBlur > 0
-              ? `blur(${backgroundCustomization.backgroudBlur}px)`
-              : 'none'
+            backgroundCustomization.backgroudBlur > 0 ? `blur(${backgroundCustomization.backgroudBlur}px)` : 'none'
           }`}
         >
           {/* Editor Code Window */}
@@ -138,8 +119,7 @@ export const Editor: React.FC<EditorProps> = ({}) => {
             styles={{
               borderRadius: `${windowCustomization.borderRadius}px`,
               boxShadow:
-                windowCustomization.shadow.boxShadow &&
-                generateWindowShadow(windowCustomization.shadow.boxShadowSize),
+                windowCustomization.shadow.boxShadow && generateWindowShadow(windowCustomization.shadow.boxShadowSize),
               backgroundColor: highlightTheme.plain.backgroundColor,
               color: highlightTheme.plain.color,
             }}
