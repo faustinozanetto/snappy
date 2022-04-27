@@ -17,6 +17,7 @@ import { BiWindow } from 'react-icons/bi';
 import { EditorWindowDisplay } from './display/EditorWindowDisplay';
 import { EditorWindowShadow } from './shadow/EditorWindowShadow';
 import { Button } from '@components/ui/Button';
+import { EditorWindowControls } from './controls/EditorWindowControls';
 
 interface EditorWindowProps {}
 
@@ -65,7 +66,15 @@ export const EditorWindow: React.FC<EditorWindowProps> = ({}) => {
                   fontWeight='bold'
                   w='50%'
                 >
-                  Visuals
+                  Shadow
+                </Tab>
+                <Tab
+                  _focus={{ boxShadow: 'none' }}
+                  fontSize='xs'
+                  fontWeight='bold'
+                  w='50%'
+                >
+                  Controls
                 </Tab>
               </TabList>
               <TabPanels>
@@ -74,6 +83,9 @@ export const EditorWindow: React.FC<EditorWindowProps> = ({}) => {
                 </TabPanel>
                 <TabPanel>
                   <EditorWindowShadow />
+                </TabPanel>
+                <TabPanel>
+                  <EditorWindowControls />
                 </TabPanel>
               </TabPanels>
             </Tabs>

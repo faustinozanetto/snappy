@@ -125,6 +125,7 @@ export type WindowCustomization = {
   paddingY?: number;
   borderRadius?: number;
   shadow?: WindowShadow;
+  controls?: boolean;
 };
 
 export enum FileExtension {
@@ -196,6 +197,7 @@ const initialState: ToolBoxEditorCustomizationState = {
     paddingX: 20,
     paddingY: 25.5,
     borderRadius: 20,
+    controls: true,
     shadow: {
       boxShadow: true,
       boxShadowSize: 3,

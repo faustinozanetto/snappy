@@ -10,16 +10,25 @@ import Highlight, { defaultProps, PrismTheme } from 'prism-react-renderer';
 // THEMES
 import styled from '@emotion/styled';
 import { HighlightThemeType } from '@lib/themes/HighlightTheme';
+import { Box, Text } from '@chakra-ui/react';
+import { EditorWindowControls } from './window/EditorWindowControls';
 
 interface EditorCodeContentProps {
   code?: string;
   language?: CodeLanguage;
   styles?: React.CSSProperties;
+  showWindowControls?: boolean;
   theme?: HighlightThemeType;
 }
 
 export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
-  const { code: propsCode, styles, theme, language } = props;
+  const {
+    code: propsCode,
+    showWindowControls,
+    styles,
+    theme,
+    language,
+  } = props;
   const [code, setCode] = useState(propsCode || '');
   const fontCustomization = useSelector(selectFontCustomization);
   const codeCustomization = useSelector(selectCodeCustomization);
@@ -37,32 +46,12 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
       fontSmooth: 'always',
       fontSize: `${fontCustomization.fontSize}px`,
       lineHeight: `${fontCustomization.lineHeight}em`,
+      transitionProperty: 'color background-color',
+      transitionDuration: '0.2s',
+      transitionTimingFunction: 'ease-out',
     };
     return newStyles;
   };
-
-  const Pre = styled.pre`
-    text-align: left;
-    margin: 1em 0;
-    padding: 0.5em;
-    overflow: scroll;
-  `;
-
-  const Line = styled.div`
-    display: table-row;
-  `;
-
-  const LineNo = styled.span`
-    display: table-cell;
-    text-align: right;
-    padding-right: 1em;
-    user-select: none;
-    opacity: 0.5;
-  `;
-
-  const LineContent = styled.span`
-    display: table-cell;
-  `;
 
   /**
    *
@@ -78,38 +67,58 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
       // @ts-ignore
       language={codeCustomization.codeLanguage.toLowerCase()}
     >
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <Pre className={className} style={{ ...generateCustomStyles() }}>
+      {({ className, tokens, getLineProps, getTokenProps }) => (
+        <Text
+          as='pre'
+          textAlign={'left'}
+          margin={'1em 0'}
+          padding={'0.5em'}
+          overflow={'scroll'}
+          className={className}
+          style={{ ...generateCustomStyles() }}
+        >
           {tokens.map((line, lineIndex) => {
             return (
-              <Line key={lineIndex} {...getLineProps({ line, key: lineIndex })}>
-                <LineContent>
+              <Box
+                display={'table-row'}
+                key={lineIndex}
+                {...getLineProps({ line, key: lineIndex })}
+              >
+                <Text as='span' display={'table-cell'}>
                   {line.map((token, tokenIndex) => (
-                    <span
+                    <Text
+                      as='span'
                       key={tokenIndex}
                       {...getTokenProps({ token, key: tokenIndex })}
                     />
                   ))}
-                </LineContent>
-              </Line>
+                </Text>
+              </Box>
             );
           })}
-        </Pre>
+        </Text>
       )}
     </Highlight>
   );
 
   return (
-    <Editor
-      className='code-wrapper'
-      value={code}
-      highlight={highLightCode}
-      padding={20}
-      onValueChange={(newValue) => setCode(newValue)}
-      style={{
-        ...styles,
-        ...generateCustomStyles(),
-      }}
-    />
+    <>
+      {showWindowControls && (
+        <EditorWindowControls titleColor={theme.plain.color} />
+      )}
+      <Editor
+        className='code-wrapper'
+        value={code}
+        highlight={highLightCode}
+        padding={20}
+        onValueChange={(newValue) => setCode(newValue)}
+        style={{
+          // Used to move down the editor code when window controls are enabled.
+          paddingTop: showWindowControls ? '2em' : '',
+          ...styles,
+          ...generateCustomStyles(),
+        }}
+      />
+    </>
   );
 };

@@ -101,6 +101,7 @@ export const Editor: React.FC<EditorProps> = ({}) => {
       {/* Export Container */}
       <Flex
         ref={savedRef}
+        position='relative'
         alignItems='center'
         justifyContent='center'
         overflow='hidden'
@@ -108,6 +109,8 @@ export const Editor: React.FC<EditorProps> = ({}) => {
         {/* Container */}
         <Box
           width='100%'
+          position={'relative'}
+          height='100%'
           background={
             backgroundCustomization.backgroundType === 'color'
               ? parseBackgroundColor(backgroundCustomization.backgroundColor)
@@ -132,6 +135,7 @@ export const Editor: React.FC<EditorProps> = ({}) => {
           <EditorCodeContent
             code={EXAMPLE_CODE}
             language={codeCustomization.codeLanguage}
+            showWindowControls={windowCustomization.controls}
             styles={{
               borderRadius: `${windowCustomization.borderRadius}px`,
               boxShadow:

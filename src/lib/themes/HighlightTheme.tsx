@@ -1,5 +1,8 @@
 import React from 'react';
-import { CodeTheme } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+import {
+  CodeTheme,
+  selectWindowCustomization,
+} from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { DRACULA } from './Dracula.theme';
 import { NIGHT_OWL } from './NightOwl.theme';
 import { NIGHT_OWL_LIGHT } from './NightOwlLight.theme';
@@ -20,6 +23,7 @@ import { GITHUB } from './Github.theme';
 import { OCEANICNEXT } from './OceanicNext.theme';
 import { DUOTONEDARK } from './DuotoneDark.theme';
 import { PALENIGHT } from './Palenight.theme';
+import { useSelector } from 'react-redux';
 
 export type ThemeData = {
   types: string[];
@@ -103,6 +107,7 @@ const ConstructCSSStyle = (theme: HighlightThemeType): string => {
 };
 
 export const GenerateHighlight = (theme: HighlightThemeType) => {
+  const windowCustomization = useSelector(selectWindowCustomization);
   return (
     <style jsx global>{`
       ${ConstructCSSStyle(theme).concat(`
@@ -116,6 +121,16 @@ export const GenerateHighlight = (theme: HighlightThemeType) => {
         padding: 0 !important;
         overflow: hidden !important;
       }
+      .npm__react-simple-code-editor__textarea {
+        margin-top: ${
+          windowCustomization.controls ? '2em !important' : '0 !important'
+        };
+      }
+      .npm__react-simple-code-editor__textarea:focus-visible {
+        outline: none !important;
+        border: none !important;
+      }
+    
       `)}
     `}</style>
   );
