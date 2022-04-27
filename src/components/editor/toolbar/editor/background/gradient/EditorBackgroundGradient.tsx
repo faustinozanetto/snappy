@@ -1,15 +1,6 @@
 import React, { useState } from 'react';
-import {
-  Box,
-  Text,
-  HStack,
-  Flex,
-  VStack,
-  useColorModeValue,
-  Button,
-} from '@chakra-ui/react';
+import { Box, Text, HStack, VStack, Button } from '@chakra-ui/react';
 import { useGradientEditor } from '@hooks/useGradientEditor';
-import { GradientMarker } from './GradientMarker';
 import { RgbColorPicker } from 'react-colorful';
 import {
   Color,
@@ -19,6 +10,7 @@ import {
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { useDebouncedCallback } from '@hooks/useDebounce';
 import { useDispatch, useSelector } from 'react-redux';
+import { GradientColorsHolder } from './GradientColorsHolder';
 
 interface EditorBackgroundGradientProps {
   defaultColors: GradientColor[];
@@ -72,29 +64,12 @@ export const EditorBackgroundGradient: React.FC<
           </Text>
         </HStack>
         {/* Gradient Box */}
-        <Flex
-          height={10}
+        <GradientColorsHolder
           background={gradient}
-          width='full'
-          rounded={'md'}
-          border={`5px solid ${useColorModeValue('black', 'white')}`}
-        >
-          {/* Controls */}
-          <HStack width={'full'} justifyContent={'space-between'}>
-            {colors.map((color, index) => {
-              return (
-                <GradientMarker
-                  key={index}
-                  markerColor={`rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`}
-                  onClick={() => {
-                    setCurrentColorID(index);
-                  }}
-                  isActive={index === currentColorID}
-                />
-              );
-            })}
-          </HStack>
-        </Flex>
+          colors={colors}
+          currentMarkerIndex={currentColorID}
+          onMarkerSelect={(id) => setCurrentColorID(id)}
+        />
 
         {/* Picker */}
         {currentColorID !== -1 && (

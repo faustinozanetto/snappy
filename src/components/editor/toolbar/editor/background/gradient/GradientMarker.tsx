@@ -8,6 +8,7 @@ type GradientMarkerProps = BoxProps & {
 
 export const GradientMarker: React.FC<GradientMarkerProps> = (props) => {
   const { children, markerColor, isActive, ...rest } = props;
+
   return (
     <Box
       height={12}
