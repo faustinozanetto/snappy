@@ -18,7 +18,6 @@ import {
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { useSelector } from 'react-redux';
 import { EditorCodeContent } from './content/EditorCodeContent';
-import SnapifyLogo from '@components/branding/SnapifyLogo';
 import { EXAMPLE_CODE } from '@lib/Constants';
 import {
   GenerateHighlight,
@@ -89,7 +88,7 @@ export const Editor: React.FC<EditorProps> = ({}) => {
 
   return (
     <Container
-      maxW={['0em', '30em', '48em', '62em', '80em', '90em']}
+      maxW={['35em', '45em', '60em', '70em']}
       padding={6}
       backgroundColor={useColorModeValue('gray.200', 'gray.900')}
       borderRadius='md'

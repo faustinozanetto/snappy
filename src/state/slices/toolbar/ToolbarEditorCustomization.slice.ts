@@ -150,7 +150,7 @@ export type ToolBoxEditorCustomizationState = {
 
 const initialState: ToolBoxEditorCustomizationState = {
   backgroundCustomization: {
-    backgroundType: BackgroundType.COLOR,
+    backgroundType: BackgroundType.GRADIENT,
     backgroundImage: '',
     backgroudBlur: 0,
     backgroundGradient: {
@@ -186,10 +186,10 @@ const initialState: ToolBoxEditorCustomizationState = {
   fontCustomization: {
     fontFamily: FontFamily.JETBRAINSMONO,
     fontSize: 16,
-    lineHeight: 1.25,
+    lineHeight: 1.35,
   },
   codeCustomization: {
-    codeTheme: CodeTheme.EVA_LIGHT,
+    codeTheme: CodeTheme.OUTRUN_NIGHT,
     codeLanguage: CodeLanguage.JSX,
     lineNumbers: true,
   },

@@ -12,9 +12,9 @@ export const EditorWindowControls: React.FC<EditorWindowControlsProps> = ({
   return (
     <Box
       position={'relative'}
-      top={'45px'}
+      top={'50px'}
       mx={6}
-      mb={2}
+      my={4}
       textAlign={'initial'}
       zIndex={2}
     >

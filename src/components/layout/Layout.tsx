@@ -1,5 +1,10 @@
 import React from 'react';
-import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  useBreakpointValue,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { LayoutHead, LayoutHeadProps } from './LayoutHead';
 import { LayoutContainer } from './LayoutContainer';
 import { Footer } from '@components/footer/Footer';
@@ -14,6 +19,11 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = (props) => {
   const { children, layoutHead: Head = LayoutHead, layoutHeadProps } = props;
+  const logoSize = useBreakpointValue({
+    base: 'xl',
+    sm: '2xl',
+    md: '3xl',
+  }) as 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
   return (
     <Flex minHeight='100vh' flexDir={'column'}>
       {/* Head */}
@@ -24,7 +34,7 @@ export const Layout: React.FC<LayoutProps> = (props) => {
         {/* Logo */}
         <Box my={4}>
           <SnapifyLogo
-            size='3xl'
+            size={logoSize}
             logoColor={useColorModeValue('black', 'white')}
           />
         </Box>

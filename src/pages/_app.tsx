@@ -1,4 +1,3 @@
-import '@styles/globals.css';
 import '@fontsource/jetbrains-mono';
 import '@fontsource/courier-prime';
 import '@fontsource/fira-code';

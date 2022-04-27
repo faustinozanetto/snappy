@@ -12,17 +12,7 @@ export const DEFAULT_EXPORT_SIZE = EXPORT_SIZES_HASH['2x'];
 /**
  * @description Basic code snippet that shows up when page loads by default.
  */
-export const EXAMPLE_CODE = `function createStyleObject(classNames, style) {
-  return classNames.reduce((styleObject, className) => {
-    return {...styleObject, ...style[className]};
-  }, {});
-}
-
-function createClassNameString(classNames) {
-  return classNames.join(' ');
-}
-
-function createElement({ node, style, useInlineStyles, key }) {
+export const EXAMPLE_CODE = `function createElement({ node, style, useInlineStyles, key }) {
   const { properties, type, tagName, value } = node;
   if (type === "text") {
     return value;
