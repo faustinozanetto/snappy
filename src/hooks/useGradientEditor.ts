@@ -5,7 +5,8 @@ import {
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 
 export const useGradientEditor = (initialValue: BackgroundGradient) => {
-  const { colors: initialColors, type } = initialValue;
+  const { colors: initialColors, type: initialType } = initialValue;
+  const [type, setType] = useState<'linear' | 'radial'>(initialType);
   const [colors, setColors] = useState<GradientColor[]>(initialColors);
   const [gradient, setGradient] = useState<string>('');
 
@@ -24,7 +25,9 @@ export const useGradientEditor = (initialValue: BackgroundGradient) => {
           }%`
       )
       .join(', ');
-    return `${type}-gradient(to right, ${gradient})`;
+    return `${type}-gradient(${
+      type === 'linear' ? 'to right' : 'circle'
+    }, ${gradient})`;
   };
 
   const addColor = (color: GradientColor) => {
@@ -39,11 +42,12 @@ export const useGradientEditor = (initialValue: BackgroundGradient) => {
 
   useEffect(() => {
     setGradient(generateGradient());
-  }, [colors]);
+  }, [colors, type]);
 
   return {
     colors,
     gradient,
+    setType,
     editColor,
     addColor,
     removeColor,

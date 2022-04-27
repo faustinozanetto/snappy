@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { Box, Text, HStack, Flex, VStack } from '@chakra-ui/react';
+import {
+  Box,
+  Text,
+  HStack,
+  Flex,
+  VStack,
+  useColorModeValue,
+  Button,
+} from '@chakra-ui/react';
 import { useGradientEditor } from '@hooks/useGradientEditor';
 import { GradientMarker } from './GradientMarker';
 import { RgbColorPicker } from 'react-colorful';
@@ -25,7 +33,7 @@ export const EditorBackgroundGradient: React.FC<
   const backgroundCustomization = useSelector(selectBackgroundCustomization);
   const [currentColorID, setCurrentColorID] = useState(-1);
 
-  const { colors, editColor, gradient } = useGradientEditor({
+  const { colors, editColor, setType, gradient } = useGradientEditor({
     colors: defaultColors,
     type: defaultType,
   });
@@ -53,18 +61,24 @@ export const EditorBackgroundGradient: React.FC<
         },
       })
     );
-  }, 10);
+  }, 5);
 
   return (
     <Box py={2} width='full'>
-      <VStack display='flex'>
+      <VStack display='flex' spacing={4}>
         <HStack justifyContent='space-between' width='full'>
           <Text as='h2' fontWeight={600} mb={2}>
             Gradient Editor
           </Text>
         </HStack>
         {/* Gradient Box */}
-        <Flex height={10} background={gradient} width='full'>
+        <Flex
+          height={10}
+          background={gradient}
+          width='full'
+          rounded={'md'}
+          border={`5px solid ${useColorModeValue('black', 'white')}`}
+        >
           {/* Controls */}
           <HStack width={'full'} justifyContent={'space-between'}>
             {colors.map((color, index) => {
@@ -84,13 +98,19 @@ export const EditorBackgroundGradient: React.FC<
 
         {/* Picker */}
         {currentColorID !== -1 && (
-          <RgbColorPicker
-            color={colors[currentColorID]}
-            onChange={handleColorChange}
-          />
+          <Box backgroundColor={'gray.700'} padding={4} borderRadius={'md'}>
+            <RgbColorPicker
+              color={colors[currentColorID]}
+              onChange={handleColorChange}
+            />
+          </Box>
         )}
 
         {/* Options */}
+        <HStack>
+          <Button onClick={() => setType('linear')}>Linear</Button>
+          <Button onClick={() => setType('radial')}>Radial</Button>
+        </HStack>
       </VStack>
     </Box>
   );
