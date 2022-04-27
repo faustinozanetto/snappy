@@ -1,17 +1,11 @@
-import {
-  Action,
-  combineReducers,
-  configureStore,
-  createSlice,
-  PayloadAction,
-  ThunkAction,
-} from '@reduxjs/toolkit';
+import { Action, combineReducers, configureStore, createSlice, PayloadAction, ThunkAction } from '@reduxjs/toolkit';
 import { ToolBoxEditorCustomizationSlice } from './slices/toolbar/ToolbarEditorCustomization.slice';
 import { loadState } from './LocalStorage';
 import {
   FLUSH,
   PAUSE,
   PERSIST,
+  PersistConfig,
   persistReducer,
   persistStore,
   PURGE,
@@ -45,7 +39,7 @@ const reducers = combineReducers({
 
 const persistConfig = {
   key: 'root',
-  version: 1,
+  version: 2,
   storage,
 };
 
@@ -65,12 +59,7 @@ export const persistor = persistStore(store);
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action<string>>;
 
 export const { setCaptureRef } = SnapifySlice.actions;
 
