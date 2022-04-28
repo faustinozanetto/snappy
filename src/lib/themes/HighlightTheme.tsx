@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  CodeTheme,
-  selectWindowCustomization,
-} from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+import { CodeTheme, selectWindowCustomization } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import { DRACULA } from './Dracula.theme';
 import { NIGHT_OWL } from './NightOwl.theme';
 import { NIGHT_OWL_LIGHT } from './NightOwlLight.theme';
@@ -42,7 +39,6 @@ export type HighlightThemeType = {
 };
 
 export const selectThemeFile = (theme: CodeTheme): HighlightThemeType => {
-  console.log({ theme });
   switch (theme) {
     case CodeTheme.VS_LIGHT:
       return VS_LIGHT;
@@ -93,12 +89,9 @@ const ConstructCSSStyle = (theme: HighlightThemeType): string => {
   const cssStyle = theme.styles.map((style) => {
     const css = style.types.map((type) => {
       // Convert CSS object to string
-      const styleString = Object.entries(style.style).reduce(
-        (acc, [key, value]) => {
-          return `${acc}${key}: ${value};`;
-        },
-        ''
-      );
+      const styleString = Object.entries(style.style).reduce((acc, [key, value]) => {
+        return `${acc}${key}: ${value};`;
+      }, '');
       return `.${type} { ${styleString} }`;
     });
     return css.join('\n');
@@ -122,15 +115,13 @@ export const GenerateHighlight = (theme: HighlightThemeType) => {
         overflow: hidden !important;
       }
       .npm__react-simple-code-editor__textarea {
-        margin-top: ${
-          windowCustomization.controls ? '2em !important' : '0 !important'
-        };
+        margin-top: ${windowCustomization.controls ? '2em !important' : '0 !important'};
       }
       .npm__react-simple-code-editor__textarea:focus-visible {
         outline: none !important;
         border: none !important;
       }
-    
+
       `)}
     `}</style>
   );

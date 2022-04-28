@@ -7,8 +7,6 @@ import {
   selectFontCustomization,
 } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
 import Highlight, { defaultProps, PrismTheme } from 'prism-react-renderer';
-// THEMES
-import styled from '@emotion/styled';
 import { HighlightThemeType } from '@lib/themes/HighlightTheme';
 import { Box, Text } from '@chakra-ui/react';
 import { EditorWindowControls } from './window/EditorWindowControls';
