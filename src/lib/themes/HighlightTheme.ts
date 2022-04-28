@@ -1,5 +1,5 @@
 import React from 'react';
-import { CodeTheme, selectWindowCustomization } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+import { CodeTheme, selectWindowCustomization } from '@state/slices/editor/ToolbarEditorCustomization.slice';
 import { DRACULA } from './Dracula.theme';
 import { NIGHT_OWL } from './NightOwl.theme';
 import { NIGHT_OWL_LIGHT } from './NightOwlLight.theme';
@@ -15,7 +15,7 @@ import { OUTRUN_NIGHT } from './OutrunNight.theme';
 import { MONOKAI } from './Monokai.theme';
 import { ROSE_PINE } from './RosePine.theme';
 import { EVA_LIGHT } from './EvaLight.theme';
-import { VS_LIGHT } from './VsLiight.theme';
+import { VS_LIGHT } from './VsLight.theme';
 import { GITHUB } from './Github.theme';
 import { OCEANICNEXT } from './OceanicNext.theme';
 import { DUOTONEDARK } from './DuotoneDark.theme';

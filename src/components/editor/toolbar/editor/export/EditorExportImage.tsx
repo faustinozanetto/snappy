@@ -26,7 +26,7 @@ import {
   FileExtension,
   selectBackgroundCustomization,
   BackgroundType,
-} from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+} from '@state/slices/editor/ToolbarEditorCustomization.slice';
 import { useSelector } from 'react-redux';
 import { EditorExportImaageExtension } from './EditorExportImageExtension';
 import { toBlob, toJpeg, toPng, toSvg } from 'html-to-image';

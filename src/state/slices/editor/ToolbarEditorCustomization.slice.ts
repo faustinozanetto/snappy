@@ -140,7 +140,7 @@ export type ExportCustomization = {
   sizeMultiplier?: 1 | 2 | 3 | 4;
 };
 
-export type ToolBoxEditorCustomizationState = {
+export type EditorCustomizationState = {
   backgroundCustomization: BackgroundCustomization;
   fontCustomization: FontCustomization;
   codeCustomization: CodeCustomization;
@@ -148,7 +148,7 @@ export type ToolBoxEditorCustomizationState = {
   exportCustomization: ExportCustomization;
 };
 
-const initialState: ToolBoxEditorCustomizationState = {
+const initialState: EditorCustomizationState = {
   backgroundCustomization: {
     backgroundType: BackgroundType.GRADIENT,
     backgroundImage: '',
@@ -173,8 +173,7 @@ const initialState: ToolBoxEditorCustomizationState = {
         ],
         type: 'linear',
       },
-      generated:
-        'linear-gradient(to right, rgba(44,0,177,1) 0%, rgba(245,0,210,1) 100%)',
+      generated: 'linear-gradient(to right, rgba(44,0,177,1) 0%, rgba(245,0,210,1) 100%)',
     },
     backgroundColor: {
       r: 0,
@@ -215,14 +214,11 @@ const initialState: ToolBoxEditorCustomizationState = {
   },
 };
 
-export const ToolBoxEditorCustomizationSlice = createSlice({
-  name: 'toolboxEditorCustomization',
+export const EditorCustomizationSlice = createSlice({
+  name: 'editorCustomization',
   initialState,
   reducers: {
-    setBackgroundCustomization: (
-      state,
-      action: PayloadAction<BackgroundCustomization>
-    ) => {
+    setBackgroundCustomization: (state, action: PayloadAction<BackgroundCustomization>) => {
       Object.assign(state.backgroundCustomization, action.payload);
     },
     setFontCustomization: (state, action: PayloadAction<FontCustomization>) => {
@@ -231,16 +227,10 @@ export const ToolBoxEditorCustomizationSlice = createSlice({
     setCodeCustomization: (state, action: PayloadAction<CodeCustomization>) => {
       Object.assign(state.codeCustomization, action.payload);
     },
-    setWindowCustomization: (
-      state,
-      action: PayloadAction<WindowCustomization>
-    ) => {
+    setWindowCustomization: (state, action: PayloadAction<WindowCustomization>) => {
       Object.assign(state.windowCustomization, action.payload);
     },
-    setExportCustomization: (
-      state,
-      action: PayloadAction<ExportCustomization>
-    ) => {
+    setExportCustomization: (state, action: PayloadAction<ExportCustomization>) => {
       Object.assign(state.exportCustomization, action.payload);
     },
   },
@@ -252,15 +242,10 @@ export const {
   setFontCustomization,
   setWindowCustomization,
   setExportCustomization,
-} = ToolBoxEditorCustomizationSlice.actions;
+} = EditorCustomizationSlice.actions;
 
-export const selectBackgroundCustomization = (state: RootState) =>
-  state.toolboxEditor.backgroundCustomization;
-export const selectCodeCustomization = (state: RootState) =>
-  state.toolboxEditor.codeCustomization;
-export const selectFontCustomization = (state: RootState) =>
-  state.toolboxEditor.fontCustomization;
-export const selectWindowCustomization = (state: RootState) =>
-  state.toolboxEditor.windowCustomization;
-export const selectExportCustomization = (state: RootState) =>
-  state.toolboxEditor.exportCustomization;
+export const selectBackgroundCustomization = (state: RootState) => state.editor.backgroundCustomization;
+export const selectCodeCustomization = (state: RootState) => state.editor.codeCustomization;
+export const selectFontCustomization = (state: RootState) => state.editor.fontCustomization;
+export const selectWindowCustomization = (state: RootState) => state.editor.windowCustomization;
+export const selectExportCustomization = (state: RootState) => state.editor.exportCustomization;

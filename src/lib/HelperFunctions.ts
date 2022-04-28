@@ -1,5 +1,5 @@
 import { StyleObj } from '@components/editor/highlight/CodeHighlighting';
-import { Color } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+import { Color } from '@state/slices/editor/ToolbarEditorCustomization.slice';
 import { HighlightThemeType } from './themes/HighlightTheme';
 
 /**

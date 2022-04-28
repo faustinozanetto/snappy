@@ -1,23 +1,9 @@
-import React, { Key, useEffect, useState } from 'react';
-import Prism from 'prismjs';
+import React, { Key } from 'react';
+import Prism, { Token as PrismToken, Grammar } from 'prismjs';
 import normalizeTokens from '@lib/NormalizeTokens';
 import { themeToDict } from '@lib/HelperFunctions';
 import { HighlightThemeType } from '@lib/themes/HighlightTheme';
-import { NIGHT_OWL } from '@lib/themes/NightOwl.theme';
-
-export type PrismGrammar = {
-  [key: string]: any;
-};
-
-export type LanguagesDict = {
-  [lang: string]: PrismGrammar;
-};
-
-export type PrismToken = {
-  type: string | string[];
-  alias: string | string[];
-  content: Array<PrismToken | string> | string;
-};
+import { CodeLanguage } from '@state/slices/editor/ToolbarEditorCustomization.slice';
 
 export type Token = {
   types: string[];
@@ -25,62 +11,9 @@ export type Token = {
   empty?: boolean;
 };
 
-export type PrismThemeEntry = {
-  color?: string;
-  backgroundColor?: string;
-  fontStyle?: 'normal' | 'italic';
-  fontWeight?:
-    | 'normal'
-    | 'bold'
-    | '100'
-    | '200'
-    | '300'
-    | '400'
-    | '500'
-    | '600'
-    | '700'
-    | '800'
-    | '900';
-  textDecorationLine?:
-    | 'none'
-    | 'underline'
-    | 'line-through'
-    | 'underline line-through';
-  opacity?: number;
-  [styleKey: string]: string | number | void;
-};
-
-export type PrismTheme = {
-  plain: PrismThemeEntry;
-  styles: Array<{
-    types: string[];
-    style: PrismThemeEntry;
-    languages?: string[];
-  }>;
-};
-
-export type PrismLib = {
-  languages: LanguagesDict;
-  tokenize: (
-    code: string,
-    grammar: PrismGrammar,
-    language: any
-  ) => Array<PrismToken | string>;
-  highlight: (code: string, grammar: PrismGrammar, language: any) => string;
-  hooks: {
-    run: (
-      name: string,
-      env: { code: string; grammar: PrismGrammar; language: any }
-    ) => void;
-  };
-};
-export type StyleObj = {
-  [key: string]: string | number | null;
-};
-
 export type LineInputProps = {
   key?: Key;
-  style?: StyleObj;
+  style?: React.CSSProperties;
   className?: string;
   line: Token[];
   [key: string]: any;
@@ -88,14 +21,14 @@ export type LineInputProps = {
 
 export type LineOutputProps = {
   key?: Key;
-  style?: StyleObj;
+  style?: React.CSSProperties;
   className: string;
   [key: string]: any;
 };
 
 export type TokenInputProps = {
   key?: Key;
-  style?: StyleObj;
+  style?: React.CSSProperties;
   className?: string;
   token: Token;
   [key: string]: any;
@@ -103,7 +36,7 @@ export type TokenInputProps = {
 
 export type TokenOutputProps = {
   key?: Key;
-  style?: StyleObj;
+  style?: React.CSSProperties;
   className: string;
   children: string;
   [key: string]: any;
@@ -112,56 +45,27 @@ export type TokenOutputProps = {
 export type RenderProps = {
   tokens: Token[][];
   className: string;
-  style: any;
+  style: HighlightThemeType;
   getLineProps: (input: LineInputProps) => LineOutputProps;
   getTokenProps: (input: TokenInputProps) => TokenOutputProps;
 };
 
 interface CodeHighlightingProps {
-  theme?: any;
   code: string;
+  theme?: HighlightThemeType;
   language: string;
   children?: (props: RenderProps) => React.ReactNode;
 }
 
-export type DefaultProps = {
-  theme: PrismTheme;
-};
-export const defaultProps: DefaultProps = {
-  // @ts-ignore
-  theme: NIGHT_OWL,
-};
-// @ts-ignore
 export const CodeHighlighting: React.FC<CodeHighlightingProps> = (props) => {
   const { code, language, theme, children } = props;
-  const [themeDict, setThemeDict] = useState<HighlightThemeType>();
-  const [prevTheme, setPrevTheme] = useState<PrismTheme>();
-  const [prevLanguage, setPrevLanguage] = useState('');
 
   const getThemeDict = (): HighlightThemeType => {
-    if (
-      themeDict !== null &&
-      theme === prevTheme &&
-      language === prevLanguage
-    ) {
-      return themeDict;
-    }
-
-    setPrevTheme(theme);
-    setPrevLanguage(language);
-
     const newThemeDict = theme ? themeToDict(theme, language) : null;
-
     return newThemeDict;
   };
 
-  const getLineProps = ({
-    key,
-    className,
-    style,
-    line,
-    ...rest
-  }: LineInputProps): LineOutputProps => {
+  const getLineProps = ({ key, className, style, line, ...rest }: LineInputProps): LineOutputProps => {
     const output: LineOutputProps = {
       ...rest,
       className: 'token-line',
@@ -175,8 +79,7 @@ export const CodeHighlighting: React.FC<CodeHighlightingProps> = (props) => {
     }
 
     if (style !== null) {
-      output.style =
-        output.style !== null ? { ...output.style, ...style } : style;
+      output.style = output.style !== null ? { ...output.style, ...style } : style;
     }
 
     if (key !== null) {
@@ -191,23 +94,13 @@ export const CodeHighlighting: React.FC<CodeHighlightingProps> = (props) => {
   const getStyleForToken = ({ types, empty }: Token) => {
     const typesSize = types.length;
 
-    if (!themeDict) return undefined;
-    else if (typesSize === 1 && types[0] === 'plain')
-      return empty ? { display: 'inline-block' } : null;
-    else if (typesSize === 1 && !empty) return themeDict[types[0]];
+    if (typesSize === 1 && types[0] === 'plain') return empty ? { display: 'inline-block' } : null;
 
     const baseStyle = empty ? { display: 'inline-block' } : {};
-    const typesStyles = types.map((type) => themeDict[type]);
-    return Object.assign(baseStyle, ...typesStyles);
+    return Object.assign(baseStyle);
   };
 
-  const getTokenProps = ({
-    key,
-    className,
-    style,
-    token,
-    ...rest
-  }: TokenInputProps): TokenOutputProps => {
+  const getTokenProps = ({ key, className, style, token, ...rest }: TokenInputProps): TokenOutputProps => {
     const output: TokenOutputProps = {
       ...rest,
       className: `token ${token.types.join(' ')}`,
@@ -216,8 +109,7 @@ export const CodeHighlighting: React.FC<CodeHighlightingProps> = (props) => {
       key: null,
     };
     if (style !== null) {
-      output.style =
-        output.style !== null ? { ...output.style, ...style } : style;
+      output.style = output.style !== null ? { ...output.style, ...style } : style;
     }
 
     if (key !== null) output.key = key;
@@ -225,11 +117,7 @@ export const CodeHighlighting: React.FC<CodeHighlightingProps> = (props) => {
     return output;
   };
 
-  const tokenize = (
-    code: string,
-    grammar: PrismGrammar,
-    language: any
-  ): Array<PrismToken | string> => {
+  const tokenize = (code: string, grammar: Grammar, language: string): Array<PrismToken | string> => {
     const env = {
       code,
       grammar,
@@ -245,13 +133,9 @@ export const CodeHighlighting: React.FC<CodeHighlightingProps> = (props) => {
   };
 
   return children({
-    tokens: normalizeTokens(
-      language !== null
-        ? tokenize(code, Prism.languages[language], language)
-        : [code]
-    ),
+    tokens: normalizeTokens(tokenize(code, Prism.languages[language], language)),
     className: `prism-code language-${language}`,
-    style: themeDict !== null ? themeDict : null,
+    style: getThemeDict(),
     getLineProps,
     getTokenProps,
   });

@@ -1,4 +1,4 @@
-import { CodeTheme } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+import { CodeTheme } from '@state/slices/editor/ToolbarEditorCustomization.slice';
 import { HighlightThemeType } from './HighlightTheme';
 
 export const OKAIDIA: HighlightThemeType = {

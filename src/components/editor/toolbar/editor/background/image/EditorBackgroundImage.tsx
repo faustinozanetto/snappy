@@ -3,7 +3,7 @@ import { Box, Text, Flex, Button, HStack, IconButton } from '@chakra-ui/react';
 import {
   selectBackgroundCustomization,
   setBackgroundCustomization,
-} from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+} from '@state/slices/editor/ToolbarEditorCustomization.slice';
 import { useDropzone } from 'react-dropzone';
 import { useDispatch, useSelector } from 'react-redux';
 import { CustomizationSlider } from '../../input/CustomizationSlider';

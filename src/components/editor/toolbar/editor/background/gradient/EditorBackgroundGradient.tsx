@@ -7,7 +7,7 @@ import {
   GradientColor,
   selectBackgroundCustomization,
   setBackgroundCustomization,
-} from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+} from '@state/slices/editor/ToolbarEditorCustomization.slice';
 import { useDebouncedCallback } from '@hooks/useDebounce';
 import { useDispatch, useSelector } from 'react-redux';
 import { GradientColorsHolder } from './GradientColorsHolder';
@@ -17,9 +17,7 @@ interface EditorBackgroundGradientProps {
   defaultType: 'linear' | 'radial';
 }
 
-export const EditorBackgroundGradient: React.FC<
-  EditorBackgroundGradientProps
-> = (props) => {
+export const EditorBackgroundGradient: React.FC<EditorBackgroundGradientProps> = (props) => {
   const { defaultColors, defaultType } = props;
   const dispatch = useDispatch();
   const backgroundCustomization = useSelector(selectBackgroundCustomization);
@@ -53,13 +51,13 @@ export const EditorBackgroundGradient: React.FC<
         },
       })
     );
-  }, 5);
+  }, 10);
 
   return (
-    <Box py={2} width='full'>
-      <VStack display='flex' spacing={4}>
-        <HStack justifyContent='space-between' width='full'>
-          <Text as='h2' fontWeight={600} mb={2}>
+    <Box py={2} width="full">
+      <VStack display="flex" spacing={4}>
+        <HStack justifyContent="space-between" width="full">
+          <Text as="h2" fontWeight={600} mb={2}>
             Gradient Editor
           </Text>
         </HStack>
@@ -74,10 +72,7 @@ export const EditorBackgroundGradient: React.FC<
         {/* Picker */}
         {currentColorID !== -1 && (
           <Box backgroundColor={'gray.700'} padding={4} borderRadius={'md'}>
-            <RgbColorPicker
-              color={colors[currentColorID]}
-              onChange={handleColorChange}
-            />
+            <RgbColorPicker color={colors[currentColorID]} onChange={handleColorChange} />
           </Box>
         )}
 

@@ -23,8 +23,8 @@ interface EditorFontProps {}
 
 export const EditorFont: React.FC<EditorFontProps> = ({}) => {
   return (
-    <Flex justifyContent='center' mt={4}>
-      <Popover isLazy placement='bottom'>
+    <Flex justifyContent="center" mt={4}>
+      <Popover isLazy placement="bottom">
         <PopoverTrigger>
           <Button
             leftIcon={
@@ -32,44 +32,26 @@ export const EditorFont: React.FC<EditorFontProps> = ({}) => {
                 <FaFont />
               </span>
             }
-            w='fit-content'
-            aria-label='Font Customization'
-            border='2px solid'
+            w="fit-content"
+            aria-label="Font Customization"
+            border="2px solid"
           >
             Fonts
           </Button>
         </PopoverTrigger>
         <PopoverContent _focus={{ boxShadown: 'none' }}>
           <PopoverArrow />
-          <PopoverBody
-            w='full'
-            backgroundColor={useColorModeValue('gray.100', 'gray.800')}
-          >
-            <Tabs isLazy isFitted colorScheme='blue'>
+          <PopoverBody w="full" backgroundColor={useColorModeValue('gray.100', 'gray.800')}>
+            <Tabs isLazy isFitted colorScheme="blue">
               {/* Options */}
               <TabList>
-                <Tab
-                  _focus={{ boxShadow: 'none' }}
-                  fontSize='xs'
-                  fontWeight='bold'
-                  w='50%'
-                >
-                  List
-                </Tab>
-                <Tab
-                  _focus={{ boxShadow: 'none' }}
-                  fontSize='xs'
-                  fontWeight='bold'
-                  w='50%'
-                >
+                <Tab _focus={{ boxShadow: 'none' }} fontSize="xs" fontWeight="bold" w="50%">
                   Options
                 </Tab>
               </TabList>
               <TabPanels>
                 <TabPanel>
                   <EditorFontList />
-                </TabPanel>
-                <TabPanel>
                   <EditorFontSize />
                   <EditorLineHeigth />
                 </TabPanel>

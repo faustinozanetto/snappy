@@ -8,7 +8,7 @@ import {
   selectBackgroundCustomization,
   selectCodeCustomization,
   selectWindowCustomization,
-} from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+} from '@state/slices/editor/ToolbarEditorCustomization.slice';
 import { useSelector } from 'react-redux';
 import { EditorCodeContent } from './content/EditorCodeContent';
 import { EXAMPLE_CODE } from '@lib/Constants';

@@ -18,7 +18,7 @@ import {
   BackgroundType,
   selectBackgroundCustomization,
   setBackgroundCustomization,
-} from 'state/slices/toolbar/ToolbarEditorCustomization.slice';
+} from '@state/slices/editor/ToolbarEditorCustomization.slice';
 import { parseBackgroundColor } from '@lib/HelperFunctions';
 import { EditorBackgroundColor } from './color/EditorBackgroundColor';
 import { EditorBackgroundImage } from './image/EditorBackgroundImage';

@@ -4,7 +4,7 @@ import {
   CodeLanguage,
   selectCodeCustomization,
   setCodeCustomization,
-} from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+} from '@state/slices/editor/ToolbarEditorCustomization.slice';
 import { useDispatch, useSelector } from 'react-redux';
 
 interface EditorCodeLanguageListProps {}

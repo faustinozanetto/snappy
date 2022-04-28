@@ -1,7 +1,5 @@
-import {
-  PrismToken,
-  Token,
-} from '@components/editor/highlight/CodeHighlighting';
+import { Token } from '@components/editor/highlight/CodeHighlighting';
+import { Token as PrismToken } from 'prismjs';
 
 const newlineRe = /\r\n|\r|\n/;
 
@@ -48,9 +46,7 @@ const normalizeTokens = (tokens: Array<PrismToken | string>): Token[][] => {
     const acc = [currentLine];
 
     while (stackIndex > -1) {
-      while (
-        (i = tokenArrIndexStack[stackIndex]++) < tokenArrSizeStack[stackIndex]
-      ) {
+      while ((i = tokenArrIndexStack[stackIndex]++) < tokenArrSizeStack[stackIndex]) {
         let content;
         let types = typeArrStack[stackIndex];
 

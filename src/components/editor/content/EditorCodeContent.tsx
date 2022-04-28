@@ -5,11 +5,12 @@ import {
   CodeLanguage,
   selectCodeCustomization,
   selectFontCustomization,
-} from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+} from '@state/slices/editor/ToolbarEditorCustomization.slice';
 import Highlight, { defaultProps, PrismTheme } from 'prism-react-renderer';
 import { HighlightThemeType } from '@lib/themes/HighlightTheme';
 import { Box, Text } from '@chakra-ui/react';
 import { EditorWindowControls } from './window/EditorWindowControls';
+import { CodeHighlighting } from '../highlight/CodeHighlighting';
 
 interface EditorCodeContentProps {
   code?: string;
@@ -51,7 +52,7 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
    * @returns the highlighed code.
    */
   const highLightCode = (codeToHighlight: string) => (
-    <Highlight
+    <CodeHighlighting
       {...defaultProps}
       code={codeToHighlight}
       // @ts-ignore
@@ -82,7 +83,7 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
           })}
         </Text>
       )}
-    </Highlight>
+    </CodeHighlighting>
   );
 
   return (

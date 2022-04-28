@@ -1,5 +1,5 @@
 import { ConstructCSSStyle, HighlightThemeType } from '@lib/themes/HighlightTheme';
-import { selectWindowCustomization } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+import { selectWindowCustomization } from '@state/slices/editor/ToolbarEditorCustomization.slice';
 import { useSelector } from 'react-redux';
 
 interface ThemeStylesProps {

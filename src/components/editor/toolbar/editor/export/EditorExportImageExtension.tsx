@@ -3,8 +3,8 @@ import { Text, Box, HStack, Select } from '@chakra-ui/react';
 import {
   selectExportCustomization,
   setExportCustomization,
-} from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
-import { FileExtension } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+} from '@state/slices/editor/ToolbarEditorCustomization.slice';
+import { FileExtension } from '@state/slices/editor/ToolbarEditorCustomization.slice';
 import { useDispatch, useSelector } from 'react-redux';
 
 interface EditorExportImaageExtensionProps {}

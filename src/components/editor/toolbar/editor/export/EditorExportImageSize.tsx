@@ -2,7 +2,7 @@ import React from 'react';
 import {
   selectExportCustomization,
   setExportCustomization,
-} from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+} from '@state/slices/editor/ToolbarEditorCustomization.slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { CustomizationSlider } from '../input/CustomizationSlider';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex, HStack, useColorModeValue } from '@chakra-ui/react';
-import { GradientColor } from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+import { GradientColor } from '@state/slices/editor/ToolbarEditorCustomization.slice';
 import { GradientMarker } from './GradientMarker';
 
 interface GradientColorsHolderProps {

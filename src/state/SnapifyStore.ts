@@ -1,5 +1,5 @@
 import { Action, combineReducers, configureStore, createSlice, PayloadAction, ThunkAction } from '@reduxjs/toolkit';
-import { ToolBoxEditorCustomizationSlice } from './slices/toolbar/ToolbarEditorCustomization.slice';
+import { EditorCustomizationSlice } from './slices/editor/ToolbarEditorCustomization.slice';
 import { loadState } from './LocalStorage';
 import {
   FLUSH,
@@ -34,7 +34,7 @@ export const SnapifySlice = createSlice({
 
 const reducers = combineReducers({
   snapify: SnapifySlice.reducer,
-  toolboxEditor: ToolBoxEditorCustomizationSlice.reducer,
+  editor: EditorCustomizationSlice.reducer,
 });
 
 const persistConfig = {

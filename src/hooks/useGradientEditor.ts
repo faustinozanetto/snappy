@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import {
   BackgroundGradient,
   GradientColor,
-} from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+} from '@state/slices/editor/ToolbarEditorCustomization.slice';
 
 export const useGradientEditor = (initialValue: BackgroundGradient) => {
   const { colors: initialColors, type: initialType } = initialValue;

@@ -5,7 +5,7 @@ import {
   FontFamily,
   selectFontCustomization,
   setFontCustomization,
-} from '@state/slices/toolbar/ToolbarEditorCustomization.slice';
+} from '@state/slices/editor/ToolbarEditorCustomization.slice';
 
 interface EditorFontListProps {}
 
