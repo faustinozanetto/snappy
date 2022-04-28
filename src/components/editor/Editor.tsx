@@ -12,8 +12,9 @@ import {
 import { useSelector } from 'react-redux';
 import { EditorCodeContent } from './content/EditorCodeContent';
 import { EXAMPLE_CODE } from '@lib/Constants';
-import { GenerateHighlight, HighlightThemeType, selectThemeFile } from '@lib/themes/HighlightTheme';
+import { HighlightThemeType, selectThemeFile } from '@lib/themes/HighlightTheme';
 import { NIGHT_OWL } from '@lib/themes/NightOwl.theme';
+import { ThemeStyles } from './highlight/ThemeStyles';
 
 interface EditorProps {}
 
@@ -125,7 +126,7 @@ export const Editor: React.FC<EditorProps> = ({}) => {
             }}
             theme={highlightTheme}
           />
-          {codeCustomization.codeTheme && GenerateHighlight(highlightTheme)}
+          <ThemeStyles theme={highlightTheme} />
         </Box>
       </Flex>
     </Container>

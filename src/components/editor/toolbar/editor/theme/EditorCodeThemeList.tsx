@@ -17,9 +17,7 @@ export const EditorCodeThemeList: React.FC<EditorCodeThemeListProps> = ({}) => {
    * It calls the setCodeTheme action
    * @param event event from the select input
    */
-  const handleCodeThemeChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
+  const handleCodeThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const theme: CodeTheme = event.target.value as CodeTheme;
     dispatch(setCodeCustomization({ codeTheme: theme }));
   };
@@ -34,21 +32,20 @@ export const EditorCodeThemeList: React.FC<EditorCodeThemeListProps> = ({}) => {
   };
 
   return (
-    <Box pb={2} width='full'>
-      <Text as='h2' fontWeight={600} fontSize='lg' mb={2}>
+    <Box pb={2} width="full">
+      <Text as="h2" fontWeight={600} fontSize="lg" mb={2}>
         Themes
       </Text>
-      <Select
-        onChange={handleCodeThemeChange}
-        defaultValue={codeCustomization.codeTheme}
-      >
-        {Object.keys(CodeTheme).map((key) => {
-          return (
-            <option key={key} value={CodeTheme[key]}>
-              {capitalizeThemeName(CodeTheme[key])}
-            </option>
-          );
-        })}
+      <Select onChange={handleCodeThemeChange} defaultValue={codeCustomization.codeTheme}>
+        {Object.keys(CodeTheme)
+          .sort()
+          .map((key) => {
+            return (
+              <option key={key} value={CodeTheme[key]}>
+                {capitalizeThemeName(CodeTheme[key])}
+              </option>
+            );
+          })}
       </Select>
     </Box>
   );

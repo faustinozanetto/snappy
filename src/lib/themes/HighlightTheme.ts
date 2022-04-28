@@ -85,7 +85,7 @@ export const selectThemeFile = (theme: CodeTheme): HighlightThemeType => {
   }
 };
 
-const ConstructCSSStyle = (theme: HighlightThemeType): string => {
+export const ConstructCSSStyle = (theme: HighlightThemeType): string => {
   const cssStyle = theme.styles.map((style) => {
     const css = style.types.map((type) => {
       // Convert CSS object to string
@@ -97,32 +97,4 @@ const ConstructCSSStyle = (theme: HighlightThemeType): string => {
     return css.join('\n');
   });
   return cssStyle.join('\n');
-};
-
-export const GenerateHighlight = (theme: HighlightThemeType) => {
-  const windowCustomization = useSelector(selectWindowCustomization);
-  return (
-    <style jsx global>{`
-      ${ConstructCSSStyle(theme).concat(`
-      .code-wrapper {
-        color: ${theme.plain.color} !important;
-        background-color: ${theme.plain.backgroundColor} !important;
-      }
-
-      .prism-code {
-        margin: 0 !important;
-        padding: 0 !important;
-        overflow: hidden !important;
-      }
-      .npm__react-simple-code-editor__textarea {
-        margin-top: ${windowCustomization.controls ? '2em !important' : '0 !important'};
-      }
-      .npm__react-simple-code-editor__textarea:focus-visible {
-        outline: none !important;
-        border: none !important;
-      }
-
-      `)}
-    `}</style>
-  );
 };

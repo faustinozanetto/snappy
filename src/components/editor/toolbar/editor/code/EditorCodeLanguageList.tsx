@@ -9,9 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 interface EditorCodeLanguageListProps {}
 
-export const EditorCodeLanguageList: React.FC<
-  EditorCodeLanguageListProps
-> = ({}) => {
+export const EditorCodeLanguageList: React.FC<EditorCodeLanguageListProps> = ({}) => {
   const dispatch = useDispatch();
   const codeCustomization = useSelector(selectCodeCustomization);
 
@@ -19,9 +17,7 @@ export const EditorCodeLanguageList: React.FC<
    * It calls the setCodeLanguage action
    * @param event event from the select input
    */
-  const handleCodeLanguageChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
+  const handleCodeLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(setCodeCustomization({ codeLanguage: event.target.value }));
   };
 
@@ -35,19 +31,19 @@ export const EditorCodeLanguageList: React.FC<
   };
 
   return (
-    <Box pb={2} width='full'>
-      <Text as='h2' fontWeight={600} fontSize='lg' mb={2}>
+    <Box pb={2} width="full">
+      <Text as="h2" fontWeight={600} fontSize="lg" mb={2}>
         Language
       </Text>
       <Select
-        placeholder='Choose a Language'
+        placeholder="Choose a Language"
         onChange={handleCodeLanguageChange}
         defaultValue={codeCustomization.codeLanguage}
       >
         {/* Map all options from CodeLanguage */}
         {Object.keys(CodeLanguage).map((language) => (
-          <option key={language} value={language}>
-            {capitalizeLanguageName(language.toLowerCase())}
+          <option key={language} value={CodeLanguage[language]}>
+            {capitalizeLanguageName(CodeLanguage[language])}
           </option>
         ))}
       </Select>
