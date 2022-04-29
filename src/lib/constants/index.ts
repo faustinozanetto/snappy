@@ -8,6 +8,8 @@ import {
   Presets,
 } from 'snappy.types';
 
+export const __PROD__ = process.env.NODE_ENV === 'production';
+
 /**
  * @description Basic code snippet that shows up when page loads by default.
  */

@@ -1,10 +1,10 @@
 import React from 'react';
-import CustomizationSlider from '../../input/customizationSlider';
 import { Box, VStack } from '@chakra-ui/react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { selectWindowCustomization, setWindowCustomization } from '@state/slices/editor/editorCustomization.slice';
 import EditorToolbarWindowControls from '../controls/editorToolbarWindowControls';
+import CustomizationSlider from '../../input/customizationSlider';
 
 interface EditorToolbarWindowDisplayProps {}
 

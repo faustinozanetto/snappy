@@ -1,6 +1,6 @@
 import next from 'next';
 import { createServer } from 'http';
-import { __PROD__ } from '../src/utils/constants';
+import { __PROD__ } from '@lib/constants';
 
 (async () => {
   const PORT = parseInt(process.env.PORT) || 3000;
@@ -24,8 +24,7 @@ import { __PROD__ } from '../src/utils/constants';
     server
       .on('listening', async () => {
         const addr = server.address();
-        const bind =
-          typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+        const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
         console.log('Listening on ' + bind);
       })
       .listen(PORT);
