@@ -9,6 +9,7 @@
   "scripts": {
     "start:dev": "ts-node --project tsconfig.server.json -r tsconfig-paths/register server/index.ts",
     "build": "next build",
+    "docker:build":"docker build -t faustizanetto/snappy:latest .",
     "start:prod": "next start",
     "lint": "next lint"
   },

@@ -13,6 +13,8 @@ COPY . .
 COPY --from=DEPS /opt/app/node_modules ./node_modules
 RUN yarn build
 
+FROM node:lts-alpine AS RUNNER
+
 ARG X_TAG
 WORKDIR /opt/app
 ENV NODE_ENV=production
