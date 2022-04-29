@@ -5,17 +5,17 @@ import '@fontsource/mononoki';
 import '@fontsource/poppins';
 import '@fontsource/space-mono';
 import '@fontsource/source-code-pro';
-import * as gtag from '@lib/GoogleTag';
-import ExportProvider from '@state/ExportContext';
+import * as gtag from '@lib/google/googleTag';
+import ExportProvider from '@state/context/exportContext';
+import GoogleAnalytics from '@components/google/googleAnalytics';
 import { ChakraProvider } from '@chakra-ui/react';
 import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
-import { persistor, store } from 'state/SnapifyStore';
 import { theme } from '@styles/themes';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { GoogleAnalytics } from '@components/google/GoogleAnalytics';
 import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from '@state/redux/snappyStore';
 
 const SnapifyApp = (props: AppProps) => {
   const { Component, pageProps } = props;

@@ -1,7 +1,7 @@
-import { CodeTheme } from '@state/slices/editor/ToolbarEditorCustomization.slice';
-import { HighlightThemeType } from './HighlightTheme';
+import { CodeTheme } from 'snappy.types';
+import { HighlightTheme } from 'snappy.types';
 
-export const AURORA: HighlightThemeType = {
+export const AURORA: HighlightTheme = {
   name: 'Aurora',
   type: CodeTheme.AURORA,
   plain: {

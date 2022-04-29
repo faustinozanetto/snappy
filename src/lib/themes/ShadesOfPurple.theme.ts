@@ -1,7 +1,7 @@
-import { CodeTheme } from '@state/slices/editor/ToolbarEditorCustomization.slice';
-import { HighlightThemeType } from './HighlightTheme';
+import { CodeTheme } from 'snappy.types';
+import { HighlightTheme } from 'snappy.types';
 
-export const SHADES_OF_PURPLE: HighlightThemeType = {
+export const SHADES_OF_PURPLE: HighlightTheme = {
   name: 'Shades of Purple',
   type: CodeTheme.SHADES_OF_PURPLE,
   plain: {

@@ -2,15 +2,20 @@ import React from 'react';
 import Head from 'next/head';
 
 export interface LayoutHeadProps {
+  /** Seo title */
   title?: string;
+  /** Seo description */
   description?: string;
+  /** Seo url */
   url?: string;
+  /** Seo canonical url */
   canonicalUrl?: string;
+  /** Seo image used in twitter cards, etc. */
   image?: string;
 }
 
-export const LayoutHead: React.FC<LayoutHeadProps> = (props) => {
-  const { title, description, url, canonicalUrl, image = '/images/favicon.png' } = props;
+const LayoutHead: React.FC<LayoutHeadProps> = (props) => {
+  const { title, description, url, canonicalUrl, image = '/images/favicon/favicon.png' } = props;
   return (
     <Head>
       <title>{title}</title>
@@ -45,3 +50,5 @@ export const LayoutHead: React.FC<LayoutHeadProps> = (props) => {
     </Head>
   );
 };
+
+export default LayoutHead;

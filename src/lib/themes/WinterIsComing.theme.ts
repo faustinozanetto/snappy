@@ -1,7 +1,6 @@
-import { CodeTheme } from "@state/slices/editor/ToolbarEditorCustomization.slice";
-import { HighlightThemeType } from "./HighlightTheme";
+import { HighlightTheme, CodeTheme } from 'snappy.types';
 
-export const WINTER_IS_COMING: HighlightThemeType = {
+export const WINTER_IS_COMING: HighlightTheme = {
   name: 'Winter is Coming',
   type: CodeTheme.WINTER_IS_COMING,
   plain: {

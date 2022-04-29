@@ -1,6 +1,6 @@
 {
   "name": "snappy",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Snappy is a simple, fast and powerful code snippet creator.",
   "main": "index.js",
   "author": "Faustino Zanetto <faustizanetto@gmail.com>",

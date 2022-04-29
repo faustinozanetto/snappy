@@ -1,7 +1,7 @@
-import { CodeTheme } from '@state/slices/editor/ToolbarEditorCustomization.slice';
-import { HighlightThemeType } from './HighlightTheme';
+import { CodeTheme } from 'snappy.types';
+import { HighlightTheme } from 'snappy.types';
 
-export const ROSE_PINE: HighlightThemeType = {
+export const ROSE_PINE: HighlightTheme = {
   name: 'Rose Pine',
   type: CodeTheme.ROSE_PINE,
   plain: {

@@ -3,16 +3,13 @@ import Script from 'next/script';
 
 interface GoogleAnalyticsProps {}
 
-export const GoogleAnalytics: React.FC<GoogleAnalyticsProps> = ({}) => {
+const GoogleAnalytics: React.FC<GoogleAnalyticsProps> = ({}) => {
   return (
     <>
       {/* Global Site Tag (gtag.js) - Google Analytics */}
+      <Script async src={`https://www.googletagmanager.com/gtag/js?id=G-8M3QB6LWKR`} />
       <Script
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=G-8M3QB6LWKR`}
-      />
-      <Script
-        id='gtag-init'
+        id="gtag-init"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
@@ -27,3 +24,5 @@ export const GoogleAnalytics: React.FC<GoogleAnalyticsProps> = ({}) => {
     </>
   );
 };
+
+export default GoogleAnalytics;

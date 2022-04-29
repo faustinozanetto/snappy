@@ -1,26 +1,22 @@
 import React, { useState } from 'react';
 import Editor from 'react-simple-code-editor';
 import { useSelector } from 'react-redux';
-import {
-  CodeLanguage,
-  selectCodeCustomization,
-  selectFontCustomization,
-} from '@state/slices/editor/ToolbarEditorCustomization.slice';
-import Highlight, { defaultProps, PrismTheme } from 'prism-react-renderer';
-import { HighlightThemeType } from '@lib/themes/HighlightTheme';
+import { CodeLanguage, HighlightTheme } from 'snappy.types';
 import { Box, Text } from '@chakra-ui/react';
-import { EditorWindowControls } from './window/EditorWindowControls';
-import { CodeHighlighting } from '../highlight/CodeHighlighting';
+import { selectFontCustomization, selectCodeCustomization } from '@state/slices/editor/editorCustomization.slice';
+import { defaultProps } from 'prism-react-renderer';
+import CodeHighlighting from '../highlight/codeHighlighting';
+import EditorWindowControls from './window/editorWindowControls';
 
 interface EditorCodeContentProps {
   code?: string;
   language?: CodeLanguage;
   styles?: React.CSSProperties;
   showWindowControls?: boolean;
-  theme?: HighlightThemeType;
+  theme?: HighlightTheme;
 }
 
-export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
+const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
   const { code: propsCode, showWindowControls, styles, theme, language } = props;
   const [code, setCode] = useState(propsCode || '');
   const fontCustomization = useSelector(selectFontCustomization);
@@ -39,8 +35,8 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
       fontSmooth: 'always',
       fontSize: `${fontCustomization.fontSize}px`,
       lineHeight: `${fontCustomization.lineHeight}em`,
-      transitionProperty: 'color background-color',
-      transitionDuration: '0.2s',
+      transitionProperty: 'color background-color padding translate box-shadow',
+      transitionDuration: '300ms',
       transitionTimingFunction: 'ease-out',
     };
     return newStyles;
@@ -52,6 +48,7 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
    * @returns the highlighed code.
    */
   const highLightCode = (codeToHighlight: string) => (
+    // @ts-ignore
     <CodeHighlighting
       {...defaultProps}
       code={codeToHighlight}
@@ -105,3 +102,4 @@ export const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
     </>
   );
 };
+export default EditorCodeContent;

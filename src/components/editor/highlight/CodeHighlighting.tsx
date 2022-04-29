@@ -1,66 +1,27 @@
-import React, { Key } from 'react';
+import React from 'react';
 import Prism, { Token as PrismToken, Grammar } from 'prismjs';
-import normalizeTokens from '@lib/NormalizeTokens';
-import { themeToDict } from '@lib/HelperFunctions';
-import { HighlightThemeType } from '@lib/themes/HighlightTheme';
-import { CodeLanguage } from '@state/slices/editor/ToolbarEditorCustomization.slice';
-
-export type Token = {
-  types: string[];
-  content: string;
-  empty?: boolean;
-};
-
-export type LineInputProps = {
-  key?: Key;
-  style?: React.CSSProperties;
-  className?: string;
-  line: Token[];
-  [key: string]: any;
-};
-
-export type LineOutputProps = {
-  key?: Key;
-  style?: React.CSSProperties;
-  className: string;
-  [key: string]: any;
-};
-
-export type TokenInputProps = {
-  key?: Key;
-  style?: React.CSSProperties;
-  className?: string;
-  token: Token;
-  [key: string]: any;
-};
-
-export type TokenOutputProps = {
-  key?: Key;
-  style?: React.CSSProperties;
-  className: string;
-  children: string;
-  [key: string]: any;
-};
-
-export type RenderProps = {
-  tokens: Token[][];
-  className: string;
-  style: HighlightThemeType;
-  getLineProps: (input: LineInputProps) => LineOutputProps;
-  getTokenProps: (input: TokenInputProps) => TokenOutputProps;
-};
+import { themeToDict, normalizeTokens } from '@lib/codeHighlight/codeHighlight';
+import {
+  HighlightTheme,
+  LineInputProps,
+  Token,
+  LineOutputProps,
+  RenderProps,
+  TokenInputProps,
+  TokenOutputProps,
+} from 'snappy.types';
 
 interface CodeHighlightingProps {
   code: string;
-  theme?: HighlightThemeType;
+  theme?: HighlightTheme;
   language: string;
   children?: (props: RenderProps) => React.ReactNode;
 }
 
-export const CodeHighlighting: React.FC<CodeHighlightingProps> = (props) => {
+const CodeHighlighting = (props: CodeHighlightingProps) => {
   const { code, language, theme, children } = props;
 
-  const getThemeDict = (): HighlightThemeType => {
+  const getThemeDict = (): HighlightTheme => {
     const newThemeDict = theme ? themeToDict(theme, language) : null;
     return newThemeDict;
   };
@@ -140,3 +101,4 @@ export const CodeHighlighting: React.FC<CodeHighlightingProps> = (props) => {
     getTokenProps,
   });
 };
+export default CodeHighlighting;

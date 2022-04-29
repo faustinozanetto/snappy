@@ -1,12 +1,13 @@
-import { Box, Grid, HStack, Input } from '@chakra-ui/react';
 import React from 'react';
-import { EditorWindowControlsIcons } from './EditorWindowControlsIcons';
+import EditorWindowControlsIcons from './editorWindowControlsIcons';
+import { Box, Input } from '@chakra-ui/react';
 
 interface EditorWindowControlsProps {
+  /** Color of the title, defaults to white. */
   titleColor?: string;
 }
 
-export const EditorWindowControls: React.FC<EditorWindowControlsProps> = ({ titleColor = '#fff' }) => {
+const EditorWindowControls: React.FC<EditorWindowControlsProps> = ({ titleColor = '#fff' }) => {
   return (
     <Box position={'relative'} top={'50px'} mx={6} my={4} textAlign={'initial'} zIndex={2}>
       {/* Window Controls Icons */}
@@ -32,3 +33,4 @@ export const EditorWindowControls: React.FC<EditorWindowControlsProps> = ({ titl
     </Box>
   );
 };
+export default EditorWindowControls;

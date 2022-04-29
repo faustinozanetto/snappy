@@ -1,7 +1,7 @@
-import { CodeTheme } from '@state/slices/editor/ToolbarEditorCustomization.slice';
-import { HighlightThemeType } from './HighlightTheme';
+import { CodeTheme } from 'snappy.types';
+import { HighlightTheme } from 'snappy.types';
 
-export const NIGHT_OWL_LIGHT: HighlightThemeType = {
+export const NIGHT_OWL_LIGHT: HighlightTheme = {
   name: 'Night Owl Light',
   type: CodeTheme.NIGHT_OWL_LIGHT,
   plain: {

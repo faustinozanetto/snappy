@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  BackgroundGradient,
-  GradientColor,
-} from '@state/slices/editor/ToolbarEditorCustomization.slice';
+import { BackgroundGradient, GradientColor } from 'snappy.types';
 
 export const useGradientEditor = (initialValue: BackgroundGradient) => {
   const { colors: initialColors, type: initialType } = initialValue;
@@ -18,16 +15,9 @@ export const useGradientEditor = (initialValue: BackgroundGradient) => {
 
   const generateGradient = () => {
     const gradient = colors
-      .map(
-        (color) =>
-          `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a}) ${
-            color.position * 100
-          }%`
-      )
+      .map((color) => `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a}) ${color.position * 100}%`)
       .join(', ');
-    return `${type}-gradient(${
-      type === 'linear' ? 'to right' : 'circle'
-    }, ${gradient})`;
+    return `${type}-gradient(${type === 'linear' ? 'to right' : 'circle'}, ${gradient})`;
   };
 
   const addColor = (color: GradientColor) => {

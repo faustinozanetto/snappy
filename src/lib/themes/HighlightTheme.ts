@@ -1,44 +1,31 @@
-import React from 'react';
-import { CodeTheme, selectWindowCustomization } from '@state/slices/editor/ToolbarEditorCustomization.slice';
-import { DRACULA } from './Dracula.theme';
-import { NIGHT_OWL } from './NightOwl.theme';
-import { NIGHT_OWL_LIGHT } from './NightOwlLight.theme';
-import { ONE_DARK } from './OneDark.theme';
-import { SYNTHWAVE84 } from './Synthwave84';
-import { VS_DARK } from './VsDark.theme';
-import { OKAIDIA } from './Okaidia.theme';
-import { SHADES_OF_PURPLE } from './ShadesOfPurple.theme';
-import { CELESTIAL } from './Celestial.theme';
-import { AURORA } from './Aurora.theme';
-import { WINTER_IS_COMING } from './WinterIsComing.theme';
-import { OUTRUN_NIGHT } from './OutrunNight.theme';
-import { MONOKAI } from './Monokai.theme';
-import { ROSE_PINE } from './RosePine.theme';
-import { EVA_LIGHT } from './EvaLight.theme';
-import { VS_LIGHT } from './VsLight.theme';
-import { GITHUB } from './Github.theme';
-import { OCEANICNEXT } from './OceanicNext.theme';
-import { DUOTONEDARK } from './DuotoneDark.theme';
-import { PALENIGHT } from './Palenight.theme';
-import { useSelector } from 'react-redux';
+import { CodeTheme, HighlightTheme } from 'snappy.types';
+import { AURORA } from './aurora.theme';
+import { CELESTIAL } from './celestial.theme';
+import { DRACULA } from './dracula.theme';
+import { DUOTONEDARK } from './duotoneDark.theme';
+import { EVA_LIGHT } from './evaLight.theme';
+import { GITHUB } from './github.theme';
+import { MONOKAI } from './monokai.theme';
+import { NIGHT_OWL } from './nightOwl.theme';
+import { NIGHT_OWL_LIGHT } from './nightOwlLight.theme';
+import { OCEANICNEXT } from './oceanicNext.theme';
+import { OKAIDIA } from './okaidia.theme';
+import { ONE_DARK } from './oneDark.theme';
+import { OUTRUN_NIGHT } from './outrunNight.theme';
+import { PALENIGHT } from './palenight.theme';
+import { ROSE_PINE } from './rosePine.theme';
+import { SHADES_OF_PURPLE } from './shadesOfPurple.theme';
+import { SYNTHWAVE84 } from './synthwave84';
+import { VS_DARK } from './vsDark.theme';
+import { VS_LIGHT } from './vsLight.theme';
+import { WINTER_IS_COMING } from './winterIsComing.theme';
 
-export type ThemeData = {
-  types: string[];
-  style: React.CSSProperties;
-};
-
-export type HighlightThemeType = {
-  name: string;
-  type: CodeTheme;
-  plain: {
-    color: string;
-    backgroundColor: string;
-  };
-  additionalCSS?: string;
-  styles: ThemeData[];
-};
-
-export const selectThemeFile = (theme: CodeTheme): HighlightThemeType => {
+/**
+ *
+ * @param theme Theme to retrive data from.
+ * @returns {HighlightTheme} the corresponding file to the theme.
+ */
+export const selectThemeFile = (theme: CodeTheme): HighlightTheme => {
   switch (theme) {
     case CodeTheme.VS_LIGHT:
       return VS_LIGHT;
@@ -85,7 +72,12 @@ export const selectThemeFile = (theme: CodeTheme): HighlightThemeType => {
   }
 };
 
-export const ConstructCSSStyle = (theme: HighlightThemeType): string => {
+/**
+ *
+ * @param theme Theme to retrive data from.
+ * @returns {string} the generated css style for the theme.
+ */
+export const constructCSSStyle = (theme: HighlightTheme): string => {
   const cssStyle = theme.styles.map((style) => {
     const css = style.types.map((type) => {
       // Convert CSS object to string

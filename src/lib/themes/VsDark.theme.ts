@@ -1,7 +1,7 @@
-import { CodeTheme } from '@state/slices/editor/ToolbarEditorCustomization.slice';
-import { HighlightThemeType } from './HighlightTheme';
+import { CodeTheme } from 'snappy.types';
+import { HighlightTheme } from 'snappy.types';
 
-export const VS_DARK: HighlightThemeType = {
+export const VS_DARK: HighlightTheme = {
   name: 'Vs Dark',
   type: CodeTheme.VS_DARK,
   plain: {

@@ -1,7 +1,7 @@
-import { CodeTheme } from '@state/slices/editor/ToolbarEditorCustomization.slice';
-import { HighlightThemeType } from './HighlightTheme';
+import { CodeTheme } from 'snappy.types';
+import { HighlightTheme } from 'snappy.types';
 
-export const DRACULA: HighlightThemeType = {
+export const DRACULA: HighlightTheme = {
   name: 'Dracula',
   type: CodeTheme.DRACULA,
   plain: {

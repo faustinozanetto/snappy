@@ -1,39 +1,39 @@
 import React, { createRef, useEffect, useState } from 'react';
 import { Box, Container, Flex, HStack, useColorModeValue, VStack } from '@chakra-ui/react';
-import { EditorToolBar } from './toolbar/EditorToolBar';
-import { parseBackgroundColor } from '@lib/HelperFunctions';
+import { parseBackgroundColor } from '@lib/helperFunctions';
+import { useSelector } from 'react-redux';
+import { EXAMPLE_CODE } from '@lib/constants';
+import { NIGHT_OWL } from '@lib/themes/nightOwl.theme';
+import { selectThemeFile } from '@lib/themes/highlightTheme';
 import {
-  CodeTheme,
-  Color,
   selectBackgroundCustomization,
   selectCodeCustomization,
   selectWindowCustomization,
-} from '@state/slices/editor/ToolbarEditorCustomization.slice';
-import { useSelector } from 'react-redux';
-import { EditorCodeContent } from './content/EditorCodeContent';
-import { EXAMPLE_CODE } from '@lib/Constants';
-import { HighlightThemeType, selectThemeFile } from '@lib/themes/HighlightTheme';
-import { NIGHT_OWL } from '@lib/themes/NightOwl.theme';
-import { ThemeStyles } from './highlight/ThemeStyles';
+} from '@state/slices/editor/editorCustomization.slice';
+import { Color } from 'react-color';
+import { BackgroundShadowEntry, HighlightTheme } from 'snappy.types';
+import EditorToolBar from './toolbar/editorToolBar';
+import CodeHighlightStyles from './highlight/codeHighlightStyles';
+import EditorCodeContent from './content/editorCodeContent';
 
 interface EditorProps {}
 
-type ShadowEntry = {
-  color: string;
-  size: [number, number, number];
-};
-
-export const Editor: React.FC<EditorProps> = ({}) => {
+const Editor: React.FC<EditorProps> = ({}) => {
   const savedRef = createRef<HTMLDivElement>();
   const backgroundCustomization = useSelector(selectBackgroundCustomization);
-  const [highlightTheme, setHighlightTheme] = useState<HighlightThemeType>(NIGHT_OWL);
   const codeCustomization = useSelector(selectCodeCustomization);
   const windowCustomization = useSelector(selectWindowCustomization);
+  const [highlightTheme, setHighlightTheme] = useState<HighlightTheme>(NIGHT_OWL);
 
+  /**
+   *
+   * @param size size of the shadow.
+   * @returns The generated css shadow matching the color and size.
+   */
   const generateWindowShadow = (size: number): string => {
     const BASE_COLOR: Color = windowCustomization.shadow.boxShadowColor;
     const PARSED_COLOR: string = `rgba(${BASE_COLOR?.r}, ${BASE_COLOR?.g}, ${BASE_COLOR?.b}, ${BASE_COLOR?.a})`;
-    const BASE: ShadowEntry[] = [
+    const BASE: BackgroundShadowEntry[] = [
       {
         color: PARSED_COLOR,
         size: [0, 54, 55],
@@ -126,9 +126,11 @@ export const Editor: React.FC<EditorProps> = ({}) => {
             }}
             theme={highlightTheme}
           />
-          <ThemeStyles theme={highlightTheme} />
+          <CodeHighlightStyles theme={highlightTheme} />
         </Box>
       </Flex>
     </Container>
   );
 };
+
+export default Editor;

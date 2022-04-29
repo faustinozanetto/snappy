@@ -1,7 +1,7 @@
-import { CodeTheme } from '@state/slices/editor/ToolbarEditorCustomization.slice';
-import { HighlightThemeType } from './HighlightTheme';
+import { CodeTheme } from 'snappy.types';
+import { HighlightTheme } from 'snappy.types';
 
-export const SYNTHWAVE84: HighlightThemeType = {
+export const SYNTHWAVE84: HighlightTheme = {
   name: 'Synthwave84',
   type: CodeTheme.SYNTHWAVE84,
   plain: {

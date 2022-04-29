@@ -6,7 +6,8 @@ export interface LayoutContainerProps {
   children?: React.ReactNode;
 }
 
-export const LayoutContainer: React.FC<LayoutContainerProps> = (props) => {
+const LayoutContainer: React.FC<LayoutContainerProps> = (props) => {
   const { children } = props;
   return <VStack my={[4, 8, 10, 12]}>{children}</VStack>;
 };
+export default LayoutContainer;

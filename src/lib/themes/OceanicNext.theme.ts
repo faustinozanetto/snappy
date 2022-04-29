@@ -1,5 +1,5 @@
-import { CodeTheme } from '@state/slices/editor/ToolbarEditorCustomization.slice';
-import { HighlightThemeType } from './HighlightTheme';
+import { CodeTheme } from 'snappy.types';
+import { HighlightTheme } from 'snappy.types';
 
 const colors = {
   char: '#D8DEE9',
@@ -17,7 +17,7 @@ const colors = {
   operator: '#fc929e',
 };
 
-export const OCEANICNEXT: HighlightThemeType = {
+export const OCEANICNEXT: HighlightTheme = {
   name: 'Oceanic Next',
   type: CodeTheme.OCEANICNEXT,
   plain: {

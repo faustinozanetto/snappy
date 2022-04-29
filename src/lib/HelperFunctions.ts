@@ -1,6 +1,5 @@
-import { StyleObj } from '@components/editor/highlight/CodeHighlighting';
-import { Color } from '@state/slices/editor/ToolbarEditorCustomization.slice';
-import { HighlightThemeType } from './themes/HighlightTheme';
+import { Color, EditorCustomizationState, Presets } from 'snappy.types';
+import { CUSTOMIZATION_TEMPLATES } from './constants';
 
 /**
  *
@@ -12,26 +11,23 @@ export const parseBackgroundColor = (color: Color): string => {
   return `rgba(${r}, ${g}, ${b}, ${a})`;
 };
 
-export const themeToDict = (theme: any, language: any): HighlightThemeType => {
-  const { plain } = theme;
-  const base: HighlightThemeType = Object.create(null);
+/**
+ *
+ * @param preset Preset parameter from the state
+ * @returns the corresponding theme customization object from the presets.
+ */
+export const parseCustomizationPreset = (preset: Presets): EditorCustomizationState => {
+  const PRESET = CUSTOMIZATION_TEMPLATES.find((p) => p.name === preset);
+  if (PRESET) {
+    return PRESET.theme;
+  }
+};
 
-  const themeDict = theme.styles.reduce((acc, themeEntry) => {
-    const { types, languages, style } = themeEntry;
-    if (languages && !languages.includes(language)) {
-      return acc;
-    }
-
-    themeEntry.types.forEach((type) => {
-      const accStyle: StyleObj = { ...acc[type], ...style };
-      acc[type] = accStyle;
-    });
-
-    return acc;
-  }, base);
-
-  themeDict.root = plain;
-  themeDict.plain = { ...plain, backgroundColor: null };
-
-  return themeDict;
+/**
+ *
+ * @param string String to capitalize
+ * @returns the string with the first letter capitalized.
+ */
+export const capitalizeString = (string: string): string => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 };

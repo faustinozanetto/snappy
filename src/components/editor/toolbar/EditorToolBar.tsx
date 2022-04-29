@@ -1,34 +1,37 @@
 import React from 'react';
+import ThemeToggler from '@components/theming/themeToggler';
+import EditorToolbarWindow from './editor/window/editorToolbarWindow';
+import EditorToolbarBackground from './editor/background/editorToolbarBackground';
+import EditorToolbarCode from './editor/code/editorToolbarCode';
+import EditorToolbarExportImage from './editor/export/editorToolbarExportImage';
+import EditorToolbarFont from './editor/font/editorToolbarFont';
+import EditorToolbarPresets from './editor/presets/editorToolbarPresets';
 import { Wrap } from '@chakra-ui/react';
-import { EditorBackground } from './editor/background/EditorBackground';
-import { EditorCodeTheme } from './editor/theme/EditorCodeTheme';
-import { EditorFont } from './editor/font/EditorFont';
-import { EditorWindow } from './editor/window/EditorWindow';
-import { EditorExportImage } from './editor/export/EditorExportImage';
-import { NavbarThemeToggler } from '@components/navbar/NavbarThemeToggler';
-import { EditorCode } from './editor/code/EditorCode';
 
 interface EditorToolBarProps {
+  /** Ref used when exporting the image. */
   exportRef: React.RefObject<HTMLDivElement>;
 }
 
-export const EditorToolBar: React.FC<EditorToolBarProps> = ({ exportRef }) => {
+const EditorToolBar: React.FC<EditorToolBarProps> = ({ exportRef }) => {
   return (
-    <Wrap spacing={4} justify='center'>
+    <Wrap spacing={4} justify="center">
       {/* Background */}
-      <EditorBackground />
+      <EditorToolbarBackground />
       {/* Font */}
-      <EditorFont />
-      {/* Theme */}
-      <EditorCodeTheme />
+      <EditorToolbarFont />
       {/* Language */}
-      <EditorCode />
+      <EditorToolbarCode />
       {/* Window */}
-      <EditorWindow />
+      <EditorToolbarWindow />
+      {/* Presets */}
+      <EditorToolbarPresets />
       {/* Export */}
-      <EditorExportImage exportRef={exportRef} />
+      <EditorToolbarExportImage exportRef={exportRef} />
       {/* Theme toggler */}
-      <NavbarThemeToggler />
+      <ThemeToggler />
     </Wrap>
   );
 };
+
+export default EditorToolBar;

@@ -29,6 +29,7 @@
       "@pages/*": ["pages/*"],
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"],
+      "@types/*": ["types/*"],
       "@state/*": ["state/*"],
       "@wrappers/*": ["wrappers/*"],
       "@public/*": ["..public/*"],
@@ -38,17 +39,7 @@
     "incremental": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/lib/DomToImage.js"],
-  "exclude": [
-    "node_modules",
-    "dist",
-    ".next",
-    "out",
-    "next.config.ts",
-    ".babelrc",
-    "bundles",
-    "coverage",
-    "test/*"
-  ],
+  "exclude": ["node_modules", "dist", ".next", "out", "next.config.ts", ".babelrc", "bundles", "coverage", "test/*"],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"

@@ -1,13 +1,10 @@
 import React from 'react';
-import { Editor } from '@components/editor/Editor';
-import { Layout } from '@components/layout/Layout';
-import { Button } from '@chakra-ui/react';
-import { useSelector } from 'react-redux';
+import Editor from '@components/editor/editor';
+import Layout from '@components/layout/layout';
 
 type HomePageProps = {};
 
 const HomePage: React.FC<HomePageProps> = () => {
-  const editorState = useSelector((state) => state.editor);
   return (
     <Layout
       layoutHeadProps={{
@@ -17,13 +14,6 @@ const HomePage: React.FC<HomePageProps> = () => {
       }}
     >
       <Editor />
-      <Button
-        onClick={() => {
-          console.log(editorState);
-        }}
-      >
-        Export template
-      </Button>
     </Layout>
   );
 };

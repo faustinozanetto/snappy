@@ -1,7 +1,7 @@
-import { CodeTheme } from '@state/slices/editor/ToolbarEditorCustomization.slice';
-import { HighlightThemeType } from './HighlightTheme';
+import { CodeTheme } from 'snappy.types';
+import { HighlightTheme } from 'snappy.types';
 
-export const PALENIGHT: HighlightThemeType = {
+export const PALENIGHT: HighlightTheme = {
   name: 'Palenight',
   type: CodeTheme.PALENIGHT,
   plain: {

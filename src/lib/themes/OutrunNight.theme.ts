@@ -1,7 +1,7 @@
-import { CodeTheme } from '@state/slices/editor/ToolbarEditorCustomization.slice';
-import { HighlightThemeType } from './HighlightTheme';
+import { CodeTheme } from 'snappy.types';
+import { HighlightTheme } from 'snappy.types';
 
-export const OUTRUN_NIGHT: HighlightThemeType = {
+export const OUTRUN_NIGHT: HighlightTheme = {
   name: 'Outrun Night',
   type: CodeTheme.OUTRUN_NIGHT,
   plain: {
