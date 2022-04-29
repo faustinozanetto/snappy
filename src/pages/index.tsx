@@ -15,6 +15,8 @@ const HomePage: React.FC<HomePageProps> = () => {
       }}
     >
       <Editor />
+
+      <h1 className="text-3xl font-bold underline">Snappy</h1>
     </Layout>
   );
 };
