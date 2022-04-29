@@ -1,5 +1,5 @@
 import React from 'react';
-import SnapifyLogo from '@components/branding/SnapifyLogo';
+import SnapifyLogo from '@components/branding/snapifyLogo';
 import Footer from '@components/footer/footer';
 import LayoutContainer from './layoutContainer';
 import LayoutHead, { LayoutHeadProps } from './layoutHead';

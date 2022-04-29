@@ -6,7 +6,6 @@ import '@fontsource/poppins';
 import '@fontsource/space-mono';
 import '@fontsource/source-code-pro';
 import * as gtag from '@lib/google/googleTag';
-import ExportProvider from '@state/context/exportContext';
 import { ChakraProvider } from '@chakra-ui/react';
 import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
@@ -34,12 +33,10 @@ const SnapifyApp = (props: AppProps) => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <ExportProvider>
-          <ChakraProvider theme={theme}>
-            <GoogleAnalytics />
-            <Component {...pageProps} />
-          </ChakraProvider>
-        </ExportProvider>
+        <ChakraProvider theme={theme}>
+          <GoogleAnalytics />
+          <Component {...pageProps} />
+        </ChakraProvider>
       </PersistGate>
     </Provider>
   );

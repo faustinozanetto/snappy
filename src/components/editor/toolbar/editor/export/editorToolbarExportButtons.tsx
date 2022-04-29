@@ -1,4 +1,4 @@
-import { HStack } from '@chakra-ui/react';
+import { ButtonGroup, HStack } from '@chakra-ui/react';
 import Button from '@components/ui/button';
 import React from 'react';
 
@@ -7,18 +7,23 @@ interface EditorToolbarExportButtonsProps {
   onExport: () => void;
   /** Called when import button is clicked. */
   onCopy: () => void;
+  /** Called when open button is clicked */
+  onOpen: () => void;
 }
 
 const EditorToolbarExportButtons: React.FC<EditorToolbarExportButtonsProps> = (props) => {
-  const { onExport, onCopy } = props;
+  const { onExport, onCopy, onOpen } = props;
   return (
-    <HStack pt={6} width="full">
-      <Button onClick={onExport} colorScheme="blue" width="100%">
+    <HStack width="full" my={4}>
+      <Button onClick={onExport} colorScheme="blue" width="100%" variant={'outline'}>
         Export
       </Button>
 
-      <Button onClick={onCopy} colorScheme="green" width="100%">
+      <Button onClick={onCopy} colorScheme="green" width="100%" variant={'outline'}>
         Copy
+      </Button>
+      <Button onClick={onOpen} colorScheme="purple" width="100%" variant={'outline'}>
+        Open
       </Button>
     </HStack>
   );

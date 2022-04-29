@@ -1,5 +1,5 @@
 import React from 'react';
-import SnapifyLogo from '@components/branding/SnapifyLogo';
+import SnapifyLogo from '@components/branding/snapifyLogo';
 import Link from 'next/link';
 import { Box, Container, Stack, Text, useColorModeValue } from '@chakra-ui/react';
 
