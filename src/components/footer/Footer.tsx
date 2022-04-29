@@ -1,33 +1,26 @@
 import React from 'react';
-import SnapifyLogo from '@components/branding/snapifyLogo';
 import Link from 'next/link';
+import SnapifyLogo from '@components/branding/SnapifyLogo';
 import { Box, Container, Stack, Text, useColorModeValue } from '@chakra-ui/react';
 
 interface FooterProps {}
 
 const Footer: React.FC<FooterProps> = ({}) => {
   return (
-    <Box
-      bg={useColorModeValue('gray.50', 'gray.900')}
-      color={useColorModeValue('gray.700', 'gray.200')}
-      marginTop={'auto'}
-    >
-      <Container as={Stack} maxW="6xl" py={4} spacing={4} justify="center" align="center">
+    <div className="bg-gray-300 text-gray-900 mt-auto dark:bg-gray-900 dark:text-gray-200 p-4">
+      <div className="flex flex-col items-center p-4">
         <SnapifyLogo size="xl" logoColor={useColorModeValue('black', 'white')} />
-        <Stack direction={'row'} spacing={6}>
-          <Link href={'#'}>Home</Link>
+        <div className="flex flex-row mt-2 space-x-4">
+          <Link href={'/'}>Home</Link>
           <Link href={'#'}>Terms</Link>
           <Link href={'#'}>Privacy</Link>
           <Link href={'#'}>Contact</Link>
-        </Stack>
-      </Container>
-
-      <Box borderTopWidth={1} borderStyle={'solid'} borderColor={useColorModeValue('gray.200', 'gray.700')}>
-        <Container as={Stack} maxW={'6xl'} py={4} spacing={4} textAlign="center">
-          <Text>© 2022 Conkis Studios. All rights reserved</Text>
-        </Container>
-      </Box>
-    </Box>
+        </div>
+      </div>
+      <div className="flex flex-col items-center p-4">
+        <Text>© 2022 Conkis Studios. All rights reserved</Text>
+      </div>
+    </div>
   );
 };
 export default Footer;

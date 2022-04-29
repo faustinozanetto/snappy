@@ -22,21 +22,21 @@ const Layout: React.FC<LayoutProps> = (props) => {
     md: '3xl',
   }) as 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
   return (
-    <Flex minHeight="100vh" flexDir={'column'}>
+    <div className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-800">
       {/* Head */}
       <Head {...layoutHeadProps} />
 
       {/* Container */}
       <LayoutContainer>
         {/* Logo */}
-        <Box my={4}>
+        <div className="py-10">
           <SnapifyLogo size={logoSize} logoColor={useColorModeValue('black', 'white')} />
-        </Box>
+        </div>
         {children}
       </LayoutContainer>
       {/* Footer */}
       <Footer />
-    </Flex>
+    </div>
   );
 };
 

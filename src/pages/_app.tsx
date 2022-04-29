@@ -16,6 +16,7 @@ import { useRouter } from 'next/router';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from '@state/redux/snappyStore';
 import GoogleAnalytics from '@components/google/googleAnalytics';
+import { ThemeProvider } from 'next-themes';
 
 const SnapifyApp = (props: AppProps) => {
   const { Component, pageProps } = props;
@@ -32,14 +33,16 @@ const SnapifyApp = (props: AppProps) => {
   }, [router.events]);
 
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <ChakraProvider theme={theme}>
-          <GoogleAnalytics />
-          <Component {...pageProps} />
-        </ChakraProvider>
-      </PersistGate>
-    </Provider>
+    <ThemeProvider enableSystem={true} attribute="class">
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <ChakraProvider theme={theme}>
+            <GoogleAnalytics />
+            <Component {...pageProps} />
+          </ChakraProvider>
+        </PersistGate>
+      </Provider>
+    </ThemeProvider>
   );
 };
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { VStack } from '@chakra-ui/react';
 
 export interface LayoutContainerProps {
   /** Children */
@@ -8,6 +7,6 @@ export interface LayoutContainerProps {
 
 const LayoutContainer: React.FC<LayoutContainerProps> = (props) => {
   const { children } = props;
-  return <VStack my={[4, 8, 10, 12]}>{children}</VStack>;
+  return <div className="flex flex-col items-center p-10">{children}</div>;
 };
 export default LayoutContainer;
