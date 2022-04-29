@@ -1,0 +1,41 @@
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+export const useDebounce = <T>(value: T, delay?: number): T => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+};
+
+/**
+ * Returns a memoized function that will only call the passed function when it hasn't been called for the wait period
+ * @param func The function to be called
+ * @param wait Wait period after function hasn't been called for
+ * @returns A memoized function that is debounced
+ */
+export const useDebouncedCallback = (func, wait) => {
+  // Use a ref to store the timeout between renders
+  // and prevent changes to it from causing re-renders
+  const timeout = useRef<any>();
+
+  return useCallback(
+    (...args) => {
+      const later = () => {
+        clearTimeout(timeout.current);
+        func(...args);
+      };
+
+      clearTimeout(timeout.current);
+      timeout.current = setTimeout(later, wait);
+    },
+    [func, wait]
+  );
+};
