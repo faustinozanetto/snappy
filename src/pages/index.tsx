@@ -10,7 +10,8 @@ const HomePage: React.FC<HomePageProps> = () => {
       layoutHeadProps={{
         title: 'Home | Snappy',
         description: 'Snappy is a simple, fast and powerful code snippet creator.',
-        url: 'https://snapify.vercel.app/',
+        url: 'https://snappyapp.vercel.app/',
+        canonicalUrl: 'https://snappyapp.vercel.app/',
       }}
     >
       <Editor />

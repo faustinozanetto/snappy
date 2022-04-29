@@ -15,7 +15,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from '@state/redux/snappyStore';
-import GoogleAnalytics from '@components/google/GoogleAnalytics';
+import GoogleAnalytics from '@components/google/googleAnalytics';
 
 const SnapifyApp = (props: AppProps) => {
   const { Component, pageProps } = props;

@@ -15,7 +15,7 @@ export interface LayoutHeadProps {
 }
 
 const LayoutHead: React.FC<LayoutHeadProps> = (props) => {
-  const { title, description, url, canonicalUrl, image = '/images/favicon/favicon.png' } = props;
+  const { title, description, url, canonicalUrl, image = '/images/favicon/android-chrome-192x192.png' } = props;
   return (
     <Head>
       <title>{title}</title>
@@ -33,8 +33,8 @@ const LayoutHead: React.FC<LayoutHeadProps> = (props) => {
       <link rel="canonical" href={canonicalUrl} />
 
       <meta property="og:image" content={image} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
+      <meta property="og:image:width" content="192" />
+      <meta property="og:image:height" content="192" />
       <meta property="og:image:alt" content={title} />
       <meta property="og:locale" content="en" />
       <meta property="og:type" content="website" />
