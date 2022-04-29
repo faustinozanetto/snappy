@@ -1,6 +1,5 @@
 import React, { createRef, useEffect, useState } from 'react';
-import { Box, Container, Flex, HStack, useColorModeValue, VStack } from '@chakra-ui/react';
-import { parseBackgroundColor } from '@lib/helperFunctions';
+import { Box, Container, Flex, HStack, useColorModeValue } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { EXAMPLE_CODE } from '@lib/constants';
 import { NIGHT_OWL } from '@lib/themes/nightOwl.theme';
@@ -15,6 +14,7 @@ import { BackgroundShadowEntry, HighlightTheme } from 'snappy.types';
 import EditorToolBar from './toolbar/editorToolBar';
 import CodeHighlightStyles from './highlight/codeHighlightStyles';
 import EditorCodeContent from './content/editorCodeContent';
+import { parseBackgroundColor } from '@lib/helperFunctions';
 
 interface EditorProps {}
 
