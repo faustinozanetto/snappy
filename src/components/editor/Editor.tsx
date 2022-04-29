@@ -1,6 +1,6 @@
 import { Container, useColorModeValue, HStack, Flex, Box } from '@chakra-ui/react';
 import { EXAMPLE_CODE } from '@lib/constants';
-import { parseBackgroundColor } from '@lib/helperFunctions';
+import { parseBackgroundColor } from '@lib/helper/helperFunctions';
 import { selectThemeFile } from '@lib/themes/highlightTheme';
 import { NIGHT_OWL } from '@lib/themes/nightOwl.theme';
 import {

@@ -10,7 +10,7 @@ import {
 } from '@state/slices/editor/editorCustomization.slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { BackgroundType } from 'snappy.types';
-import { parseBackgroundColor } from '@lib/helperFunctions';
+import { parseBackgroundColor } from '@lib/helper/helperFunctions';
 
 interface EditorToolbarBackgroundProps {}
 

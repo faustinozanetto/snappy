@@ -3,7 +3,7 @@ import { Box, Text, Select } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCodeCustomization, setCodeCustomization } from '@state/slices/editor/editorCustomization.slice';
 import { CodeTheme } from 'snappy.types';
-import { capitalizeString } from '@lib/helperFunctions';
+import { capitalizeString } from '@lib/helper/helperFunctions';
 
 interface EditorToolbarCodeThemeListProps {}
 

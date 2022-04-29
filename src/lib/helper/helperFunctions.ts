@@ -1,5 +1,5 @@
 import { Color, EditorCustomizationState, Presets } from 'snappy.types';
-import { CUSTOMIZATION_TEMPLATES } from './constants';
+import { CUSTOMIZATION_TEMPLATES } from '../constants';
 
 /**
  *

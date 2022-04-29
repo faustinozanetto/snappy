@@ -4,7 +4,7 @@ import { Presets } from 'snappy.types';
 import { selectCustomizationPreset, setCustomizationPreset } from '@state/slices/app/app.slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCustomization } from '@state/slices/editor/editorCustomization.slice';
-import { capitalizeString, parseCustomizationPreset } from '@lib/helperFunctions';
+import { capitalizeString, parseCustomizationPreset } from '@lib/helper/helperFunctions';
 
 interface EditorToolbarPresetsListProps {}
 
