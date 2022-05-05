@@ -16,9 +16,7 @@ import { useSelector } from 'react-redux';
 import type { BackgroundShadowEntry } from 'snappy.types';
 import { CodeTheme } from 'snappy.types';
 
-import ONE_DARK from '@lib/themes/oneDark.theme';
 import EditorCodeContent from './content/editorCodeContent';
-import CodeHighlightStyles from './highlight/codeHighlightStyles';
 import EditorToolBar from './toolbar/editorToolBar';
 
 interface EditorProps {}
@@ -169,7 +167,6 @@ const Editor: React.FC<EditorProps> = (props) => {
         >
           {/* Editor Code Window */}
           <EditorCodeContent code={EXAMPLE_CODE} style={editorContentStyles} theme={highlightThemeStyles} />
-          <CodeHighlightStyles theme={highlightThemeStyles} />
         </Box>
       </Flex>
     </Container>

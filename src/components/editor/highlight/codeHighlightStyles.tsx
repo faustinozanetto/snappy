@@ -1,23 +1,28 @@
-import { constructCSSStyle } from '@lib/themes/highlightTheme';
-import { selectWindowCustomization } from '@state/slices/editor/editorCustomization.slice';
+import { Global } from '@emotion/react';
+import { constructCSSStyle, selectThemeFile } from '@lib/themes/highlightTheme';
+import { selectCodeCustomization, selectWindowCustomization } from '@state/slices/editor/editorCustomization.slice';
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import type { HighlightTheme } from 'snappy.types';
+import { CodeTheme } from 'snappy.types';
 
-interface CodeHighlightStylesProps {
-  /** Theme to retrieve styles from. */
-  theme: HighlightTheme;
-}
+interface CodeHighlightStylesProps {}
 
-const CodeHighlightStyles: React.FC<CodeHighlightStylesProps> = ({ theme }) => {
+const CodeHighlightStyles: React.FC<CodeHighlightStylesProps> = ({}) => {
   const windowCustomization = useSelector(selectWindowCustomization);
+  const codeCustomization = useSelector(selectCodeCustomization);
+
+  const themeStyles = useMemo(() => {
+    const parsedTheme = selectThemeFile(codeCustomization.codeTheme || CodeTheme.ONE_DARK);
+    return parsedTheme;
+  }, [codeCustomization.codeTheme]);
 
   return (
-    <style jsx global>
-      {`
-        ${constructCSSStyle(theme)}
+    <Global
+      styles={`
+        ${constructCSSStyle(themeStyles)}
         .code-wrapper {
-          color: ${theme.plain.color} !important;
-          background-color: ${theme.plain.backgroundColor} !important;
+          color: ${themeStyles.plain.color} !important;
+          background-color: ${themeStyles.plain.backgroundColor} !important;
         }
 
         .prism-code {
@@ -33,7 +38,7 @@ const CodeHighlightStyles: React.FC<CodeHighlightStylesProps> = ({ theme }) => {
           border: none !important;
         }
       `}
-    </style>
+    />
   );
 };
 export default CodeHighlightStyles;

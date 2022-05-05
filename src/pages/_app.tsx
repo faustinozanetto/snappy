@@ -17,6 +17,7 @@ import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import GoogleAnalytics from '@components/google/googleAnalytics';
+import CodeHighlightStyles from '@components/editor/highlight/codeHighlightStyles';
 
 function SnapifyApp(props: AppProps) {
   const { Component, pageProps } = props;
@@ -36,6 +37,7 @@ function SnapifyApp(props: AppProps) {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <ChakraProvider theme={theme}>
+          <CodeHighlightStyles />
           <GoogleAnalytics />
           <Component {...pageProps} />
         </ChakraProvider>
