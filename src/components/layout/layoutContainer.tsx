@@ -1,5 +1,5 @@
-import React from 'react';
 import { VStack } from '@chakra-ui/react';
+import React from 'react';
 
 export interface LayoutContainerProps {
   /** Children */

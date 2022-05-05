@@ -1,7 +1,8 @@
 import React from 'react';
-import CustomizationSlider from '../input/customizationSlider';
-import { selectExportCustomization, setExportCustomization } from '@state/slices/editor/editorCustomization.slice';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { selectExportCustomization, setExportCustomization } from '@state/slices/editor/editorCustomization.slice';
+import CustomizationSlider from '../input/customizationSlider';
 
 interface EditorToolbarExportImageSizeProps {}
 
@@ -13,13 +14,13 @@ const EditorToolbarExportImageSize: React.FC<EditorToolbarExportImageSizeProps> 
       label="Quality Multiplier"
       range={[0.1, 1]}
       stepSize={0.001}
-      allSteps={true}
+      allSteps
       allStepsSize={0.12}
       defaultValue={exportCustomization.sizeMultiplier}
       onUpdated={(value) =>
         dispatch(
           setExportCustomization({
-            sizeMultiplier: value,
+            sizeMultiplier: value as 1 | 2 | 3 | 4,
           })
         )
       }

@@ -1,5 +1,5 @@
+import type { HighlightTheme } from 'snappy.types';
 import { CodeTheme } from 'snappy.types';
-import { HighlightTheme } from 'snappy.types';
 
 const colors = {
   char: '#D8DEE9',
@@ -17,7 +17,7 @@ const colors = {
   operator: '#fc929e',
 };
 
-export const OCEANICNEXT: HighlightTheme = {
+const OCEANICNEXT: HighlightTheme = {
   name: 'Oceanic Next',
   type: CodeTheme.OCEANICNEXT,
   plain: {
@@ -38,27 +38,13 @@ export const OCEANICNEXT: HighlightTheme = {
       },
     },
     {
-      types: [
-        'comment',
-        'block-comment',
-        'prolog',
-        'doctype',
-        'cdata',
-        'shebang',
-      ],
+      types: ['comment', 'block-comment', 'prolog', 'doctype', 'cdata', 'shebang'],
       style: {
         color: colors.comment,
       },
     },
     {
-      types: [
-        'property',
-        'number',
-        'function-name',
-        'constant',
-        'symbol',
-        'deleted',
-      ],
+      types: ['property', 'number', 'function-name', 'constant', 'symbol', 'deleted'],
       style: {
         color: colors.primitive,
       },
@@ -143,3 +129,4 @@ export const OCEANICNEXT: HighlightTheme = {
     },
   ],
 };
+export default OCEANICNEXT;

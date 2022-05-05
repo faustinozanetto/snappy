@@ -1,6 +1,5 @@
 import React from 'react';
-import { Box, Text, HStack, Switch } from '@chakra-ui/react';
-
+import { Box, HStack, Switch, Text } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectWindowCustomization, setWindowCustomization } from '@state/slices/editor/editorCustomization.slice';
 

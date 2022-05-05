@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { BackgroundGradient, GradientColor } from 'snappy.types';
+import type { BackgroundGradient, GradientColor } from 'snappy.types';
 
-export const useGradientEditor = (initialValue: BackgroundGradient) => {
+const useGradientEditor = (initialValue: BackgroundGradient) => {
   const { colors: initialColors, type: initialType } = initialValue;
   const [type, setType] = useState<'linear' | 'radial'>(initialType);
   const [colors, setColors] = useState<GradientColor[]>(initialColors);
@@ -14,10 +14,10 @@ export const useGradientEditor = (initialValue: BackgroundGradient) => {
   };
 
   const generateGradient = () => {
-    const gradient = colors
+    const cssGradient = colors
       .map((color) => `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a}) ${color.position * 100}%`)
       .join(', ');
-    return `${type}-gradient(${type === 'linear' ? 'to right' : 'circle'}, ${gradient})`;
+    return `${type}-gradient(${type === 'linear' ? 'to right' : 'circle'}, ${cssGradient})`;
   };
 
   const addColor = (color: GradientColor) => {
@@ -43,3 +43,5 @@ export const useGradientEditor = (initialValue: BackgroundGradient) => {
     removeColor,
   };
 };
+
+export default useGradientEditor;

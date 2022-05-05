@@ -1,9 +1,10 @@
 import React from 'react';
-import { Box, Text, Select } from '@chakra-ui/react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectCodeCustomization, setCodeCustomization } from '@state/slices/editor/editorCustomization.slice';
-import { CodeTheme } from 'snappy.types';
+import { Box, Select, Text } from '@chakra-ui/react';
 import { capitalizeString } from '@lib/helper/helperFunctions';
+import { selectCodeCustomization, setCodeCustomization } from '@state/slices/editor/editorCustomization.slice';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { CodeTheme } from 'snappy.types';
 
 interface EditorToolbarCodeThemeListProps {}
 
@@ -25,13 +26,18 @@ const EditorToolbarCodeThemeList: React.FC<EditorToolbarCodeThemeListProps> = ({
       <Text as="h2" fontWeight={600} fontSize="lg" mb={2}>
         Themes
       </Text>
-      <Select onChange={handleCodeThemeChange} defaultValue={codeCustomization.codeTheme}>
-        {Object.keys(CodeTheme)
+      <Select
+        onChange={handleCodeThemeChange}
+        defaultValue={codeCustomization.codeTheme}
+        variant="filled"
+        borderRadius="none"
+      >
+        {Object.values(CodeTheme)
           .sort()
           .map((key) => {
             return (
-              <option key={key} value={CodeTheme[key]}>
-                {capitalizeString(CodeTheme[key])}
+              <option key={key} value={key}>
+                {capitalizeString(key)}
               </option>
             );
           })}

@@ -1,7 +1,7 @@
+import type { HighlightTheme } from 'snappy.types';
 import { CodeTheme } from 'snappy.types';
-import { HighlightTheme } from 'snappy.types';
 
-export const OUTRUN_NIGHT: HighlightTheme = {
+const OUTRUN_NIGHT: HighlightTheme = {
   name: 'Outrun Night',
   type: CodeTheme.OUTRUN_NIGHT,
   plain: {
@@ -97,3 +97,4 @@ export const OUTRUN_NIGHT: HighlightTheme = {
     },
   ],
 };
+export default OUTRUN_NIGHT;

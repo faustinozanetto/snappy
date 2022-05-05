@@ -1,7 +1,7 @@
+import type { HighlightTheme } from 'snappy.types';
 import { CodeTheme } from 'snappy.types';
-import { HighlightTheme } from 'snappy.types';
 
-export const CELESTIAL: HighlightTheme = {
+const CELESTIAL: HighlightTheme = {
   name: 'Celestial',
   type: CodeTheme.CELESTIAL,
   plain: {
@@ -61,3 +61,4 @@ export const CELESTIAL: HighlightTheme = {
     },
   ],
 };
+export default CELESTIAL;

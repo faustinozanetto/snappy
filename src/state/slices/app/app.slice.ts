@@ -1,17 +1,19 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '@state/redux/snappyStore';
-import { SnappyState, Presets } from 'snappy.types';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import type { RootState } from '@state/redux/snappyStore';
+import type { SnappyState } from 'snappy.types';
+import { Presets } from 'snappy.types';
 
 const initialState: SnappyState = {
   customizationPreset: Presets.DEFAULT,
 };
 
 export const snappySlice = createSlice({
-  name: 'snappy',
   initialState,
+  name: 'snappy',
   reducers: {
     setCustomizationPreset: (state, action: PayloadAction<Presets>) => {
-      state.customizationPreset = action.payload;
+      Object.assign(state, { customizationPreset: action.payload });
     },
   },
 });

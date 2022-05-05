@@ -1,6 +1,7 @@
 import React from 'react';
-import EditorToolbarWindowControlsToggle from './editorToolbarWindowControlsToggle';
 import { VStack } from '@chakra-ui/react';
+
+import EditorToolbarWindowControlsToggle from './editorToolbarWindowControlsToggle';
 
 interface EditorToolbarWindowControlsProps {}
 

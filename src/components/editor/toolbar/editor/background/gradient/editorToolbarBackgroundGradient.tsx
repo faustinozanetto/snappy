@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
-import { Box, Text, HStack, VStack, Button } from '@chakra-ui/react';
-import { useGradientEditor } from '@hooks/useGradientEditor';
-import { RgbColorPicker } from 'react-colorful';
+import { Box, Button, HStack, Text, VStack } from '@chakra-ui/react';
 
-import { useDebouncedCallback } from '@hooks/useDebounce';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import useDebouncedCallback from '@hooks/useDebounce';
+import useGradientEditor from '@hooks/useGradientEditor';
 import {
   selectBackgroundCustomization,
   setBackgroundCustomization,
 } from '@state/slices/editor/editorCustomization.slice';
-import { GradientColor, Color } from 'snappy.types';
+import { RgbColorPicker } from 'react-colorful';
+import { useDispatch, useSelector } from 'react-redux';
+
+import type { Color, GradientColor } from 'snappy.types';
+
 import GradientEditorMarkersHolder from './gradientEditorMarkersHolder';
 
 interface EditorToolbarBackgroundGradientProps {
@@ -40,17 +42,19 @@ const EditorToolbarBackgroundGradient: React.FC<EditorToolbarBackgroundGradientP
       currentColorID
     );
     // Redux update
-    dispatch(
-      setBackgroundCustomization({
-        backgroundGradient: {
-          data: {
-            ...backgroundCustomization.backgroundGradient.data,
-            colors: colors,
+    if (backgroundCustomization.backgroundGradient) {
+      dispatch(
+        setBackgroundCustomization({
+          backgroundGradient: {
+            data: {
+              ...backgroundCustomization.backgroundGradient.data,
+              colors,
+            },
+            generated: gradient,
           },
-          generated: gradient,
-        },
-      })
-    );
+        })
+      );
+    }
   }, 10);
 
   return (
@@ -71,8 +75,13 @@ const EditorToolbarBackgroundGradient: React.FC<EditorToolbarBackgroundGradientP
 
         {/* Picker */}
         {currentColorID !== -1 && (
-          <Box backgroundColor={'gray.700'} padding={4} borderRadius={'md'}>
-            <RgbColorPicker color={colors[currentColorID]} onChange={handleColorChange} />
+          <Box backgroundColor="gray.700" padding={4} borderRadius="md">
+            <RgbColorPicker
+              color={colors[currentColorID]}
+              onChange={(color) => {
+                handleColorChange({ r: color.r, g: color.g, b: color.b, a: 1 });
+              }}
+            />
           </Box>
         )}
 

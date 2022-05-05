@@ -1,32 +1,36 @@
-import React, { useState } from 'react';
-import Editor from 'react-simple-code-editor';
-import { useSelector } from 'react-redux';
-import { CodeLanguage, HighlightTheme } from 'snappy.types';
+import React, { useMemo, useState } from 'react';
 import { Box, Text } from '@chakra-ui/react';
-import { selectFontCustomization, selectCodeCustomization } from '@state/slices/editor/editorCustomization.slice';
 import { defaultProps } from 'prism-react-renderer';
+import { useSelector } from 'react-redux';
+import Editor from 'react-simple-code-editor';
+import type { HighlightTheme } from 'snappy.types';
+
+import {
+  selectCodeCustomization,
+  selectFontCustomization,
+  selectWindowCustomization,
+} from '@state/slices/editor/editorCustomization.slice';
 import CodeHighlighting from '../highlight/codeHighlighting';
 import EditorWindowControls from './window/editorWindowControls';
 
 interface EditorCodeContentProps {
   code?: string;
-  language?: CodeLanguage;
-  styles?: React.CSSProperties;
-  showWindowControls?: boolean;
-  theme?: HighlightTheme;
+  style?: React.CSSProperties;
+  theme: HighlightTheme;
 }
 
 const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
-  const { code: propsCode, showWindowControls, styles, theme, language } = props;
+  const { code: propsCode, style, theme } = props;
   const [code, setCode] = useState(propsCode || '');
   const fontCustomization = useSelector(selectFontCustomization);
   const codeCustomization = useSelector(selectCodeCustomization);
+  const windowCustomization = useSelector(selectWindowCustomization);
 
   /**
    *
    * @returns the css styles combining the ones from the customization, theme and the styles prop.
    */
-  const generateCustomStyles = (): React.CSSProperties => {
+  const generateCustomStyles = useMemo(() => {
     const newStyles: React.CSSProperties = {
       boxSizing: 'border-box',
       fontFamily: `${fontCustomization.fontFamily}, monospace`,
@@ -40,7 +44,7 @@ const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
       transitionTimingFunction: 'ease-out',
     };
     return newStyles;
-  };
+  }, [fontCustomization]);
 
   /**
    *
@@ -60,19 +64,19 @@ const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
       {({ className, tokens, getLineProps, getTokenProps }) => (
         <Text
           as="pre"
-          textAlign={'left'}
-          margin={'1em 0'}
-          padding={'0.5em'}
-          overflow={'scroll'}
+          textAlign="left"
+          margin="1em 0"
+          padding="0.5em"
+          overflow="scroll"
           className={className}
-          style={{ ...generateCustomStyles() }}
+          style={generateCustomStyles}
         >
           {tokens.map((line, lineIndex) => {
             return (
-              <Box display={'table-row'} key={lineIndex} {...getLineProps({ line, key: lineIndex })}>
-                <Text as="span" display={'table-cell'}>
+              <Box display="table-row" key={`line-${lineIndex}`} {...getLineProps({ line, key: lineIndex })}>
+                <Text as="span" display="table-cell">
                   {line.map((token, tokenIndex) => (
-                    <Text as="span" key={tokenIndex} {...getTokenProps({ token, key: tokenIndex })} />
+                    <Text as="span" key={`token-${tokenIndex}`} {...getTokenProps({ token, key: tokenIndex })} />
                   ))}
                 </Text>
               </Box>
@@ -85,7 +89,7 @@ const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
 
   return (
     <>
-      {showWindowControls && <EditorWindowControls titleColor={theme.plain.color} />}
+      {windowCustomization.controls && <EditorWindowControls titleColor={theme.plain.color} />}
       <Editor
         className="code-wrapper"
         value={code}
@@ -94,9 +98,9 @@ const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
         onValueChange={(newValue) => setCode(newValue)}
         style={{
           // Used to move down the editor code when window controls are enabled.
-          paddingTop: showWindowControls ? '2em' : '',
-          ...styles,
-          ...generateCustomStyles(),
+          paddingTop: windowCustomization.controls ? '2em' : '',
+          ...style,
+          // ...generateCustomStyles,
         }}
       />
     </>

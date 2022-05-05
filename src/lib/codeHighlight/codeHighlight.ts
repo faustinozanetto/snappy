@@ -1,5 +1,6 @@
-import { Token as PrismToken } from 'prismjs';
-import { HighlightTheme, Token } from 'snappy.types';
+/* eslint-disable */
+import type { Token as PrismToken } from 'prismjs';
+import type { HighlightTheme, Token } from 'snappy.types';
 
 const newlineRe = /\r\n|\r|\n/;
 
@@ -12,7 +13,9 @@ const normalizeEmptyLines = (line: Token[]) => {
       empty: true,
     });
   } else if (line.length === 1 && line[0].content === '') {
+    // eslint-disable-next-line no-param-reassign
     line[0].content = '\n';
+    // eslint-disable-next-line no-param-reassign
     line[0].empty = true;
   }
 };
@@ -41,7 +44,7 @@ export const normalizeTokens = (tokens: Array<PrismToken | string>): Token[][] =
 
     let i = 0;
     let stackIndex = 0;
-    let currentLine = [];
+    let currentLine: { types: string[]; content: string }[] = [];
 
     const acc = [currentLine];
 
@@ -70,6 +73,7 @@ export const normalizeTokens = (tokens: Array<PrismToken | string>): Token[][] =
         if (typeof content !== 'string') {
           stackIndex++;
           typeArrStack.push(types);
+          //@ts-ignore
           tokenArrStack.push(content);
           tokenArrIndexStack.push(0);
           tokenArrSizeStack.push(content.length);
@@ -108,19 +112,22 @@ export const themeToDict = (theme: any, language: any): HighlightTheme => {
   const { plain } = theme;
   const base: HighlightTheme = Object.create(null);
 
-  const themeDict = theme.styles.reduce((acc, themeEntry) => {
-    const { types, languages, style } = themeEntry;
-    if (languages && !languages.includes(language)) {
+  const themeDict = theme.styles.reduce(
+    (acc: { [x: string]: any }, themeEntry: { types: any; languages?: any; style?: any }) => {
+      const { types, languages, style } = themeEntry;
+      if (languages && !languages.includes(language)) {
+        return acc;
+      }
+
+      themeEntry.types.forEach((type: string | number) => {
+        const accStyle = { ...acc[type], ...style };
+        acc[type] = accStyle;
+      });
+
       return acc;
-    }
-
-    themeEntry.types.forEach((type) => {
-      const accStyle = { ...acc[type], ...style };
-      acc[type] = accStyle;
-    });
-
-    return acc;
-  }, base);
+    },
+    base
+  );
 
   themeDict.root = plain;
   themeDict.plain = { ...plain, backgroundColor: null };

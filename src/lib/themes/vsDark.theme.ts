@@ -1,7 +1,7 @@
+import type { HighlightTheme } from 'snappy.types';
 import { CodeTheme } from 'snappy.types';
-import { HighlightTheme } from 'snappy.types';
 
-export const VS_DARK: HighlightTheme = {
+const VS_DARK: HighlightTheme = {
   name: 'Vs Dark',
   type: CodeTheme.VS_DARK,
   plain: {
@@ -83,3 +83,4 @@ export const VS_DARK: HighlightTheme = {
     },
   ],
 };
+export default VS_DARK;

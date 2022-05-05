@@ -1,22 +1,10 @@
 import React from 'react';
-import {
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverContent,
-  useColorModeValue,
-  Flex,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-} from '@chakra-ui/react';
 import { FaFont } from 'react-icons/fa';
-import EditorToolbarFontList from './editorToolbarFontList';
+
 import EditorToolbarSection from '../../base/editorToolbarSection';
-import EditorToolbarFontSize from './editorToolbarFontSize';
 import EditorToolbarLineHeigth from './editorToolbarFontLineHeigth';
+import EditorToolbarFontList from './editorToolbarFontList';
+import EditorToolbarFontSize from './editorToolbarFontSize';
 
 interface EditorToolbarFontProps {}
 

@@ -1,7 +1,7 @@
+import type { HighlightTheme } from 'snappy.types';
 import { CodeTheme } from 'snappy.types';
-import { HighlightTheme } from 'snappy.types';
 
-export const OKAIDIA: HighlightTheme = {
+const OKAIDIA: HighlightTheme = {
   name: 'Okaidia',
   type: CodeTheme.OKAIDIA,
   plain: {
@@ -119,3 +119,4 @@ export const OKAIDIA: HighlightTheme = {
     },
   ],
 };
+export default OKAIDIA;

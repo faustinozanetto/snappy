@@ -1,8 +1,8 @@
 import React from 'react';
-import EditorToolbarCodeThemeList from './editorToolbarCodeThemeList';
-import EditorToolbarCodeLanguageList from './editorToolbarCodeLanguageList';
-import EditorToolbarSection from '../../base/editorToolbarSection';
 import { FaCode } from 'react-icons/fa';
+
+import EditorToolbarSection from '../../base/editorToolbarSection';
+import EditorToolbarCodeThemeList from './editorToolbarCodeThemeList';
 
 interface EditorToolbarCodeProps {}
 

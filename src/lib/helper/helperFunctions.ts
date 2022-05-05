@@ -1,4 +1,4 @@
-import { Color, EditorCustomizationState, Presets } from 'snappy.types';
+import type { Presets, EditorCustomizationState, Color } from 'snappy.types';
 import { CUSTOMIZATION_TEMPLATES } from '../constants';
 
 /**
@@ -21,6 +21,7 @@ export const parseCustomizationPreset = (preset: Presets): EditorCustomizationSt
   if (PRESET) {
     return PRESET.theme;
   }
+  return CUSTOMIZATION_TEMPLATES[0].theme;
 };
 
 /**

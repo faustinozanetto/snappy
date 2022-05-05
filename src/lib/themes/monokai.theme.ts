@@ -1,7 +1,7 @@
+import type { HighlightTheme } from 'snappy.types';
 import { CodeTheme } from 'snappy.types';
-import { HighlightTheme } from 'snappy.types';
 
-export const MONOKAI: HighlightTheme = {
+const MONOKAI: HighlightTheme = {
   name: 'Monokai',
   type: CodeTheme.MONOKAI,
   plain: {
@@ -53,3 +53,4 @@ export const MONOKAI: HighlightTheme = {
     },
   ],
 };
+export default MONOKAI;

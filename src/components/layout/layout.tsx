@@ -1,9 +1,12 @@
-import React from 'react';
-import SnapifyLogo from '@components/branding/snapifyLogo';
+import { Box, Flex, useBreakpointValue, useColorModeValue } from '@chakra-ui/react';
+
 import Footer from '@components/footer/footer';
+import React from 'react';
+
+import SnapifyLogo from '@components/branding/snapifyLogo';
 import LayoutContainer from './layoutContainer';
-import LayoutHead, { LayoutHeadProps } from './layoutHead';
-import { useBreakpointValue, Flex, Box, useColorModeValue } from '@chakra-ui/react';
+import type { LayoutHeadProps } from './layoutHead';
+import LayoutHead from './layoutHead';
 
 interface LayoutProps {
   /** Children */
@@ -22,7 +25,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
     md: '3xl',
   }) as 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
   return (
-    <Flex minHeight="100vh" flexDir={'column'}>
+    <Flex minHeight="100vh" flexDir="column">
       {/* Head */}
       <Head {...layoutHeadProps} />
 

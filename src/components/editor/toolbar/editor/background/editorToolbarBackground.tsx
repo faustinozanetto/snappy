@@ -1,16 +1,17 @@
 import React from 'react';
 import { MdColorLens } from 'react-icons/md';
-import EditorToolbarBackgroundGradient from './gradient/editorToolbarBackgroundGradient';
-import EditorToolbarBackgroundImage from './image/editorToolbarBackgroundImage';
-import EditorToolbarSection from '../../base/editorToolbarSection';
-import EditorToolbarBackgroundColor from './color/editorToolbarBackgroundColor';
+import { useDispatch, useSelector } from 'react-redux';
+import { BackgroundType } from 'snappy.types';
+
+import { parseBackgroundColor } from '@lib/helper/helperFunctions';
 import {
   selectBackgroundCustomization,
   setBackgroundCustomization,
 } from '@state/slices/editor/editorCustomization.slice';
-import { useDispatch, useSelector } from 'react-redux';
-import { BackgroundType } from 'snappy.types';
-import { parseBackgroundColor } from '@lib/helper/helperFunctions';
+import EditorToolbarSection from '../../base/editorToolbarSection';
+import EditorToolbarBackgroundColor from './color/editorToolbarBackgroundColor';
+import EditorToolbarBackgroundGradient from './gradient/editorToolbarBackgroundGradient';
+import EditorToolbarBackgroundImage from './image/editorToolbarBackgroundImage';
 
 interface EditorToolbarBackgroundProps {}
 
@@ -45,8 +46,8 @@ const EditorToolbarBackground: React.FC<EditorToolbarBackgroundProps> = ({}) => 
           label: 'Gradient',
           panel: (
             <EditorToolbarBackgroundGradient
-              defaultColors={backgroundCustomization.backgroundGradient.data.colors}
-              defaultType={backgroundCustomization.backgroundGradient.data.type}
+              defaultColors={backgroundCustomization?.backgroundGradient?.data?.colors || []}
+              defaultType={backgroundCustomization?.backgroundGradient?.data?.type || 'linear'}
             />
           ),
           onTabSelected: () => {
@@ -70,7 +71,7 @@ const EditorToolbarBackground: React.FC<EditorToolbarBackgroundProps> = ({}) => 
         },
       ]}
       sectionButtonProps={{
-        background: parseBackgroundColor(backgroundCustomization.backgroundColor),
+        background: parseBackgroundColor(backgroundCustomization?.backgroundColor || { r: 0, g: 0, b: 0, a: 1 }),
         shadow: buttonShadow(),
         _hover: { bg: backgroundCustomization.backgroundColor },
         _focus: { bg: backgroundCustomization.backgroundColor },

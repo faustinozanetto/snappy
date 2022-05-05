@@ -1,10 +1,10 @@
+import { Button, VisuallyHidden } from '@chakra-ui/react';
 import Link from 'next/link';
 import React from 'react';
-import { Button, VisuallyHidden } from '@chakra-ui/react';
 
 interface FooterLinkProps {
   /** Children */
-  children?: React.ReactNode;
+  children: React.ReactNode;
   /** Label to display */
   label: string;
   /** Link to navigate */

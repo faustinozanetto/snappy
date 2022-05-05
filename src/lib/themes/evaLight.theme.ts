@@ -1,7 +1,7 @@
+import type { HighlightTheme } from 'snappy.types';
 import { CodeTheme } from 'snappy.types';
-import { HighlightTheme } from 'snappy.types';
 
-export const EVA_LIGHT: HighlightTheme = {
+const EVA_LIGHT: HighlightTheme = {
   name: 'Eva Light',
   type: CodeTheme.EVA_LIGHT,
   plain: {
@@ -59,3 +59,4 @@ export const EVA_LIGHT: HighlightTheme = {
     },
   ],
 };
+export default EVA_LIGHT;

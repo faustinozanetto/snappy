@@ -1,7 +1,7 @@
+import type { HighlightTheme } from 'snappy.types';
 import { CodeTheme } from 'snappy.types';
-import { HighlightTheme } from 'snappy.types';
 
-export const PALENIGHT: HighlightTheme = {
+const PALENIGHT: HighlightTheme = {
   name: 'Palenight',
   type: CodeTheme.PALENIGHT,
   plain: {
@@ -97,3 +97,4 @@ export const PALENIGHT: HighlightTheme = {
     },
   ],
 };
+export default PALENIGHT;

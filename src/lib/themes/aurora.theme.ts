@@ -1,7 +1,7 @@
+import type { HighlightTheme } from 'snappy.types';
 import { CodeTheme } from 'snappy.types';
-import { HighlightTheme } from 'snappy.types';
 
-export const AURORA: HighlightTheme = {
+const AURORA: HighlightTheme = {
   name: 'Aurora',
   type: CodeTheme.AURORA,
   plain: {
@@ -66,3 +66,4 @@ export const AURORA: HighlightTheme = {
     },
   ],
 };
+export default AURORA;

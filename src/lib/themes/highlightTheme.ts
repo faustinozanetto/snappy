@@ -1,24 +1,25 @@
-import { CodeTheme, HighlightTheme } from 'snappy.types';
-import { AURORA } from './aurora.theme';
-import { CELESTIAL } from './celestial.theme';
-import { DRACULA } from './dracula.theme';
-import { DUOTONEDARK } from './duotoneDark.theme';
-import { EVA_LIGHT } from './evaLight.theme';
-import { GITHUB } from './github.theme';
-import { MONOKAI } from './monokai.theme';
-import { NIGHT_OWL } from './nightOwl.theme';
-import { NIGHT_OWL_LIGHT } from './nightOwlLight.theme';
-import { OCEANICNEXT } from './oceanicNext.theme';
-import { OKAIDIA } from './okaidia.theme';
-import { ONE_DARK } from './oneDark.theme';
-import { OUTRUN_NIGHT } from './outrunNight.theme';
-import { PALENIGHT } from './palenight.theme';
-import { ROSE_PINE } from './rosePine.theme';
-import { SHADES_OF_PURPLE } from './shadesOfPurple.theme';
-import { SYNTHWAVE84 } from './synthwave84';
-import { VS_DARK } from './vsDark.theme';
-import { VS_LIGHT } from './vsLight.theme';
-import { WINTER_IS_COMING } from './winterIsComing.theme';
+import { CodeTheme } from 'snappy.types';
+import type { HighlightTheme } from 'snappy.types';
+import AURORA from './aurora.theme';
+import CELESTIAL from './celestial.theme';
+import DRACULA from './dracula.theme';
+import DUOTONEDARK from './duotoneDark.theme';
+import EVA_LIGHT from './evaLight.theme';
+import GITHUB from './github.theme';
+import MONOKAI from './monokai.theme';
+import NIGHT_OWL from './nightOwl.theme';
+import NIGHT_OWL_LIGHT from './nightOwlLight.theme';
+import OCEANICNEXT from './oceanicNext.theme';
+import OKAIDIA from './okaidia.theme';
+import ONE_DARK from './oneDark.theme';
+import OUTRUN_NIGHT from './outrunNight.theme';
+import PALENIGHT from './palenight.theme';
+import ROSE_PINE from './rosePine.theme';
+import SHADES_OF_PURPLE from './shadesOfPurple.theme';
+import SYNTHWAVE84 from './synthwave84';
+import VS_DARK from './vsDark.theme';
+import VS_LIGHT from './vsLight.theme';
+import WINTER_IS_COMING from './winterIsComing.theme';
 
 /**
  *

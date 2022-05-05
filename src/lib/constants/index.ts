@@ -1,12 +1,5 @@
-import {
-  BackgroundType,
-  FontFamily,
-  CodeTheme,
-  CodeLanguage,
-  FileExtension,
-  EditorPreset,
-  Presets,
-} from 'snappy.types';
+import type { EditorPreset } from 'snappy.types';
+import { BackgroundType, CodeLanguage, CodeTheme, FileExtension, FontFamily, Presets } from 'snappy.types';
 
 export const __PROD__ = process.env.NODE_ENV === 'production';
 

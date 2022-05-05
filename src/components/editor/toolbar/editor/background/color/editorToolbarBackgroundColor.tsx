@@ -1,34 +1,26 @@
 import React, { useState } from 'react';
-import { Box, Button, Text, HStack, VStack } from '@chakra-ui/react';
+import { Box, Button, HStack, Text, VStack } from '@chakra-ui/react';
+import { RgbColorPicker } from 'react-colorful';
 import { useDispatch, useSelector } from 'react-redux';
-import { RGBColor } from 'react-color';
 import {
   selectBackgroundCustomization,
   setBackgroundCustomization,
 } from '@state/slices/editor/editorCustomization.slice';
-import { RgbColorPicker } from 'react-colorful';
-import { Color } from 'snappy.types';
+import type { Color } from 'snappy.types';
 
 interface EditorToolbarBackgroundColorProps {}
 
-const EditorToolbarBackgroundColor: React.FC<EditorToolbarBackgroundColorProps> = ({}) => {
+const EditorToolbarBackgroundColor: React.FC<EditorToolbarBackgroundColorProps> = (props) => {
+  const {} = props;
   const dispatch = useDispatch();
   const backgroundCustomization = useSelector(selectBackgroundCustomization);
   const [showPicker, setShowPicker] = useState(false);
-  const [backgroundColor, setBackgroundColor] = useState<RGBColor>({
-    r: backgroundCustomization.backgroundColor.r,
-    g: backgroundCustomization.backgroundColor.g,
-    b: backgroundCustomization.backgroundColor.b,
-    a: backgroundCustomization.backgroundColor.a,
-  });
 
+  /**
+   * Handles the background color state update.
+   * @param color color from the color picker
+   */
   const handleColorChange = (color: Color) => {
-    setBackgroundColor({
-      r: color.r,
-      g: color.g,
-      b: color.b,
-      a: 1,
-    });
     // Redux update
     dispatch(
       setBackgroundCustomization({
@@ -55,8 +47,13 @@ const EditorToolbarBackgroundColor: React.FC<EditorToolbarBackgroundColorProps> 
         </HStack>
         {/* Color */}
         {showPicker && (
-          <Box backgroundColor={'gray.700'} padding={4} borderRadius={'md'}>
-            <RgbColorPicker color={backgroundCustomization.backgroundColor} onChange={handleColorChange} />
+          <Box backgroundColor="gray.700" padding={4} borderRadius="md">
+            <RgbColorPicker
+              color={backgroundCustomization.backgroundColor}
+              onChange={(color) => {
+                handleColorChange({ r: color.r, g: color.g, b: color.b, a: 1 });
+              }}
+            />
           </Box>
         )}
       </VStack>

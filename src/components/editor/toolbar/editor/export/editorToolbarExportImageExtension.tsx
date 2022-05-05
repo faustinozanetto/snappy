@@ -1,7 +1,7 @@
 import React from 'react';
-import { Text, Box, HStack, Select } from '@chakra-ui/react';
-import { selectExportCustomization, setExportCustomization } from '@state/slices/editor/editorCustomization.slice';
+import { Box, HStack, Select, Text } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
+import { selectExportCustomization, setExportCustomization } from '@state/slices/editor/editorCustomization.slice';
 import { FileExtension } from 'snappy.types';
 
 interface EditorToolbarExportImageExtensionProps {}
@@ -11,7 +11,7 @@ const EditorToolbarExportImageExtension: React.FC<EditorToolbarExportImageExtens
   const exportCustomization = useSelector(selectExportCustomization);
 
   const handleFilexExtensionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(setExportCustomization({ fileExtension: event.target.value }));
+    dispatch(setExportCustomization({ fileExtension: event.target.value as FileExtension }));
   };
   return (
     <Box pb={2} width="full">
@@ -24,11 +24,13 @@ const EditorToolbarExportImageExtension: React.FC<EditorToolbarExportImageExtens
         placeholder="Select Extension"
         onChange={handleFilexExtensionChange}
         defaultValue={exportCustomization.fileExtension}
+        variant="filled"
+        borderRadius="none"
       >
         {/* Map FileExtension values */}
-        {Object.values(FileExtension).map((extension: string, i) =>
+        {Object.values(FileExtension).map((extension: string) =>
           extension !== 'blob' ? (
-            <option key={i} value={extension}>
+            <option key={extension} value={extension}>
               {extension}
             </option>
           ) : null

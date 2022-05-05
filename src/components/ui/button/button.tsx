@@ -1,5 +1,7 @@
-import React, { ForwardedRef } from 'react';
-import { Button as ChakraButton, ButtonProps as ChakraButtonProps } from '@chakra-ui/react';
+import React from 'react';
+import type { ButtonProps as ChakraButtonProps } from '@chakra-ui/react';
+import { Button as ChakraButton } from '@chakra-ui/react';
+import type { ForwardedRef } from 'react';
 
 export type ButtonProps = ChakraButtonProps & {
   children?: React.ReactNode;

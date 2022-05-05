@@ -1,7 +1,8 @@
 import React from 'react';
-import CustomizationSlider from '../input/customizationSlider';
-import { selectFontCustomization, setFontCustomization } from '@state/slices/editor/editorCustomization.slice';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { selectFontCustomization, setFontCustomization } from '@state/slices/editor/editorCustomization.slice';
+import CustomizationSlider from '../input/customizationSlider';
 
 interface EditorToolbarLineHeigthProps {}
 
@@ -14,7 +15,7 @@ const EditorToolbarLineHeigth: React.FC<EditorToolbarLineHeigthProps> = ({}) => 
       label="Line Height"
       range={[1, 3]}
       stepSize={0.05}
-      allSteps={true}
+      allSteps
       allStepsSize={0.5}
       valueType="em"
       defaultValue={fontCustomization.lineHeight}

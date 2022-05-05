@@ -1,19 +1,16 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '@state/redux/snappyStore';
-import {
-  EditorCustomizationState,
-  BackgroundType,
-  FontFamily,
-  CodeTheme,
-  CodeLanguage,
-  FileExtension,
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+
+import type { RootState } from '@state/redux/snappyStore';
+import type {
   BackgroundCustomization,
-  FontCustomization,
   CodeCustomization,
-  WindowCustomization,
+  EditorCustomizationState,
   ExportCustomization,
-  Presets,
+  FontCustomization,
+  WindowCustomization,
 } from 'snappy.types';
+import { BackgroundType, CodeLanguage, CodeTheme, FileExtension, FontFamily } from 'snappy.types';
 
 const initialState: EditorCustomizationState = {
   backgroundCustomization: {

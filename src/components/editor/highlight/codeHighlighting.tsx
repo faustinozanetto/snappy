@@ -1,12 +1,14 @@
-import React from 'react';
-import Prism, { Token as PrismToken, Grammar } from 'prismjs';
-import { themeToDict, normalizeTokens } from '@lib/codeHighlight/codeHighlight';
-import {
+import { normalizeTokens, themeToDict } from '@lib/codeHighlight/codeHighlight';
+import NIGHT_OWL from '@lib/themes/nightOwl.theme';
+import type { Grammar, Token as PrismToken } from 'prismjs';
+import Prism from 'prismjs';
+import type React from 'react';
+import type {
   HighlightTheme,
   LineInputProps,
-  Token,
   LineOutputProps,
   RenderProps,
+  Token,
   TokenInputProps,
   TokenOutputProps,
 } from 'snappy.types';
@@ -15,14 +17,14 @@ interface CodeHighlightingProps {
   code: string;
   theme?: HighlightTheme;
   language: string;
-  children?: (props: RenderProps) => React.ReactNode;
+  children: (props: RenderProps) => React.ReactNode;
 }
 
 const CodeHighlighting = (props: CodeHighlightingProps) => {
   const { code, language, theme, children } = props;
 
   const getThemeDict = (): HighlightTheme => {
-    const newThemeDict = theme ? themeToDict(theme, language) : null;
+    const newThemeDict = theme ? themeToDict(theme, language) : NIGHT_OWL;
     return newThemeDict;
   };
 
@@ -30,8 +32,8 @@ const CodeHighlighting = (props: CodeHighlightingProps) => {
     const output: LineOutputProps = {
       ...rest,
       className: 'token-line',
-      style: null,
-      key: null,
+      style: {},
+      key: '',
     };
 
     const locThemeDict = getThemeDict();
@@ -67,7 +69,7 @@ const CodeHighlighting = (props: CodeHighlightingProps) => {
       className: `token ${token.types.join(' ')}`,
       children: token.content,
       style: getStyleForToken(token),
-      key: null,
+      key: '',
     };
     if (style !== null) {
       output.style = output.style !== null ? { ...output.style, ...style } : style;
@@ -78,19 +80,24 @@ const CodeHighlighting = (props: CodeHighlightingProps) => {
     return output;
   };
 
-  const tokenize = (code: string, grammar: Grammar, language: string): Array<PrismToken | string> => {
+  const tokenize = (
+    codeToTokenize: string,
+    grammar: Grammar,
+    languageToTokenize: string
+  ): Array<PrismToken | string> => {
     const env = {
-      code,
+      codeToTokenize,
       grammar,
-      language,
+      languageToTokenize,
       tokens: [],
     };
+    let tokens: (string | PrismToken)[] = [];
 
     Prism.hooks.run('before-tokenize', env);
-    env.tokens = Prism.tokenize(env.code, Prism.languages.javascript);
+    tokens = Prism.tokenize(env.codeToTokenize, Prism.languages.javascript);
     Prism.hooks.run('after-tokenize', env);
 
-    return env.tokens;
+    return tokens;
   };
 
   return children({

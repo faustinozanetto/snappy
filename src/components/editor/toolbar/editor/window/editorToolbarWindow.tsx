@@ -1,6 +1,8 @@
 import React from 'react';
-import EditorToolbarSection from '../../base/editorToolbarSection';
 import { BiWindow } from 'react-icons/bi';
+
+import EditorToolbarSection from '../../base/editorToolbarSection';
+
 import EditorToolbarWindowDisplay from './display/editorToolbarWindowDisplay';
 import EditorToolbarWindowShadow from './shadow/editorToolbarWindowShadow';
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Box, Text, Select } from '@chakra-ui/react';
-import { Presets } from 'snappy.types';
-import { selectCustomizationPreset, setCustomizationPreset } from '@state/slices/app/app.slice';
-import { useDispatch, useSelector } from 'react-redux';
-import { setCustomization } from '@state/slices/editor/editorCustomization.slice';
+import { Box, Select, Text } from '@chakra-ui/react';
 import { capitalizeString, parseCustomizationPreset } from '@lib/helper/helperFunctions';
+import { selectCustomizationPreset, setCustomizationPreset } from '@state/slices/app/app.slice';
+import { setCustomization } from '@state/slices/editor/editorCustomization.slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { Presets } from 'snappy.types';
 
 interface EditorToolbarPresetsListProps {}
 
@@ -23,13 +23,13 @@ const EditorToolbarPresetsList: React.FC<EditorToolbarPresetsListProps> = ({}) =
       <Text as="h2" fontWeight={600} fontSize="lg" mb={2}>
         Presets
       </Text>
-      <Select onChange={handlePresetChange} defaultValue={customizationPreset}>
-        {Object.keys(Presets)
+      <Select onChange={handlePresetChange} variant="filled" borderRadius="none" defaultValue={customizationPreset}>
+        {Object.values(Presets)
           .sort()
           .map((key) => {
             return (
-              <option key={key} value={Presets[key]}>
-                {capitalizeString(Presets[key])}
+              <option key={key} value={key}>
+                {capitalizeString(key)}
               </option>
             );
           })}

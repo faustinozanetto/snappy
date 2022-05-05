@@ -1,7 +1,7 @@
+import type { HighlightTheme } from 'snappy.types';
 import { CodeTheme } from 'snappy.types';
-import { HighlightTheme } from 'snappy.types';
 
-export const GITHUB: HighlightTheme = {
+const GITHUB: HighlightTheme = {
   name: 'Github',
   type: CodeTheme.GITHUB,
   plain: {
@@ -66,3 +66,4 @@ export const GITHUB: HighlightTheme = {
     },
   ],
 };
+export default GITHUB;

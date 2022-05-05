@@ -1,9 +1,9 @@
-import next from 'next';
 import { createServer } from 'http';
+import next from 'next';
 import { __PROD__ } from '@lib/constants';
 
 (async () => {
-  const PORT = parseInt(process.env.PORT) || 3000;
+  const PORT = 3000;
   const app = next({
     dev: !__PROD__,
   });
@@ -24,12 +24,13 @@ import { __PROD__ } from '@lib/constants';
     server
       .on('listening', async () => {
         const addr = server.address();
-        const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
-        console.log('Listening on ' + bind);
+        const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${PORT}`;
+        console.log(`Listening on ${bind}`);
       })
       .listen(PORT);
   });
   try {
+    console.log('Snapapy Init');
   } catch (error) {
     console.error(error);
     process.exit(1);

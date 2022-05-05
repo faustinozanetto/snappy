@@ -1,10 +1,11 @@
-import React from 'react';
 import { Box, VStack } from '@chakra-ui/react';
 
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { selectWindowCustomization, setWindowCustomization } from '@state/slices/editor/editorCustomization.slice';
-import EditorToolbarWindowControls from '../controls/editorToolbarWindowControls';
 import CustomizationSlider from '../../input/customizationSlider';
+import EditorToolbarWindowControls from '../controls/editorToolbarWindowControls';
 
 interface EditorToolbarWindowDisplayProps {}
 
@@ -19,7 +20,7 @@ const EditorToolbarWindowDisplay: React.FC<EditorToolbarWindowDisplayProps> = ({
         <CustomizationSlider
           label="Horizontal Padding"
           range={[0, 50]}
-          allSteps={true}
+          allSteps
           allStepsSize={10}
           defaultValue={windowCustomization.paddingX}
           onUpdated={(value) => dispatch(setWindowCustomization({ paddingX: value }))}
@@ -28,7 +29,7 @@ const EditorToolbarWindowDisplay: React.FC<EditorToolbarWindowDisplayProps> = ({
         <CustomizationSlider
           label="Vertical Padding"
           range={[0, 50]}
-          allSteps={true}
+          allSteps
           allStepsSize={10}
           defaultValue={windowCustomization.paddingY}
           onUpdated={(value) => dispatch(setWindowCustomization({ paddingY: value }))}
@@ -37,7 +38,7 @@ const EditorToolbarWindowDisplay: React.FC<EditorToolbarWindowDisplayProps> = ({
         <CustomizationSlider
           label="Border Radius"
           range={[0, 50]}
-          allSteps={true}
+          allSteps
           allStepsSize={10}
           defaultValue={windowCustomization.borderRadius}
           onUpdated={(value) => dispatch(setWindowCustomization({ borderRadius: value }))}

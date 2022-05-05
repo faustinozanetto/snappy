@@ -1,7 +1,7 @@
+import type { HighlightTheme } from 'snappy.types';
 import { CodeTheme } from 'snappy.types';
-import { HighlightTheme } from 'snappy.types';
 
-export const ONE_DARK: HighlightTheme = {
+const ONE_DARK: HighlightTheme = {
   name: 'One Dark',
   type: CodeTheme.ONE_DARK,
   plain: {
@@ -65,3 +65,4 @@ export const ONE_DARK: HighlightTheme = {
     },
   ],
 };
+export default ONE_DARK;

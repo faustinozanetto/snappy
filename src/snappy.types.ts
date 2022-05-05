@@ -1,6 +1,7 @@
-/*======================= STATE ========================*/
+/* eslint-disable no-shadow */
+/*= ====================== STATE ======================== */
 
-import { Key } from 'react';
+import type { Key } from 'react';
 
 export enum BackgroundType {
   COLOR = 'color',
@@ -153,7 +154,7 @@ export type SnappyState = {
   customizationPreset: Presets;
 };
 
-/*===================== THEMING ======================*/
+/*= ==================== THEMING ====================== */
 export type ThemeData = {
   types: string[];
   style: React.CSSProperties;
@@ -170,13 +171,13 @@ export type HighlightTheme = {
   styles: ThemeData[];
 };
 
-/*=================== SHADOW ========================*/
+/*= ================== SHADOW ======================== */
 export type BackgroundShadowEntry = {
   color: string;
   size: [number, number, number];
 };
 
-/*==================== TOOLBAR ======================*/
+/*= =================== TOOLBAR ====================== */
 export type ToolbarSectionTab = {
   /** Label of the section */
   label: string;
@@ -186,7 +187,7 @@ export type ToolbarSectionTab = {
   onTabSelected?: () => void;
 };
 
-/*=================== CODE HIGHLIGHT ======================*/
+/*= ================== CODE HIGHLIGHT ====================== */
 export type Token = {
   types: string[];
   content: string;
@@ -232,7 +233,7 @@ export type RenderProps = {
   getTokenProps: (input: TokenInputProps) => TokenOutputProps;
 };
 
-/*==================== PRESETS =====================*/
+/*= =================== PRESETS ===================== */
 export enum Presets {
   DEFAULT = 'default',
   GRADIENTY = 'gradienty',

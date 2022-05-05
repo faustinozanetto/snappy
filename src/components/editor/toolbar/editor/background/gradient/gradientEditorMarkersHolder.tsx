@@ -1,7 +1,8 @@
 import React from 'react';
-import GradientEditorMarker from './gradientEditorMarker';
 import { Flex, HStack, useColorModeValue } from '@chakra-ui/react';
-import { GradientColor } from 'snappy.types';
+
+import type { GradientColor } from 'snappy.types';
+import GradientEditorMarker from './gradientEditorMarker';
 
 interface GradientEditorMarkerColorsProps {
   colors: GradientColor[];
@@ -22,15 +23,15 @@ const GradientEditorMarkerColors: React.FC<GradientEditorMarkerColorsProps> = ({
       height={10}
       background={background}
       width="full"
-      rounded={'md'}
+      rounded="md"
       border={`5px solid ${useColorModeValue('black', 'white')}`}
     >
       {/* Controls */}
-      <HStack width={'full'} justifyContent={'space-between'}>
+      <HStack width="full" justifyContent="space-between">
         {colors.map((color, index) => {
           return (
             <GradientEditorMarker
-              key={index}
+              key={`marker-${color}`}
               markerColor={`rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`}
               onClick={() => onMarkerSelect(index)}
               isActive={index === currentMarkerIndex}

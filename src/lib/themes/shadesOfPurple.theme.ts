@@ -1,7 +1,7 @@
+import type { HighlightTheme } from 'snappy.types';
 import { CodeTheme } from 'snappy.types';
-import { HighlightTheme } from 'snappy.types';
 
-export const SHADES_OF_PURPLE: HighlightTheme = {
+const SHADES_OF_PURPLE: HighlightTheme = {
   name: 'Shades of Purple',
   type: CodeTheme.SHADES_OF_PURPLE,
   plain: {
@@ -71,15 +71,7 @@ export const SHADES_OF_PURPLE: HighlightTheme = {
       },
     },
     {
-      types: [
-        'keyword',
-        'operator',
-        'property',
-        'namespace',
-        'tag',
-        'selector',
-        'doctype',
-      ],
+      types: ['keyword', 'operator', 'property', 'namespace', 'tag', 'selector', 'doctype'],
       style: {
         color: 'rgb(255, 157, 0)',
       },
@@ -92,3 +84,4 @@ export const SHADES_OF_PURPLE: HighlightTheme = {
     },
   ],
 };
+export default SHADES_OF_PURPLE;

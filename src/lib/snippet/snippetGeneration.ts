@@ -1,6 +1,8 @@
-import { toPng, toSvg, toJpeg, toBlob } from 'html-to-image';
-import { Options } from 'html-to-image/lib/options';
-import { FileExtension, BackgroundType, BackgroundCustomization, ExportCustomization } from 'snappy.types';
+import { toBlob, toJpeg, toPng, toSvg } from 'html-to-image';
+import type { Options } from 'html-to-image/lib/options';
+
+import type { BackgroundCustomization, ExportCustomization } from 'snappy.types';
+import { BackgroundType, FileExtension } from 'snappy.types';
 
 /**
  * Generates the actual image using the correct quality and styling.
@@ -18,7 +20,10 @@ export const handleImageGeneration = async (
   const quality = exportSettings.sizeMultiplier;
   const extension = exportSettings.fileExtension;
 
-  const backgroundColor: string = `rgb(${backgroundSettings.backgroundColor.r}, ${backgroundSettings.backgroundColor.g}, ${backgroundSettings.backgroundColor.b})`;
+  let backgroundColor = '#fff';
+  if (backgroundSettings.backgroundColor) {
+    backgroundColor = `rgb(${backgroundSettings.backgroundColor.r}, ${backgroundSettings.backgroundColor.g}, ${backgroundSettings.backgroundColor.b})`;
+  }
 
   const OPTIONS: Options = {
     style: {
@@ -51,19 +56,19 @@ export const handleImageGeneration = async (
 
   // PNG
   if (extension === FileExtension.PNG) {
-    return await toPng(exportRef, OPTIONS);
+    return toPng(exportRef, OPTIONS);
   }
   // SVG
   if (extension === FileExtension.SVG) {
-    return await toSvg(exportRef, OPTIONS);
+    return toSvg(exportRef, OPTIONS);
   }
   // JPEG
   if (extension === FileExtension.JPEG) {
-    return await toJpeg(exportRef, OPTIONS);
+    return toJpeg(exportRef, OPTIONS);
   }
   // BLOB
   if (extension === FileExtension.BLOB) {
-    return await toBlob(exportRef, OPTIONS);
+    return toBlob(exportRef, OPTIONS);
   }
 };
 
@@ -93,7 +98,7 @@ export const saveImageToFile = (extension: FileExtension, dataUrl: string | Blob
  * @returns a promise containing the result of the copy operation.
  */
 export const copyImageToClipboard = async (dataUrl: string | Blob): Promise<void> => {
-  const IS_FIREFOX: boolean = !(navigator.userAgent.indexOf('Firefox') < 0);
+  const IS_FIREFOX = !(navigator.userAgent.indexOf('Firefox') < 0);
   if (!IS_FIREFOX) {
     navigator.permissions
       // @ts-ignore
@@ -101,8 +106,8 @@ export const copyImageToClipboard = async (dataUrl: string | Blob): Promise<void
       .then(async (result) => {
         if (result.state === 'granted') {
           const type = 'image/png';
-          let data = [new ClipboardItem({ [type]: dataUrl })];
-          return await navigator.clipboard.write(data);
+          const data = [new ClipboardItem({ [type]: dataUrl })];
+          return navigator.clipboard.write(data);
         }
       });
   }

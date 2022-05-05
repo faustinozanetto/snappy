@@ -1,7 +1,7 @@
+import type { HighlightTheme } from 'snappy.types';
 import { CodeTheme } from 'snappy.types';
-import { HighlightTheme } from 'snappy.types';
 
-export const NIGHT_OWL_LIGHT: HighlightTheme = {
+const NIGHT_OWL_LIGHT: HighlightTheme = {
   name: 'Night Owl Light',
   type: CodeTheme.NIGHT_OWL_LIGHT,
   plain: {
@@ -100,3 +100,4 @@ export const NIGHT_OWL_LIGHT: HighlightTheme = {
     },
   ],
 };
+export default NIGHT_OWL_LIGHT;

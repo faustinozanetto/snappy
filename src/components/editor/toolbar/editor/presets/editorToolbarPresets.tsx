@@ -1,7 +1,8 @@
 import React from 'react';
+import { FiBox } from 'react-icons/fi';
+
 import EditorToolbarSection from '../../base/editorToolbarSection';
 import EditorPresetsList from './editorToolbarPresetsList';
-import { FiBox } from 'react-icons/fi';
 
 interface EditorToolbarPresetsProps {}
 

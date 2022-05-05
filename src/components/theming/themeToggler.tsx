@@ -1,12 +1,14 @@
-import React from 'react';
-import Button from '@components/ui/button';
 import { useColorMode } from '@chakra-ui/react';
+
+import React from 'react';
 import { FiMoon } from 'react-icons/fi';
 import { FiSun } from 'react-icons/fi';
+import Button from '@components/ui/button/button';
 
 interface ThemeTogglerProps {}
 
-const ThemeToggler: React.FC<ThemeTogglerProps> = ({}) => {
+const ThemeToggler: React.FC<ThemeTogglerProps> = (props) => {
+  const {} = props;
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Button

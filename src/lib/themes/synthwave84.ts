@@ -1,7 +1,7 @@
+import type { HighlightTheme } from 'snappy.types';
 import { CodeTheme } from 'snappy.types';
-import { HighlightTheme } from 'snappy.types';
 
-export const SYNTHWAVE84: HighlightTheme = {
+const SYNTHWAVE84: HighlightTheme = {
   name: 'Synthwave84',
   type: CodeTheme.SYNTHWAVE84,
   plain: {
@@ -39,8 +39,7 @@ export const SYNTHWAVE84: HighlightTheme = {
       types: ['char', 'function'],
       style: {
         color: '#36F9F6',
-        textShadow:
-          '0 0 2px #001716, 0 0 3px #03edf975, 0 0 5px #03edf975, 0 0 8px #03edf975',
+        textShadow: '0 0 2px #001716, 0 0 3px #03edf975, 0 0 5px #03edf975, 0 0 8px #03edf975',
       },
     },
     {
@@ -57,3 +56,4 @@ export const SYNTHWAVE84: HighlightTheme = {
     },
   ],
 };
+export default SYNTHWAVE84;

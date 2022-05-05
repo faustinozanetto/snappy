@@ -1,14 +1,16 @@
-import { extendTheme, type ThemeConfig } from '@chakra-ui/react';
+import type { ThemeConfig } from '@chakra-ui/react';
+import { extendTheme } from '@chakra-ui/react';
 
 const config: ThemeConfig = {
+  cssVarPrefix: 'snappy',
   initialColorMode: 'dark',
   useSystemColorMode: false,
-  cssVarPrefix: 'snappy',
 };
 
-export const theme = extendTheme({
+const theme = extendTheme({
   config,
   fonts: {
     body: 'JetBrains Mono, monospace',
   },
 });
+export default theme;

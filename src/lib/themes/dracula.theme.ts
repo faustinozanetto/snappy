@@ -1,7 +1,7 @@
+import type { HighlightTheme } from 'snappy.types';
 import { CodeTheme } from 'snappy.types';
-import { HighlightTheme } from 'snappy.types';
 
-export const DRACULA: HighlightTheme = {
+const DRACULA: HighlightTheme = {
   name: 'Dracula',
   type: CodeTheme.DRACULA,
   plain: {
@@ -76,3 +76,4 @@ export const DRACULA: HighlightTheme = {
     },
   ],
 };
+export default DRACULA;

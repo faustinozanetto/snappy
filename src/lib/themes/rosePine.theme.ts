@@ -1,7 +1,7 @@
+import type { HighlightTheme } from 'snappy.types';
 import { CodeTheme } from 'snappy.types';
-import { HighlightTheme } from 'snappy.types';
 
-export const ROSE_PINE: HighlightTheme = {
+const ROSE_PINE: HighlightTheme = {
   name: 'Rose Pine',
   type: CodeTheme.ROSE_PINE,
   plain: {
@@ -74,3 +74,4 @@ export const ROSE_PINE: HighlightTheme = {
     },
   ],
 };
+export default ROSE_PINE;

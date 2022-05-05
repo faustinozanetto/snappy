@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import CustomizationSlider from '../../input/customizationSlider';
-import { Box, HStack, Text, VStack, Button } from '@chakra-ui/react';
-
-import { useDispatch, useSelector } from 'react-redux';
-import { selectWindowCustomization, setWindowCustomization } from '@state/slices/editor/editorCustomization.slice';
+import React, { useState } from 'react';
+import { Box, Button, HStack, Text, VStack } from '@chakra-ui/react';
 import { RgbColorPicker } from 'react-colorful';
-import { Color } from 'snappy.types';
+import { useDispatch, useSelector } from 'react-redux';
+import type { Color } from 'snappy.types';
+
+import { selectWindowCustomization, setWindowCustomization } from '@state/slices/editor/editorCustomization.slice';
+import CustomizationSlider from '../../input/customizationSlider';
 
 interface EditorToolbarWindowShadowProps {}
 
@@ -13,21 +13,12 @@ const EditorToolbarWindowShadow: React.FC<EditorToolbarWindowShadowProps> = ({})
   const dispatch = useDispatch();
   const windowCustomization = useSelector(selectWindowCustomization);
   const [showPicker, setShowPicker] = useState(false);
-  const [shadowColor, setShadowColor] = useState<Color>({
-    r: windowCustomization.shadow.boxShadowColor.r,
-    g: windowCustomization.shadow.boxShadowColor.g,
-    b: windowCustomization.shadow.boxShadowColor.b,
-    a: windowCustomization.shadow.boxShadowColor.a,
-  });
 
-  // Update state when color changes
+  /**
+   * Handles the state change of the shadow color.
+   * @param color The color to set the shadow to.
+   */
   const handleShadowColorChange = (color: Color) => {
-    setShadowColor({
-      r: color.r,
-      g: color.g,
-      b: color.b,
-      a: 0.45,
-    });
     dispatch(
       setWindowCustomization({
         shadow: {
@@ -51,9 +42,9 @@ const EditorToolbarWindowShadow: React.FC<EditorToolbarWindowShadowProps> = ({})
           label="Shadow Size"
           range={[0, 5]}
           stepSize={0.1}
-          allSteps={true}
+          allSteps
           allStepsSize={1}
-          defaultValue={windowCustomization.shadow.boxShadowSize}
+          defaultValue={windowCustomization?.shadow?.boxShadowSize || 2}
           onUpdated={(value) =>
             dispatch(
               setWindowCustomization({
@@ -67,7 +58,6 @@ const EditorToolbarWindowShadow: React.FC<EditorToolbarWindowShadowProps> = ({})
           }
         />
         {/* Shadow Color */}
-
         <HStack justifyContent="space-between" width="full" mb={2}>
           <Text as="h2" fontWeight={600} mb={2}>
             Shadow Color
@@ -78,8 +68,13 @@ const EditorToolbarWindowShadow: React.FC<EditorToolbarWindowShadowProps> = ({})
         </HStack>
         {/* Color */}
         {showPicker && (
-          <Box backgroundColor={'gray.700'} padding={4} borderRadius={'md'}>
-            <RgbColorPicker color={windowCustomization.shadow.boxShadowColor} onChange={handleShadowColorChange} />
+          <Box backgroundColor="gray.700" padding={4} borderRadius="md">
+            <RgbColorPicker
+              color={windowCustomization?.shadow?.boxShadowColor || { r: 169, g: 18, b: 250 }}
+              onChange={(color) => {
+                handleShadowColorChange({ r: color.r, g: color.g, b: color.b, a: 1 });
+              }}
+            />
           </Box>
         )}
       </VStack>

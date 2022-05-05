@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, Select } from '@chakra-ui/react';
+import { Box, Select, Text } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCodeCustomization, setCodeCustomization } from '@state/slices/editor/editorCustomization.slice';
 import { CodeLanguage } from 'snappy.types';
@@ -15,7 +15,7 @@ const EditorToolbarCodeLanguageList: React.FC<EditorToolbarCodeLanguageListProps
    * @param event event from the select input
    */
   const handleCodeLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(setCodeCustomization({ codeLanguage: event.target.value }));
+    dispatch(setCodeCustomization({ codeLanguage: event.target.value as CodeLanguage }));
   };
 
   /**
@@ -36,11 +36,13 @@ const EditorToolbarCodeLanguageList: React.FC<EditorToolbarCodeLanguageListProps
         placeholder="Choose a Language"
         onChange={handleCodeLanguageChange}
         defaultValue={codeCustomization.codeLanguage}
+        variant="filled"
+        borderRadius="none"
       >
         {/* Map all options from CodeLanguage */}
-        {Object.keys(CodeLanguage).map((language) => (
-          <option key={language} value={CodeLanguage[language]}>
-            {capitalizeLanguageName(CodeLanguage[language])}
+        {Object.values(CodeLanguage).map((language) => (
+          <option key={language} value={language}>
+            {capitalizeLanguageName(language)}
           </option>
         ))}
       </Select>

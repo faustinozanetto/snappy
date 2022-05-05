@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, BoxProps } from '@chakra-ui/react';
+import type { BoxProps } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 
 type GradientEditorMarkerProps = BoxProps & {
   markerColor: string;
@@ -22,7 +23,7 @@ const GradientEditorMarker: React.FC<GradientEditorMarkerProps> = (props) => {
         borderRadius: '14px',
         background: markerColor,
       }}
-      cursor={'pointer'}
+      cursor="pointer"
       {...rest}
     >
       {children}

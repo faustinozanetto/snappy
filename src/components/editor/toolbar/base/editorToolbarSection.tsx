@@ -1,5 +1,4 @@
 import React from 'react';
-import Button, { ButtonProps } from '@components/ui/button';
 import {
   Flex,
   Popover,
@@ -14,7 +13,9 @@ import {
   Tabs,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { ToolbarSectionTab } from 'snappy.types';
+import type { ButtonProps } from '@components/ui/button/button';
+import Button from '@components/ui/button/button';
+import type { ToolbarSectionTab } from 'snappy.types';
 
 interface EditorToolbarSectionProps {
   /** String to show as title */
@@ -48,10 +49,9 @@ const EditorToolbarSection: React.FC<EditorToolbarSectionProps> = (props) => {
           <PopoverBody w="full" backgroundColor={useColorModeValue('gray.100', 'gray.800')}>
             <Tabs isLazy isFitted colorScheme="blue">
               <TabList>
-                {sectionTabs.map((section, index) => {
+                {sectionTabs.map((section) => {
                   return (
                     <Tab
-                      key={index}
                       _focus={{ boxShadow: 'none' }}
                       fontSize="xs"
                       fontWeight="bold"
@@ -64,8 +64,8 @@ const EditorToolbarSection: React.FC<EditorToolbarSectionProps> = (props) => {
                 })}
               </TabList>
               <TabPanels>
-                {sectionTabs.map((section, index) => {
-                  return <TabPanel key={index}>{section.panel}</TabPanel>;
+                {sectionTabs.map((section) => {
+                  return <TabPanel>{section.panel}</TabPanel>;
                 })}
               </TabPanels>
             </Tabs>

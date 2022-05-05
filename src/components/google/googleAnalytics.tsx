@@ -1,5 +1,5 @@
-import React from 'react';
 import Script from 'next/script';
+import React from 'react';
 
 interface GoogleAnalyticsProps {}
 
@@ -7,7 +7,7 @@ const GoogleAnalytics: React.FC<GoogleAnalyticsProps> = ({}) => {
   return (
     <>
       {/* Global Site Tag (gtag.js) - Google Analytics */}
-      <Script async src={`https://www.googletagmanager.com/gtag/js?id=G-8M3QB6LWKR`} />
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-8M3QB6LWKR" />
       <Script
         id="gtag-init"
         dangerouslySetInnerHTML={{

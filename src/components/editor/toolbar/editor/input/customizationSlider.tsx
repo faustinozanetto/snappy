@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
 import {
-  Slider,
-  SliderFilledTrack,
-  SliderThumb,
-  Text,
-  SliderTrack,
   Box,
   HStack,
-  Tooltip,
+  Slider,
+  SliderFilledTrack,
   SliderMark,
+  SliderThumb,
+  SliderTrack,
+  Text,
+  Tooltip,
 } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
 
 interface CustomizationSliderProps {
   /** Label to display */
@@ -29,7 +29,7 @@ interface CustomizationSliderProps {
   /**
    * Callback when value is updated
    */
-  onUpdated?: (value: number) => void;
+  onUpdated: (value: number) => void;
 }
 
 const CustomizationSlider: React.FC<CustomizationSliderProps> = (props) => {
@@ -97,7 +97,7 @@ const CustomizationSlider: React.FC<CustomizationSliderProps> = (props) => {
           color="white"
           placement="top"
           isOpen={showTooltip}
-          label={`${sliderValue}` + `  ${valueType !== 'none' ? valueType : ''}`}
+          label={`${sliderValue + valueType !== 'none' ? valueType : ''}`}
         >
           <SliderThumb />
         </Tooltip>

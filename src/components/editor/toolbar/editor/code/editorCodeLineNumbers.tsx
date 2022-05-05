@@ -1,12 +1,11 @@
 import React from 'react';
-import { Text, Switch, HStack } from '@chakra-ui/react';
-
+import { HStack, Switch, Text } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCodeCustomization, setCodeCustomization } from '@state/slices/editor/editorCustomization.slice';
 
 interface EditorCodeLineNumbersProps {}
 
-export const EditorCodeLineNumbers: React.FC<EditorCodeLineNumbersProps> = ({}) => {
+const EditorCodeLineNumbers: React.FC<EditorCodeLineNumbersProps> = ({}) => {
   const dispatch = useDispatch();
   const codeCustomization = useSelector(selectCodeCustomization);
 
@@ -27,3 +26,4 @@ export const EditorCodeLineNumbers: React.FC<EditorCodeLineNumbersProps> = ({}) 
     </HStack>
   );
 };
+export default EditorCodeLineNumbers;

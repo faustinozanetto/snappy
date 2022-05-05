@@ -1,6 +1,7 @@
-import { HighlightTheme, CodeTheme } from 'snappy.types';
+import type { HighlightTheme } from 'snappy.types';
+import { CodeTheme } from 'snappy.types';
 
-export const WINTER_IS_COMING: HighlightTheme = {
+const WINTER_IS_COMING: HighlightTheme = {
   name: 'Winter is Coming',
   type: CodeTheme.WINTER_IS_COMING,
   plain: {
@@ -92,3 +93,4 @@ export const WINTER_IS_COMING: HighlightTheme = {
     },
   ],
 };
+export default WINTER_IS_COMING;
