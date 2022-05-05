@@ -13,7 +13,7 @@ import {
 import type { Color } from 'react-color';
 import { useSelector } from 'react-redux';
 
-import type { BackgroundShadowEntry } from 'snappy.types';
+import { BackgroundShadowEntry, CodeTheme } from 'snappy.types';
 
 import ONE_DARK from '@lib/themes/oneDark.theme';
 import EditorCodeContent from './content/editorCodeContent';
@@ -76,12 +76,9 @@ const Editor: React.FC<EditorProps> = (props) => {
    * @returns the css styles from the theme file.
    */
   const highlightThemeStyles = useMemo(() => {
-    if (codeCustomization.codeTheme) {
-      const parsedTheme = selectThemeFile(codeCustomization.codeTheme);
-      return parsedTheme;
-    }
-    return ONE_DARK;
-  }, [codeCustomization.codeTheme]);
+    const parsedTheme = selectThemeFile(codeCustomization.codeTheme || CodeTheme.ONE_DARK);
+    return parsedTheme;
+  }, [codeCustomization]);
 
   /**
    * Generates the styles for the code content window.
