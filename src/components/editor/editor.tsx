@@ -13,7 +13,8 @@ import {
 import type { Color } from 'react-color';
 import { useSelector } from 'react-redux';
 
-import { BackgroundShadowEntry, CodeTheme } from 'snappy.types';
+import type { BackgroundShadowEntry } from 'snappy.types';
+import { CodeTheme } from 'snappy.types';
 
 import ONE_DARK from '@lib/themes/oneDark.theme';
 import EditorCodeContent from './content/editorCodeContent';
