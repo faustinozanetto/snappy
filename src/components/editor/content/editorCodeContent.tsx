@@ -100,7 +100,7 @@ const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
           // Used to move down the editor code when window controls are enabled.
           paddingTop: windowCustomization.controls ? '2em' : '',
           ...style,
-          // ...generateCustomStyles,
+          ...generateCustomStyles,
         }}
       />
     </>
