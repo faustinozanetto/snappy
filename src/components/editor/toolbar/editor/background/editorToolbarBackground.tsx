@@ -25,7 +25,6 @@ const EditorToolbarBackground: React.FC<EditorToolbarBackgroundProps> = ({}) => 
   const generateButtonStyles = useMemo(() => {
     const styles: ButtonProps = {};
     // Background
-    console.log('backgroundCustomization', backgroundCustomization);
     if (backgroundCustomization.backgroundType === BackgroundType.COLOR && backgroundCustomization.backgroundColor) {
       styles.background = `${parseBackgroundColor(backgroundCustomization.backgroundColor)} !important`;
       styles._hover = {

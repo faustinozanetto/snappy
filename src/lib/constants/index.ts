@@ -3,6 +3,7 @@ import { BackgroundType, CodeLanguage, CodeTheme, FileExtension, FontFamily, Pre
 
 export const __PROD__ = process.env.NODE_ENV === 'production';
 export const __GTAGID__ = process.env.NEXT_PUBLIC_GTM;
+export const __URL__ = __PROD__ ? process.env.NEXT_PUBLIC_URL : 'http://localhost:3000/';
 
 /**
  * @description Basic code snippet that shows up when page loads by default.

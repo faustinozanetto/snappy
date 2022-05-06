@@ -1,3 +1,4 @@
+import { __URL__ } from '@lib/constants';
 import Head from 'next/head';
 import React from 'react';
 
@@ -15,7 +16,13 @@ export interface LayoutHeadProps {
 }
 
 const LayoutHead: React.FC<LayoutHeadProps> = (props) => {
-  const { title, description, url, canonicalUrl, image = '/images/favicon/android-chrome-192x192.png' } = props;
+  const {
+    title,
+    description,
+    url,
+    canonicalUrl,
+    image = `${__URL__}images/favicon/android-chrome-512x512.png`,
+  } = props;
   return (
     <Head>
       <title>{title}</title>
@@ -35,15 +42,11 @@ const LayoutHead: React.FC<LayoutHeadProps> = (props) => {
       <link rel="canonical" href={canonicalUrl} />
       <meta content="purple" name="theme-color" />
 
-      <meta
-        property="og:image:url"
-        content={`${process.env.NEXT_PUBLIC_URL}/images/favicon/android-chrome-512x512.png`}
-      />
-      <meta property="og:image" content={`${process.env.NEXT_PUBLIC_URL}/images/favicon/android-chrome-512x512.png`} />
-      <meta
-        property="og:image:secure"
-        content={`${process.env.NEXT_PUBLIC_URL}/images/favicon/android-chrome-512x512.png`}
-      />
+      {/* Open grahp */}
+      <meta property="og:url" content={url} />
+      <meta property="og:image" content={image} />
+      <meta property="og:image:url" content={image} />
+      <meta property="og:image:secure" content={image} />
       <meta property="og:image:width" content="512" />
       <meta property="og:image:height" content="512" />
       <meta property="og:image:alt" content={title} />

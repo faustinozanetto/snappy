@@ -1,4 +1,4 @@
-import { Box, Flex, useBreakpointValue, useColorModeValue } from '@chakra-ui/react';
+import { Box, Flex, useBreakpointValue } from '@chakra-ui/react';
 
 import Footer from '@components/footer/footer';
 import React from 'react';
@@ -11,14 +11,12 @@ import LayoutHead from './layoutHead';
 interface LayoutProps {
   /** Children */
   children: React.ReactNode;
-  /** Layout head component */
-  layoutHead?: React.FC<LayoutHeadProps>;
   /** Layout head props */
   layoutHeadProps?: LayoutHeadProps;
 }
 
 const Layout: React.FC<LayoutProps> = (props) => {
-  const { children, layoutHead: Head = LayoutHead, layoutHeadProps } = props;
+  const { children, layoutHeadProps } = props;
   const logoSize = useBreakpointValue({
     base: 'xl',
     sm: '2xl',
@@ -27,7 +25,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
   return (
     <Flex minHeight="100vh" flexDir="column" backgroundColor="background">
       {/* Head */}
-      <Head {...layoutHeadProps} />
+      <LayoutHead {...layoutHeadProps} />
 
       {/* Container */}
       <LayoutContainer>
