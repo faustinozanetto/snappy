@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Select, Text } from '@chakra-ui/react';
+import { Box, Select, Text, VStack } from '@chakra-ui/react';
 import { capitalizeString, parseCustomizationPreset } from '@lib/helper/helperFunctions';
 import { selectCustomizationPreset, setCustomizationPreset } from '@state/slices/app/app.slice';
 import { setCustomization } from '@state/slices/editor/editorCustomization.slice';
@@ -19,11 +19,11 @@ const EditorToolbarPresetsList: React.FC<EditorToolbarPresetsListProps> = ({}) =
     dispatch(setCustomization(newCustomizationData));
   };
   return (
-    <Box pb={2} width="full">
-      <Text as="h2" fontWeight={600} fontSize="lg" mb={2}>
+    <Box width="full">
+      <Text as="h2" fontSize="lg" fontWeight={600} mb={2}>
         Presets
       </Text>
-      <Select onChange={handlePresetChange} variant="filled" borderRadius="none" defaultValue={customizationPreset}>
+      <Select onChange={handlePresetChange} defaultValue={customizationPreset}>
         {Object.values(Presets)
           .sort()
           .map((key) => {

@@ -16,7 +16,7 @@ interface EditorToolBarProps {
 
 const EditorToolBar: React.FC<EditorToolBarProps> = ({ exportRef }) => {
   return (
-    <Wrap spacing={4} justify="center">
+    <Wrap spacing={4} justify="center" zIndex={20}>
       {/* Background */}
       <EditorToolbarBackground />
       {/* Font */}
@@ -30,7 +30,7 @@ const EditorToolBar: React.FC<EditorToolBarProps> = ({ exportRef }) => {
       {/* Export */}
       <EditorToolbarExportImage exportRef={exportRef} />
       {/* Theme toggler */}
-      <ThemeToggler />
+      {/* <ThemeToggler /> */}
     </Wrap>
   );
 };

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Box, Button, HStack, Text, VStack } from '@chakra-ui/react';
+import React from 'react';
+import { Box, Text, VStack } from '@chakra-ui/react';
 import { RgbColorPicker } from 'react-colorful';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -7,6 +7,7 @@ import {
   setBackgroundCustomization,
 } from '@state/slices/editor/editorCustomization.slice';
 import type { Color } from 'snappy.types';
+import useDebouncedCallback from '@hooks/useDebounce';
 
 interface EditorToolbarBackgroundColorProps {}
 
@@ -14,13 +15,12 @@ const EditorToolbarBackgroundColor: React.FC<EditorToolbarBackgroundColorProps> 
   const {} = props;
   const dispatch = useDispatch();
   const backgroundCustomization = useSelector(selectBackgroundCustomization);
-  const [showPicker, setShowPicker] = useState(false);
 
   /**
    * Handles the background color state update.
    * @param color color from the color picker
    */
-  const handleColorChange = (color: Color) => {
+  const handleColorChange = useDebouncedCallback((color: Color) => {
     // Redux update
     dispatch(
       setBackgroundCustomization({
@@ -32,32 +32,26 @@ const EditorToolbarBackgroundColor: React.FC<EditorToolbarBackgroundColorProps> 
         },
       })
     );
-  };
+  }, 10);
 
   return (
-    <Box py={2} width="full">
-      <VStack display="flex" spacing={4}>
-        <HStack justifyContent="space-between" width="full">
-          <Text as="h2" fontWeight={600} mb={2}>
-            Background Color
-          </Text>
-          <Button variant="outline" colorScheme="blue" onClick={() => setShowPicker((prev) => !prev)}>
-            Pick
-          </Button>
-        </HStack>
-        {/* Color */}
-        {showPicker && (
-          <Box backgroundColor="gray.700" padding={4} borderRadius="md">
-            <RgbColorPicker
-              color={backgroundCustomization.backgroundColor}
-              onChange={(color) => {
-                handleColorChange({ r: color.r, g: color.g, b: color.b, a: 1 });
-              }}
-            />
-          </Box>
-        )}
-      </VStack>
-    </Box>
+    <VStack display="flex" spacing={4}>
+      {/* Heading */}
+      <Text as="h2" fontSize="lg" fontWeight={600}>
+        Background Color
+      </Text>
+
+      {/* Color */}
+      <Box backgroundColor="background" padding={4} borderRadius="md">
+        <RgbColorPicker
+          aria-label="Background Color Picker"
+          color={backgroundCustomization.backgroundColor}
+          onChange={(color) => {
+            handleColorChange({ r: color.r, g: color.g, b: color.b, a: 1 });
+          }}
+        />
+      </Box>
+    </VStack>
   );
 };
 export default EditorToolbarBackgroundColor;

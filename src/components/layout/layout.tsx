@@ -25,7 +25,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
     md: '3xl',
   }) as 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
   return (
-    <Flex minHeight="100vh" flexDir="column">
+    <Flex minHeight="100vh" flexDir="column" backgroundColor="background">
       {/* Head */}
       <Head {...layoutHeadProps} />
 
@@ -33,7 +33,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
       <LayoutContainer>
         {/* Logo */}
         <Box my={4}>
-          <SnapifyLogo size={logoSize} logoColor={useColorModeValue('black', 'white')} />
+          <SnapifyLogo size={logoSize} />
         </Box>
         {children}
       </LayoutContainer>

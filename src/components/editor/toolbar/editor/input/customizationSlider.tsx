@@ -1,6 +1,6 @@
+import React, { useEffect, useState } from 'react';
 import {
   Box,
-  HStack,
   Slider,
   SliderFilledTrack,
   SliderMark,
@@ -8,8 +8,8 @@ import {
   SliderTrack,
   Text,
   Tooltip,
+  VStack,
 } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
 
 interface CustomizationSliderProps {
   /** Label to display */
@@ -51,12 +51,10 @@ const CustomizationSlider: React.FC<CustomizationSliderProps> = (props) => {
   }, [sliderValue]);
 
   return (
-    <Box py={2} width="full">
-      <HStack justifyContent="space-between" width="full">
-        <Text as="h2" fontWeight={600} mb={2}>
-          {label}
-        </Text>
-      </HStack>
+    <VStack width="full">
+      <Text as="h2" fontSize="lg" fontWeight={600}>
+        {label}
+      </Text>
       <Slider
         id={label}
         aria-label={label}
@@ -64,13 +62,14 @@ const CustomizationSlider: React.FC<CustomizationSliderProps> = (props) => {
         min={range[0]}
         max={range[1]}
         step={stepSize}
-        onChange={(event) => setSliderValue(event)}
+        colorScheme="brand"
+        onChangeEnd={(event) => setSliderValue(event)}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
       >
         {/* Start Mark */}
         <SliderMark value={range[0]} mt="1" ml="-2.5" fontSize="xs" fontWeight={500}>
-          {range[0]} {valueType !== 'none' && valueType}
+          {range[0]}
         </SliderMark>
 
         {/* Generate marks between range[0] and range[1] increasing by allStepsSize */}
@@ -79,30 +78,28 @@ const CustomizationSlider: React.FC<CustomizationSliderProps> = (props) => {
             const value = range[0] + i * allStepsSize;
             return (
               <SliderMark key={value} value={value} mt="1" ml="-2.5" fontSize="xs" fontWeight={500}>
-                {value.toFixed(1)} {valueType !== 'none' && valueType}
+                {value.toFixed(1)}
               </SliderMark>
             );
           })}
 
         {/* End Mark */}
         <SliderMark value={range[1]} mt="1" ml="-2.5" fontSize="xs" fontWeight={500}>
-          {range[1]} {valueType !== 'none' && valueType}
+          {range[1]}
         </SliderMark>
         <SliderTrack>
           <SliderFilledTrack />
         </SliderTrack>
         <Tooltip
           hasArrow
-          bg="teal.500"
-          color="white"
-          placement="top"
+          colorScheme="brand"
           isOpen={showTooltip}
-          label={`${sliderValue + valueType !== 'none' ? valueType : ''}`}
+          label={sliderValue + (valueType !== 'none' ? valueType : '')}
         >
           <SliderThumb />
         </Tooltip>
       </Slider>
-    </Box>
+    </VStack>
   );
 };
 export default CustomizationSlider;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { MdColorLens } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { BackgroundType } from 'snappy.types';
@@ -8,6 +8,7 @@ import {
   selectBackgroundCustomization,
   setBackgroundCustomization,
 } from '@state/slices/editor/editorCustomization.slice';
+import type { ButtonProps } from '@chakra-ui/react';
 import EditorToolbarSection from '../../base/editorToolbarSection';
 import EditorToolbarBackgroundColor from './color/editorToolbarBackgroundColor';
 import EditorToolbarBackgroundGradient from './gradient/editorToolbarBackgroundGradient';
@@ -19,17 +20,40 @@ const EditorToolbarBackground: React.FC<EditorToolbarBackgroundProps> = ({}) => 
   const dispatch = useDispatch();
   const backgroundCustomization = useSelector(selectBackgroundCustomization);
 
-  const buttonShadow = (): string => {
-    const BASE_COLOR = backgroundCustomization.backgroundColor;
-    const SHADOW_COLOR = `rgba(${BASE_COLOR?.r}, ${BASE_COLOR?.g}, ${BASE_COLOR?.b}, 0.5)`;
+  /** Generates the color for the button depending the background type.  */
+  // TODO: Add support for gradient shadow, may require to modify the way we display shadows.
+  const generateButtonStyles = useMemo(() => {
+    const styles: ButtonProps = {};
+    // Background
+    console.log('backgroundCustomization', backgroundCustomization);
+    if (backgroundCustomization.backgroundType === BackgroundType.COLOR && backgroundCustomization.backgroundColor) {
+      styles.background = `${parseBackgroundColor(backgroundCustomization.backgroundColor)} !important`;
+      styles._hover = {
+        background: `${parseBackgroundColor(backgroundCustomization.backgroundColor)} !important`,
+      };
+      styles._focus = {
+        background: `${parseBackgroundColor(backgroundCustomization.backgroundColor)} !important`,
+      };
+    } else if (
+      backgroundCustomization.backgroundType === BackgroundType.GRADIENT &&
+      backgroundCustomization.backgroundGradient
+    ) {
+      styles.background = `${backgroundCustomization.backgroundGradient.generated} !important`;
+    }
 
-    return `3px 5px 34px -4px ${SHADOW_COLOR}`;
-  };
+    // Shadow
+    if (backgroundCustomization.backgroundType === BackgroundType.COLOR) {
+      styles.boxShadow = `3px 5px 34px -4px ${styles.background}`;
+    }
+
+    return styles;
+  }, [backgroundCustomization]);
 
   return (
     <EditorToolbarSection
       sectionName="Background"
       sectionIcon={<MdColorLens />}
+      sectionButtonProps={generateButtonStyles}
       sectionTabs={[
         {
           label: 'Color',
@@ -70,13 +94,6 @@ const EditorToolbarBackground: React.FC<EditorToolbarBackgroundProps> = ({}) => 
           },
         },
       ]}
-      sectionButtonProps={{
-        background: parseBackgroundColor(backgroundCustomization?.backgroundColor || { r: 0, g: 0, b: 0, a: 1 }),
-        shadow: buttonShadow(),
-        _hover: { bg: backgroundCustomization.backgroundColor },
-        _focus: { bg: backgroundCustomization.backgroundColor },
-        _active: { bg: backgroundCustomization.backgroundColor },
-      }}
     />
   );
 };

@@ -8,13 +8,9 @@ interface FooterProps {}
 
 const Footer: React.FC<FooterProps> = ({}) => {
   return (
-    <Box
-      bg={useColorModeValue('gray.50', 'gray.900')}
-      color={useColorModeValue('gray.700', 'gray.200')}
-      marginTop="auto"
-    >
+    <Box backgroundColor="footer" color="textPrimary" marginTop="auto" py={4}>
       <Container as={Stack} maxW="6xl" py={4} spacing={4} justify="center" align="center">
-        <SnapifyLogo size="xl" logoColor={useColorModeValue('black', 'white')} />
+        <SnapifyLogo size="xl" />
         <Stack direction="row" spacing={6}>
           <Link href="/">Home</Link>
           <Link href="/terms">Terms</Link>

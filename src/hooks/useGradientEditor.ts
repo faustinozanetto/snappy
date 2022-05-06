@@ -36,6 +36,7 @@ const useGradientEditor = (initialValue: BackgroundGradient) => {
 
   return {
     colors,
+    type,
     gradient,
     setType,
     editColor,

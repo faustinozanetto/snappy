@@ -2,6 +2,7 @@ import type { EditorPreset } from 'snappy.types';
 import { BackgroundType, CodeLanguage, CodeTheme, FileExtension, FontFamily, Presets } from 'snappy.types';
 
 export const __PROD__ = process.env.NODE_ENV === 'production';
+export const __GTAGID__ = process.env.NEXT_PUBLIC_GTM;
 
 /**
  * @description Basic code snippet that shows up when page loads by default.

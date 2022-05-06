@@ -5,11 +5,4 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-feature-settings: 'kern';
-  box-sizing: border-box;
-  background-color: #111927;
-  color: #9ca3af;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  margin: 0;
 }

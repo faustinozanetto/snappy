@@ -30,24 +30,18 @@ interface EditorToolbarSectionProps {
 const EditorToolbarSection: React.FC<EditorToolbarSectionProps> = (props) => {
   const { sectionName, sectionIcon, sectionTabs, sectionButtonProps } = props;
   return (
-    <Flex justifyContent="center" mt={4}>
+    <Flex justifyContent="center">
       <Popover isLazy placement="bottom">
         {/* @ts-ignore */}
         <PopoverTrigger>
-          <Button
-            leftIcon={<span>{sectionIcon}</span>}
-            w="fit-content"
-            aria-label={sectionName}
-            border="2px solid"
-            {...sectionButtonProps}
-          >
+          <Button leftIcon={<span>{sectionIcon}</span>} aria-label={sectionName} {...sectionButtonProps}>
             {sectionName}
           </Button>
         </PopoverTrigger>
         <PopoverContent _focus={{ boxShadown: 'none' }}>
           <PopoverArrow />
-          <PopoverBody w="full" backgroundColor={useColorModeValue('gray.100', 'gray.800')}>
-            <Tabs isLazy isFitted colorScheme="blue">
+          <PopoverBody backgroundColor="backgroundSecondary">
+            <Tabs isLazy colorScheme="brand">
               <TabList>
                 {sectionTabs.map((section) => {
                   return (

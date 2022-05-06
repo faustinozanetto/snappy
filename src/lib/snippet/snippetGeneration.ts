@@ -20,23 +20,23 @@ export const handleImageGeneration = async (
   const quality = exportSettings.sizeMultiplier;
   const extension = exportSettings.fileExtension;
 
-  let backgroundColor = '#fff';
-  if (backgroundSettings.backgroundColor) {
-    backgroundColor = `rgb(${backgroundSettings.backgroundColor.r}, ${backgroundSettings.backgroundColor.g}, ${backgroundSettings.backgroundColor.b})`;
+  const styles: Partial<CSSStyleDeclaration> = {
+    transformOrigin: 'top left',
+    backgroundOrigin: 'border-box',
+    backgroundSize: 'cover',
+    backgroundPosition: '0% 0%',
+  };
+
+  if (backgroundSettings.backgroundType === BackgroundType.IMAGE) {
+    styles.backgroundImage = `url(${backgroundSettings.backgroundImage})`;
+  } else if (backgroundSettings.backgroundType === BackgroundType.GRADIENT && backgroundSettings.backgroundGradient) {
+    styles.backgroundColor = backgroundSettings.backgroundGradient?.generated;
+  } else if (backgroundSettings.backgroundType === BackgroundType.COLOR && backgroundSettings.backgroundColor) {
+    styles.backgroundColor = `rgb(${backgroundSettings.backgroundColor.r}, ${backgroundSettings.backgroundColor.g}, ${backgroundSettings.backgroundColor.b})`;
   }
 
   const OPTIONS: Options = {
-    style: {
-      // transform: `scale(${quality})`,
-      transformOrigin: 'top left',
-      backgroundOrigin: 'border-box',
-      backgroundSize: 'cover',
-      backgroundPosition: '0% 0%',
-      background:
-        backgroundSettings.backgroundType === BackgroundType.COLOR
-          ? backgroundColor
-          : backgroundSettings.backgroundImage,
-    },
+    style: styles,
     filter: (n) => {
       if (n.className) {
         const className = String(n.className);

@@ -14,18 +14,15 @@ const EditorToolbarExportImageExtension: React.FC<EditorToolbarExportImageExtens
     dispatch(setExportCustomization({ fileExtension: event.target.value as FileExtension }));
   };
   return (
-    <Box pb={2} width="full">
-      <HStack justifyContent="space-between" width="full">
-        <Text as="h2" fontWeight={600} fontSize="lg" mb={2}>
-          File Extension
-        </Text>
-      </HStack>
+    <Box width="full">
+      <Text as="h2" fontSize="lg" fontWeight={600} mb={2}>
+        File Extension
+      </Text>
+
       <Select
         placeholder="Select Extension"
         onChange={handleFilexExtensionChange}
         defaultValue={exportCustomization.fileExtension}
-        variant="filled"
-        borderRadius="none"
       >
         {/* Map FileExtension values */}
         {Object.values(FileExtension).map((extension: string) =>

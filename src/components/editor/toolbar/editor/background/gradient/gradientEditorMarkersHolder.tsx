@@ -19,19 +19,13 @@ const GradientEditorMarkerColors: React.FC<GradientEditorMarkerColorsProps> = ({
   ...rest
 }) => {
   return (
-    <Flex
-      height={10}
-      background={background}
-      width="full"
-      rounded="md"
-      border={`5px solid ${useColorModeValue('black', 'white')}`}
-    >
+    <Flex height={10} background={background} width="full" rounded="md" borderWidth="5px" borderColor="textPrimary">
       {/* Controls */}
       <HStack width="full" justifyContent="space-between">
         {colors.map((color, index) => {
           return (
             <GradientEditorMarker
-              key={`marker-${color}`}
+              key={`marker-${index}`}
               markerColor={`rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`}
               onClick={() => onMarkerSelect(index)}
               isActive={index === currentMarkerIndex}

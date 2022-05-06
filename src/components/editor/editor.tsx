@@ -102,7 +102,7 @@ const Editor: React.FC<EditorProps> = (props) => {
     return styles;
   }, [windowCustomization, highlightThemeStyles]);
 
-  const codeContainerStyles = useMemo(() => {
+  const backgroundStyles = useMemo(() => {
     // BACKGROUND STYLING.
     let background = '';
     if (backgroundCustomization && backgroundCustomization.backgroundType) {
@@ -121,7 +121,13 @@ const Editor: React.FC<EditorProps> = (props) => {
         }
       }
     }
+    const styles: CSSProperties = {
+      background,
+    };
+    return styles;
+  }, [backgroundCustomization]);
 
+  const paddingStyles = useMemo(() => {
     // PADDING STYLING
     let padding = '';
     if (windowCustomization && windowCustomization.paddingX && windowCustomization.paddingY) {
@@ -136,18 +142,17 @@ const Editor: React.FC<EditorProps> = (props) => {
     }
 
     const styles: CSSProperties = {
-      background,
       padding,
     };
 
     return styles;
-  }, [windowCustomization.paddingX, windowCustomization.paddingY, backgroundCustomization]);
+  }, [windowCustomization.paddingX, windowCustomization.paddingY]);
 
   return (
     <Container
-      maxW={['35em', '45em', '60em', '80em']}
+      maxW={['35em', '45em', '60em', '70em', '80em']}
       padding={6}
-      backgroundColor={useColorModeValue('gray.200', 'gray.900')}
+      backgroundColor="backgroundSecondary"
       borderRadius="md"
     >
       {/* Editor Tool Bar */}
@@ -156,14 +161,25 @@ const Editor: React.FC<EditorProps> = (props) => {
       </HStack>
       {/* Export Container */}
       <Flex ref={savedRef} position="relative" alignItems="center" justifyContent="center" overflow="hidden">
-        {/* Container */}
+        {/* Blur effect */}
+        <Box
+          position="absolute"
+          width="100%"
+          height="100%"
+          backdropFilter={`blur(${backgroundCustomization.backgroudBlur}px)`}
+          backgroundColor="rgba(120,120,120,0.5)"
+          zIndex={2}
+        />
+        {/* Background */}
+        <Box position="absolute" width="100%" height="100%" style={backgroundStyles} zIndex={1} />
         <Box
           width="100%"
           height="100%"
           backgroundRepeat="no-repeat"
           backgroundSize="cover"
           backgroundPosition="center"
-          style={codeContainerStyles}
+          style={paddingStyles}
+          zIndex={3}
         >
           {/* Editor Code Window */}
           <EditorCodeContent code={EXAMPLE_CODE} style={editorContentStyles} theme={highlightThemeStyles} />

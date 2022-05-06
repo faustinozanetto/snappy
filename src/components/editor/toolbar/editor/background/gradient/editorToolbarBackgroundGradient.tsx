@@ -1,6 +1,6 @@
-import { Box, Button, HStack, Text, VStack } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
+import { Box, HStack, Text, VStack } from '@chakra-ui/react';
 
-import React, { useState } from 'react';
 import useDebouncedCallback from '@hooks/useDebounce';
 import useGradientEditor from '@hooks/useGradientEditor';
 import {
@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import type { Color, GradientColor } from 'snappy.types';
 
+import Button from '@components/ui/button/button';
 import GradientEditorMarkersHolder from './gradientEditorMarkersHolder';
 
 interface EditorToolbarBackgroundGradientProps {
@@ -23,13 +24,14 @@ const EditorToolbarBackgroundGradient: React.FC<EditorToolbarBackgroundGradientP
   const { defaultColors, defaultType } = props;
   const dispatch = useDispatch();
   const backgroundCustomization = useSelector(selectBackgroundCustomization);
-  const [currentColorID, setCurrentColorID] = useState(-1);
+  const [currentColorID, setCurrentColorID] = useState(0);
 
-  const { colors, editColor, setType, gradient } = useGradientEditor({
+  const { colors, editColor, setType, type, gradient } = useGradientEditor({
     colors: defaultColors,
     type: defaultType,
   });
 
+  /** Handles the color change of the hook. */
   const handleColorChange = useDebouncedCallback((color: Color) => {
     editColor(
       {
@@ -41,6 +43,12 @@ const EditorToolbarBackgroundGradient: React.FC<EditorToolbarBackgroundGradientP
       },
       currentColorID
     );
+  }, 5);
+
+  /**
+   * Handle the redux state update when colors or type changes.
+   */
+  useEffect(() => {
     // Redux update
     if (backgroundCustomization.backgroundGradient) {
       dispatch(
@@ -55,43 +63,45 @@ const EditorToolbarBackgroundGradient: React.FC<EditorToolbarBackgroundGradientP
         })
       );
     }
-  }, 10);
+  }, [colors, type]);
 
   return (
-    <Box py={2} width="full">
-      <VStack display="flex" spacing={4}>
-        <HStack justifyContent="space-between" width="full">
-          <Text as="h2" fontWeight={600} mb={2}>
-            Gradient Editor
-          </Text>
-        </HStack>
-        {/* Gradient Box */}
-        <GradientEditorMarkersHolder
-          background={gradient}
-          colors={colors}
-          currentMarkerIndex={currentColorID}
-          onMarkerSelect={(id) => setCurrentColorID(id)}
-        />
+    <VStack display="flex" spacing={4}>
+      {/* Heading */}
+      <Text as="h2" fontSize="lg" fontWeight={600}>
+        Gradient Editor
+      </Text>
+      {/* Gradient Box */}
+      <GradientEditorMarkersHolder
+        background={gradient}
+        colors={colors}
+        currentMarkerIndex={currentColorID}
+        onMarkerSelect={(id) => setCurrentColorID(id)}
+      />
 
-        {/* Picker */}
-        {currentColorID !== -1 && (
-          <Box backgroundColor="gray.700" padding={4} borderRadius="md">
-            <RgbColorPicker
-              color={colors[currentColorID]}
-              onChange={(color) => {
-                handleColorChange({ r: color.r, g: color.g, b: color.b, a: 1 });
-              }}
-            />
-          </Box>
-        )}
+      {/* Picker */}
+      {currentColorID !== -1 && (
+        <Box backgroundColor="background" padding={4} borderRadius="md">
+          <RgbColorPicker
+            aria-label="Gradient Color Picker"
+            color={colors[currentColorID]}
+            onChange={(color) => {
+              handleColorChange({ r: color.r, g: color.g, b: color.b, a: 1 });
+            }}
+          />
+        </Box>
+      )}
 
-        {/* Options */}
-        <HStack>
-          <Button onClick={() => setType('linear')}>Linear</Button>
-          <Button onClick={() => setType('radial')}>Radial</Button>
-        </HStack>
-      </VStack>
-    </Box>
+      {/* Options */}
+      <HStack>
+        <Button aria-label="Linear Gradient" role="button" onClick={() => setType('linear')}>
+          Linear
+        </Button>
+        <Button aria-label="Radial Gradient" role="button" onClick={() => setType('radial')}>
+          Radial
+        </Button>
+      </HStack>
+    </VStack>
   );
 };
 export default EditorToolbarBackgroundGradient;

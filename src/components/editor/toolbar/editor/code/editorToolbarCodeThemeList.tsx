@@ -22,16 +22,11 @@ const EditorToolbarCodeThemeList: React.FC<EditorToolbarCodeThemeListProps> = ({
   };
 
   return (
-    <Box pb={2} width="full">
-      <Text as="h2" fontWeight={600} fontSize="lg" mb={2}>
+    <Box width="full">
+      <Text as="h2" fontSize="lg" fontWeight={600} mb={2}>
         Themes
       </Text>
-      <Select
-        onChange={handleCodeThemeChange}
-        defaultValue={codeCustomization.codeTheme}
-        variant="filled"
-        borderRadius="none"
-      >
+      <Select onChange={handleCodeThemeChange} defaultValue={codeCustomization.codeTheme}>
         {Object.values(CodeTheme)
           .sort()
           .map((key) => {

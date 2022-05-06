@@ -1,32 +1,24 @@
 import React from 'react';
-import Editor from '@components/editor/editor';
 import Layout from '@components/layout/layout';
 import LayoutHead from '@components/layout/layoutHead';
-import type { GetStaticProps } from 'next';
+import ErrorMessage from '@components/error/errorMessage';
 
-interface HomePageProps {}
+interface ErrorPageProps {}
 
-const HomePage: React.FC<HomePageProps> = () => {
+const ErrorPage: React.FC<ErrorPageProps> = () => {
   return (
     <Layout
       layoutHead={LayoutHead}
       layoutHeadProps={{
-        title: 'Home | Snappy',
+        title: 'Error | Snappy',
         canonicalUrl: 'https://snappyapp.vercel.app/',
         description: 'Snappy is a simple, fast and powerful code snippet creator.',
         url: 'https://snappyapp.vercel.app/',
       }}
     >
-      <Editor />
+      <ErrorMessage />
     </Layout>
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const {} = context;
-  return {
-    props: {},
-  };
-};
-
-export default HomePage;
+export default ErrorPage;

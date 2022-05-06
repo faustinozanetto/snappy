@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Box, Text } from '@chakra-ui/react';
-import { defaultProps } from 'prism-react-renderer';
+import Highlight, { defaultProps } from 'prism-react-renderer';
 import { useSelector } from 'react-redux';
 import Editor from 'react-simple-code-editor';
 import type { HighlightTheme } from 'snappy.types';
@@ -10,7 +10,7 @@ import {
   selectFontCustomization,
   selectWindowCustomization,
 } from '@state/slices/editor/editorCustomization.slice';
-import CodeHighlighting from '../highlight/codeHighlighting';
+// import CodeHighlighting from '../highlight/codeHighlighting';
 import EditorWindowControls from './window/editorWindowControls';
 
 interface EditorCodeContentProps {
@@ -53,13 +53,13 @@ const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
    */
   const highLightCode = (codeToHighlight: string) => (
     // @ts-ignore
-    <CodeHighlighting
+    <Highlight
       {...defaultProps}
       code={codeToHighlight}
       // @ts-ignore
       theme={theme as PrismTheme}
       // @ts-ignore
-      language={codeCustomization.codeLanguage.toLowerCase()}
+      language={codeCustomization.codeLanguage?.toLowerCase()}
     >
       {({ className, tokens, getLineProps, getTokenProps }) => (
         <Text
@@ -84,7 +84,7 @@ const EditorCodeContent: React.FC<EditorCodeContentProps> = (props) => {
           })}
         </Text>
       )}
-    </CodeHighlighting>
+    </Highlight>
   );
 
   return (

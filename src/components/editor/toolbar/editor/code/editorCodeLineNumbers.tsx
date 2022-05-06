@@ -19,10 +19,10 @@ const EditorCodeLineNumbers: React.FC<EditorCodeLineNumbersProps> = ({}) => {
 
   return (
     <HStack pb={2} justifyContent="space-between" width="full">
-      <Text as="h2" fontWeight={600} fontSize="lg" mb={2}>
+      <Text as="h2" fontSize="lg" fontWeight={600}>
         Line Numbers
       </Text>
-      <Switch onChange={handleCodeLineNumbersChange} isChecked={codeCustomization.lineNumbers} />
+      <Switch onChange={handleCodeLineNumbersChange} isChecked={codeCustomization.lineNumbers} colorScheme="brand" />
     </HStack>
   );
 };

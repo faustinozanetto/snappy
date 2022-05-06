@@ -1,24 +1,29 @@
-// https://developers.google.com/analytics/devguides/collection/gtagjs/pages
-export const pageview = (url: URL): void => {
-  // @ts-ignore
-  window.gtag('config', 'G-8M3QB6LWKR', {
-    page_path: url,
-  });
-};
+import { __GTAGID__, __PROD__ } from '@lib/constants';
 
-type GTagEvent = {
-  action: string;
-  category: string;
-  label: string;
-  value: number;
-};
+export const initializeGTag = (): void => {
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || {};
 
-// https://developers.google.com/analytics/devguides/collection/gtagjs/events
-export const event = ({ action, category, label, value }: GTagEvent): void => {
-  // @ts-ignore
-  window.gtag('event', action, {
-    event_category: category,
-    event_label: label,
-    value,
-  });
+  if (__PROD__) {
+    console.log('Enabled analytics');
+
+    window.gtag = function gtag(..._args) {
+      window.dataLayer.push(_args);
+    };
+
+    window.gtag('js', new Date());
+    window.gtag('config', __GTAGID__, {
+      page_path: window.location.pathname,
+    });
+  } else {
+    console.log('Disabled analytics');
+    window.gtag = (...args) => console.log('Analytics event: ', args);
+  }
+};
+export const trackEvent = (name: string, params: Record<string, unknown>): void => {
+  try {
+    window.gtag('event', name, params);
+  } catch (error) {
+    console.warn('Error tracking event', error);
+  }
 };

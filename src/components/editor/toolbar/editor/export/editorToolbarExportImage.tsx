@@ -17,9 +17,7 @@ import {
 } from '@lib/snippet/snippetGeneration';
 import ErrorResponse from '@lib/errors/errorHelpers';
 import EditorToolbarSection from '../../base/editorToolbarSection';
-import EditorToolbarExportButtons from './editorToolbarExportButtons';
-import EditorToolbarExportImageExtension from './editorToolbarExportImageExtension';
-import EditorToolbarExportImageSize from './editorToolbarExportImageSize';
+import EditorToolbarExportSnippet from './editorToolbarExportSnippet';
 
 interface EditorExportImageProps {
   exportRef: React.RefObject<HTMLDivElement>;
@@ -150,11 +148,7 @@ const EditorToolbarExportImage: React.FC<EditorExportImageProps> = ({ exportRef 
         {
           label: 'Settings',
           panel: (
-            <>
-              <EditorToolbarExportImageExtension />
-              <EditorToolbarExportImageSize />
-              <EditorToolbarExportButtons onExport={handleExport} onCopy={handleCopy} onOpen={handleOpen} />
-            </>
+            <EditorToolbarExportSnippet handleExport={handleExport} handleCopy={handleCopy} handleOpen={handleOpen} />
           ),
         },
       ]}

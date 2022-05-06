@@ -16,19 +16,11 @@ const EditorToolbarFontList: React.FC<EditorToolbarFontListProps> = ({}) => {
   };
 
   return (
-    <Box py={2} width="full">
-      <HStack justifyContent="space-between" width="full">
-        <Text as="h2" fontWeight={600} mb={2}>
-          Font List
-        </Text>
-      </HStack>
-      <Select
-        placeholder="Choose a Font"
-        variant="filled"
-        borderRadius="none"
-        onChange={handleFontChange}
-        defaultValue={fontCustomization.fontFamily}
-      >
+    <Box width="full">
+      <Text as="h2" fontSize="lg" fontWeight={600} mb={2}>
+        Font List
+      </Text>
+      <Select placeholder="Choose a Font" onChange={handleFontChange} defaultValue={fontCustomization.fontFamily}>
         {Object.values(FontFamily)
           .sort()
           .map((key) => {

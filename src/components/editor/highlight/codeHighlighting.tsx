@@ -48,6 +48,7 @@ const CodeHighlighting = (props: CodeHighlightingProps) => {
     if (key !== null) {
       output.key = key;
     }
+
     if (className) {
       output.className += ` ${className}`;
     }

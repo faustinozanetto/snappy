@@ -1,9 +1,6 @@
-import { useColorMode } from '@chakra-ui/react';
-
 import React from 'react';
-import { FiMoon } from 'react-icons/fi';
-import { FiSun } from 'react-icons/fi';
-import Button from '@components/ui/button/button';
+import { IconButton, useColorMode } from '@chakra-ui/react';
+import { FiMoon, FiSun } from 'react-icons/fi';
 
 interface ThemeTogglerProps {}
 
@@ -11,14 +8,12 @@ const ThemeToggler: React.FC<ThemeTogglerProps> = (props) => {
   const {} = props;
   const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <Button
+    <IconButton
       aria-label="Toggle Theme"
-      leftIcon={colorMode === 'dark' ? <FiSun /> : <FiMoon />}
-      border="2px solid"
+      role="button"
+      icon={colorMode === 'dark' ? <FiSun /> : <FiMoon />}
       onClick={toggleColorMode}
-    >
-      Change Theme
-    </Button>
+    />
   );
 };
 

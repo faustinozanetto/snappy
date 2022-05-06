@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Select, Text } from '@chakra-ui/react';
+import { Box, Select, Text, VStack } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCodeCustomization, setCodeCustomization } from '@state/slices/editor/editorCustomization.slice';
 import { CodeLanguage } from 'snappy.types';
@@ -28,16 +28,14 @@ const EditorToolbarCodeLanguageList: React.FC<EditorToolbarCodeLanguageListProps
   };
 
   return (
-    <Box pb={2} width="full">
-      <Text as="h2" fontWeight={600} fontSize="lg" mb={2}>
+    <Box width="full">
+      <Text as="h2" fontSize="lg" fontWeight={600} mb={2}>
         Language
       </Text>
       <Select
         placeholder="Choose a Language"
         onChange={handleCodeLanguageChange}
         defaultValue={codeCustomization.codeLanguage}
-        variant="filled"
-        borderRadius="none"
       >
         {/* Map all options from CodeLanguage */}
         {Object.values(CodeLanguage).map((language) => (

@@ -1,3 +1,4 @@
+import { VStack } from '@chakra-ui/react';
 import React from 'react';
 import { FaFont } from 'react-icons/fa';
 
@@ -21,10 +22,10 @@ const EditorToolbarFont: React.FC<EditorToolbarFontProps> = ({}) => {
         {
           label: 'Options',
           panel: (
-            <>
+            <VStack spacing={4}>
               <EditorToolbarFontSize />
               <EditorToolbarLineHeigth />
-            </>
+            </VStack>
           ),
         },
       ]}

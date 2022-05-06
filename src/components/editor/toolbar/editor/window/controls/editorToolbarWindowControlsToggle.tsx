@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, HStack, Switch, Text } from '@chakra-ui/react';
+import { HStack, Switch, Text } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectWindowCustomization, setWindowCustomization } from '@state/slices/editor/editorCustomization.slice';
 
@@ -9,19 +9,18 @@ const EditorToolbarWindowControlsToggle: React.FC<EditorToolbarWindowControlsTog
   const dispatch = useDispatch();
   const windowCustomization = useSelector(selectWindowCustomization);
   return (
-    <Box py={2} width="full">
-      <HStack justifyContent="space-between" width="full">
-        <Text as="h2" fontWeight={600}>
-          Window Controls
-        </Text>
-        <Switch
-          defaultChecked={windowCustomization.controls}
-          onChange={(e) => {
-            dispatch(setWindowCustomization({ controls: e.target.checked }));
-          }}
-        />
-      </HStack>
-    </Box>
+    <HStack width="full" justifyContent="space-between" spacing={2} mb={2}>
+      <Text as="h2" fontSize="lg" fontWeight={600}>
+        Window Controls
+      </Text>
+      <Switch
+        defaultChecked={windowCustomization.controls}
+        colorScheme="brand"
+        onChange={(e) => {
+          dispatch(setWindowCustomization({ controls: e.target.checked }));
+        }}
+      />
+    </HStack>
   );
 };
 

@@ -10,7 +10,18 @@ export type ButtonProps = ChakraButtonProps & {
 const Button: React.FC<ButtonProps> = React.forwardRef((props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) => {
   const { children, ...rest } = props;
   return (
-    <ChakraButton borderRadius={0} ref={ref} {...rest}>
+    <ChakraButton
+      px={8}
+      ref={ref}
+      role="button"
+      colorScheme="brand"
+      rounded="md"
+      _hover={{
+        transform: 'translateY(-2px)',
+        boxShadow: 'lg',
+      }}
+      {...rest}
+    >
       {children}
     </ChakraButton>
   );
