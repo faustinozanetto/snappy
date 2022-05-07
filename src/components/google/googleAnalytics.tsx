@@ -1,13 +1,12 @@
 import React from 'react';
 import Script from 'next/script';
-import { __GTAGID__ } from '@lib/constants';
 
 interface GoogleAnalyticsProps {}
 
 const GoogleAnalytics: React.FC<GoogleAnalyticsProps> = ({}) => {
   return (
     <>
-      <Script async src={`https://www.googletagmanager.com/gtag/js?id=${__GTAGID__}`} />
+      <Script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GAID}`} />
       <Script
         id="gtag-init"
         dangerouslySetInnerHTML={{
@@ -15,7 +14,7 @@ const GoogleAnalytics: React.FC<GoogleAnalyticsProps> = ({}) => {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${__GTAGID__}', {
+            gtag('config', '${process.env.NEXT_PUBLIC_GAID}', {
               page_path: window.location.pathname,
             });
           `,

@@ -15,6 +15,7 @@ const HomePage: React.FC<HomePageProps> = () => {
         description: 'Snappy is a simple, fast and powerful code snippet creator.',
       }}
     >
+      {process.env.NEXT_PUBLIC_GAID}
       <SnappyEditor />
     </Layout>
   );
