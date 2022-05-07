@@ -26,10 +26,16 @@ function SnapifyApp(props: AppProps) {
   const router = useRouter();
 
   useEffect(() => {
-    trackEvent('pageView', {
-      page: router.pathname,
-    });
-  }, [router.basePath]);
+    const handleRouteChange = (url) => {
+      trackEvent('pageView', {
+        page: url,
+      });
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
 
   return (
     <Provider store={store}>
