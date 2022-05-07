@@ -16,13 +16,7 @@ export interface LayoutHeadProps {
 }
 
 const LayoutHead: React.FC<LayoutHeadProps> = (props) => {
-  const {
-    title,
-    description,
-    url,
-    canonicalUrl,
-    image = `${__URL__}images/favicon/android-chrome-512x512.png`,
-  } = props;
+  const { title, description, url, canonicalUrl, image = `${__URL__}images/brand/snappy-logo.png` } = props;
   return (
     <Head>
       <title>{title}</title>

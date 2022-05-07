@@ -104,26 +104,27 @@ const SnappyEditor: React.FC<SnappyEditorProps> = (props) => {
 
   const backgroundStyles = useMemo(() => {
     // BACKGROUND STYLING.
-    let background = '';
+    const styles: CSSProperties = {};
     if (backgroundCustomization && backgroundCustomization.backgroundType) {
       if (backgroundCustomization.backgroundType === 'color') {
         if (backgroundCustomization.backgroundColor) {
           const parsedColor = parseBackgroundColor(backgroundCustomization.backgroundColor);
-          background = parsedColor;
+          styles.background = parsedColor;
         }
-      } else if (backgroundCustomization.backgroundType === 'image') {
+      } else if (backgroundCustomization.backgroundType === BackgroundType.IMAGE) {
         if (backgroundCustomization.backgroundImage) {
-          background = `url(${backgroundCustomization.backgroundImage})`;
+          styles.background = `url(${backgroundCustomization.backgroundImage})`;
+          styles.backgroundRepeat = 'no-repeat';
+          styles.backgroundSize = 'cover';
+          styles.backgroundPosition = 'center';
         }
       } else if (backgroundCustomization.backgroundType === 'gradient') {
         if (backgroundCustomization.backgroundGradient) {
-          background = backgroundCustomization.backgroundGradient.generated;
+          styles.background = backgroundCustomization.backgroundGradient.generated;
         }
       }
     }
-    const styles: CSSProperties = {
-      background,
-    };
+
     return styles;
   }, [backgroundCustomization]);
 
@@ -180,16 +181,8 @@ const SnappyEditor: React.FC<SnappyEditorProps> = (props) => {
           />
         )}
         {/* Background */}
-        <Box position="absolute" width="full" height="full" style={backgroundStyles} zIndex={1} />
-        <Box
-          width="full"
-          height="full"
-          backgroundRepeat="no-repeat"
-          backgroundSize="cover"
-          backgroundPosition="center"
-          style={paddingStyles}
-          zIndex={3}
-        >
+        <Box position="absolute" style={backgroundStyles} top={0} left={0} right={0} bottom={0} zIndex={1} />
+        <Box width="full" height="full" style={paddingStyles} zIndex={3}>
           {/* Editor Code Window */}
           <EditorCodeContent code={EXAMPLE_CODE} style={editorContentStyles} theme={highlightThemeStyles} />
         </Box>

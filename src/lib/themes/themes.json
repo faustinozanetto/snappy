@@ -4,42 +4,44 @@
       "name": "Night Owl",
       "type": "night-owl",
       "plain": {
-        "color": "#d6deeb",
+        "color": "#abb2bf",
         "backgroundColor": "#011627"
       },
       "styles": [
         {
           "types": ["changed"],
           "style": {
-            "color": "#A2BFFC",
-            "fontStyle": "italic"
+            "color": "#A2BFFC"
           }
         },
         {
           "types": ["deleted"],
           "style": {
-            "color": "#EF535090",
-            "fontStyle": "italic"
+            "color": "#EF535090"
           }
         },
         {
           "types": ["inserted", "attr-name"],
           "style": {
-            "color": "#C5E478",
-            "fontStyle": "italic"
+            "color": "#C5E478"
           }
         },
         {
           "types": ["comment"],
           "style": {
-            "color": "#637777",
-            "fontStyle": "italic"
+            "color": "#5c6370"
           }
         },
         {
-          "types": ["string", "variable"],
+          "types": ["variable"],
           "style": {
-            "color": "#ECC48D"
+            "color": "#82AAFF"
+          }
+        },
+        {
+          "types": ["string"],
+          "style": {
+            "color": "#ecc48d"
           }
         },
         {
@@ -55,10 +57,9 @@
           }
         },
         {
-          "types": ["punctuation", "function", "selector", "doctype"],
+          "types": ["function"],
           "style": {
-            "color": "#C792EA",
-            "fontStyle": "italic"
+            "color": "#82AAFF"
           }
         },
         {
@@ -82,7 +83,7 @@
         {
           "types": ["operator", "keyword"],
           "style": {
-            "color": "#7FDBCA"
+            "color": "#c792ea"
           }
         },
         {
@@ -119,6 +120,24 @@
           "types": ["url"],
           "style": {
             "color": "#C5E478"
+          }
+        },
+        {
+          "types": ["parameter", "plain"],
+          "style": {
+            "color": "#82AAFF"
+          }
+        },
+        {
+          "types": ["interpolation"],
+          "style": {
+            "color": "#ecc48d"
+          }
+        },
+        {
+          "types": ["template-string"],
+          "style": {
+            "color": "#82AAFF"
           }
         }
       ]

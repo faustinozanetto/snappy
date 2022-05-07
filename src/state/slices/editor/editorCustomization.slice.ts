@@ -10,7 +10,7 @@ import type {
   FontCustomization,
   WindowCustomization,
 } from 'snappy.types';
-import { BackgroundType, CodeLanguage, CodeTheme, FileExtension, FontFamily } from 'snappy.types';
+import { BackgroundType, CodeLanguage, FileExtension, FontFamily } from 'snappy.types';
 
 const initialState: EditorCustomizationState = {
   backgroundCustomization: {
