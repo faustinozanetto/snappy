@@ -174,7 +174,8 @@ const SnappyEditor: React.FC<SnappyEditorProps> = (props) => {
             position="absolute"
             width="full"
             height="full"
-            backdropFilter={`blur(${backgroundCustomization.backgroudBlur}px)`}
+            backdropFilter="auto"
+            backdropBlur={`${backgroundCustomization.backgroudBlur}px`}
             backgroundColor="rgba(120,120,120,0.5)"
             zIndex={2}
           />

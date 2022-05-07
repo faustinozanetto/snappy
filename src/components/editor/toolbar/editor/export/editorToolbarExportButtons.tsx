@@ -15,14 +15,14 @@ const EditorToolbarExportButtons: React.FC<EditorToolbarExportButtonsProps> = (p
   const { onExport, onCopy, onOpen } = props;
   return (
     <HStack width="full" my={4}>
-      <Button onClick={onExport} colorScheme="blue" width="100%" variant="outline">
+      <Button onClick={onExport} colorScheme="brand" width="100%">
         Export
       </Button>
 
-      <Button onClick={onCopy} colorScheme="green" width="100%" variant="outline">
+      <Button onClick={onCopy} colorScheme="brand" width="100%">
         Copy
       </Button>
-      <Button onClick={onOpen} colorScheme="purple" width="100%" variant="outline">
+      <Button onClick={onOpen} colorScheme="brand" width="100%">
         Open
       </Button>
     </HStack>

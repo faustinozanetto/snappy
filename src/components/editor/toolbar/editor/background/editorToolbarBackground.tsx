@@ -22,7 +22,7 @@ const EditorToolbarBackground: React.FC<EditorToolbarBackgroundProps> = ({}) => 
 
   /** Generates the color for the button depending the background type.  */
   // TODO: Add support for gradient shadow, may require to modify the way we display shadows.
-  const generateButtonStyles = useMemo(() => {
+  const generateButtonStyles = (): ButtonProps => {
     const styles: ButtonProps = {};
     // Background
     if (backgroundCustomization.backgroundType === BackgroundType.COLOR && backgroundCustomization.backgroundColor) {
@@ -37,6 +37,7 @@ const EditorToolbarBackground: React.FC<EditorToolbarBackgroundProps> = ({}) => 
       backgroundCustomization.backgroundType === BackgroundType.GRADIENT &&
       backgroundCustomization.backgroundGradient
     ) {
+      console.log({ backgroundGradient: backgroundCustomization.backgroundGradient });
       styles.background = `${backgroundCustomization.backgroundGradient.generated} !important`;
     }
 
@@ -46,13 +47,13 @@ const EditorToolbarBackground: React.FC<EditorToolbarBackgroundProps> = ({}) => 
     }
 
     return styles;
-  }, [backgroundCustomization]);
+  };
 
   return (
     <EditorToolbarSection
       sectionName="Background"
       sectionIcon={<MdColorLens />}
-      sectionButtonProps={generateButtonStyles}
+      sectionButtonProps={generateButtonStyles()}
       sectionTabs={[
         {
           label: 'Color',
@@ -67,12 +68,7 @@ const EditorToolbarBackground: React.FC<EditorToolbarBackgroundProps> = ({}) => 
         },
         {
           label: 'Gradient',
-          panel: (
-            <EditorToolbarBackgroundGradient
-              defaultColors={backgroundCustomization?.backgroundGradient?.data?.colors || []}
-              defaultType={backgroundCustomization?.backgroundGradient?.data?.type || 'linear'}
-            />
-          ),
+          panel: <EditorToolbarBackgroundGradient />,
           onTabSelected: () => {
             dispatch(
               setBackgroundCustomization({

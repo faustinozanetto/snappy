@@ -15,20 +15,17 @@ import type { Color, GradientColor } from 'snappy.types';
 import Button from '@components/ui/button/button';
 import GradientEditorMarkersHolder from './gradientEditorMarkersHolder';
 
-interface EditorToolbarBackgroundGradientProps {
-  defaultColors: GradientColor[];
-  defaultType: 'linear' | 'radial';
-}
+interface EditorToolbarBackgroundGradientProps {}
 
 const EditorToolbarBackgroundGradient: React.FC<EditorToolbarBackgroundGradientProps> = (props) => {
-  const { defaultColors, defaultType } = props;
+  const {} = props;
   const dispatch = useDispatch();
   const backgroundCustomization = useSelector(selectBackgroundCustomization);
   const [currentColorID, setCurrentColorID] = useState(0);
 
   const { colors, editColor, setType, type, gradient } = useGradientEditor({
-    colors: defaultColors,
-    type: defaultType,
+    colors: backgroundCustomization.backgroundGradient.data.colors,
+    type: backgroundCustomization.backgroundGradient.data.type,
   });
 
   /** Handles the color change of the hook. */
