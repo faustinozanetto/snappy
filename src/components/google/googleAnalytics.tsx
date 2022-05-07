@@ -10,7 +10,6 @@ const GoogleAnalytics: React.FC<GoogleAnalyticsProps> = ({}) => {
     <Script
       src={`https://www.googletagmanager.com/gtag/js?id=${__GTAGID__}`}
       strategy="lazyOnload"
-      async
       onLoad={initializeGTag}
     />
   );

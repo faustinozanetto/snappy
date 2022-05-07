@@ -16,6 +16,7 @@ import {
   saveImageToFile,
 } from '@lib/snippet/snippetGeneration';
 import ErrorResponse from '@lib/errors/errorHelpers';
+import { trackEvent } from '@lib/google/googleTag';
 import EditorToolbarSection from '../../base/editorToolbarSection';
 import EditorToolbarExportSnippet from './editorToolbarExportSnippet';
 
@@ -38,6 +39,10 @@ const EditorToolbarExportImage: React.FC<EditorExportImageProps> = ({ exportRef 
         async (dataUrl) => {
           try {
             if (dataUrl && exportCustomization.fileExtension) {
+              trackEvent('exportSnippet', {
+                fileExtension: exportCustomization.fileExtension,
+                sizeMultiplier: exportCustomization.sizeMultiplier,
+              });
               saveImageToFile(exportCustomization.fileExtension, dataUrl).then(() => {
                 toast({
                   title: 'Image exported',
@@ -77,6 +82,10 @@ const EditorToolbarExportImage: React.FC<EditorExportImageProps> = ({ exportRef 
       ).then(async (dataUrl) => {
         try {
           if (dataUrl) {
+            trackEvent('copySnippet', {
+              fileExtension: exportCustomization.fileExtension,
+              sizeMultiplier: exportCustomization.sizeMultiplier,
+            });
             copyImageToClipboard(dataUrl).then(() => {
               toast({
                 title: 'Copied to clipboard',
@@ -115,6 +124,10 @@ const EditorToolbarExportImage: React.FC<EditorExportImageProps> = ({ exportRef 
       ).then(async (dataUrl) => {
         try {
           if (dataUrl) {
+            trackEvent('openSnippet', {
+              fileExtension: exportCustomization.fileExtension,
+              sizeMultiplier: exportCustomization.sizeMultiplier,
+            });
             openImageInBrowser(dataUrl).then(() => {
               toast({
                 title: 'Image opened',

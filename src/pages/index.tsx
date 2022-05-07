@@ -1,8 +1,8 @@
 import React from 'react';
 import Editor from '@components/editor/editor';
 import Layout from '@components/layout/layout';
-import type { GetStaticProps } from 'next';
 import { __URL__ } from '@lib/constants';
+import { NextSeo } from 'next-seo';
 
 interface HomePageProps {}
 
@@ -16,16 +16,10 @@ const HomePage: React.FC<HomePageProps> = () => {
         description: 'Snappy is a simple, fast and powerful code snippet creator.',
       }}
     >
+      <NextSeo title="Home | Snappy" />
       <Editor />
     </Layout>
   );
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const {} = context;
-  return {
-    props: {},
-  };
 };
 
 export default HomePage;

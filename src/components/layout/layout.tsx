@@ -25,7 +25,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
   return (
     <Flex minHeight="100vh" flexDir="column" backgroundColor="background">
       {/* Head */}
-      <LayoutHead {...layoutHeadProps} />
+      {/* <LayoutHead {...layoutHeadProps} /> */}
 
       {/* Container */}
       <LayoutContainer>
