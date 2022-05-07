@@ -3,8 +3,7 @@ import { Box, Select, Text } from '@chakra-ui/react';
 import { capitalizeString } from '@lib/helper/helperFunctions';
 import { selectCodeCustomization, setCodeCustomization } from '@state/slices/editor/editorCustomization.slice';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { CodeTheme } from 'snappy.types';
+import { getThemeList } from '@lib/themes/themeUtils';
 
 interface EditorToolbarCodeThemeListProps {}
 
@@ -17,7 +16,7 @@ const EditorToolbarCodeThemeList: React.FC<EditorToolbarCodeThemeListProps> = ({
    * @param event event from the select input
    */
   const handleCodeThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const theme: CodeTheme = event.target.value as CodeTheme;
+    const theme = event.target.value;
     dispatch(setCodeCustomization({ codeTheme: theme }));
   };
 
@@ -27,12 +26,12 @@ const EditorToolbarCodeThemeList: React.FC<EditorToolbarCodeThemeListProps> = ({
         Themes
       </Text>
       <Select onChange={handleCodeThemeChange} defaultValue={codeCustomization.codeTheme}>
-        {Object.values(CodeTheme)
+        {getThemeList()
           .sort()
           .map((key) => {
             return (
-              <option key={key} value={key}>
-                {capitalizeString(key)}
+              <option key={key[0]} value={key[0]}>
+                {capitalizeString(key[1])}
               </option>
             );
           })}

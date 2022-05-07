@@ -14,7 +14,6 @@ import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import GoogleAnalytics from '@components/google/googleAnalytics';
 import CodeHighlightStyles from '@components/editor/highlight/codeHighlightStyles';
-import { __URL__ } from '@lib/constants';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import trackEvent from '@lib/google/googleTag';

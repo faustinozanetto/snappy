@@ -111,7 +111,7 @@ export type FontCustomization = {
 };
 
 export type CodeCustomization = {
-  codeTheme?: CodeTheme;
+  codeTheme?: string;
   codeLanguage?: CodeLanguage;
   lineNumbers?: boolean;
 };
@@ -162,7 +162,7 @@ export type ThemeData = {
 
 export type HighlightTheme = {
   name: string;
-  type: CodeTheme;
+  type: string;
   plain: {
     color: string;
     backgroundColor: string;

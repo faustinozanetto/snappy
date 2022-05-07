@@ -68,7 +68,7 @@ export const CUSTOMIZATION_TEMPLATES: EditorPreset[] = [
         lineHeight: 1.35,
       },
       codeCustomization: {
-        codeTheme: CodeTheme.OUTRUN_NIGHT,
+        codeTheme: 'outrun-night',
         codeLanguage: CodeLanguage.JSX,
         lineNumbers: true,
       },
@@ -136,7 +136,7 @@ export const CUSTOMIZATION_TEMPLATES: EditorPreset[] = [
         lineHeight: 1.45,
       },
       codeCustomization: {
-        codeTheme: CodeTheme.NIGHT_OWL_LIGHT,
+        codeTheme: 'night-owl-light',
         codeLanguage: CodeLanguage.JSX,
         lineNumbers: true,
       },
@@ -204,7 +204,7 @@ export const CUSTOMIZATION_TEMPLATES: EditorPreset[] = [
         lineHeight: 1.45,
       },
       codeCustomization: {
-        codeTheme: CodeTheme.EVA_LIGHT,
+        codeTheme: 'eva-light',
         codeLanguage: CodeLanguage.JSX,
         lineNumbers: true,
       },
@@ -272,7 +272,7 @@ export const CUSTOMIZATION_TEMPLATES: EditorPreset[] = [
         lineHeight: 1.55,
       },
       codeCustomization: {
-        codeTheme: CodeTheme.CELESTIAL,
+        codeTheme: 'celestial',
         codeLanguage: CodeLanguage.JSX,
         lineNumbers: true,
       },

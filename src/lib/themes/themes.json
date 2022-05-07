@@ -1,0 +1,1656 @@
+{
+  "themes": [
+    {
+      "name": "Night Owl",
+      "type": "night-owl",
+      "plain": {
+        "color": "#d6deeb",
+        "backgroundColor": "#011627"
+      },
+      "styles": [
+        {
+          "types": ["changed"],
+          "style": {
+            "color": "#A2BFFC",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["deleted"],
+          "style": {
+            "color": "#EF535090",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["inserted", "attr-name"],
+          "style": {
+            "color": "#C5E478",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["comment"],
+          "style": {
+            "color": "#637777",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["string", "variable"],
+          "style": {
+            "color": "#ECC48D"
+          }
+        },
+        {
+          "types": ["builtin", "char", "constant"],
+          "style": {
+            "color": "#82AAFF"
+          }
+        },
+        {
+          "types": ["number"],
+          "style": {
+            "color": "#F78C6C"
+          }
+        },
+        {
+          "types": ["punctuation", "function", "selector", "doctype"],
+          "style": {
+            "color": "#C792EA",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["regex"],
+          "style": {
+            "color": "#5CA7E4"
+          }
+        },
+        {
+          "types": ["class-name"],
+          "style": {
+            "color": "#FFCB8B"
+          }
+        },
+        {
+          "types": ["tag"],
+          "style": {
+            "color": "#CAECE6"
+          }
+        },
+        {
+          "types": ["operator", "keyword"],
+          "style": {
+            "color": "#7FDBCA"
+          }
+        },
+        {
+          "types": ["boolean"],
+          "style": {
+            "color": "#FF5874"
+          }
+        },
+        {
+          "types": ["property"],
+          "style": {
+            "color": "#80CBC4"
+          }
+        },
+        {
+          "types": ["hexcode"],
+          "style": {
+            "color": "#FFEB95"
+          }
+        },
+        {
+          "types": ["namespace"],
+          "style": {
+            "color": "#B2CCD6"
+          }
+        },
+        {
+          "types": ["imports", "exports"],
+          "style": {
+            "color": "#D6DEEB"
+          }
+        },
+        {
+          "types": ["url"],
+          "style": {
+            "color": "#C5E478"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Aurora",
+      "type": "aurora",
+      "plain": {
+        "color": "#f8f8f2",
+        "backgroundColor": "#07090f"
+      },
+      "styles": [
+        {
+          "types": ["comment", "punctuation"],
+          "style": {
+            "color": "rgb(84, 110, 122)",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["variable"],
+          "style": {
+            "color": "rgb(238, 255, 255)"
+          }
+        },
+        {
+          "types": ["constant"],
+          "style": {
+            "color": "rgb(255, 255, 255)"
+          }
+        },
+        {
+          "types": ["keyword", "builtin", "number", "char"],
+          "style": {
+            "color": "rgb(247, 140, 108)"
+          }
+        },
+        {
+          "types": ["tag", "deleted", "string"],
+          "style": {
+            "color": "rgb(240, 113, 120)"
+          }
+        },
+        {
+          "types": ["function"],
+          "style": {
+            "color": "rgb(130, 170, 255)"
+          }
+        },
+        {
+          "types": ["symbol", "inserted"],
+          "style": {
+            "color": "rgb(195, 232, 141)"
+          }
+        },
+        {
+          "types": ["changed"],
+          "style": {
+            "color": "rgb(255, 203, 107)"
+          }
+        },
+        {
+          "types": ["attr-name"],
+          "style": {
+            "color": "rgb(199, 146, 234)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Celestial",
+      "type": "celestial",
+      "plain": {
+        "color": "#e95378",
+        "backgroundColor": "#0b0c0f"
+      },
+      "styles": [
+        {
+          "types": ["comment"],
+          "style": {
+            "color": "rgba(187, 187, 187, 0.30196078431372547)",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["constant", "keyword"],
+          "style": {
+            "color": "rgba(240, 148, 131, 0.9019607843137255)"
+          }
+        },
+        {
+          "types": ["char", "function", "builtin"],
+          "style": {
+            "color": "rgba(37, 176, 188, 0.9019607843137255)"
+          }
+        },
+        {
+          "types": ["tag", "variable"],
+          "style": {
+            "color": "rgba(233, 86, 120, 0.9019607843137255)"
+          }
+        },
+        {
+          "types": ["attr-name"],
+          "style": {
+            "color": "rgba(240, 148, 131, 0.9019607843137255)",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["operator"],
+          "style": {
+            "color": "rgb(187, 187, 187)"
+          }
+        },
+        {
+          "types": ["string"],
+          "style": {
+            "color": "rgba(250, 183, 149, 0.9019607843137255)"
+          }
+        },
+        {
+          "types": ["punctuation"],
+          "style": {
+            "color": "rgba(233, 86, 120, 0.7019607843137254)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dracula",
+      "type": "dracula",
+      "plain": {
+        "color": "#f8f8f2",
+        "backgroundColor": "#282a36"
+      },
+      "styles": [
+        {
+          "types": ["prolog", "constant", "hexcode", "builtin"],
+          "style": {
+            "color": "#BD93F9"
+          }
+        },
+        {
+          "types": ["inserted", "function"],
+          "style": {
+            "color": "#50FA7B"
+          }
+        },
+        {
+          "types": ["deleted"],
+          "style": {
+            "color": "#FF5555"
+          }
+        },
+        {
+          "types": ["changed"],
+          "style": {
+            "color": "#FFB86C"
+          }
+        },
+        {
+          "types": ["punctuation", "class-name"],
+          "style": {
+            "color": "#8BE9FD"
+          }
+        },
+        {
+          "types": ["string", "char", "tag", "selector"],
+          "style": {
+            "color": "#FF79C6"
+          }
+        },
+        {
+          "types": ["keyword", "variable"],
+          "style": {
+            "color": "#BD93F9",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["comment"],
+          "style": {
+            "color": "#6272A4"
+          }
+        },
+        {
+          "types": ["attr-name", "regex"],
+          "style": {
+            "color": "#F1FA8C"
+          }
+        },
+        {
+          "types": ["operator", "property"],
+          "style": {}
+        },
+        {
+          "types": ["symbol"],
+          "style": {
+            "color": "#F8F8F2"
+          }
+        }
+      ]
+    },
+    {
+      "name": "DuotoneDark",
+      "type": "dutone-dark",
+      "plain": {
+        "backgroundColor": "#2a2734",
+        "color": "#9a86fd"
+      },
+      "styles": [
+        {
+          "types": ["comment", "prolog", "doctype", "cdata", "punctuation"],
+          "style": {
+            "color": "#6c6783"
+          }
+        },
+        {
+          "types": ["namespace"],
+          "style": {
+            "opacity": 0.7
+          }
+        },
+        {
+          "types": ["tag", "operator", "number"],
+          "style": {
+            "color": "#e09142"
+          }
+        },
+        {
+          "types": ["property", "function"],
+          "style": {
+            "color": "#9a86fd"
+          }
+        },
+        {
+          "types": ["tag-id", "selector", "atrule-id"],
+          "style": {
+            "color": "#eeebff"
+          }
+        },
+        {
+          "types": ["attr-name"],
+          "style": {
+            "color": "#c4b9fe"
+          }
+        },
+        {
+          "types": [
+            "boolean",
+            "string",
+            "entity",
+            "url",
+            "attr-value",
+            "keyword",
+            "control",
+            "directive",
+            "unit",
+            "statement",
+            "regex",
+            "at-rule",
+            "placeholder",
+            "variable"
+          ],
+          "style": {
+            "color": "#ffcc99"
+          }
+        },
+        {
+          "types": ["deleted"],
+          "style": {
+            "textDecorationLine": "line-through"
+          }
+        },
+        {
+          "types": ["inserted"],
+          "style": {
+            "textDecorationLine": "underline"
+          }
+        },
+        {
+          "types": ["italic"],
+          "style": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["important", "bold"],
+          "style": {
+            "fontWeight": "bold"
+          }
+        },
+        {
+          "types": ["important"],
+          "style": {
+            "color": "#c4b9fe"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Eva Light",
+      "type": "eva-light",
+      "plain": {
+        "color": "#5d5d5f",
+        "backgroundColor": "#ebeef5"
+      },
+      "styles": [
+        {
+          "types": ["url", "regex"],
+          "style": {
+            "color": "#53A053"
+          }
+        },
+        {
+          "types": ["operator"],
+          "style": {
+            "color": "#8E8E90"
+          }
+        },
+        {
+          "types": ["variable", "property"],
+          "style": {
+            "color": "#CD6069"
+          }
+        },
+        {
+          "types": ["function"],
+          "style": {
+            "color": "#437AED"
+          }
+        },
+        {
+          "types": ["builtin"],
+          "style": {
+            "color": "#FF6D12"
+          }
+        },
+        {
+          "types": ["punctuation"],
+          "style": {
+            "color": "#A9A9AA"
+          }
+        },
+        {
+          "types": ["class-name", "attr-name", "selector", "string"],
+          "style": {
+            "color": "#437AED"
+          }
+        },
+        {
+          "types": ["constant", "hexcode", "keyword"],
+          "style": {
+            "color": "#C838C6"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Github",
+      "type": "github",
+      "plain": {
+        "color": "#393A34",
+        "backgroundColor": "#f6f8fa"
+      },
+      "styles": [
+        {
+          "types": ["comment", "prolog", "doctype", "cdata"],
+          "style": {
+            "color": "#999988",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["namespace"],
+          "style": {
+            "opacity": 0.7
+          }
+        },
+        {
+          "types": ["string", "attr-value"],
+          "style": {
+            "color": "#e3116c"
+          }
+        },
+        {
+          "types": ["punctuation", "operator"],
+          "style": {
+            "color": "#393A34"
+          }
+        },
+        {
+          "types": [
+            "entity",
+            "url",
+            "symbol",
+            "number",
+            "boolean",
+            "variable",
+            "constant",
+            "property",
+            "regex",
+            "inserted"
+          ],
+          "style": {
+            "color": "#36acaa"
+          }
+        },
+        {
+          "types": ["atrule", "keyword", "attr-name", "selector"],
+          "style": {
+            "color": "#00a4db"
+          }
+        },
+        {
+          "types": ["function", "deleted", "tag"],
+          "style": {
+            "color": "#d73a49"
+          }
+        },
+        {
+          "types": ["function-variable"],
+          "style": {
+            "color": "#6f42c1"
+          }
+        },
+        {
+          "types": ["tag", "selector", "keyword"],
+          "style": {
+            "color": "#00009f"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Monokai",
+      "type": "monokai",
+      "plain": {
+        "color": "#f8f8f2",
+        "backgroundColor": "#272822"
+      },
+      "styles": [
+        {
+          "types": ["comment"],
+          "style": {
+            "color": "rgb(136, 132, 111)"
+          }
+        },
+        {
+          "types": ["string", "changed"],
+          "style": {
+            "color": "rgb(230, 219, 116)"
+          }
+        },
+        {
+          "types": ["punctuation", "tag", "deleted"],
+          "style": {
+            "color": "rgb(249, 38, 114)"
+          }
+        },
+        {
+          "types": ["keyword"],
+          "style": {
+            "color": "#F92672"
+          }
+        },
+        {
+          "types": ["number", "builtin"],
+          "style": {
+            "color": "rgb(174, 129, 255)"
+          }
+        },
+        {
+          "types": ["variable"],
+          "style": {
+            "color": "rgb(248, 248, 242)"
+          }
+        },
+        {
+          "types": ["function", "attr-name", "inserted"],
+          "style": {
+            "color": "rgb(166, 226, 46)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Night Owl Light",
+      "type": "night-owl-light",
+      "plain": {
+        "color": "#403f53",
+        "backgroundColor": "#fbfbfb"
+      },
+      "styles": [
+        {
+          "types": ["changed"],
+          "style": {
+            "color": "#A2BFFC",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["deleted"],
+          "style": {
+            "color": "#EF535090",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["inserted", "attr-name"],
+          "style": {
+            "color": "#4876D6",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["comment"],
+          "style": {
+            "color": "#989FB1",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["string", "builtin", "char", "constant", "url"],
+          "style": {
+            "color": "#4876D6"
+          }
+        },
+        {
+          "types": ["variable"],
+          "style": {
+            "color": "#C96765"
+          }
+        },
+        {
+          "types": ["number", "hexcode"],
+          "style": {
+            "color": "#AA0982"
+          }
+        },
+        {
+          "types": ["punctuation", "function", "selector", "doctype"],
+          "style": {
+            "color": "#994CC3",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["regex"],
+          "style": {
+            "color": "#5CA7E4"
+          }
+        },
+        {
+          "types": ["class-name"],
+          "style": {
+            "color": "#111111"
+          }
+        },
+        {
+          "types": ["tag"],
+          "style": {
+            "color": "#994CC3"
+          }
+        },
+        {
+          "types": ["operator", "property", "keyword", "namespace"],
+          "style": {
+            "color": "#0C969B"
+          }
+        },
+        {
+          "types": ["boolean"],
+          "style": {
+            "color": "#BC5454"
+          }
+        },
+        {
+          "types": ["imports", "exports"],
+          "style": {
+            "color": "#403F53"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Oceanic Next",
+      "type": "oceanic-next",
+      "plain": {
+        "backgroundColor": "#282c34",
+        "color": "#ffffff"
+      },
+      "styles": [
+        {
+          "types": ["attr-name"],
+          "style": {
+            "color": "#c5a5c5"
+          }
+        },
+        {
+          "types": ["attr-value"],
+          "style": {
+            "color": "#8dc891"
+          }
+        },
+        {
+          "types": ["comment", "block-comment", "prolog", "doctype", "cdata", "shebang"],
+          "style": {
+            "color": "#999999"
+          }
+        },
+        {
+          "types": ["property", "number", "function-name", "constant", "symbol", "deleted"],
+          "style": {
+            "color": "#5a9bcf"
+          }
+        },
+        {
+          "types": ["boolean"],
+          "style": {
+            "color": "#ff8b50"
+          }
+        },
+        {
+          "types": ["tag"],
+          "style": {
+            "color": "#fc929e"
+          }
+        },
+        {
+          "types": ["string"],
+          "style": {
+            "color": "#8dc891"
+          }
+        },
+        {
+          "types": ["punctuation"],
+          "style": {
+            "color": "#8dc891"
+          }
+        },
+        {
+          "types": ["selector", "char", "builtin", "inserted"],
+          "style": {
+            "color": "#D8DEE9"
+          }
+        },
+        {
+          "types": ["function"],
+          "style": {
+            "color": "#79b6f2"
+          }
+        },
+        {
+          "types": ["operator", "entity", "url", "variable"],
+          "style": {
+            "color": "#d7deea"
+          }
+        },
+        {
+          "types": ["keyword"],
+          "style": {
+            "color": "#c5a5c5"
+          }
+        },
+        {
+          "types": ["at-rule", "class-name"],
+          "style": {
+            "color": "#FAC863"
+          }
+        },
+        {
+          "types": ["important"],
+          "style": {
+            "fontWeight": "400"
+          }
+        },
+        {
+          "types": ["bold"],
+          "style": {
+            "fontWeight": "bold"
+          }
+        },
+        {
+          "types": ["italic"],
+          "style": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["namespace"],
+          "style": {
+            "opacity": 0.7
+          }
+        }
+      ]
+    },
+    {
+      "name": "Okaidia",
+      "type": "okaidia",
+      "plain": {
+        "color": "#f8f8f2",
+        "backgroundColor": "#272822"
+      },
+      "styles": [
+        {
+          "types": ["changed"],
+          "style": {
+            "color": "rgb(162, 191, 252)",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["deleted"],
+          "style": {
+            "color": "#f92672",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["inserted"],
+          "style": {
+            "color": "rgb(173, 219, 103)",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["comment"],
+          "style": {
+            "color": "#8292a2",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["string", "url"],
+          "style": {
+            "color": "#a6e22e"
+          }
+        },
+        {
+          "types": ["variable"],
+          "style": {
+            "color": "#f8f8f2"
+          }
+        },
+        {
+          "types": ["number"],
+          "style": {
+            "color": "#ae81ff"
+          }
+        },
+        {
+          "types": ["builtin", "char", "constant", "function", "class-name"],
+          "style": {
+            "color": "#e6db74"
+          }
+        },
+        {
+          "types": ["punctuation"],
+          "style": {
+            "color": "#f8f8f2"
+          }
+        },
+        {
+          "types": ["selector", "doctype"],
+          "style": {
+            "color": "#a6e22e",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["tag", "operator", "keyword"],
+          "style": {
+            "color": "#66d9ef"
+          }
+        },
+        {
+          "types": ["boolean"],
+          "style": {
+            "color": "#ae81ff"
+          }
+        },
+        {
+          "types": ["namespace"],
+          "style": {
+            "color": "rgb(178, 204, 214)",
+            "opacity": 0.7
+          }
+        },
+        {
+          "types": ["tag", "property"],
+          "style": {
+            "color": "#f92672"
+          }
+        },
+        {
+          "types": ["attr-name"],
+          "style": {
+            "color": "#a6e22e !important"
+          }
+        },
+        {
+          "types": ["doctype"],
+          "style": {
+            "color": "#8292a2"
+          }
+        },
+        {
+          "types": ["rule"],
+          "style": {
+            "color": "#e6db74"
+          }
+        }
+      ]
+    },
+    {
+      "name": "One Dark",
+      "type": "one-dark",
+      "plain": {
+        "color": "#abb2bf",
+        "backgroundColor": "#282c34"
+      },
+      "styles": [
+        {
+          "types": ["punctuation", "constant", "deleted", "tag"],
+          "style": {
+            "color": "#E06C75"
+          }
+        },
+        {
+          "types": ["variable", "keyword", "selector"],
+          "style": {
+            "color": "#C678DD"
+          }
+        },
+        {
+          "types": ["builtin", "changed", "namespace", "class-name"],
+          "style": {
+            "color": "#E5C07B"
+          }
+        },
+        {
+          "types": ["operator", "property"],
+          "style": {
+            "color": "#ABB2BF"
+          }
+        },
+        {
+          "types": ["inserted", "string"],
+          "style": {
+            "color": "#98C379"
+          }
+        },
+        {
+          "types": ["char", "number", "hexcode", "attr-name"],
+          "style": {
+            "color": "#D19A66"
+          }
+        },
+        {
+          "types": ["function"],
+          "style": {
+            "color": "#61AFEF"
+          }
+        },
+        {
+          "types": ["symbol", "regex"],
+          "style": {
+            "color": "#56B6C2"
+          }
+        },
+        {
+          "types": ["comment"],
+          "style": {
+            "fontStyle": "italic"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Outrun Night",
+      "type": "outrun-night",
+      "plain": {
+        "color": "#ebecf8",
+        "backgroundColor": "#161130"
+      },
+      "styles": [
+        {
+          "types": ["comment", "string"],
+          "style": {
+            "color": "#546A90",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["number"],
+          "style": {
+            "color": "#FFD400"
+          }
+        },
+        {
+          "types": ["builtin", "char", "constant"],
+          "style": {
+            "color": "#DF85FF"
+          }
+        },
+        {
+          "types": ["class-name"],
+          "style": {
+            "color": "#A875FF",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["variable"],
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "types": ["tag"],
+          "style": {
+            "color": "#42C6FF"
+          }
+        },
+        {
+          "types": ["attr-name", "selector"],
+          "style": {
+            "color": "#FF2AFC"
+          }
+        },
+        {
+          "types": ["deleted"],
+          "style": {
+            "color": "#E61F44"
+          }
+        },
+        {
+          "types": ["inserted"],
+          "style": {
+            "color": "#A6E22E"
+          }
+        },
+        {
+          "types": ["changed"],
+          "style": {
+            "color": "#F7B83D"
+          }
+        },
+        {
+          "types": ["keyword"],
+          "style": {
+            "color": "#6494A9"
+          }
+        },
+        {
+          "types": ["hexcode"],
+          "style": {
+            "color": "#CCCCCC"
+          }
+        },
+        {
+          "types": ["property"],
+          "style": {
+            "color": "#D86BFF"
+          }
+        },
+        {
+          "types": ["punctuation"],
+          "style": {
+            "color": "#1EA8FC"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Palenight",
+      "type": "palenight",
+      "plain": {
+        "color": "#bfc7d5",
+        "backgroundColor": "#292d3e"
+      },
+      "styles": [
+        {
+          "types": ["comment"],
+          "style": {
+            "color": "rgb(105, 112, 152)",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["string", "inserted"],
+          "style": {
+            "color": "rgb(195, 232, 141)"
+          }
+        },
+        {
+          "types": ["number"],
+          "style": {
+            "color": "rgb(247, 140, 108)"
+          }
+        },
+        {
+          "types": ["builtin", "char", "constant", "function"],
+          "style": {
+            "color": "rgb(130, 170, 255)"
+          }
+        },
+        {
+          "types": ["punctuation", "selector"],
+          "style": {
+            "color": "rgb(199, 146, 234)"
+          }
+        },
+        {
+          "types": ["variable"],
+          "style": {
+            "color": "rgb(191, 199, 213)"
+          }
+        },
+        {
+          "types": ["class-name", "attr-name"],
+          "style": {
+            "color": "rgb(255, 203, 107)"
+          }
+        },
+        {
+          "types": ["tag", "deleted"],
+          "style": {
+            "color": "rgb(255, 85, 114)"
+          }
+        },
+        {
+          "types": ["operator"],
+          "style": {
+            "color": "rgb(137, 221, 255)"
+          }
+        },
+        {
+          "types": ["boolean"],
+          "style": {
+            "color": "rgb(255, 88, 116)"
+          }
+        },
+        {
+          "types": ["keyword"],
+          "style": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["doctype"],
+          "style": {
+            "color": "rgb(199, 146, 234)",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["namespace"],
+          "style": {
+            "color": "rgb(178, 204, 214)"
+          }
+        },
+        {
+          "types": ["url"],
+          "style": {
+            "color": "rgb(221, 221, 221)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Rose Pine",
+      "type": "rose-pine",
+      "plain": {
+        "color": "#e0def4",
+        "backgroundColor": "#191724"
+      },
+      "styles": [
+        {
+          "types": ["comment"],
+          "style": {
+            "color": "#6E6A86",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["constant", "hexcode", "punctuation"],
+          "style": {
+            "color": "#31748F"
+          }
+        },
+        {
+          "types": ["number", "builtin"],
+          "style": {
+            "color": "#EBBCBA"
+          }
+        },
+        {
+          "types": ["tag", "inserted"],
+          "style": {
+            "color": "#9CCFD8"
+          }
+        },
+        {
+          "types": ["attr-name", "selector"],
+          "style": {
+            "color": "#C4A7E7",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["deleted"],
+          "style": {
+            "color": "#EB6F92"
+          }
+        },
+        {
+          "types": ["string"],
+          "style": {
+            "color": "#F6C177"
+          }
+        },
+        {
+          "types": ["variable"],
+          "style": {
+            "color": "#EBBCBA",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["keyword"],
+          "style": {
+            "color": "#31748F"
+          }
+        },
+        {
+          "types": ["punctuation"],
+          "style": {
+            "color": "#908CAA"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Shades of Purple",
+      "type": "shades-of-purple",
+      "plain": {
+        "color": "#9EFEFF",
+        "backgroundColor": "#2D2A55"
+      },
+      "styles": [
+        {
+          "types": ["changed"],
+          "style": {
+            "color": "rgb(255, 238, 128)"
+          }
+        },
+        {
+          "types": ["deleted"],
+          "style": {
+            "color": "rgba(239, 83, 80, 0.56)"
+          }
+        },
+        {
+          "types": ["inserted"],
+          "style": {
+            "color": "rgb(173, 219, 103)"
+          }
+        },
+        {
+          "types": ["comment"],
+          "style": {
+            "color": "rgb(179, 98, 255)",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["punctuation"],
+          "style": {
+            "color": "rgb(255, 255, 255)"
+          }
+        },
+        {
+          "types": ["constant"],
+          "style": {
+            "color": "rgb(255, 98, 140)"
+          }
+        },
+        {
+          "types": ["string", "url"],
+          "style": {
+            "color": "rgb(165, 255, 144)"
+          }
+        },
+        {
+          "types": ["variable"],
+          "style": {
+            "color": "rgb(255, 238, 128)"
+          }
+        },
+        {
+          "types": ["number", "boolean"],
+          "style": {
+            "color": "rgb(255, 98, 140)"
+          }
+        },
+        {
+          "types": ["attr-name"],
+          "style": {
+            "color": "rgb(255, 180, 84)"
+          }
+        },
+        {
+          "types": ["keyword", "operator", "property", "namespace", "tag", "selector", "doctype"],
+          "style": {
+            "color": "rgb(255, 157, 0)"
+          }
+        },
+        {
+          "types": ["builtin", "char", "constant", "function", "class-name"],
+          "style": {
+            "color": "rgb(250, 208, 0)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Synthwave84",
+      "type": "synthwave84",
+      "plain": {
+        "color": "#FE4450",
+        "backgroundColor": "#262335"
+      },
+      "styles": [
+        {
+          "types": ["comment", "string"],
+          "style": {
+            "color": "#848BBD",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["punctuation"],
+          "style": {
+            "color": "#FF8B39"
+          }
+        },
+        {
+          "types": ["variable", "property"],
+          "style": {
+            "color": "#FF7EDB",
+            "textShadow": "0 0 2px #100c0f, 0 0 10px #257c5575, 0 0 35px #21272475"
+          }
+        },
+        {
+          "types": ["constant", "hexcode", "regex", "number", "builtin"],
+          "style": {
+            "color": "#F97E72"
+          }
+        },
+        {
+          "types": ["char", "function"],
+          "style": {
+            "color": "#36F9F6",
+            "textShadow": "0 0 2px #001716, 0 0 3px #03edf975, 0 0 5px #03edf975, 0 0 8px #03edf975"
+          }
+        },
+        {
+          "types": ["tag"],
+          "style": {
+            "color": "#72F1B8"
+          }
+        },
+        {
+          "types": ["attr-name", "selector", "keyword", "operator"],
+          "style": {
+            "color": "#FEDE5D"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Vs Dark",
+      "type": "vs-dark",
+      "plain": {
+        "color": "#d4d4d4",
+        "backgroundColor": "#1e1e1e"
+      },
+      "styles": [
+        {
+          "types": ["prolog"],
+          "style": {
+            "color": "#000080"
+          }
+        },
+        {
+          "types": ["comment"],
+          "style": {
+            "color": "#57A64A"
+          }
+        },
+        {
+          "types": ["builtin", "tag", "changed", "keyword"],
+          "style": {
+            "color": "#569CD6"
+          }
+        },
+        {
+          "types": ["number", "inserted"],
+          "style": {
+            "color": "#B5CEA8"
+          }
+        },
+        {
+          "types": ["constant", "hexcode"],
+          "style": {
+            "color": "#646695"
+          }
+        },
+        {
+          "types": ["attr-name", "selector", "property", "variable"],
+          "style": {
+            "color": "#9CDCFE"
+          }
+        },
+        {
+          "types": ["deleted", "string"],
+          "style": {
+            "color": "#D69D85"
+          }
+        },
+        {
+          "types": ["punctuation"],
+          "style": {
+            "color": "#6A9955"
+          }
+        },
+        {
+          "types": ["regex"],
+          "style": {
+            "color": "#D16969"
+          }
+        },
+        {
+          "types": ["operator"],
+          "style": {
+            "color": "#B4B4B4"
+          }
+        },
+        {
+          "types": ["function"],
+          "style": {
+            "color": "#C8C8C8"
+          }
+        },
+        {
+          "types": ["class-name"],
+          "style": {
+            "color": "#4EC9B0"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Vs Light",
+      "type": "vs-light",
+      "plain": {
+        "color": "#000000",
+        "backgroundColor": "#ffffff"
+      },
+      "styles": [
+        {
+          "types": ["comment"],
+          "style": {
+            "color": "#008000"
+          }
+        },
+        {
+          "types": ["builtin", "keyword"],
+          "style": {
+            "color": "#0000FF"
+          }
+        },
+        {
+          "types": ["number", "operator"],
+          "style": {
+            "color": "#000000"
+          }
+        },
+        {
+          "types": ["constant", "hexcode", "regex"],
+          "style": {
+            "color": "#811F3F"
+          }
+        },
+        {
+          "types": ["tag"],
+          "style": {
+            "color": "#800000"
+          }
+        },
+        {
+          "types": ["attr-name", "selector", "property", "variable"],
+          "style": {
+            "color": "#FF0000"
+          }
+        },
+        {
+          "types": ["inserted"],
+          "style": {
+            "color": "#09885A"
+          }
+        },
+        {
+          "types": ["deleted", "string"],
+          "style": {
+            "color": "#A31515"
+          }
+        },
+        {
+          "types": ["changed", "punctuation"],
+          "style": {
+            "color": "#0451A5"
+          }
+        },
+        {
+          "types": ["function"],
+          "style": {
+            "color": "#008080"
+          }
+        },
+        {
+          "types": ["class-name"],
+          "style": {
+            "color": "#2B91AF"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Winter is Coming",
+      "type": "winter-is-coming",
+      "plain": {
+        "color": "#a7dbf7",
+        "backgroundColor": "#011627"
+      },
+      "styles": [
+        {
+          "types": ["string"],
+          "style": {
+            "color": "rgb(238, 255, 255)"
+          }
+        },
+        {
+          "types": ["punctuation"],
+          "style": {
+            "color": "rgb(90, 190, 176)"
+          }
+        },
+        {
+          "types": ["comment"],
+          "style": {
+            "color": "rgb(153, 153, 153)",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["variable"],
+          "style": {
+            "color": "rgb(188, 240, 192)"
+          }
+        },
+        {
+          "types": ["number", "boolean"],
+          "style": {
+            "color": "rgb(141, 236, 149)"
+          }
+        },
+        {
+          "types": ["constant"],
+          "style": {
+            "color": "rgb(161, 112, 198)"
+          }
+        },
+        {
+          "types": ["builtin"],
+          "style": {
+            "color": "rgb(146, 182, 244)"
+          }
+        },
+        {
+          "types": ["char"],
+          "style": {
+            "color": "rgb(130, 170, 255)"
+          }
+        },
+        {
+          "types": ["operator"],
+          "style": {
+            "color": "rgb(0, 191, 249)",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["class-name"],
+          "style": {
+            "color": "rgb(247, 236, 181)"
+          }
+        },
+        {
+          "types": ["function"],
+          "style": {
+            "color": "rgb(135, 175, 244)",
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "types": ["tag"],
+          "style": {
+            "color": "rgb(109, 189, 250)"
+          }
+        },
+        {
+          "types": ["attr-name"],
+          "style": {
+            "color": "rgb(247, 236, 181)",
+            "fontStyle": "italic"
+          }
+        }
+      ]
+    }
+  ]
+}

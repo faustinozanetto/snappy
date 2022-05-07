@@ -40,13 +40,11 @@ const LayoutHead: React.FC<LayoutHeadProps> = (props) => {
       <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png" />
       <link rel="manifest" href="/images/favicon/site.webmanifest" />
       <link rel="canonical" href={canonicalUrl} />
-      <meta content="purple" name="theme-color" />
+      <meta content="#4f46e5" name="theme-color" />
 
       {/* Open grahp */}
       <meta property="og:url" content={url} />
       <meta property="og:image" content={image} />
-      <meta property="og:image:url" content={image} />
-      <meta property="og:image:secure" content={image} />
       <meta property="og:image:width" content="512" />
       <meta property="og:image:height" content="512" />
       <meta property="og:image:alt" content={title} />
@@ -58,6 +56,7 @@ const LayoutHead: React.FC<LayoutHeadProps> = (props) => {
       <meta name="twitter:site" content={url} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content={image} />
+      <meta name="twitter:url" content={url} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:title" content={title} />

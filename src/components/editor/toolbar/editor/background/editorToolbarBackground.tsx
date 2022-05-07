@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { MdColorLens } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { BackgroundType } from 'snappy.types';
@@ -37,7 +37,6 @@ const EditorToolbarBackground: React.FC<EditorToolbarBackgroundProps> = ({}) => 
       backgroundCustomization.backgroundType === BackgroundType.GRADIENT &&
       backgroundCustomization.backgroundGradient
     ) {
-      console.log({ backgroundGradient: backgroundCustomization.backgroundGradient });
       styles.background = `${backgroundCustomization.backgroundGradient.generated} !important`;
     }
 

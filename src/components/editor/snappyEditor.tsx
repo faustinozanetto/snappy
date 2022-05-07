@@ -1,10 +1,9 @@
-import { Box, Container, Flex, HStack } from '@chakra-ui/react';
+import { Box, Container, Flex } from '@chakra-ui/react';
 
 import type { CSSProperties } from 'react';
 import { createRef, useMemo } from 'react';
 import { EXAMPLE_CODE } from '@lib/constants';
 import { parseBackgroundColor } from '@lib/helper/helperFunctions';
-import { selectThemeFile } from '@lib/themes/highlightTheme';
 import {
   selectBackgroundCustomization,
   selectCodeCustomization,
@@ -15,8 +14,8 @@ import { useSelector } from 'react-redux';
 
 import type { BackgroundShadowEntry } from 'snappy.types';
 import { BackgroundType } from 'snappy.types';
-import { CodeTheme } from 'snappy.types';
 
+import { getThemeByType } from '@lib/themes/themeUtils';
 import EditorCodeContent from './content/editorCodeContent';
 import EditorToolBar from './toolbar/editorToolBar';
 
@@ -76,7 +75,7 @@ const SnappyEditor: React.FC<SnappyEditorProps> = (props) => {
    * @returns the css styles from the theme file.
    */
   const highlightThemeStyles = useMemo(() => {
-    const parsedTheme = selectThemeFile(codeCustomization.codeTheme || CodeTheme.ONE_DARK);
+    const parsedTheme = getThemeByType(codeCustomization.codeTheme || 'night-owl');
     return parsedTheme;
   }, [codeCustomization]);
 

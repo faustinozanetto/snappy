@@ -1,9 +1,8 @@
 import { Global } from '@emotion/react';
-import { constructCSSStyle, selectThemeFile } from '@lib/themes/highlightTheme';
+import { constructCSSStyle, getThemeByType } from '@lib/themes/themeUtils';
 import { selectCodeCustomization, selectWindowCustomization } from '@state/slices/editor/editorCustomization.slice';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { CodeTheme } from 'snappy.types';
 
 interface CodeHighlightStylesProps {}
 
@@ -12,7 +11,7 @@ const CodeHighlightStyles: React.FC<CodeHighlightStylesProps> = ({}) => {
   const codeCustomization = useSelector(selectCodeCustomization);
 
   const themeStyles = useMemo(() => {
-    const parsedTheme = selectThemeFile(codeCustomization.codeTheme || CodeTheme.ONE_DARK);
+    const parsedTheme = getThemeByType(codeCustomization.codeTheme || 'night-owl');
     return parsedTheme;
   }, [codeCustomization.codeTheme]);
 

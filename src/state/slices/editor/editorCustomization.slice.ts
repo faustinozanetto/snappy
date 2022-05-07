@@ -52,7 +52,7 @@ const initialState: EditorCustomizationState = {
     lineHeight: 1.35,
   },
   codeCustomization: {
-    codeTheme: CodeTheme.OUTRUN_NIGHT,
+    codeTheme: 'outrun-night',
     codeLanguage: CodeLanguage.JSX,
     lineNumbers: true,
   },
