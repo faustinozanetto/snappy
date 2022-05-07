@@ -8,9 +8,9 @@ interface FooterProps {}
 
 const Footer: React.FC<FooterProps> = ({}) => {
   return (
-    <Box backgroundColor="footer" color="textPrimary" marginTop="auto" py={4}>
+    <Box role="contentinfo" backgroundColor="footer" color="textPrimary" width="full" marginTop="auto" py={4}>
       <Container as={Stack} maxW="6xl" py={4} spacing={4} justify="center" align="center">
-        <SnapifyLogo size="xl" />
+        <SnapifyLogo size="3xl" />
         <Stack direction="row" spacing={6}>
           <Link href="/">Home</Link>
           <Link href="/terms">Terms</Link>

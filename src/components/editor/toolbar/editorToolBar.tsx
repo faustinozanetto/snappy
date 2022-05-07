@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wrap } from '@chakra-ui/react';
+import { SimpleGrid, Stack, Wrap } from '@chakra-ui/react';
 
 import ThemeToggler from '@components/theming/themeToggler';
 import EditorToolbarBackground from './editor/background/editorToolbarBackground';
@@ -16,7 +16,13 @@ interface EditorToolBarProps {
 
 const EditorToolBar: React.FC<EditorToolBarProps> = ({ exportRef }) => {
   return (
-    <Wrap spacing={4} justify="center" zIndex={20}>
+    <Wrap
+      spacing={['10px', '15px']}
+      alignItems={['stretch', 'stretch', 'center', 'center']}
+      justify="center"
+      mb={6}
+      zIndex={20}
+    >
       {/* Background */}
       <EditorToolbarBackground />
       {/* Font */}

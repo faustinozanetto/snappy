@@ -1,4 +1,4 @@
-import { Box, Flex, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 
 import Footer from '@components/footer/footer';
 import React from 'react';
@@ -17,17 +17,24 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = (props) => {
   const { children, layoutHeadProps } = props;
-  const logoSize = useBreakpointValue(['xl', '3xl', '3xl']) as 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
+
   return (
-    <Flex minHeight="100vh" flexDir="column" backgroundColor="background">
+    <Flex
+      as="main"
+      minHeight="100vh"
+      flexDir="column"
+      backgroundColor="background"
+      alignItems="center"
+      justifyContent="center"
+    >
       {/* Head */}
       <LayoutHead {...layoutHeadProps} />
 
       {/* Container */}
       <LayoutContainer>
         {/* Logo */}
-        <Box my={4}>
-          <SnapifyLogo size={logoSize || '3xl'} />
+        <Box role="banner" mb={[6, 8, 10, 12, 14]}>
+          <SnapifyLogo responsive />
         </Box>
         {children}
       </LayoutContainer>

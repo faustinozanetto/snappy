@@ -1,4 +1,4 @@
-import { Box, Container, Flex, HStack, useColorModeValue } from '@chakra-ui/react';
+import { Box, Container, Flex, HStack } from '@chakra-ui/react';
 
 import type { CSSProperties } from 'react';
 import { createRef, useMemo } from 'react';
@@ -14,14 +14,15 @@ import type { Color } from 'react-color';
 import { useSelector } from 'react-redux';
 
 import type { BackgroundShadowEntry } from 'snappy.types';
+import { BackgroundType } from 'snappy.types';
 import { CodeTheme } from 'snappy.types';
 
 import EditorCodeContent from './content/editorCodeContent';
 import EditorToolBar from './toolbar/editorToolBar';
 
-interface EditorProps {}
+interface SnappyEditorProps {}
 
-const Editor: React.FC<EditorProps> = (props) => {
+const SnappyEditor: React.FC<SnappyEditorProps> = (props) => {
   const {} = props;
   const savedRef = createRef<HTMLDivElement>();
   const backgroundCustomization = useSelector(selectBackgroundCustomization);
@@ -150,31 +151,39 @@ const Editor: React.FC<EditorProps> = (props) => {
 
   return (
     <Container
-      maxW={['35em', '45em', '60em', '70em', '80em']}
-      padding={6}
+      maxWidth={['20em', '30em', '45em', '55em', '70em']}
       backgroundColor="backgroundSecondary"
-      borderRadius="md"
+      padding={6}
+      border="4px solid background"
+      borderRadius="lg"
     >
-      {/* Editor Tool Bar */}
-      <HStack width="100%" my={6} justifyContent="center">
-        <EditorToolBar exportRef={savedRef} />
-      </HStack>
+      <EditorToolBar exportRef={savedRef} />
       {/* Export Container */}
-      <Flex ref={savedRef} position="relative" alignItems="center" justifyContent="center" overflow="hidden">
+      <Flex
+        ref={savedRef}
+        width="full"
+        height="full"
+        position="relative"
+        alignItems="center"
+        justifyContent="center"
+        overflow="hidden"
+      >
         {/* Blur effect */}
-        <Box
-          position="absolute"
-          width="100%"
-          height="100%"
-          backdropFilter={`blur(${backgroundCustomization.backgroudBlur}px)`}
-          backgroundColor="rgba(120,120,120,0.5)"
-          zIndex={2}
-        />
+        {backgroundCustomization.backgroundType === BackgroundType.IMAGE && (
+          <Box
+            position="absolute"
+            width="full"
+            height="full"
+            backdropFilter={`blur(${backgroundCustomization.backgroudBlur}px)`}
+            backgroundColor="rgba(120,120,120,0.5)"
+            zIndex={2}
+          />
+        )}
         {/* Background */}
-        <Box position="absolute" width="100%" height="100%" style={backgroundStyles} zIndex={1} />
+        <Box position="absolute" width="full" height="full" style={backgroundStyles} zIndex={1} />
         <Box
-          width="100%"
-          height="100%"
+          width="full"
+          height="full"
           backgroundRepeat="no-repeat"
           backgroundSize="cover"
           backgroundPosition="center"
@@ -189,4 +198,4 @@ const Editor: React.FC<EditorProps> = (props) => {
   );
 };
 
-export default Editor;
+export default SnappyEditor;

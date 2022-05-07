@@ -1,8 +1,7 @@
 import React from 'react';
-import Editor from '@components/editor/editor';
 import Layout from '@components/layout/layout';
 import { __URL__ } from '@lib/constants';
-import { NextSeo } from 'next-seo';
+import SnappyEditor from '@components/editor/snappyEditor';
 
 interface HomePageProps {}
 
@@ -16,8 +15,7 @@ const HomePage: React.FC<HomePageProps> = () => {
         description: 'Snappy is a simple, fast and powerful code snippet creator.',
       }}
     >
-      <NextSeo title="Home | Snappy" />
-      <Editor />
+      <SnappyEditor />
     </Layout>
   );
 };

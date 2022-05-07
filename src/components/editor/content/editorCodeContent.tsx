@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import { useSelector } from 'react-redux';
 import Editor from 'react-simple-code-editor';
