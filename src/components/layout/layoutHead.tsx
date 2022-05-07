@@ -39,8 +39,8 @@ const LayoutHead: React.FC<LayoutHeadProps> = (props) => {
       {/* Open grahp */}
       <meta property="og:url" content={url} />
       <meta property="og:image" content={image} />
-      <meta property="og:image:width" content="512" />
-      <meta property="og:image:height" content="512" />
+      <meta property="og:image:width" content="452" />
+      <meta property="og:image:height" content="175" />
       <meta property="og:image:alt" content={title} />
       <meta property="og:locale" content="en" />
       <meta property="og:type" content="website" />
