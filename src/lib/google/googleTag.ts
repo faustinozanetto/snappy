@@ -2,6 +2,7 @@ import { __GTAGID__, __PROD__ } from '@lib/constants';
 
 export const initializeGTag = (): void => {
   window.dataLayer = window.dataLayer || [];
+  // @ts-ignore
   window.gtag = window.gtag || {};
 
   if (__PROD__) {
