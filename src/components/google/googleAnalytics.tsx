@@ -6,7 +6,7 @@ interface GoogleAnalyticsProps {}
 const GoogleAnalytics: React.FC<GoogleAnalyticsProps> = ({}) => {
   return (
     <>
-      <Script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GAID}`} />
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-8M3QB6LWKR" />
       <Script
         id="gtag-init"
         dangerouslySetInnerHTML={{
@@ -14,7 +14,7 @@ const GoogleAnalytics: React.FC<GoogleAnalyticsProps> = ({}) => {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GAID}', {
+            gtag('config', 'G-8M3QB6LWKR', {
               page_path: window.location.pathname,
             });
           `,
