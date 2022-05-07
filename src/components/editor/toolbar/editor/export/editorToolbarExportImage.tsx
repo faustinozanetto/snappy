@@ -16,7 +16,7 @@ import {
   saveImageToFile,
 } from '@lib/snippet/snippetGeneration';
 import ErrorResponse from '@lib/errors/errorHelpers';
-import { trackEvent } from '@lib/google/googleTag';
+import trackEvent from '@lib/google/googleTag';
 import EditorToolbarSection from '../../base/editorToolbarSection';
 import EditorToolbarExportSnippet from './editorToolbarExportSnippet';
 

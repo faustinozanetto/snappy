@@ -12,14 +12,14 @@ import { persistor, store } from '@state/redux/snappyStore';
 import theme from '@styles/themes';
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
 import GoogleAnalytics from '@components/google/googleAnalytics';
 import CodeHighlightStyles from '@components/editor/highlight/codeHighlightStyles';
 import { DefaultSeo } from 'next-seo';
 import { __URL__ } from '@lib/constants';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import { trackEvent } from '@lib/google/googleTag';
+import trackEvent from '@lib/google/googleTag';
+import PersistGate from '@components/state/persistGate';
 
 function SnapifyApp(props: AppProps) {
   const { Component, pageProps } = props;
@@ -39,39 +39,11 @@ function SnapifyApp(props: AppProps) {
 
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <ChakraProvider theme={theme}>
-          <DefaultSeo
-            openGraph={{
-              type: 'website',
-              locale: 'en_IE',
-              url: __URL__,
-              site_name: 'Snappy',
-              images: [
-                {
-                  url: `${__URL__}images/favicon/android-chrome-512x512.png`,
-                  width: 512,
-                  height: 512,
-                  alt: 'Image',
-                  type: 'image/png',
-                },
-              ],
-              defaultImageHeight: 512,
-              defaultImageWidth: 512,
-              description: 'Snappy is a simple, fast and powerful code snippet creator.',
-              title: 'Snappy',
-            }}
-            twitter={{
-              handle: '@snappy',
-              site: '@snappy',
-              cardType: 'summary_large_image',
-            }}
-          />
-          <CodeHighlightStyles />
-          <GoogleAnalytics />
-          <Component {...pageProps} />
-        </ChakraProvider>
-      </PersistGate>
+      <ChakraProvider theme={theme}>
+        <CodeHighlightStyles />
+        <GoogleAnalytics />
+        <Component {...pageProps} />
+      </ChakraProvider>
     </Provider>
   );
 }

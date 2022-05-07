@@ -1,17 +1,27 @@
 import React from 'react';
 import Script from 'next/script';
 import { __GTAGID__ } from '@lib/constants';
-import { initializeGTag } from '@lib/google/googleTag';
 
 interface GoogleAnalyticsProps {}
 
 const GoogleAnalytics: React.FC<GoogleAnalyticsProps> = ({}) => {
   return (
-    <Script
-      src={`https://www.googletagmanager.com/gtag/js?id=${__GTAGID__}`}
-      strategy="lazyOnload"
-      onLoad={initializeGTag}
-    />
+    <>
+      <Script async src={`https://www.googletagmanager.com/gtag/js?id=${__GTAGID__}`} />
+      <Script
+        id="gtag-init"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${__GTAGID__}', {
+              page_path: window.location.pathname,
+            });
+          `,
+        }}
+      />
+    </>
   );
 };
 

@@ -17,21 +17,17 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = (props) => {
   const { children, layoutHeadProps } = props;
-  const logoSize = useBreakpointValue({
-    base: 'xl',
-    sm: '2xl',
-    md: '3xl',
-  }) as 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
+  const logoSize = useBreakpointValue(['xl', '3xl', '3xl']) as 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
   return (
     <Flex minHeight="100vh" flexDir="column" backgroundColor="background">
       {/* Head */}
-      {/* <LayoutHead {...layoutHeadProps} /> */}
+      <LayoutHead {...layoutHeadProps} />
 
       {/* Container */}
       <LayoutContainer>
         {/* Logo */}
         <Box my={4}>
-          <SnapifyLogo size={logoSize} />
+          <SnapifyLogo size={logoSize || '3xl'} />
         </Box>
         {children}
       </LayoutContainer>

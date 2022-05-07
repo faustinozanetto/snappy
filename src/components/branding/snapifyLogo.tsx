@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useColorModeValue } from '@chakra-ui/react';
 
 interface SnapifyLogoProps {
@@ -6,7 +6,7 @@ interface SnapifyLogoProps {
 }
 
 const SnapifyLogo: React.FC<SnapifyLogoProps> = (props) => {
-  const { size = 'medium' } = props;
+  const { size = 'xl' } = props;
 
   /**
    * Memoize the size of the svg according to state.
