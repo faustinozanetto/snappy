@@ -1,5 +1,5 @@
 import React from 'react';
-import { VStack } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import EditorToolbarExportButtons from './editorToolbarExportButtons';
 import EditorToolbarExportImageExtension from './editorToolbarExportImageExtension';
 import EditorToolbarExportImageSize from './editorToolbarExportImageSize';
@@ -13,11 +13,11 @@ interface EditorToolbarExportSnippetProps {
 const EditorToolbarExportSnippet: React.FC<EditorToolbarExportSnippetProps> = (props) => {
   const { handleExport, handleCopy, handleOpen } = props;
   return (
-    <VStack display="flex" spacing={4}>
-      {/* <EditorToolbarExportImageSize /> */}
+    <Box width="full">
       <EditorToolbarExportImageExtension />
+      <EditorToolbarExportImageSize />
       <EditorToolbarExportButtons onExport={handleExport} onCopy={handleCopy} onOpen={handleOpen} />{' '}
-    </VStack>
+    </Box>
   );
 };
 

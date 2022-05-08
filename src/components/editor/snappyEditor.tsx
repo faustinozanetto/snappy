@@ -182,7 +182,7 @@ const SnappyEditor: React.FC<SnappyEditorProps> = (props) => {
         )}
         {/* Background */}
         <Box position="absolute" style={backgroundStyles} top={0} left={0} right={0} bottom={0} zIndex={1} />
-        <Box width="full" height="full" style={paddingStyles} zIndex={3}>
+        <Box style={paddingStyles} width="full" height="full" zIndex={3}>
           {/* Editor Code Window */}
           <EditorCodeContent code={EXAMPLE_CODE} style={editorContentStyles} theme={highlightThemeStyles} />
         </Box>

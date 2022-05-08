@@ -49,7 +49,8 @@ export const handleImageGeneration = async (
       }
       return true;
     },
-    quality,
+    pixelRatio: quality,
+    quality: 1,
     width,
     height,
   };

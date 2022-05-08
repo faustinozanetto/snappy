@@ -25,9 +25,10 @@ export const EXAMPLE_CODE = `function createElement({ node, style, useInlineStyl
   }
 }`;
 
-export const CUSTOMIZATION_TEMPLATES: EditorPreset[] = [
+export const CUSTOMIZATION_TEMPLATES: Partial<EditorPreset>[] = [
   {
     name: Presets.DEFAULT,
+    thumbnail: '/images/presets/preset-default.png',
     theme: {
       backgroundCustomization: {
         backgroundType: BackgroundType.GRADIENT,
@@ -96,6 +97,7 @@ export const CUSTOMIZATION_TEMPLATES: EditorPreset[] = [
   },
   {
     name: Presets.GRADIENTY,
+    thumbnail: '/images/presets/preset-gradienty.png',
     theme: {
       backgroundCustomization: {
         backgroundType: BackgroundType.GRADIENT,
@@ -136,7 +138,7 @@ export const CUSTOMIZATION_TEMPLATES: EditorPreset[] = [
         lineHeight: 1.45,
       },
       codeCustomization: {
-        codeTheme: 'night-owl-light',
+        codeTheme: 'dracula',
         codeLanguage: CodeLanguage.JSX,
         lineNumbers: true,
       },
@@ -164,6 +166,7 @@ export const CUSTOMIZATION_TEMPLATES: EditorPreset[] = [
   },
   {
     name: Presets.LIGHTY,
+    thumbnail: '/images/presets/preset-lighty.png',
     theme: {
       backgroundCustomization: {
         backgroundType: BackgroundType.COLOR,
@@ -232,6 +235,7 @@ export const CUSTOMIZATION_TEMPLATES: EditorPreset[] = [
   },
   {
     name: Presets.LIGHTANDFIRE,
+    thumbnail: '/images/presets/preset-lightandfire.png',
     theme: {
       backgroundCustomization: {
         backgroundType: BackgroundType.GRADIENT,

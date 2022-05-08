@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Flex,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -11,13 +10,14 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
-  useColorModeValue,
 } from '@chakra-ui/react';
 import type { ButtonProps } from '@components/ui/button/button';
 import Button from '@components/ui/button/button';
 import type { ToolbarSectionTab } from 'snappy.types';
 
 interface EditorToolbarSectionProps {
+  /** Determinate the default tab to open when clicked. */
+  defaultSection?: number;
   /** String to show as title */
   sectionName: string;
   /** Icon to display in the button */
@@ -28,7 +28,7 @@ interface EditorToolbarSectionProps {
 }
 
 const EditorToolbarSection: React.FC<EditorToolbarSectionProps> = (props) => {
-  const { sectionName, sectionIcon, sectionTabs, sectionButtonProps } = props;
+  const { defaultSection = 0, sectionName, sectionIcon, sectionTabs, sectionButtonProps } = props;
   return (
     <Popover isLazy placement="bottom">
       {/* @ts-ignore */}
@@ -45,7 +45,7 @@ const EditorToolbarSection: React.FC<EditorToolbarSectionProps> = (props) => {
       <PopoverContent _focus={{ boxShadown: 'none' }}>
         <PopoverArrow />
         <PopoverBody backgroundColor="backgroundSecondary">
-          <Tabs isLazy colorScheme="brand">
+          <Tabs isLazy colorScheme="brand" defaultIndex={defaultSection}>
             <TabList>
               {sectionTabs.map((section) => {
                 return (

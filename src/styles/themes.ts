@@ -47,7 +47,7 @@ const theme = extendTheme({
         _dark: '#18181b',
       },
       backgroundSecondary: {
-        default: '#9ca3af',
+        default: '#f1f5f9',
         _dark: '#27272a',
       },
       footer: {

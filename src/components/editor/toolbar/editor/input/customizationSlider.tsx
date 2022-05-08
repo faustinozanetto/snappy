@@ -1,15 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Box,
-  Slider,
-  SliderFilledTrack,
-  SliderMark,
-  SliderThumb,
-  SliderTrack,
-  Text,
-  Tooltip,
-  VStack,
-} from '@chakra-ui/react';
+import { Box, Slider, SliderFilledTrack, SliderMark, SliderThumb, SliderTrack, Text, Tooltip } from '@chakra-ui/react';
 
 interface CustomizationSliderProps {
   /** Label to display */
@@ -51,7 +41,7 @@ const CustomizationSlider: React.FC<CustomizationSliderProps> = (props) => {
   }, [sliderValue]);
 
   return (
-    <VStack width="full">
+    <Box width="full" padding={2}>
       <Text as="h2" fontSize="lg" fontWeight={600}>
         {label}
       </Text>
@@ -99,7 +89,7 @@ const CustomizationSlider: React.FC<CustomizationSliderProps> = (props) => {
           <SliderThumb />
         </Tooltip>
       </Slider>
-    </VStack>
+    </Box>
   );
 };
 export default CustomizationSlider;

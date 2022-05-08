@@ -1,5 +1,5 @@
 import React from 'react';
-import { SimpleGrid, Stack, Wrap } from '@chakra-ui/react';
+import { Wrap } from '@chakra-ui/react';
 
 import ThemeToggler from '@components/theming/themeToggler';
 import EditorToolbarBackground from './editor/background/editorToolbarBackground';
@@ -36,7 +36,7 @@ const EditorToolBar: React.FC<EditorToolBarProps> = ({ exportRef }) => {
       {/* Export */}
       <EditorToolbarExportImage exportRef={exportRef} />
       {/* Theme toggler */}
-      {/* <ThemeToggler /> */}
+      <ThemeToggler />
     </Wrap>
   );
 };

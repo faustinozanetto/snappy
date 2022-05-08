@@ -1,14 +1,22 @@
-import { Box, Container, Stack, Text, useColorModeValue } from '@chakra-ui/react';
-
-import Link from 'next/link';
 import React from 'react';
+import Link from 'next/link';
+import { Box, Container, Stack, Text } from '@chakra-ui/react';
+
 import SnapifyLogo from '@components/branding/snapifyLogo';
 
 interface FooterProps {}
 
 const Footer: React.FC<FooterProps> = ({}) => {
   return (
-    <Box role="contentinfo" backgroundColor="footer" color="textPrimary" width="full" marginTop="auto" py={4}>
+    <Box
+      as="footer"
+      role="contentinfo"
+      backgroundColor="footer"
+      color="textPrimary"
+      width="full"
+      marginTop="auto"
+      py={4}
+    >
       <Container as={Stack} maxW="6xl" py={4} spacing={4} justify="center" align="center">
         <SnapifyLogo size="3xl" />
         <Stack direction="row" spacing={6}>
@@ -19,7 +27,7 @@ const Footer: React.FC<FooterProps> = ({}) => {
         </Stack>
       </Container>
 
-      <Box borderTopWidth={1} borderStyle="solid" borderColor={useColorModeValue('gray.200', 'gray.700')}>
+      <Box borderTopWidth={1} borderStyle="solid" borderColor="background">
         <Container as={Stack} maxW="6xl" py={4} spacing={4} textAlign="center">
           <Text>© 2022 Conkis Studios. All rights reserved</Text>
         </Container>

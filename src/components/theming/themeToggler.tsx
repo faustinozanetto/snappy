@@ -11,6 +11,7 @@ const ThemeToggler: React.FC<ThemeTogglerProps> = (props) => {
     <IconButton
       aria-label="Toggle Theme"
       role="button"
+      colorScheme="brand"
       icon={colorMode === 'dark' ? <FiSun /> : <FiMoon />}
       onClick={toggleColorMode}
     />

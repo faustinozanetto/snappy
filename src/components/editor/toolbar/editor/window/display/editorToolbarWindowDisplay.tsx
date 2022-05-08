@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, VStack } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -20,7 +20,7 @@ const EditorToolbarWindowDisplay: React.FC<EditorToolbarWindowDisplayProps> = ({
   const windowCustomization = useSelector(selectWindowCustomization);
 
   return (
-    <VStack display="flex" spacing={4}>
+    <Box>
       <EditorToolbarWindowControlsToggle />
       {/* Padding Horizontal */}
       <CustomizationSlider
@@ -64,7 +64,7 @@ const EditorToolbarWindowDisplay: React.FC<EditorToolbarWindowDisplayProps> = ({
           )
         }
       />
-    </VStack>
+    </Box>
   );
 };
 

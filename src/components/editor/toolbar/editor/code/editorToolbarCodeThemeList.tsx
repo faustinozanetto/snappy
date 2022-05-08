@@ -21,7 +21,7 @@ const EditorToolbarCodeThemeList: React.FC<EditorToolbarCodeThemeListProps> = ({
   };
 
   return (
-    <Box width="full">
+    <Box width="full" padding={2}>
       <Text as="h2" fontSize="lg" fontWeight={600} mb={2}>
         Themes
       </Text>

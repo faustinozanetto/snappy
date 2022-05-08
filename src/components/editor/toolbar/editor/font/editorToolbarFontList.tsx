@@ -1,6 +1,6 @@
-import { Box, HStack, Select, Text } from '@chakra-ui/react';
-
 import React from 'react';
+import { Box, Select, Text } from '@chakra-ui/react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFontCustomization, setFontCustomization } from '@state/slices/editor/editorCustomization.slice';
 import { FontFamily } from 'snappy.types';
@@ -16,7 +16,7 @@ const EditorToolbarFontList: React.FC<EditorToolbarFontListProps> = ({}) => {
   };
 
   return (
-    <Box width="full">
+    <Box width="full" padding={2}>
       <Text as="h2" fontSize="lg" fontWeight={600} mb={2}>
         Font List
       </Text>

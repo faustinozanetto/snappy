@@ -240,7 +240,9 @@ export enum Presets {
   LIGHTY = 'lighty',
   LIGHTANDFIRE = 'Light and Fire',
 }
+
 export type EditorPreset = {
   name: Presets;
+  thumbnail: string;
   theme: EditorCustomizationState;
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, HStack, Select, Text } from '@chakra-ui/react';
+import { Box, Select, Text } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectExportCustomization, setExportCustomization } from '@state/slices/editor/editorCustomization.slice';
 import { FileExtension } from 'snappy.types';
@@ -14,11 +14,10 @@ const EditorToolbarExportImageExtension: React.FC<EditorToolbarExportImageExtens
     dispatch(setExportCustomization({ fileExtension: event.target.value as FileExtension }));
   };
   return (
-    <Box width="full">
+    <Box width="full" padding={2}>
       <Text as="h2" fontSize="lg" fontWeight={600} mb={2}>
         File Extension
       </Text>
-
       <Select
         placeholder="Select Extension"
         onChange={handleFilexExtensionChange}

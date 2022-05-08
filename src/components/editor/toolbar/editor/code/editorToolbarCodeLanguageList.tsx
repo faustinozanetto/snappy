@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Select, Text, VStack } from '@chakra-ui/react';
+import { Box, Select, Text } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCodeCustomization, setCodeCustomization } from '@state/slices/editor/editorCustomization.slice';
 import { CodeLanguage } from 'snappy.types';
@@ -28,7 +28,7 @@ const EditorToolbarCodeLanguageList: React.FC<EditorToolbarCodeLanguageListProps
   };
 
   return (
-    <Box width="full">
+    <Box width="full" padding={2}>
       <Text as="h2" fontSize="lg" fontWeight={600} mb={2}>
         Language
       </Text>

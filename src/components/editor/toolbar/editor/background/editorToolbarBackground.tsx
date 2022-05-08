@@ -48,8 +48,25 @@ const EditorToolbarBackground: React.FC<EditorToolbarBackgroundProps> = ({}) => 
     return styles;
   };
 
+  /**
+   *
+   * @returns The index of the tab to open depending on the background type.
+   */
+  const defaultBackgroundSection = (): 0 | 1 | 2 => {
+    let section: 0 | 1 | 2 = 0;
+    if (backgroundCustomization.backgroundType === BackgroundType.COLOR) {
+      section = 0;
+    } else if (backgroundCustomization.backgroundType === BackgroundType.GRADIENT) {
+      section = 1;
+    } else if (backgroundCustomization.backgroundType === BackgroundType.IMAGE) {
+      section = 2;
+    }
+    return section;
+  };
+
   return (
     <EditorToolbarSection
+      defaultSection={defaultBackgroundSection()}
       sectionName="Background"
       sectionIcon={<MdColorLens />}
       sectionButtonProps={generateButtonStyles()}

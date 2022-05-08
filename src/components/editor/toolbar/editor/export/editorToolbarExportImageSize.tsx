@@ -12,10 +12,10 @@ const EditorToolbarExportImageSize: React.FC<EditorToolbarExportImageSizeProps> 
   return (
     <CustomizationSlider
       label="Quality Multiplier"
-      range={[0.1, 1]}
-      stepSize={0.001}
+      range={[0, 5]}
+      stepSize={0.25}
       allSteps
-      allStepsSize={0.12}
+      allStepsSize={1}
       defaultValue={exportCustomization.sizeMultiplier}
       onUpdated={(value) =>
         dispatch(
