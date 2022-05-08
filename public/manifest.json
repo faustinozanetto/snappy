@@ -1,11 +1,13 @@
 {
+  "theme_color": "#4f46e5",
+  "background_color": "#4f46e5",
+  "display": "minimal-ui",
+  "scope": "/",
+  "start_url": "/",
+  "id": "/",
   "name": "Snappy",
   "short_name": "Snappy",
   "description": "Snappy is a simple, fast and powerful code snippet creator.",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#093eff",
-  "orientation": "portrait-primary",
   "icons": [
     {
       "src": "/images/favicon/favicon-16x16.png",

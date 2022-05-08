@@ -14,7 +14,7 @@
     "docker:build": "docker build -t faustizanetto/snappy:latest .",
     "test:watch": "jest --watch",
     "test:ci": "jest --ci",
-    "test:cypress":"cypress open",
+    "test:cypress": "cypress open",
     "eslint": "next lint --fix --dir src",
     "prettier": "prettier -l \"src/**/*.{js,jsx,md,ts,tsx}\"",
     "lint": "yarn prettier && yarn eslint"
@@ -40,6 +40,7 @@
     "framer-motion": "6",
     "html-to-image": "^1.9.0",
     "next": "^12.1.6",
+    "next-pwa": "^5.5.2",
     "prism-react-renderer": "^1.3.1",
     "prismjs": "^1.28.0",
     "react": "^18.1.0",
