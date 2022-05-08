@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectFontCustomization, setFontCustomization } from '@state/slices/editor/editorCustomization.slice';
-import CustomizationSlider from '../input/customizationSlider';
+import CustomizationSlider from '../input/sliderInput';
 
 interface EditorToolbarFontSizeProps {}
 
@@ -13,6 +13,7 @@ const EditorToolbarFontSize: React.FC<EditorToolbarFontSizeProps> = ({}) => {
   return (
     <CustomizationSlider
       label="Font Size"
+      aria-label="Font Size"
       range={[1, 35]}
       stepSize={1}
       allSteps

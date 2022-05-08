@@ -3,8 +3,11 @@ import Button from '@components/ui/button/button';
 import { Flex } from '@chakra-ui/react';
 
 interface EditorToolbarPresetItemProps {
+  /** Image to show as background for the preset */
   thumbnail: string;
+  /** Fallback to color of the preset if no image found */
   background: string;
+  /** Called when preset is clicked */
   onSelected: () => void;
 }
 
@@ -13,6 +16,7 @@ const EditorToolbarPresetItem: React.FC<EditorToolbarPresetItemProps> = (props) 
   return (
     <Flex flex="0 0 125px" position="relative">
       <Button
+        aria-label="Select Preset"
         display="flex"
         flex={1}
         padding={0}

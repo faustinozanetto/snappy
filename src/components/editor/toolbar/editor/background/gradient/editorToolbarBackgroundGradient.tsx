@@ -10,7 +10,7 @@ import {
 import { RgbColorPicker } from 'react-colorful';
 import { useDispatch, useSelector } from 'react-redux';
 
-import type { Color, GradientColor } from 'snappy.types';
+import type { Color } from 'snappy.types';
 
 import Button from '@components/ui/button/button';
 import GradientEditorMarkersHolder from './gradientEditorMarkersHolder';

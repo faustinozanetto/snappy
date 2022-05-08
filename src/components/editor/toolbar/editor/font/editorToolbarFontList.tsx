@@ -1,9 +1,10 @@
 import React from 'react';
-import { Box, Select, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFontCustomization, setFontCustomization } from '@state/slices/editor/editorCustomization.slice';
 import { FontFamily } from 'snappy.types';
+import SelectInput from '../input/selectInput';
 
 interface EditorToolbarFontListProps {}
 
@@ -16,11 +17,16 @@ const EditorToolbarFontList: React.FC<EditorToolbarFontListProps> = ({}) => {
   };
 
   return (
-    <Box width="full" padding={2}>
+    <Box width="full">
       <Text as="h2" fontSize="lg" fontWeight={600} mb={2}>
         Font List
       </Text>
-      <Select placeholder="Choose a Font" onChange={handleFontChange} defaultValue={fontCustomization.fontFamily}>
+      <SelectInput
+        placeholder="Choose a Font"
+        aria-label="Font Family"
+        onChange={handleFontChange}
+        defaultValue={fontCustomization.fontFamily}
+      >
         {Object.values(FontFamily)
           .sort()
           .map((key) => {
@@ -30,7 +36,7 @@ const EditorToolbarFontList: React.FC<EditorToolbarFontListProps> = ({}) => {
               </option>
             );
           })}
-      </Select>
+      </SelectInput>
     </Box>
   );
 };

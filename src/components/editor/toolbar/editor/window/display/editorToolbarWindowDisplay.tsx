@@ -9,7 +9,7 @@ import {
   setBackgroundCustomization,
   setWindowCustomization,
 } from '@state/slices/editor/editorCustomization.slice';
-import CustomizationSlider from '../../input/customizationSlider';
+import CustomizationSlider from '../../input/sliderInput';
 import EditorToolbarWindowControlsToggle from '../controls/editorToolbarWindowControlsToggle';
 
 interface EditorToolbarWindowDisplayProps {}
@@ -25,6 +25,7 @@ const EditorToolbarWindowDisplay: React.FC<EditorToolbarWindowDisplayProps> = ({
       {/* Padding Horizontal */}
       <CustomizationSlider
         label="Horizontal Padding"
+        aria-label="Horizontal Padding"
         range={[0, 50]}
         allSteps
         allStepsSize={10}
@@ -34,6 +35,7 @@ const EditorToolbarWindowDisplay: React.FC<EditorToolbarWindowDisplayProps> = ({
       {/* Padding Vertical */}
       <CustomizationSlider
         label="Vertical Padding"
+        aria-label="Vertical Padding"
         range={[0, 50]}
         allSteps
         allStepsSize={10}
@@ -43,6 +45,7 @@ const EditorToolbarWindowDisplay: React.FC<EditorToolbarWindowDisplayProps> = ({
       {/* Border Radius */}
       <CustomizationSlider
         label="Border Radius"
+        aria-label="Border Radius"
         range={[0, 50]}
         allSteps
         allStepsSize={10}
@@ -52,6 +55,7 @@ const EditorToolbarWindowDisplay: React.FC<EditorToolbarWindowDisplayProps> = ({
       {/* Background blur */}
       <CustomizationSlider
         label="Blur Effect"
+        aria-label="Blur Effect"
         range={[0, 20]}
         allSteps
         allStepsSize={5}

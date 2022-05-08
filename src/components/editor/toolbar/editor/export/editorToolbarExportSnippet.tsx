@@ -16,7 +16,7 @@ const EditorToolbarExportSnippet: React.FC<EditorToolbarExportSnippetProps> = (p
     <Box width="full">
       <EditorToolbarExportImageExtension />
       <EditorToolbarExportImageSize />
-      <EditorToolbarExportButtons onExport={handleExport} onCopy={handleCopy} onOpen={handleOpen} />{' '}
+      <EditorToolbarExportButtons onExport={handleExport} onCopy={handleCopy} onOpen={handleOpen} />
     </Box>
   );
 };

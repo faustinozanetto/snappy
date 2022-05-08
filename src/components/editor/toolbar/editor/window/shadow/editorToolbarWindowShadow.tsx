@@ -1,12 +1,12 @@
 import React from 'react';
-import { Box, HStack, Text, VStack } from '@chakra-ui/react';
+import { Box, Text, VStack } from '@chakra-ui/react';
 import { RgbColorPicker } from 'react-colorful';
 import { useDispatch, useSelector } from 'react-redux';
 import type { Color } from 'snappy.types';
 
 import { selectWindowCustomization, setWindowCustomization } from '@state/slices/editor/editorCustomization.slice';
 import useDebouncedCallback from '@hooks/useDebounce';
-import CustomizationSlider from '../../input/customizationSlider';
+import CustomizationSlider from '../../input/sliderInput';
 
 interface EditorToolbarWindowShadowProps {}
 
@@ -38,6 +38,7 @@ const EditorToolbarWindowShadow: React.FC<EditorToolbarWindowShadowProps> = ({})
       {/* Shadow Size */}
       <CustomizationSlider
         label="Shadow Size"
+        aria-label="Shadow Size"
         range={[0, 5]}
         stepSize={0.1}
         allSteps

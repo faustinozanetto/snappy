@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import type { SliderProps } from '@chakra-ui/react';
 import { Box, Slider, SliderFilledTrack, SliderMark, SliderThumb, SliderTrack, Text, Tooltip } from '@chakra-ui/react';
 
-interface CustomizationSliderProps {
+type SliderInputProps = SliderProps & {
   /** Label to display */
   label?: string;
   /** Initial slider value */
@@ -20,9 +21,9 @@ interface CustomizationSliderProps {
    * Callback when value is updated
    */
   onUpdated: (value: number) => void;
-}
+};
 
-const CustomizationSlider: React.FC<CustomizationSliderProps> = (props) => {
+const CustomizationSlider: React.FC<SliderInputProps> = (props) => {
   const {
     defaultValue = 10,
     range = [0, 10],
@@ -32,6 +33,7 @@ const CustomizationSlider: React.FC<CustomizationSliderProps> = (props) => {
     allSteps = false,
     allStepsSize = 1,
     onUpdated,
+    ...rest
   } = props;
   const [showTooltip, setShowTooltip] = useState(false);
   const [sliderValue, setSliderValue] = useState(defaultValue);
@@ -56,6 +58,7 @@ const CustomizationSlider: React.FC<CustomizationSliderProps> = (props) => {
         onChangeEnd={(event) => setSliderValue(event)}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
+        {...rest}
       >
         {/* Start Mark */}
         <SliderMark value={range[0]} mt="1" ml="-2.5" fontSize="xs" fontWeight={500}>

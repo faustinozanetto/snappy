@@ -1,9 +1,10 @@
 import React from 'react';
-import { Box, Select, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import { capitalizeString } from '@lib/helper/helperFunctions';
 import { selectCodeCustomization, setCodeCustomization } from '@state/slices/editor/editorCustomization.slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { getThemeList } from '@lib/themes/themeUtils';
+import SelectInput from '../input/selectInput';
 
 interface EditorToolbarCodeThemeListProps {}
 
@@ -21,11 +22,11 @@ const EditorToolbarCodeThemeList: React.FC<EditorToolbarCodeThemeListProps> = ({
   };
 
   return (
-    <Box width="full" padding={2}>
+    <Box width="full">
       <Text as="h2" fontSize="lg" fontWeight={600} mb={2}>
         Themes
       </Text>
-      <Select onChange={handleCodeThemeChange} defaultValue={codeCustomization.codeTheme}>
+      <SelectInput onChange={handleCodeThemeChange} defaultValue={codeCustomization.codeTheme}>
         {getThemeList()
           .sort()
           .map((key) => {
@@ -35,7 +36,7 @@ const EditorToolbarCodeThemeList: React.FC<EditorToolbarCodeThemeListProps> = ({
               </option>
             );
           })}
-      </Select>
+      </SelectInput>
     </Box>
   );
 };
