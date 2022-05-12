@@ -17,6 +17,7 @@ type SliderInputProps = SliderProps & {
   range?: [number, number];
   /** Type of value */
   valueType?: 'px' | 'em' | 'rem' | 'none';
+  smooth?: boolean;
   /**
    * Callback when value is updated
    */
@@ -32,6 +33,7 @@ const CustomizationSlider: React.FC<SliderInputProps> = (props) => {
     valueType = 'none',
     allSteps = false,
     allStepsSize = 1,
+    smooth = false,
     onUpdated,
     ...rest
   } = props;
@@ -55,7 +57,8 @@ const CustomizationSlider: React.FC<SliderInputProps> = (props) => {
         max={range[1]}
         step={stepSize}
         colorScheme="brand"
-        onChangeEnd={(event) => setSliderValue(event)}
+        onChangeEnd={(event) => (!smooth ? setSliderValue(event) : null)}
+        onChange={(event) => (smooth ? setSliderValue(event) : null)}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
         {...rest}

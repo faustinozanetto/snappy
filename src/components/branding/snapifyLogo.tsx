@@ -11,7 +11,13 @@ const SnapifyLogo: React.FC<SnapifyLogoProps> = (props) => {
   const { size = 'xl', responsive } = props;
 
   return (
-    <Heading fontWeight={800} color="logo" fontSize={responsive ? ['4em', '5em', '6em', '7em'] : size}>
+    <Heading
+      color="logo"
+      fontSize={responsive ? ['4em', '5em', '6em', '7em'] : size}
+      fontWeight={900}
+      lineHeight="1.2"
+      fontFamily="Gotham, sans-serif"
+    >
       Snappy
     </Heading>
   );

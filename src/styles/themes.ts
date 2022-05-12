@@ -62,6 +62,15 @@ const theme = extendTheme(
         },
       },
     },
+    styles: {
+      global: {
+        'html, body': {
+          textRendering: 'geometricPrecision',
+          WebkitFontSmoothing: 'antialiased',
+          fontFamily: 'Gotham, sans-serif',
+        },
+      },
+    },
   }
   // withDefaultColorScheme({ colorScheme: 'brand' })
 );

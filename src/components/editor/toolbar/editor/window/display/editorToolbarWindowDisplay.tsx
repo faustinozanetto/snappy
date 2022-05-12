@@ -28,6 +28,7 @@ const EditorToolbarWindowDisplay: React.FC<EditorToolbarWindowDisplayProps> = ({
         aria-label="Horizontal Padding"
         range={[0, 50]}
         allSteps
+        smooth
         allStepsSize={10}
         defaultValue={windowCustomization.paddingX}
         onUpdated={(value) => dispatch(setWindowCustomization({ paddingX: value }))}
@@ -38,6 +39,7 @@ const EditorToolbarWindowDisplay: React.FC<EditorToolbarWindowDisplayProps> = ({
         aria-label="Vertical Padding"
         range={[0, 50]}
         allSteps
+        smooth
         allStepsSize={10}
         defaultValue={windowCustomization.paddingY}
         onUpdated={(value) => dispatch(setWindowCustomization({ paddingY: value }))}
@@ -48,6 +50,7 @@ const EditorToolbarWindowDisplay: React.FC<EditorToolbarWindowDisplayProps> = ({
         aria-label="Border Radius"
         range={[0, 50]}
         allSteps
+        smooth
         allStepsSize={10}
         defaultValue={windowCustomization.borderRadius}
         onUpdated={(value) => dispatch(setWindowCustomization({ borderRadius: value }))}
@@ -58,6 +61,7 @@ const EditorToolbarWindowDisplay: React.FC<EditorToolbarWindowDisplayProps> = ({
         aria-label="Blur Effect"
         range={[0, 20]}
         allSteps
+        smooth
         allStepsSize={5}
         defaultValue={backgroundCustomization.backgroudBlur}
         onUpdated={(value) =>

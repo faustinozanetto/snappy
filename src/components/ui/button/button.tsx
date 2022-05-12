@@ -13,7 +13,7 @@ const Button: React.FC<ButtonProps> = React.forwardRef((props: ButtonProps, ref:
     <ChakraButton
       px={8}
       ref={ref}
-      role="button"
+      fontWeight={700}
       colorScheme="brand"
       rounded="md"
       _hover={{

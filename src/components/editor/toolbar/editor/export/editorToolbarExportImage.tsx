@@ -47,7 +47,9 @@ const EditorToolbarExportImage: React.FC<EditorExportImageProps> = ({ exportRef 
                 toast({
                   title: 'Image exported',
                   description: 'The image has been saved to your files.',
+                  variant: 'solid',
                   status: 'success',
+                  position: 'bottom-right',
                   duration: 3000,
                   isClosable: true,
                 });
@@ -59,6 +61,8 @@ const EditorToolbarExportImage: React.FC<EditorExportImageProps> = ({ exportRef 
                 title: 'Error',
                 description: error.message,
                 status: 'error',
+                variant: 'solid',
+                position: 'bottom-right',
                 duration: 3000,
                 isClosable: true,
               });
@@ -91,6 +95,8 @@ const EditorToolbarExportImage: React.FC<EditorExportImageProps> = ({ exportRef 
                 title: 'Copied to clipboard',
                 description: 'The image has been copied to your clipboard',
                 status: 'success',
+                variant: 'solid',
+                position: 'bottom-right',
                 duration: 3000,
                 isClosable: true,
               });
@@ -102,6 +108,8 @@ const EditorToolbarExportImage: React.FC<EditorExportImageProps> = ({ exportRef 
               title: 'Error',
               description: error.message,
               status: 'error',
+              variant: 'solid',
+              position: 'bottom-right',
               duration: 3000,
               isClosable: true,
             });
@@ -133,6 +141,8 @@ const EditorToolbarExportImage: React.FC<EditorExportImageProps> = ({ exportRef 
                 title: 'Image opened',
                 description: 'The image has been opened in a new tab.',
                 status: 'success',
+                variant: 'solid',
+                position: 'bottom-right',
                 duration: 3000,
                 isClosable: true,
               });
@@ -144,6 +154,8 @@ const EditorToolbarExportImage: React.FC<EditorExportImageProps> = ({ exportRef 
               title: 'Error',
               description: error.message,
               status: 'error',
+              position: 'bottom-right',
+              variant: 'solid',
               duration: 3000,
               isClosable: true,
             });

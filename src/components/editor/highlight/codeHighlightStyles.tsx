@@ -19,10 +19,7 @@ const CodeHighlightStyles: React.FC<CodeHighlightStylesProps> = ({}) => {
     <Global
       styles={`
         ${constructCSSStyle(themeStyles)}
-        .code-wrapper {
-          color: ${themeStyles.plain.color} !important;
-          background-color: ${themeStyles.plain.backgroundColor} !important;
-        }
+
 
         .prism-code {
           margin: 0 !important;

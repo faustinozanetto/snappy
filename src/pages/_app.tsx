@@ -5,7 +5,7 @@ import '@fontsource/mononoki';
 import '@fontsource/poppins';
 import '@fontsource/space-mono';
 import '@fontsource/source-code-pro';
-
+import '../styles/globals.css';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import { store } from '@state/redux/snappyStore';
